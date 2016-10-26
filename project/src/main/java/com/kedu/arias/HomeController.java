@@ -1,4 +1,4 @@
-package com.kedu.board;
+package com.kedu.arias;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -24,7 +24,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("안녕하세요 정식이형! 안녕하세요^^_^^ {라라라라라라}.", locale);
+		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
