@@ -16,11 +16,13 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- 한글화 및 한국식 날짜표기를 적용한 datepicker 구성요소-->
-<link rel="stylesheet" type="text/css" href="/resources/datapicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/datapicker/daterangepicker.css">
 <script type="text/javascript" src="/resources/datapicker/moment.js"></script>
-<script type="text/javascript" src="/resources/datapicker/daterangepicker.js"></script> 
+<script type="text/javascript"
+	src="/resources/datapicker/daterangepicker.js"></script>
 
- 
+
 </head>
 
 <style>
@@ -61,24 +63,26 @@ footer {
 	margin-left: 10px;
 }
 
-a:hover{
-	background-color:transparent;
+a:hover {
+	background-color: transparent;
 	text-decoration: none;
 	color: white;
 }
+
 a:visited {
-    background-color:transparent;
+	background-color: transparent;
 	text-decoration: none;
 	color: white;
 }
+
 a:link {
-    background-color:transparent;
+	background-color: transparent;
 	text-decoration: none;
 	color: white;
 }
 
 a:active {
-    background-color:transparent;
+	background-color: transparent;
 	text-decoration: none;
 	color: white;
 }
@@ -149,45 +153,74 @@ a:active {
 		</a>
 	</div>
 
-	<!-- 달력 -->
-	<div class="container">
-    <div id="reportrange" class="pull-right"
-        style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
-        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>  <span></span>
-        <b class="caret"></b>
-    </div>
-	</div>
+	<br>
+	<!-- Search&달력 -->
+	<form class="form-inline text-center form-group-lg">
+		<div class="form-group">
+			 <input type="text"
+				class="form-control" id="exampleInputName2" placeholder="나라 이름">
+		</div>
+		<div id="reportrange" class="form-group form-control"
+			style="background: #fff; cursor: pointer;">
+			<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> <span></span>
+			<b class="caret"></b>
+		</div>
+		<div class="form-group">
+			<select class="form-control">
+				<option>숙박인원 1명</option>
+				<option>숙박인원 2명</option>
+				<option>숙박인원 3명</option>
+				<option>숙박인원 4명</option>
+				<option>숙박인원 5명</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<button type="button" class="btn btn-primary btn-lg">숙소 검색</button>
+		</div>
+	</form>
 	<!-- 달력 끝  -->
-	
+
 	<!--달력 스크립트  -->
-<script type="text/javascript">
-    $(function() {
-        // 시작 날짜와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다
-        var start_date = moment().subtract(29, 'days');
-        var end_date = moment();
-        function cb(start, end) {
-            $('#reportrange span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
-        }
-        cb(start_date, end_date); 
-        $('#reportrange').daterangepicker({
-            ranges : {
-                '오늘' : [ moment(), moment() ],
-                '어제' : [ moment().subtract(1, 'days'), moment().subtract(1, 'days') ],
-                '지난 7일' : [ moment().subtract(6, 'days'), moment() ],
-                '지난 30일' : [ moment().subtract(29, 'days'), moment() ],
-                '이번 달' : [ moment().startOf('month'), moment().endOf('month') ],
-                '지난 달' : [ moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month') ]
-            },
-            'startDate' :  start_date,
-            'endDate' : end_date
-        }, cb);
-    });
-</script>
-<!--달력 스크립트  끝-->
+	<script type="text/javascript">
+		$(function() {
+			// 시작 날짜와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다
+			var start_date = moment().subtract(29, 'days');
+			var end_date = moment();
+			function cb(start, end) {
+				$('#reportrange span').html(
+						start.format('YYYY-MM-DD') + ' - '
+								+ end.format('YYYY-MM-DD'));
+			}
+			cb(start_date, end_date);
+			$('#reportrange')
+					.daterangepicker(
+							{
+								ranges : {
+									'오늘' : [ moment(), moment() ],
+									'어제' : [ moment().subtract(1, 'days'),
+											moment().subtract(1, 'days') ],
+									'지난 7일' : [ moment().subtract(6, 'days'),
+											moment() ],
+									'지난 30일' : [ moment().subtract(29, 'days'),
+											moment() ],
+									'이번 달' : [ moment().startOf('month'),
+											moment().endOf('month') ],
+									'지난 달' : [
+											moment().subtract(1, 'month')
+													.startOf('month'),
+											moment().subtract(1, 'month')
+													.endOf('month') ]
+								},
+								'startDate' : start_date,
+								'endDate' : end_date
+							}, cb);
+		});
+	</script>
+	<!--달력 스크립트  끝-->
 	<div class="container text-center">
 		<h3>최신 상품</h3>
 		<br>
-		
+
 		<div class="row">
 			<!-- 나중에 최신 순서로 뿌려주기 foreach 예정 -->
 			<div class="col-sm-4 image">
@@ -215,22 +248,23 @@ a:active {
 		</div>
 	</div>
 
-	
+
 	<div class="container text-center">
 		<h3>두근두근 세계여행</h3>
 		<br>
 		<div class="row">
 			<div class="col-sm-6 image">
-			<a href="#">
-				<img src="/resources/img/main/paris.jpg" class="img-responsive"
-					style="width: 100%" alt="Image" >
-			</a>
+				<a href="#"> <img src="/resources/img/main/paris.jpg"
+					class="img-responsive" style="width: 100%" alt="Image">
+				</a>
 				<div class="text">
-					<h4><a href="#">파리</a></h4>
+					<h4>
+						<a href="#">파리</a>
+					</h4>
 				</div>
-			
+
 			</div>
-			
+
 			<div class="col-sm-3 image">
 				<img src="/resources/img/main/rome.jpg" class="img-responsive"
 					style="width: 100%" alt="Image">
