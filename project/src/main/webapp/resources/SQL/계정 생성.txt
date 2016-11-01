@@ -1,0 +1,7 @@
+create user arias identified by 1234;
+
+grant dba to arias;
+
+grant connect, resource to arias;
+
+conn arias;
