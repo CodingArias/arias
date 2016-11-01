@@ -84,7 +84,8 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
+      	<!-- 이미지크기 1200x400 -->
+        <img src="/resources/img/main/seoul.png" alt="Image">
         <div class="carousel-caption">
           <h3>Sell $</h3>
           <p>Money Money.</p>
@@ -92,7 +93,7 @@
       </div>
 
       <div class="item">
-        <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
+        <img src="/resources/img/main/travel.jpg" alt="Image">
         <div class="carousel-caption">
           <h3>More Sell $</h3>
           <p>Lorem ipsum...</p>
@@ -125,6 +126,7 @@
       <div class="text">
       	<h4>로마</h4>
       </div>
+    
     </div>
     <div class="col-sm-3 image">
       <img src="/resources/img/main/LA.jpg" class="img-responsive" style="width:100%" alt="Image">
@@ -132,19 +134,20 @@
       	<h4>로스앤젤레스</h4>
       </div>
     </div>
-    <div class="col-sm-3 image">
+    <div class="col-sm-3 image" style="top: 1em;">
       <img src="/resources/img/main/lisboa.jpg" class="img-responsive" style="width:100%" alt="Image">
       <div class="text">
       	<h4>리스본</h4>
       </div>
     </div>
-    <div class="col-sm-3 image">
+    <div class="col-sm-3 image" style="top: 1em;">
       <img src="/resources/img/main/tokyo.jpg" class="img-responsive" style="width:100%" alt="Image">
     	<div class="text">
       	<h4>도쿄</h4>
       </div>
     </div>
   </div>
+  <br>
   <div class="row">
     <div class="col-sm-3">
      <div class="image">
@@ -153,7 +156,7 @@
       	<h4>뉴욕</h4>
       </div>
       </div>
-      <div class="image">
+      <div class="image" style="top: 1em;">
       <img src="/resources/img/main/amsterdam.jpg" class="img-responsive" style="width:100%" alt="Image">
       <div class="text">
       	<h4>암스테르담</h4>
@@ -173,18 +176,18 @@
       	<h4>바르셀로나</h4>
       </div>
     </div>
-    <div class="col-sm-3 image">
+    <div class="col-sm-3 image" style="top: 1em;">
       <img src="/resources/img/main/berlin.jpg" class="img-responsive" style="width:100%" alt="Image">
     <div class="text">
       	<h4>베를린</h4>
-      </div>
+      </div>	
     </div>
     
   </div>
 </div><br>
 
 <footer class="container-fluid text-center">
-  <p>Footer Texthh</p>
+  <p>Footer Text</p>
 </footer>
 
 </body>
