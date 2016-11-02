@@ -14,13 +14,31 @@
  	 
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   	
- 	
+ 	<script type="text/javascript" src="/resources/datepicker/moment.js"></script>
 	<link rel="stylesheet" type="text/css" href="/resources/datepicker/daterangepicker.css">
-	<script type="text/javascript" src="/resources/datepicker/moment.js"></script>
 	<script type="text/javascript" src="/resources/datepicker/daterangepicker.js"></script> 
 	<script type="text/javascript">
 		$(function() {
-			 var some_date_range = [
+			
+			
+ 			function date_priod(start,end){
+ 				console.log(start.format('YYYY-MM-DD'));
+ 				console.log(end.format('YYYY-MM-DD'));
+ 				
+				
+			/* 	var date_array = new Array();
+				var a =1;
+				for(var start_date = start ;a<10 ; start_date = moment(start_date)+1){
+					console.log(start_date.format("YYYY-MM-DD"));
+					
+					a++;
+				} */
+			} 
+			
+			date_priod( moment("2016-11-01", "YYYY-MM-DD"), moment("2016-11-10", "YYYY-MM-DD"));
+		 
+			
+			var some_date_range = [
 			                        '2016-11-01',
 			                        '2016-11-03',
 			                        '2016-11-04',
@@ -32,7 +50,7 @@
 				       {
 				          startDate: moment(),
 				          endDate: moment(),
-				          format: 'DD/MM/YYYY',
+				          format: 'YYYY-MM-DD',
 				          "autoApply": true,
 				          "dateLimit": {
 				              "days": 100
@@ -50,8 +68,8 @@
 				       function(start, end) {
 				        startDate = start;
 				        endDate = end;    
-				        console.log(start.format('YYYY/MM/DD'));
-				        console.log(end.format('YYYY/MM/DD'));
+				        console.log(start.format('YYYY-MM-DD'));
+				        console.log(end.format('YYYY-MM-DD'));
 				       }
 				    );
 		});

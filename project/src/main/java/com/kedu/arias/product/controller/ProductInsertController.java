@@ -17,7 +17,7 @@ public class ProductInsertController {
 	
 @RequestMapping(value="/product_insert",method=RequestMethod.GET)
 public void product_insert(){
-	System.out.println(pDao.selectAllListOfCity());
+	//System.out.println(pDao.selectAllListOfCity());
 	
 }
 	
