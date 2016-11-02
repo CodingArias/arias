@@ -166,6 +166,7 @@ a:active {
 			<b class="caret"></b>
 		</div>
 		<div class="form-group">
+			<!-- db로 코드를 넣어줘야함 -->
 			<select class="form-control">
 				<option>숙박인원 1명</option>
 				<option>숙박인원 2명</option>
@@ -256,42 +257,46 @@ a:active {
 			<div class="col-sm-6 image">
 				<a href="#"> <img src="/resources/img/main/paris.jpg"
 					class="img-responsive" style="width: 100%" alt="Image">
-				</a>
 				<div class="text">
 					<h4>
-						<a href="#">파리</a>
+						파리
 					</h4>
 				</div>
-
+			</a>
 			</div>
 
 			<div class="col-sm-3 image">
+			<a href="#">
 				<img src="/resources/img/main/rome.jpg" class="img-responsive"
 					style="width: 100%" alt="Image">
+			</a>
 				<div class="text">
-					<h4>로마</h4>
+					<h4><a href="#">로마</a></h4>
 				</div>
 
 			</div>
 			<div class="col-sm-3 image">
-				<img src="/resources/img/main/LA.jpg" class="img-responsive"
+				<a href="#"><img src="/resources/img/main/LA.jpg" class="img-responsive"
 					style="width: 100%" alt="Image">
+				</a>
 				<div class="text">
-					<h4>로스앤젤레스</h4>
+					<h4><a href="#">로스앤젤레스</a></h4>
 				</div>
 			</div>
 			<div class="col-sm-3 image" style="top: 1em;">
-				<img src="/resources/img/main/lisboa.jpg" class="img-responsive"
+				<a href="#"><img src="/resources/img/main/lisboa.jpg" class="img-responsive"
 					style="width: 100%" alt="Image">
+				</a>
 				<div class="text">
-					<h4>리스본</h4>
+					<h4><a href="#">리스본</a></h4>
 				</div>
 			</div>
 			<div class="col-sm-3 image" style="top: 1em;">
-				<img src="/resources/img/main/tokyo.jpg" class="img-responsive"
+				<a href="#"><img src="/resources/img/main/tokyo.jpg" class="img-responsive"
 					style="width: 100%" alt="Image">
+				</a>
 				<div class="text">
-					<h4>도쿄</h4>
+					<h4><a href="#">도쿄</a></h4>
 				</div>
 			</div>
 		</div>
@@ -299,40 +304,45 @@ a:active {
 		<div class="row">
 			<div class="col-sm-3">
 				<div class="image">
-					<img src="/resources/img/main/newyork.jpg" class="img-responsive"
+					<a href="#"><img src="/resources/img/main/newyork.jpg" class="img-responsive"
 						style="width: 100%" alt="Image">
+					</a>
 					<div class="text">
-						<h4>뉴욕</h4>
+						<h4><a href="#">뉴욕</a></h4>
 					</div>
 				</div>
 				<div class="image" style="top: 1em;">
-					<img src="/resources/img/main/amsterdam.jpg" class="img-responsive"
+					<a href="#"><img src="/resources/img/main/amsterdam.jpg" class="img-responsive"
 						style="width: 100%" alt="Image">
+					</a>
 					<div class="text">
-						<h4>암스테르담</h4>
+						<h4><a href="#">암스테르담</a></h4>
 					</div>
 				</div>
 			</div>
 
 			<div class="col-sm-6 image">
-				<img src="/resources/img/main/liverpool.jpg" class="img-responsive"
+				<a href="#"><img src="/resources/img/main/liverpool.jpg" class="img-responsive"
 					style="width: 100%" alt="Image">
+				</a>
 				<div class="text">
-					<h4>리버풀</h4>
+					<h4><a href="#">리버풀</a></h4>
 				</div>
 			</div>
 			<div class="col-sm-3 image">
-				<img src="/resources/img/main/barcelona.jpg" class="img-responsive"
+				<a href="#"><img src="/resources/img/main/barcelona.jpg" class="img-responsive"
 					style="width: 100%" alt="Image">
+				</a>
 				<div class="text">
-					<h4>바르셀로나</h4>
+					<h4><a href="#">바르셀로나</a></h4>
 				</div>
 			</div>
 			<div class="col-sm-3 image" style="top: 1em;">
-				<img src="/resources/img/main/berlin.jpg" class="img-responsive"
+				<a href="#"><img src="/resources/img/main/berlin.jpg" class="img-responsive"
 					style="width: 100%" alt="Image">
+				</a>
 				<div class="text">
-					<h4>베를린</h4>
+					<h4><a href="#">베를린</a></h4>
 				</div>
 			</div>
 
