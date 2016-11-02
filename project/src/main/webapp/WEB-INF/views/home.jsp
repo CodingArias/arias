@@ -17,10 +17,10 @@
 
 <!-- 한글화 및 한국식 날짜표기를 적용한 datepicker 구성요소-->
 <link rel="stylesheet" type="text/css"
-	href="/resources/datapicker/daterangepicker.css">
-<script type="text/javascript" src="/resources/datapicker/moment.js"></script>
+	href="/resources/datepicker/daterangepicker.css">
+<script type="text/javascript" src="/resources/datepicker/moment.js"></script>
 <script type="text/javascript"
-	src="/resources/datapicker/daterangepicker.js"></script>
+	src="/resources/datepicker/daterangepicker.js"></script>
 
 
 </head>
