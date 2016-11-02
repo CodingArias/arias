@@ -1,4 +1,4 @@
-
+DROP TABLE COUNTRY_CODE;
 CREATE TABLE COUNTRY_CODE(
 	  country_id 		  VARCHAR2(10)
 	, country_name    VARCHAR2(50) NOT NULL
@@ -6,7 +6,7 @@ CREATE TABLE COUNTRY_CODE(
 );
 
 
-
+DROP TABLE MEMBER;
 CREATE TABLE MEMBER(
     member_id    Varchar2(30)
   , member_first_name    Varchar2(30) 	NOT NULL
@@ -22,7 +22,7 @@ CREATE TABLE MEMBER(
   , CONSTRAINT MEMBER_MEMBERID_PK PRIMARY KEY(member_id)
 );
 
-
+DROP TABLE notice;
 CREATE TABLE notice(
 	notice_seq    NUMBER
   , member_id    Varchar2(30)
@@ -34,35 +34,43 @@ CREATE TABLE notice(
   , CONSTRAINT notice_noticeseq_pk PRIMARY KEY(notice_seq)
 );
 
+
+DROP TABLE suit_guest_code;
 CREATE TABLE suit_guest_code(
       sguest_id    VARCHAR2(10)
  	, sguest_name    VARCHAR2(50)
 	, CONSTRAINT suitguestcode_sguestid_PK PRIMARY KEY(sguest_id)
 );
+
+DROP TABLE building_code;
 CREATE TABLE building_code(
 	  building_id    VARCHAR2(10)
 	, building_name    VARCHAR2(50)
 	, CONSTRAINT building_buildingcode_PK PRIMARY KEY(building_id)
 );
 
+DROP TABLE bed_code;
 CREATE TABLE bed_code (
 	 bed_id    Varchar2(10)
    , bed_name    Varchar2(50)
    , CONSTRAINT bedcode_bedid_PK PRIMARY KEY(bed_id)
 );
 
+DROP TABLE bath_code;
 CREATE TABLE bath_code(
 	  bath_id    Varchar2(10)
 	, bath_name    Varchar2(50)
     , CONSTRAINT bathcode_bathid_PK PRIMARY KEY(bath_id)
 );
+
+DROP TABLE accom_code;
 CREATE TABLE accom_code(
 	  accom_id    Varchar2(10)
 	, accom_name    Varchar2(50)
     , CONSTRAINT accomcode_accomid_PK PRIMARY KEY(accom_id)
 );
 
-
+DROP TABLE PRODUCT;
 CREATE TABLE PRODUCT(
 	  product_seq    NUMBER
     , p_main_img    VARCHAR2 (1000)						 NOT NULL
@@ -98,6 +106,8 @@ CREATE TABLE PRODUCT(
     , CONSTRAINT PRODUCT_productid_PK PRIMARY KEY(product_seq)
 );
 
+
+DROP TABLE notsales_date;
 CREATE TABLE notsales_date(
 	  notsales_seq    NUMBER
     , product_seq    NUMBER
@@ -107,6 +117,7 @@ CREATE TABLE notsales_date(
     , CONSTRAINT notsalesdate_notsalesseq_pk PRIMARY KEY(notsales_seq)
 );
 
+DROP TABLE product_pic;
 CREATE TABLE product_pic (
 	  pimg_seq    number
 	, product_seq   NUMBER
@@ -115,6 +126,7 @@ CREATE TABLE product_pic (
     , CONSTRAINT productpic_pimg_product_seq_PK PRIMARY KEY(pimg_seq, product_seq)
 );
 
+DROP TABLE product_reply;
 CREATE TABLE product_reply(
 	  product_seq    NUMBER
 	, member_id    Varchar2(30)
@@ -126,7 +138,7 @@ CREATE TABLE product_reply(
     , CONSTRAINT productreply_productmemid_PK PRIMARY KEY(member_id,product_seq)
 );
 
-
+DROP TABLE reservation;
 CREATE TABLE reservation(
 	  reservation_seq NUMBER
     , product_seq    NUMBER
@@ -142,6 +154,7 @@ CREATE TABLE reservation(
     , CONSTRAINT reservation_reservationseq_PK PRIMARY KEY(reservation_seq)
 );
 
+DROP TABLE payment;
 CREATE TABLE payment(
 	  pay_seq    number
 	, product_seq    Varchar2(30)
@@ -152,43 +165,50 @@ CREATE TABLE payment(
 );
 
 
+DROP TABLE admin_code;
 CREATE TABLE admin_code(
    	  member_id    Varchar2(30)
     , CONSTRAINT admincode_memberid_fk FOREIGN KEY(member_id) REFERENCES member (member_id) ON DELETE CASCADE
     , CONSTRAINT admincode_memberid_PK PRIMARY KEY(member_id)
 );
 
+DROP TABLE convin_code;
 CREATE TABLE convin_code(
     convin_id    Varchar2(10)
   , convin_name    Varchar2(50)
   , CONSTRAINT convincode_convinid_PK PRIMARY KEY(convin_id)
 );
 
+DROP TABLE regulation_code;
 CREATE TABLE regulation_code(
 	  regulation_id    Varchar2(10)
 	, regulation_name    Varchar2(50)
     , CONSTRAINT regulationcode_regulationid_PK PRIMARY KEY(regulation_id)
 );
 
-
+DROP TABLE safety_code;
 CREATE TABLE safety_code(
 	  safety_id    Varchar2(10)
 	, safety_name    Varchar2(50)
     , CONSTRAINT safetycode_safetyid_PK PRIMARY KEY(safety_id)
 );
 
+DROP TABLE space_code;
 CREATE TABLE space_code(
     space_id    	  Varchar2(10)
   , space_name    Varchar2(50)
   , CONSTRAINT spacecode_spaceid_PK PRIMARY KEY(space_id)
 );
 
+DROP TABLE product_convin;
 CREATE TABLE product_convin(
 	product_seq    NUMBER
   , convin_id    Varchar2(10)
   , CONSTRAINT productconvin_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
   , CONSTRAINT productconvin_prodconvinid_PK PRIMARY KEY(product_seq,convin_id)
 );
+
+DROP TABLE product_regul;
 CREATE TABLE product_regul(
 	  product_seq    NUMBER
 	, regulation_id    Varchar2(10)
@@ -196,6 +216,8 @@ CREATE TABLE product_regul(
   	, CONSTRAINT productregul_prodregulid_PK PRIMARY KEY(product_seq,regulation_id)
 );
 
+
+DROP TABLE product_safty;
 CREATE TABLE product_safty(
     product_seq    NUMBER
   , safety_id    Varchar2(10)
@@ -203,6 +225,7 @@ CREATE TABLE product_safty(
   , CONSTRAINT productsafty_prodsafetyid_PK PRIMARY KEY(product_seq,safety_id)
 );
 
+DROP TABLE product_space;
 CREATE TABLE product_space(
       product_seq    NUMBER
 	, space_id    Varchar2(10)
