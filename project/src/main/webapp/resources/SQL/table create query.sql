@@ -1,7 +1,10 @@
 
+
 CREATE TABLE COUNTRY_CODE(
 	  country_id 		  VARCHAR2(10)
-	, country_name    VARCHAR2(50) NOT NULL
+	, country_name_eng   VARCHAR2(50) NOT NULL
+    , country_name_kor    VARCHAR2(50) NOT NULL
+    , country_num			VARCHAR2(10) NOT NULL 
 	, CONSTRAINT COUNTRY_countryid_pk PRIMARY KEY(country_id)
 );
 
