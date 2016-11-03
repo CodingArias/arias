@@ -1,0 +1,11 @@
+CREATE OR REPLACE FUNCTION create_next_product_seq
+RETURN number
+IS
+product_seq product.product_seq%TYPE;
+BEGIN
+
+SELECT NVL(MAX(product_seq),0)+1 INTO product_seq
+FROM PRODUCT;
+
+RETURN product_seq;
+END;
