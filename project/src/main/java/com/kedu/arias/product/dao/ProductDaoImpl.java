@@ -18,8 +18,8 @@ public class ProductDaoImpl implements ProductDao{
 	SqlSession session;
 	final String namespace= "com.kedu.arias.productMapper";
 	@Override
-	public boolean insert(ProductDto pDto) throws Exception {
-		// TODO Auto-generated method stub
+	public boolean step1_insert(ProductDto pDto) throws Exception {
+		session.insert(namespace+".product_insert_step1", pDto);
 		return false;
 	}
 

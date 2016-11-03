@@ -7,5 +7,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectAllListByKeyword" resultType="com.kedu.arias.product.dto.ProductDto">
 		select * from product where country_id = #{country_id} and city_id = #{city_id}
 	</select>
+	
+	<insert id="product_insert_step1" parameterType="com.kedu.arias.product.dto.ProductDto">
+				INSERT INTO PRODUCT (  product_seq
+                                       , p_main_img
+                                       , member_id
+                                       , product_name
+                                       , product_price
+                                       , country_id
+                                       , product_addr
+                                       , product_addr_detail
+                                       , product_info
+                                       , product_lat
+                                       , product_lng
+                                       , product_step)
+                                       VALUES ( 
+                                        create_next_product_seq
+									  , #{p_main_img}
+                                      , #{member_id}
+                                      , #{product_name}
+                                      , #{product_price}
+                                      , #{country_id,jdbcType=VARCHAR}
+                                      , #{product_addr}
+                                      , #{product_addr_detail}
+                                      , #{product_info}
+                                      , #{product_lat}
+                                      , #{product_lng}
+                                      , 1);
+	</insert>
 </mapper>
 
