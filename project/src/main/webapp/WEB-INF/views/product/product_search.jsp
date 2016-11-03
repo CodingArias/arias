@@ -203,25 +203,25 @@ footer {
 				
 				<br>
 				<!-- 상품 목록 불러오기 시작 foreach 사용해야함 -->
-				<div class="col-sm-6" style="top: 1em;">
+				<div class="col-sm-6">
 					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
 				</div>
-				<div class="col-sm-6" style="top: 1em;">
-					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
-				</div>
-				
-				
-				<div class="col-sm-6" style="top: 1em;">
-					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
-				</div>
-				<div class="col-sm-6" style="top: 1em;">
+				<div class="col-sm-6">
 					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
 				</div>
 				
-				<div class="col-sm-6" style="top: 1em;">
+				
+				<div class="col-sm-6">
 					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
 				</div>
-				<div class="col-sm-6" style="top: 1em;">
+				<div class="col-sm-6">
+					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+				</div>
+				
+				<div class="col-sm-6">
+					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+				</div>
+				<div class="col-sm-6">
 					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
 				</div>
 				<!-- 상품 목록 불러오기 끝 -->
