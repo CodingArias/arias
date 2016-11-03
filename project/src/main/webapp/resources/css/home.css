@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+
+.image {
+	position: relative;
+	float: left;
+}
+
+.image .text {
+	position: absolute;
+	bottom: 2px;
+	color: white;
+	margin-left: 10px;
+}
+
+a:hover {
+	background-color: transparent;
+	text-decoration: none;
+	color: white;
+}
+
+a:visited {
+	background-color: transparent;
+	text-decoration: none;
+	color: white;
+}
+
+a:link {
+	background-color: transparent;
+	text-decoration: none;
+	color: white;
+}
+
+a:active {
+	background-color: transparent;
+	text-decoration: none;
+	color: white;
+}
+
+.carousel-inner img {
+	width: 100%; /* Set width to 100% */
+	margin: auto;
+	min-height: 200px;
+}
+
+footer {
+	background-color: #f2f2f2;
+	padding: 25px;
+}
