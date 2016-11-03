@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION create_next_memberid
+RETURN VARCHAR2
+IS
+   next_memid member.member_id%TYPE;
+BEGIN
+SELECT TO_CHAR(SYSDATE,'RRRRMMDD')||LTRIM(TO_CHAR(SUBSTR(NVL(MAX(m.member_id),'000000000000'),9,4)+1,'0000'),' ')
+INTO next_memid
+FROM member m;
+RETURN next_memid;
+END;

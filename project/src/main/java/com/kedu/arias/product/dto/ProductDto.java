@@ -1,67 +1,71 @@
 package com.kedu.arias.product.dto;
 
 /*
-         product_id 				VARCHAR2(30) 
-      ,  member_id				  VARCHAR2(30)
-      ,  product_name			VARCHAR2(100)			NOT NULL 
-      ,  product_price			  NUMBER					  NOT NULL 
-      ,  country_id					VARCHAR2(30)
-      ,  city_id						VARCHAR2(30)
-      ,  product_addr			  VARCHAR2(300)			 NOT NULL
-      ,  product_info				VARCHAR2(3000)		  NOT NULL
-      ,  product_simple_info   VARCHAR2(1000)		 NOT NULL 	
-      ,  product_lat				 NUMBER 					NOT NULL
-      ,  product_lng				NUMBER 						NOT NULL
-      ,  product_score		     NUMBER 					DEFAULT 0
-      ,  product_mindt			  NUMBER 
-      ,  product_maxdt			NUMBER 
-      ,  product_readydt		NUMBER 	
-      ,  product_prepdt			NUMBER 
-      ,  product_step			NUMBER 					NOT NULL	
-      ,  p_main_img				VARCHAR2(1000)		NOT NULL
-      ,  product_regdt			DATE 						DEFAULT SYSDATE
+	PRODUCT_SEQ					NOT NULL	NUMBER
+	P_MAIN_IMG					NOT NULL	VARCHAR2(1000)
+	MEMBER_ID					NOT NULL	VARCHAR2(30)
+	PRODUCT_NAME				NOT NULL	VARCHAR2(100)
+	PRODUCT_PRICE				NOT NULL	NUMBER
+	COUNTRY_ID								VARCHAR2(30)
+	PRODUCT_ADDR				NOT NULL	VARCHAR2(300)
+	PRODUCT_ADDR_DETAIL			NOT NULL	VARCHAR2(300)
+	ACCOM_ID								VARCHAR2(10)
+	BATH_ID									VARCHAR2(10)
+	BED_ID									VARCHAR2(10)
+	BUILDING_ID								VARCHAR2(10)
+	SGUEST_ID								VARCHAR2(10)
+	PRODUCT_INFO				NOT NULL	VARCHAR2(3000)
+	PRODUCT_SIMPLE_INFO						VARCHAR2(1000)
+	PRODUCT_LAT					NOT NULL	NUMBER
+	PRODUCT_LNG					NOT NULL	NUMBER
+	PRODUCT_SCORE							NUMBER
+	PRODUCT_MINDT							NUMBER
+	PRODUCT_MAXDT							NUMBER
+	PRODUCT_READYDT							NUMBER
+	PRODUCT_PREPDT							NUMBER
+	PRODUCT_STEP				NOT NULL	NUMBER
+	PRODUCT_REGDT							DATE
  */
 public class ProductDto {
-	String product_id;
-	String member_id;
-	String product_name;
-	String product_price;
-	String country_id;
-	String country_name;
-	String city_id;
-	String city_name;
-	String product_addr;
-	String product_info;
-	String product_simple_info;
-	double product_lat;
-	double product_lng;
-	double product_score;
-	int product_mindt;
-	int product_maxdt;
-	int product_readydt;
-	int product_prepdt;
-	int product_step;
-	String p_main_img;
-	String product_regdt;
+	private int product_seq;
+	private String member_id;
+	private String product_name;
+	private String product_price;
+	private String country_id;
+	private String country_name;
+	private String city_id;
+	private String city_name;
+	private String product_addr;
+	private String product_addr_detail;
+	private String product_info;
+	private String product_simple_info;
+	private double product_lat;
+	private double product_lng;
+	private double product_score;
+	private int product_mindt;
+	private int product_maxdt;
+	private int product_readydt;
+	private int product_prepdt;
+	private int product_step;
+	private String p_main_img;
+	private String product_regdt;
 	
+	private String accom_id;
+	private String accom_name;
+	private String bath_id;
+	private String bath_name;								
+	private String bed_id;								
+	private String bed_name;									
+	private String building_id;							
+	private String building_name;								
+	private String sguest_id;								
+	private String sguest_name;
 	
-	public String getCountry_name() {
-		return country_name;
+	public int getProduct_seq() {
+		return product_seq;
 	}
-	public void setCountry_name(String country_name) {
-		this.country_name = country_name;
-	}
-	public String getCity_name() {
-		return city_name;
-	}
-	public void setCity_name(String city_name) {
-		this.city_name = city_name;
-	}
-	public String getProduct_id() {
-		return product_id;
-	}
-	public void setProduct_id(String product_id) {
-		this.product_id = product_id;
+	public void setProduct_seq(int product_seq) {
+		this.product_seq = product_seq;
 	}
 	public String getMember_id() {
 		return member_id;
@@ -87,17 +91,35 @@ public class ProductDto {
 	public void setCountry_id(String country_id) {
 		this.country_id = country_id;
 	}
+	public String getCountry_name() {
+		return country_name;
+	}
+	public void setCountry_name(String country_name) {
+		this.country_name = country_name;
+	}
 	public String getCity_id() {
 		return city_id;
 	}
 	public void setCity_id(String city_id) {
 		this.city_id = city_id;
 	}
+	public String getCity_name() {
+		return city_name;
+	}
+	public void setCity_name(String city_name) {
+		this.city_name = city_name;
+	}
 	public String getProduct_addr() {
 		return product_addr;
 	}
 	public void setProduct_addr(String product_addr) {
 		this.product_addr = product_addr;
+	}
+	public String getProduct_addr_detail() {
+		return product_addr_detail;
+	}
+	public void setProduct_addr_detail(String product_addr_detail) {
+		this.product_addr_detail = product_addr_detail;
 	}
 	public String getProduct_info() {
 		return product_info;
@@ -171,16 +193,83 @@ public class ProductDto {
 	public void setProduct_regdt(String product_regdt) {
 		this.product_regdt = product_regdt;
 	}
-	
+	public String getAccom_id() {
+		return accom_id;
+	}
+	public void setAccom_id(String accom_id) {
+		this.accom_id = accom_id;
+	}
+	public String getAccom_name() {
+		return accom_name;
+	}
+	public void setAccom_name(String accom_name) {
+		this.accom_name = accom_name;
+	}
+	public String getBath_id() {
+		return bath_id;
+	}
+	public void setBath_id(String bath_id) {
+		this.bath_id = bath_id;
+	}
+	public String getBath_name() {
+		return bath_name;
+	}
+	public void setBath_name(String bath_name) {
+		this.bath_name = bath_name;
+	}
+	public String getBed_id() {
+		return bed_id;
+	}
+	public void setBed_id(String bed_id) {
+		this.bed_id = bed_id;
+	}
+	public String getBed_name() {
+		return bed_name;
+	}
+	public void setBed_name(String bed_name) {
+		this.bed_name = bed_name;
+	}
+	public String getBuilding_id() {
+		return building_id;
+	}
+	public void setBuilding_id(String building_id) {
+		this.building_id = building_id;
+	}
+	public String getBuilding_name() {
+		return building_name;
+	}
+	public void setBuilding_name(String building_name) {
+		this.building_name = building_name;
+	}
+	public String getSguest_id() {
+		return sguest_id;
+	}
+	public void setSguest_id(String sguest_id) {
+		this.sguest_id = sguest_id;
+	}
+	public String getSguest_name() {
+		return sguest_name;
+	}
+	public void setSguest_name(String sguest_name) {
+		this.sguest_name = sguest_name;
+	}
 	@Override
 	public String toString() {
-		return "ProductDto [product_id=" + product_id + ", member_id=" + member_id + ", product_name=" + product_name
+		return "ProductDto [product_seq=" + product_seq + ", member_id=" + member_id + ", product_name=" + product_name
 				+ ", product_price=" + product_price + ", country_id=" + country_id + ", country_name=" + country_name
 				+ ", city_id=" + city_id + ", city_name=" + city_name + ", product_addr=" + product_addr
-				+ ", product_info=" + product_info + ", product_simple_info=" + product_simple_info + ", product_lat="
-				+ product_lat + ", product_lng=" + product_lng + ", product_score=" + product_score + ", product_mindt="
-				+ product_mindt + ", product_maxdt=" + product_maxdt + ", product_readydt=" + product_readydt
-				+ ", product_prepdt=" + product_prepdt + ", product_step=" + product_step + ", p_main_img=" + p_main_img
-				+ ", product_regdt=" + product_regdt + "]";
-	}
+				+ ", product_addr_detail=" + product_addr_detail + ", product_info=" + product_info
+				+ ", product_simple_info=" + product_simple_info + ", product_lat=" + product_lat + ", product_lng="
+				+ product_lng + ", product_score=" + product_score + ", product_mindt=" + product_mindt
+				+ ", product_maxdt=" + product_maxdt + ", product_readydt=" + product_readydt + ", product_prepdt="
+				+ product_prepdt + ", product_step=" + product_step + ", p_main_img=" + p_main_img + ", product_regdt="
+				+ product_regdt + ", accom_id=" + accom_id + ", accom_name=" + accom_name + ", bath_id=" + bath_id
+				+ ", bath_name=" + bath_name + ", bed_id=" + bed_id + ", bed_name=" + bed_name + ", building_id="
+				+ building_id + ", building_name=" + building_name + ", sguest_id=" + sguest_id + ", sguest_name="
+				+ sguest_name + "]";
+	}	
+	
+	
+	
+	
 }
