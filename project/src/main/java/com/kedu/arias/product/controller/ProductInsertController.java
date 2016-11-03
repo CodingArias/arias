@@ -21,7 +21,7 @@ public void product_insert(){
 	//System.out.println(pDao.selectAllListOfCity());
 }
 
-@RequestMapping(value="/header",method=RequestMethod.GET)
+@RequestMapping(value="/test",method=RequestMethod.GET)
 public void main_test(){
 }
 
