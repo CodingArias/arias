@@ -21,6 +21,11 @@ public void product_insert(){
 	//System.out.println(pDao.selectAllListOfCity());
 }
 
+@RequestMapping(value="/header",method=RequestMethod.GET)
+public void main_test(){
+}
+
+
 @RequestMapping(value="/map2",method=RequestMethod.GET)
 public void map()throws Exception{
 	ProductDto pDto = new ProductDto();
@@ -51,7 +56,7 @@ public void map()throws Exception{
 	pDto.setProduct_lng(454.111);
 	pDto.setProduct_step(1);
 	
-	pDao.step1_insert(pDto);
+	//pDao.step1_insert(pDto);
 	//System.out.println(pDao.selectAllListOfCity());
 }
 
