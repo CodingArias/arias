@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 DROP TABLE COUNTRY_CODE;
-=======
 
 
->>>>>>> 33fe95bd17e46e70de7dfb04c171519e1cb335c0
 CREATE TABLE COUNTRY_CODE(
 	  country_id 		  VARCHAR2(10)
 	, country_name_eng   VARCHAR2(50) NOT NULL
