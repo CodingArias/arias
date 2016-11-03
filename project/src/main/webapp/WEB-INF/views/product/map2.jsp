@@ -65,26 +65,53 @@
     </style>
   </head>
   <body>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Address">
     <div id="map"></div>
     <script>
 
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.8688, lng: 151.2195},
+    center: {lat: 37.633114, lng: 127.05883500000004},
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP
-    
   });
+  
+  
+  //지도 클릭 리스너
   google.maps.event.addListener(map, 'click', function (mouseEvent) {     
-	  
 	  console.log(mouseEvent.latLng.lat());
 	  console.log(mouseEvent.latLng.lng());
 	  getAddress(mouseEvent.latLng); 
 	 });
-  
-  
 
+  var beforeMarkers;
+  map.addListener('dragend', function() {
+
+	  var pos=map.getCenter();
+ 
+	  
+	  if(beforeMarkers!=null)
+		  beforeMarkers.setMap(null);
+		  
+	  console.log("drag end : "+pos.lat()+" , "+pos.lng());  
+	   beforeMarkers = new google.maps.Marker({
+		  position: pos,
+		  map: map,
+		  title: 'Hello World!'
+	  });
+	  
+	  new google.maps.InfoWindow({
+	   	   content: '<p>test</p>'
+	    }).open(map, beforeMarkers); 
+		  
+	  
+	  window.setTimeout(function() {
+	  }, 3000);
+	  console.log("drag_end");
+  });
+
+  
+  //주소 데이터 추출 메소드
   function getAddress(latlng) {
 	  var geocoder = new google.maps.Geocoder();
 	 
@@ -110,65 +137,74 @@ function initAutocomplete() {
   }
 	 
 
-  // Create the search box and link it to the UI element.
+  //검색창 요소
   var input = document.getElementById('pac-input');
+  //searchBox
   var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
 
   
-  // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
+	  searchBox.setBounds(map.getBounds());
   });
+  
 
+  
   var markers = [];
-  // [START region_getplaces]
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
+  //검색을 눌렀을 때, 호출되는 리스너
   searchBox.addListener('places_changed', function() {
-    var places = searchBox.getPlaces();
+		
+		var places = searchBox.getPlaces();
+		if (places.length == 0) {
+			return;
+		}
 
-    if (places.length == 0) {
-      return;
-    }
+		console.log(places);
+	    // 검색 전에 존재했던 마커들을 모두 삭제한다.
+	    markers.forEach(function(marker) {
+	      marker.setMap(null);
+	    });
+	    markers = [];
 
-    // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
-
-    // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
-    places.forEach(function(place) {
-      var icon = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
-      };
-
-      // Create a marker for each place.
-      markers.push(new google.maps.Marker({
-        map: map,
-        icon: icon,
-        title: place.name,
-        position: place.geometry.location
-      }));
-
-     // alert(place.geometry.location);
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map.fitBounds(bounds);
-  });
-  // [END region_getplaces]
+	    // For each place, get the icon, name and location.
+	    var bounds = new google.maps.LatLngBounds();
+	    places.forEach(function(place) {
+	    	//아이콘 이미지 생성
+	    	var icon = {        
+	    			url: place.icon,      
+	    			size: new google.maps.Size(71, 71),     
+	    			origin: new google.maps.Point(0, 0),     
+	    			anchor: new google.maps.Point(17, 34),       
+	    			scaledSize: new google.maps.Size(25, 25)   
+	    	};
+	
+	      //검색한 지점에 마커가 생성된다.
+	      markers.push(new google.maps.Marker({
+	        map: map,
+	        icon: icon,
+	        title: place.name,
+	        position: place.geometry.location
+	      }));
+	
+	      if (place.geometry.viewport) {
+	        // Only geocodes have viewport.
+	        bounds.union(place.geometry.viewport);
+	      } else {
+	        bounds.extend(place.geometry.location);
+	      }
+	      
+	      //검색한 지점의 주소
+	      console.log(place.formatted_address);
+	      //검색한 지점의 x,y 좌표
+		  console.log(place.geometry.location.lng());
+	      console.log(place.geometry.location.lat());
+	    });
+	    
+	    
+	    map.fitBounds(bounds);
+	  });
+	  // [END region_getplaces]
 }
 
 
