@@ -17,7 +17,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!--지도 스크립트  -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&callback=initMap" async defer></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&callback=initMap"
+	async defer></script>
 <!-- 지도스크립트 끝 -->
 
 
@@ -27,22 +29,27 @@
 <script type="text/javascript" src="/resources/datepicker/moment.js"></script>
 <script type="text/javascript"
 	src="/resources/datepicker/daterangepicker.js"></script>
+
 <script type="text/javascript">
-var map;
-function initMap() {
-    // Create a map object and specify the DOM element for display.
-      map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 36.4569, lng: 127.1569},
-      scrollwheel : true, //마우스 휠로 확대 축소 사용 여부
-      mapTypeControl : false, //맵 타입 컨트롤 사용 여부
-      zoom: 8
-    });
-}
-    
+	var map;
+	function initMap() {
+		// Create a map object and specify the DOM element for display.
+		map = new google.maps.Map(document.getElementById('map'), {
+			center : {
+				lat : 36.4569,
+				lng : 127.1569
+			},
+			scrollwheel : true, //마우스 휠로 확대 축소 사용 여부
+			mapTypeControl : false, //맵 타입 컨트롤 사용 여부
+			zoom : 8
+		});
+	}
 </script>
 
 <style>
-      #map { height: 100%; }
+#map {
+	height: 100%;
+}
 
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
@@ -78,6 +85,18 @@ footer {
 	.row.content {
 		height: auto;
 	}
+}
+
+.image {
+	position: relative;
+	float: left;
+}
+
+.image .text {
+	position: absolute;
+	bottom: 2px;
+	color: white;
+	margin-left: 10px;
 }
 </style>
 </head>
@@ -118,11 +137,21 @@ footer {
 				<!-- Search&달력 form -->
 				<form class="form-horizontal">
 					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-1 control-label"> 검
+							색 </label>
+						<div class="col-sm-1"></div>
+						<div class="col-sm-6">
+							<input type="text" class="form-control">
+						</div>
+
+						<div class="col-sm-4"></div>
+					</div>
+					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-1 control-label">날
 							짜</label>
 						<div class="col-sm-1"></div>
 						<div class="col-sm-6">
-							<div id="reportrange" class="form-control col-sm-3"
+							<div id="reportrange" class="form-control"
 								style="background: #fff; cursor: pointer;">
 								<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> <span></span>
 								<b class="caret"></b>
@@ -144,19 +173,19 @@ footer {
 						<div class="col-sm-1"></div>
 						<div class="col-sm-9 btn-group">
 							<div class="col-sm-4">
-							<label class="btn btn-danger form-control"> <input
-								type="checkbox" autocomplete="off"> 집 전체
-							</label> 
+								<label class="btn btn-danger form-control"> <input
+									type="checkbox" autocomplete="off"> 집 전체
+								</label>
 							</div>
 							<div class="col-sm-4">
-							<label class="btn btn-danger form-control"> <input type="checkbox"
-								autocomplete="off"> 개인실
-							</label> 
+								<label class="btn btn-danger form-control"> <input
+									type="checkbox" autocomplete="off"> 개인실
+								</label>
 							</div>
 							<div class="col-sm-4">
-							<label class="btn btn-danger form-control"> <input type="checkbox"
-								autocomplete="off"> 다인실
-							</label>
+								<label class="btn btn-danger form-control"> <input
+									type="checkbox" autocomplete="off"> 다인실
+								</label>
 							</div>
 						</div>
 					</div>
@@ -200,41 +229,91 @@ footer {
 					});
 				</script>
 				<!--달력 스크립트  끝-->
-				
+
 				<br>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
 				<div class="col-sm-6">
-					<div class="col-sm-12">
-						<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+					<div class="col-sm-12 image">
+						<img src="/resources/img/main/seoul.jpg"
+							class="img-rounded img-responsive" alt="Responsive image">
+							<div class="text">
+							<h4>￦100000</h4>
+						</div>
 					</div>
-					<!-- 상품 설명 -->	
+					<!-- 상품 설명 -->
 					<div class="col-sm-12">
-						이 상품은 어쩌고 저쩌고		
+						<div class="media">
+							<div class="media-body">
+								<br>
+								<h4 class="media-heading">나의 집이다</h4>
+								개인실 * 숙박 인원 2명 * 별점 * 후기 갯수
+							</div>
+							<div class="media-right">
+								<a href="#"> <img class="media-object img-circle"
+									src="/resources/img/search/original_12.jpg" alt="">
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
+				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝-->
+				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
 				<div class="col-sm-6">
-					<div class="col-sm-12">
-						<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+					<div class="col-sm-12 image">
+						<img src="/resources/img/main/seoul.jpg"
+							class="img-rounded img-responsive" alt="Responsive image">
+							<div class="text">
+							<h4>￦100000</h4>
+						</div>
 					</div>
-					<!-- 상품 설명 -->	
+					<!-- 상품 설명 -->
 					<div class="col-sm-12">
-						이 상품은 어쩌고 저쩌고		
+						<div class="media">
+							<div class="media-body">
+								<br>
+								<h4 class="media-heading">나의 집이다</h4>
+								개인실 * 숙박 인원 2명 * 별점 * 후기 갯수
+							</div>
+							<div class="media-right">
+								<a href="#"> <img class="media-object img-circle"
+									src="/resources/img/search/original_12.jpg" alt="">
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
+				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝--><!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
 				<div class="col-sm-6">
-					<div class="col-sm-12">
-						<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+					<div class="col-sm-12 image">
+						<img src="/resources/img/main/seoul.jpg"
+							class="img-rounded img-responsive" alt="Responsive image">
+							<div class="text">
+							<h4>￦100000</h4>
+						</div>
 					</div>
-					<!-- 상품 설명 -->	
+					<!-- 상품 설명 -->
 					<div class="col-sm-12">
-						이 상품은 어쩌고 저쩌고		
+						<div class="media">
+							<div class="media-body">
+								<br>
+								<h4 class="media-heading">나의 집이다</h4>
+								개인실 * 숙박 인원 2명 * 별점 * 후기 갯수
+							</div>
+							<div class="media-right">
+								<a href="#"> <img class="media-object img-circle"
+									src="/resources/img/search/original_12.jpg" alt="">
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
-				<!-- 상품 목록 불러오기 끝 -->
+				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝-->
+				
+
 			</div>
 			<div class="col-sm-5 sidenav">
-				
-    		<div id="map"></div>
+
+				<div id="map"></div>
 			</div>
 		</div>
 	</div>
