@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/js/header.js"></script>
-<link href="/resources/css/header.css">
+<link rel="stylesheet" href="/resources/css/header.css">
 </head>
 
 <nav class="navbar navbar-inverse">
