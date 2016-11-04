@@ -202,27 +202,33 @@ footer {
 				<!--달력 스크립트  끝-->
 				
 				<br>
-				<!-- 상품 목록 불러오기 시작 foreach 사용해야함 -->
+				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
 				<div class="col-sm-6">
-					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+					<div class="col-sm-12">
+						<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+					</div>
+					<!-- 상품 설명 -->	
+					<div class="col-sm-12">
+						이 상품은 어쩌고 저쩌고		
+					</div>
 				</div>
 				<div class="col-sm-6">
-					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
-				</div>
-				
-				
-				<div class="col-sm-6">
-					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
-				</div>
-				<div class="col-sm-6">
-					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
-				</div>
-				
-				<div class="col-sm-6">
-					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+					<div class="col-sm-12">
+						<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+					</div>
+					<!-- 상품 설명 -->	
+					<div class="col-sm-12">
+						이 상품은 어쩌고 저쩌고		
+					</div>
 				</div>
 				<div class="col-sm-6">
-					<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+					<div class="col-sm-12">
+						<img src="/resources/img/main/seoul.jpg"  class="img-rounded img-responsive" alt="Responsive image">
+					</div>
+					<!-- 상품 설명 -->	
+					<div class="col-sm-12">
+						이 상품은 어쩌고 저쩌고		
+					</div>
 				</div>
 				<!-- 상품 목록 불러오기 끝 -->
 			</div>
