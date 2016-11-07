@@ -1,6 +1,10 @@
 @CHARSET "UTF-8";
 
 /* Remove the navbar's default margin-bottom and rounded borders */
+	* {
+		margin: 0px;
+		padding: 0px;
+	}
 .navbar {
 	margin-bottom: 0;
 	border-radius: 0; 
