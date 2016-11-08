@@ -262,7 +262,7 @@ form {
 					</select>
 
 					<p style="color: gray;">Address</p>
-					<input type="text" class="input_type3" />
+					<input type="text" class="input_type3" name=""/>
 
 					<p style="color: gray;">Detail Address</p>
 					<input type="text" class="input_type3" />
