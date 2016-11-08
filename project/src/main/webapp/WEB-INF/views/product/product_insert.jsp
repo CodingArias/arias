@@ -59,7 +59,11 @@ async defer></script>
 						var address = results[0].formatted_address;
 						console.log(address);
 						createMarker(latlng);
-
+						
+						$("#product_addr").val(address);
+						$("#product_lat").val(latlng.lat());
+						$("#product_lng").val(latlng.lng());
+						
 						new google.maps.InfoWindow({
 							content : address 
 						}).open(map, marker);
@@ -100,7 +104,9 @@ async defer></script>
 				}
 				//검색한 지점의 주소
 				console.log(place.formatted_address);
-				//검색한 지점의 x,y 좌표
+				$("#product_addr").val(place.formatted_address);
+				$("#product_lat").val(place.geometry.location.lat());
+				$("#product_lng").val(place.geometry.location.lng());
 				console.log(place.geometry.location.lng());
 				console.log(place.geometry.location.lat());
 			});
@@ -162,7 +168,7 @@ async defer></script>
 }
 
 .main {
-	height: 1200px;
+	height: 1400px;
 }
 
 .container {
@@ -178,13 +184,46 @@ form {
 }
 
 .step_div {
-	height: 10%;
+	height: 8%;
 }
 
 .info1_div {
-	height: 30%;
-	margin-bottom: 40px;
+	height: 25%;
 }
+.map_div {
+
+	margin-top: 100px;
+	height: 30%;
+}
+
+.info2_div {
+	height: 20%;
+}
+
+.bottons_div {
+	height: 5%;
+}
+
+.input_type1 {
+	width: 100px;
+}
+
+.input_type2 {
+	width: 150px;
+}
+
+.input_type3 {
+	width: 400px;
+}
+
+#product_main_img {
+	margin-bottom: 5px;
+}
+#product_info{
+	height: 250px;
+	width: 100%;
+}
+
 
 .info1_div .image_div {
 	width: 35%;
@@ -202,72 +241,47 @@ form {
 	padding-top: 10px;
 }
 
-.map_div {
-	height: 30%;
-}
-
-.info2_div {
-	height: 20%;
-}
-
-.bottons_div {
-	height: 10%;
-}
-
-.input_type1 {
-	width: 100px;
-}
-
-.input_type2 {
-	width: 150px;
-}
-
-.input_type3 {
-	width: 400px;
-}
-
-#product_main_img {
-	margin-bottom: 10px;
-}
 </style>
 
 <div class="main">
 	<div class="container">
-		<div class="step_div">
-			<h2>Hosting Step 1</h2>
-			<hr>
-		</div>
+	
+		<form method="post" action="product_insert" enctype="multipart/form-data">
+			<input type="hidden" name="product_lat" id="product_lat">
+			<input type="hidden" name="product_lng" id="product_lng">
+			
+			<div class="step_div">
+				<h2>Hosting Step 1</h2>
+				<hr>
+			</div>
 
-		<form>
 			<div class="info1_div">
 				<div class="image_div">
 					<input type="file" name="product_main_img" id="product_main_img" />
-					<img alt="product_image" src="/resources/img/noimage.jpg">
-					<hr>
+					<img class="img-rounded" alt="product_image" src="/resources/img/noimage.jpg">
 				</div>
 
 				<div class="product_input_div">
 					<p style="color: gray;">Hosting Name</p>
-					<input type="text" class="input_type3" />
+					<input type="text" class="input_type3" name="product_name" id="product_name"/>
 
 					<p style="color: gray;">Hosting Price</p>
-					<input type="text" />
+					<input type="text" name="product_price" id="product_price"/>
 
 					<p style="color: gray;">Country</p>
-					<select>
-						<option>Korea</option>
-						<option>U.S.A</option>
-						<option>Japan</option>
-
-					</select>
+					<select id="country_id" name="country_id">
+						<option value="co_185">Korea</option>
+						<option value="co_23">U.S.A</option>
+						<option value="co_44">Japan</option>
+					</select> 
 
 					<p style="color: gray;">Address</p>
-					<input type="text" class="input_type3" name="product_addr" id="product_addr"/>
+					<input type="text" class="input_type3" name="product_addr" id="product_addr" readonly="readonly"/>
 
 					<p style="color: gray;">Detail Address</p>
-					<input type="text" class="input_type3" />
-					<hr>
+					<input type="text" class="input_type3" name="product_addr_detail" id="product_addr_detail" />
 				</div>
+				<hr>
 			</div>
 
 			<div class="map_div">
@@ -275,8 +289,19 @@ form {
 					placeholder="Search Address">
 				<div id="map"></div>
 			</div>
-			<div class="info2_div"></div>
-			<div class="bottons_div"></div>
+			<div class="info2_div">
+				<hr>
+			
+				<textarea style="padding: 20px;" rows="" cols="" name="product_info" id="product_info">집에 대한 간단한 소개를 적어주세요 !! 
+
+ex :)
+저희 집은 공항, 공원, 문화예술, 도심, 대중교통 근처에 있습니다. 
+저희 집의 장점은 위치, 사람들, 분위기, 야외 공간, 지역입니다. 
+저희 집은 커플, 나홀로 여행족, 출장자, (아이 동반) 가족, 단체, 반려동물 동반에 적합합니다.</textarea>
+			</div>
+			<div class="bottons_div">
+				<input class="btn btn-default" type="submit" value="1단계 저장"/>
+			</div>
 		</form>
 
 	</div>

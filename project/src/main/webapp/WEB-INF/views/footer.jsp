@@ -1,5 +1,5 @@
 
-	<div id="footer" style="height: 300px;">
+	<div id="footer" style="height: 200px;">
 	<hr>
 		<p align="center">copyright@arias</p>
 	</div>

@@ -23,14 +23,6 @@ public class ProductDaoImpl implements ProductDao{
 		return false;
 	}
 
-	@Override
-	public List<ProductDto> selectAllListOfCity() {
-		Map<String,Object> paramMap =new HashMap<>();
-		paramMap.put("country_id", "c0001");
-		paramMap.put("city_id", "ct0001");
-		
-		return session.selectList(namespace+".selectAllListByKeyword", paramMap);
-	}
 
 
 }

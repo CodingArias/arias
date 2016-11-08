@@ -33,8 +33,6 @@ public class ProductDto {
 	private int product_price;
 	private String country_id;
 	private String country_name;
-	private String city_id;
-	private String city_name;
 	private String product_addr;
 	private String product_addr_detail;
 	private String product_info;
@@ -97,18 +95,6 @@ public class ProductDto {
 	}
 	public void setCountry_name(String country_name) {
 		this.country_name = country_name;
-	}
-	public String getCity_id() {
-		return city_id;
-	}
-	public void setCity_id(String city_id) {
-		this.city_id = city_id;
-	}
-	public String getCity_name() {
-		return city_name;
-	}
-	public void setCity_name(String city_name) {
-		this.city_name = city_name;
 	}
 	public String getProduct_addr() {
 		return product_addr;
@@ -258,16 +244,15 @@ public class ProductDto {
 	public String toString() {
 		return "ProductDto [product_seq=" + product_seq + ", member_id=" + member_id + ", product_name=" + product_name
 				+ ", product_price=" + product_price + ", country_id=" + country_id + ", country_name=" + country_name
-				+ ", city_id=" + city_id + ", city_name=" + city_name + ", product_addr=" + product_addr
-				+ ", product_addr_detail=" + product_addr_detail + ", product_info=" + product_info
-				+ ", product_simple_info=" + product_simple_info + ", product_lat=" + product_lat + ", product_lng="
-				+ product_lng + ", product_score=" + product_score + ", product_mindt=" + product_mindt
-				+ ", product_maxdt=" + product_maxdt + ", product_readydt=" + product_readydt + ", product_prepdt="
-				+ product_prepdt + ", product_step=" + product_step + ", p_main_img=" + p_main_img + ", product_regdt="
-				+ product_regdt + ", accom_id=" + accom_id + ", accom_name=" + accom_name + ", bath_id=" + bath_id
-				+ ", bath_name=" + bath_name + ", bed_id=" + bed_id + ", bed_name=" + bed_name + ", building_id="
-				+ building_id + ", building_name=" + building_name + ", sguest_id=" + sguest_id + ", sguest_name="
-				+ sguest_name + "]";
+				+ ", product_addr=" + product_addr + ", product_addr_detail=" + product_addr_detail + ", product_info="
+				+ product_info + ", product_simple_info=" + product_simple_info + ", product_lat=" + product_lat
+				+ ", product_lng=" + product_lng + ", product_score=" + product_score + ", product_mindt="
+				+ product_mindt + ", product_maxdt=" + product_maxdt + ", product_readydt=" + product_readydt
+				+ ", product_prepdt=" + product_prepdt + ", product_step=" + product_step + ", p_main_img=" + p_main_img
+				+ ", product_regdt=" + product_regdt + ", accom_id=" + accom_id + ", accom_name=" + accom_name
+				+ ", bath_id=" + bath_id + ", bath_name=" + bath_name + ", bed_id=" + bed_id + ", bed_name=" + bed_name
+				+ ", building_id=" + building_id + ", building_name=" + building_name + ", sguest_id=" + sguest_id
+				+ ", sguest_name=" + sguest_name + "]";
 	}	
 	
 	

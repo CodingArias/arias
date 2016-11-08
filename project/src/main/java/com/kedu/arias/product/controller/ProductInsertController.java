@@ -8,17 +8,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kedu.arias.product.dao.ProductDao;
 import com.kedu.arias.product.dto.ProductDto;
+import com.kedu.arias.product.service.ProductService;
 
 @Controller
 @RequestMapping("/product")
 public class ProductInsertController {
 	
 	@Inject
-	ProductDao pDao;
+	ProductService service;
 	
 @RequestMapping(value="/product_insert",method=RequestMethod.GET)
 public void product_insert(){
-	//System.out.println(pDao.selectAllListOfCity());
+	
+}
+
+@RequestMapping(value="/product_insert",method=RequestMethod.POST)
+public String product_insert(ProductDto pDto) throws Exception{
+	System.out.println(pDto);
+	pDto.setP_main_img("dasd");
+	pDto.setMember_id("201611030001");
+	service.step1_insert(pDto);
+	
+	return "/product/product_insert";
 }
 
 @RequestMapping(value="/test",method=RequestMethod.GET)

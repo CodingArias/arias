@@ -4,10 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kedu.arias.productMapper">
-	<select id="selectAllListByKeyword" resultType="com.kedu.arias.product.dto.ProductDto">
-		select * from product where country_id = #{country_id} and city_id = #{city_id}
-	</select>
-	
+
 	<insert  id="product_insert_step1" parameterType="com.kedu.arias.product.dto.ProductDto" >
 				INSERT INTO PRODUCT (  product_seq
                                        , p_main_img
@@ -23,16 +20,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                        , product_step)
                                        VALUES ( 
                                         create_next_product_seq
-									  , #{p_main_img}
-                                      , #{member_id}
-                                      , #{product_name}
-                                      , #{product_price}
+									  , #{p_main_img,jdbcType=VARCHAR}
+                                      , #{member_id,jdbcType=VARCHAR}
+                                      , #{product_name,jdbcType=VARCHAR}
+                                      , #{product_price,jdbcType=NUMERIC}
                                       , #{country_id,jdbcType=VARCHAR}
-                                      , #{product_addr}
-                                      , #{product_addr_detail}
-                                      , #{product_info}
-                                      , #{product_lat}
-                                      , #{product_lng}
+                                      , #{product_addr,jdbcType=VARCHAR}
+                                      , #{product_addr_detail,jdbcType=VARCHAR}
+                                      , #{product_info,jdbcType=VARCHAR}
+                                      , #{product_lat,jdbcType=NUMERIC}
+                                      , #{product_lng,jdbcType=NUMERIC}
                                       , 1)
 	</insert>
 </mapper>
