@@ -17,7 +17,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Inject
 	private SqlSession session;
 	
-	private static String namespace = "com.kedu.mappers.LoginMapper";
+	private static String namespace = "com.kedu.arias.LoginMapper";
 	
 	@Override
 	public MemberDto login(LoginDto ldto) throws Exception {

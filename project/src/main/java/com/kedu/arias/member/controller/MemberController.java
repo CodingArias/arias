@@ -24,13 +24,14 @@ public class MemberController {
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public void loginGET(@ModelAttribute("ldto")LoginDto ldto){
 		
+		
 	}
 	
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
 	public void loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
-		
+		System.out.println("ldto : "+ldto);
 		MemberDto mdto = service.login(ldto);
-		
+		System.out.println("mdto : "+ mdto);
 		if(mdto == null) {
 			return;
 		}
