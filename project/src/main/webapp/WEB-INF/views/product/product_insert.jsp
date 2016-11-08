@@ -11,11 +11,7 @@
 <script type="text/javascript"
 	src="/resources/datepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="/resources/js/date.js"></script>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&callback=initMap"
 	async defer></script>
 
 <script type="text/javascript">
@@ -35,10 +31,14 @@
 	}
 </script>
 <style>
+
 * {
 	margin: 0px;
 	padding: 0px;
 }
+  #map { 
+  height: 100%; 
+  	}
 
 .main {
 	height: 1200px;
@@ -47,28 +47,32 @@
 .container {
 	/*상 우 하 좌  */
 	margin: 0px auto;
-	width: 70%;
+	width: 80%;
 	height: 100%;
 	background: white;
 }
 
+form {
+	height: 100%;
+}
 .step_div {
 	height: 10%;
 }
 
 .info1_div {
 	height: 30%;
+	margin-bottom: 40px;
 }
 
 .info1_div .image_div {
-	width: 40%;
+	width: 35%;
 	height: 100%;
 	float: left;
 }
 
 .info1_div .product_input_div {
 	float: left;
-	width: 60%;
+	width: 65%;
 	height: 100%;
 }
 
@@ -99,6 +103,10 @@
 .input_type3 {
 	width: 400px;
 }
+
+#product_main_img {
+	margin-bottom: 10px;
+}
 </style>
 
 <div class="main">
@@ -111,8 +119,9 @@
 		<form>
 			<div class="info1_div">
 				<div class="image_div">
-					<img alt="product_image" src="/resources/img/noimage.jpg"> <input
-						type="file" />
+					<input type="file" name = "product_main_img" id="product_main_img"/>
+					<img alt="product_image" src="/resources/img/noimage.jpg"> 
+					<hr>
 				</div>
 
 				<div class="product_input_div">
@@ -138,12 +147,13 @@
 					<hr>
 				</div>
 			</div>
-		</form>
+		
 		<div class="map_div">
 			<div id="map"></div>
 		</div>
 		<div class="info2_div"></div>
 		<div class="bottons_div"></div>
+		</form>
 
 	</div>
 
