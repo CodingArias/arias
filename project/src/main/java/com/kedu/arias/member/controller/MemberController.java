@@ -84,18 +84,19 @@ public class MemberController {
 	//MultipartFile file, MemberDto mdto, Model model
 	@RequestMapping(value="/member_reg", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public String regMemberPost(HttpServletRequest request) throws Exception {
-		
-		String upPath="C:/test/";
-		System.out.println("regMemberPost");
+		//태그이름
+		String imageName="member_img";
+		//저장경로
+		String savePath="D:/images/";
 		
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
-		
-		//MultipartFile file = multi.getFile("product_main_img");
-		
-		List<MultipartFile> files = multi.getFiles("member_img");
-		
+
 		System.out.println("member_email : "+multi.getParameter("member_email"));
-		fileUploader.fileSave(upPath, files);
+		fileUploader.fileUpload(savePath,imageName, multi); // 이미지 업로드
+		
+		
+		
+		
 		
 /*		logger.info("OriginalFileName : " + file.getOriginalFilename());
 		logger.info("contentType : " + file.getContentType());

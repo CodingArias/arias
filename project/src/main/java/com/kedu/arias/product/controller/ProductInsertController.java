@@ -44,9 +44,7 @@ public class ProductInsertController {
 		pDto.setMember_id("201611030001");
 		
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
-		//MultipartFile file = multi.getFile("product_main_img");
-		List<MultipartFile> files = multi.getFiles("product_main_img");
-		fileUploader.fileSave(savePath, files);
+		fileUploader.fileUpload(savePath,"product_main_img", multi);
 		
 		
 		/*MultipartFile file = multi.getFile("product_main_img");

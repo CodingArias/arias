@@ -195,7 +195,7 @@ $(".fileDrop").on("drop", function(event) {
 				<tr>
 					<td id="form-img" align="center" >
 						<label for="searchFile" class="btn btn-primary search-img" id="search">Search img</label>
-						<input type="file" id="searchFile">
+						<input type="file" id="searchFile" name="member_img">
 						<!-- <button type="button" class="btn btn-primary search-img" id="search">Search img</button> -->
 					</td>
 					<td><label class="col-sm-2 control-label">Birthday</label></td>
