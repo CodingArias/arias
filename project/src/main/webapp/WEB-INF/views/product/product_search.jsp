@@ -312,7 +312,6 @@ footer {
 
 			</div>
 			<div class="col-sm-5 sidenav">
-
 				<div id="map"></div>
 			</div>
 		</div>

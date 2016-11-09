@@ -11,7 +11,9 @@
 <script type="text/javascript"
 	src="/resources/datepicker/daterangepicker.js"></script>
 
-
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/home.css">
+	
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
