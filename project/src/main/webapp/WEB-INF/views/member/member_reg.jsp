@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@	page session="false" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -243,15 +245,40 @@ $(".fileDrop").on("drop", function(event) {
 									<td>country_name_kor</td>
 								</tr>
 							</thead>
+							<c:forEach items="${listCountry }" var="country">
 							<tbody>
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td>${country.country_id }</td>
+									<td>${country.country_name_eng }</td>
+									<td>${country.country_name_kor }</td>
 								</tr>
 							</tbody>
+							</c:forEach>
 						</table>
-					</div>				
+					</div>
+					
+					<div class="text-center">
+						<ul class="pagination">
+							<c:if test="${pageMaker.prev }">
+								<li>
+									<a href="member_reg?page=${pageMaker.startPage-1 }">&laquo;</a>
+								</li>
+							</c:if>
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+								<li>
+									<c:out value="${pageMaker.pcri.page == idx?'class=active':''}"/>
+									<a href="member_reg?page=${idx}">${idx}</a>
+								</li>
+							</c:forEach>
+							
+							<c:if test="${pageMaker.next && pageMaker.endPage>0 }">
+								<li>
+									<a href="member_reg?page=${pageMaker.endPage +1 }">&raquo;</a>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+									
 				</div>
 				
 				<div class="modal-footer">

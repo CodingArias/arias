@@ -1,8 +1,6 @@
 package com.kedu.arias.member.controller;
 
 import java.io.File;
-import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -18,12 +16,14 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 
+import com.kedu.arias.common.dto.PageCriteria;
+import com.kedu.arias.common.dto.PageMakerDto;
+import com.kedu.arias.member.dto.CountryDto;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
+import com.kedu.arias.member.service.CountrycodeService;
 import com.kedu.arias.member.service.MemberService;
 import com.kedu.arias.util.FileUploader;
 
@@ -36,20 +36,22 @@ public class MemberController {
 	
 	@Inject
 	private MemberService service;
+	
+	@Inject
+	private CountrycodeService coService;
 
 	FileUploader fileUploader = FileUploader.getInstance();
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public void loginGET(@ModelAttribute("ldto")LoginDto ldto){
 		
-		
 	}
+	
 	
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
 	public void loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
-		System.out.println("ldto : "+ldto);
+	
 		MemberDto mdto = service.login(ldto);
-		System.out.println("mdto : "+ mdto);
 		if(mdto == null) {
 			return;
 		}
@@ -57,10 +59,24 @@ public class MemberController {
 		model.addAttribute("member", mdto);
 	}
 	
+	
 	@RequestMapping(value="/member_reg", method=RequestMethod.GET)
-	public void regMemberGet(HttpSession session, Model model) {
+	public void regMemberGet(HttpSession session, Model model, PageCriteria pcri) throws Exception {
 		
+		logger.info(pcri.toString());
+		
+		model.addAttribute("listCountry", coService.listCriteria(pcri));
+		
+		PageMakerDto pageMaker = new PageMakerDto();
+		pageMaker.setCri(pcri);
+		pageMaker.setTotalCount(235);
+		
+		model.addAttribute("pageMaker", pageMaker);
 	}
+	
+	
+	
+	
 	
 	/*@RequestMapping(value="/member_reg", method=RequestMethod.GET)
 	public void regMemberGet(@ModelAttribute("cri") SearchCriteria cri, HttpSession session, Model model) {
@@ -72,26 +88,16 @@ public class MemberController {
 	private String uploadPath;
 	
 	
-	private String uploadFile(String originalName, byte[] fileData) throws Exception{
-		
-		UUID uid = UUID.randomUUID();
-		String savedName = uid.toString() + "_" + originalName;
-		
-		File target = new File(uploadPath, savedName);
-		FileCopyUtils.copy(fileData, target);
-		
-		return savedName;
-	}
-	
 	//MultipartFile file, MemberDto mdto, Model model
 	@RequestMapping(value="/member_reg", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public String regMemberPost(HttpServletRequest request, Model model) throws Exception {
 		//태그이름
 		String imageName="member_img";
 		//저장경로
-		String savePath="D:/images/";
-		String encType = "UTF-8";
-				
+
+		String attach_path = "resources/member/";
+		
+		
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
 		
 		MemberDto dto = new MemberDto();
@@ -107,16 +113,32 @@ public class MemberController {
 								+ multi.getParameter("member_phone2")
 								+ "-"
 								+ multi.getParameter("member_phone3"));
-		dto.setMember_img(multi.getMultipartContentType("member_img"));
+		/*dto.setMember_img(multi.getMultipartContentType("member_img"));*/
 		dto.setMember_birthday(multi.getParameter("member_birthday"));
 		
 		model.addAttribute("memberDto", dto);
 		
-		fileUploader.fileUpload(savePath,imageName, multi); // 이미지 업로드
+		System.out.println("dto : " + dto);
+		
+		
+		fileUploader.fileUpload(attach_path,imageName, multi); // 이미지 업로드
 		
 		return "/member/loginPost";
 		
 	}
+	
+	private String uploadFile(String originalName, byte[] fileData) throws Exception{
+		
+		UUID uid = UUID.randomUUID();
+		String savedName = uid.toString() + "_" + originalName;
+		
+		File target = new File(uploadPath, savedName);
+		FileCopyUtils.copy(fileData, target);
+		
+		return savedName;
+	}
+	
+	
 	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public void goHome(Model model) throws Exception{
