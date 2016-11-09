@@ -19,8 +19,13 @@ public class FileUploader {
 		return instance;
 	}
 	
-	public boolean fileUpload(String uploadPath, String imageName, MultipartHttpServletRequest multi){
+	public boolean fileUpload(String attach_path, String imageName, MultipartHttpServletRequest multi){
 		boolean result = false;
+
+		String root_path = multi.getSession().getServletContext().getRealPath("/");
+		//String attach_path = "resources/product/product_main_image/";
+		String uploadPath = root_path + attach_path;
+
 		List<MultipartFile> files = multi.getFiles(imageName);
 		
 		for(int i=0;i<files.size();i++){
