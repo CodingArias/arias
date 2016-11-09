@@ -40,7 +40,30 @@ $('#modal-country').on('shown.bs.modal', function () {
 
 $('#modal-countryNum').on('shown.bs.modal', function() {
 	$('#search-country-num').focus();
-})
+});
+
+$(".fileDrop").on("drop", function(event) {
+	event.preventDefault();
+	
+	var files = event.originalEvent.dataTransfer.files;
+	var file = files[0];
+	
+	// console.log(file);
+	var formData = new FormData();
+	formData.append("file", file);
+	
+	$ajax({
+		url: '/member_reg',
+		data: formData,
+		dataType: 'text',
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		success: function(data) {
+			alert(data);
+		}
+	});
+});
 </script>
 <style type="text/css">
 #reg-form{
@@ -119,11 +142,11 @@ $('#modal-countryNum').on('shown.bs.modal', function() {
 </head>
 <body>
 	<div id="reg-form" align="center">
-		<form action="/member/loginPOST" method="post" name="frm">
+		<form action="/member/member_reg" method="post" name="frm" enctype="multipart/form-data">
 			<table class="reg-form-tb">
 				<tr>
- 					<td rowspan="5" id="form-img" align="center">
- 						<img src="/resources/image/no_Image.jpg" alt="please insert image" class="img-rounded member-img" width="208" height="250">
+ 					<td rowspan="5" id="form-img" align="center" class="fileDrop">
+ 						<img src="/resources/img/noimage.jpg" class="img-rounded member-img" name="member_img" width="208" height="250">
  					</td>
 					<td><label class="col-sm-2 control-label">Email</label></td>
 					<td><input type="email" name="member_email" class="form-control" placeholder="aaa.kim@example.com"></td>
