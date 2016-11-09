@@ -42,28 +42,33 @@ $('#modal-countryNum').on('shown.bs.modal', function() {
 	$('#search-country-num').focus();
 });
 
+
+$('.fileDrop').on("dragenter dragover", function(){
+	event.preventDefault();
+});
+
 $(".fileDrop").on("drop", function(event) {
 	event.preventDefault();
 	
 	var files = event.originalEvent.dataTransfer.files;
 	var file = files[0];
-	
-	// console.log(file);
 	var formData = new FormData();
 	formData.append("file", file);
 	
-	$ajax({
-		url: '/member_reg',
-		data: formData,
+	$.ajax({
+		url : '/regMemberPost',
+		data : formData,
 		dataType: 'text',
 		processData: false,
 		contentType: false,
-		type: 'POST',
+		type: 'post',
 		success: function(data) {
-			alert(data);
+			var fileInfo = getFileInfo(data);
 		}
 	});
 });
+
+
 </script>
 <style type="text/css">
 #reg-form{

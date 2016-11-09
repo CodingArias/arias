@@ -1,6 +1,7 @@
 package com.kedu.arias.member.controller;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
@@ -83,29 +85,35 @@ public class MemberController {
 	
 	//MultipartFile file, MemberDto mdto, Model model
 	@RequestMapping(value="/member_reg", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String regMemberPost(HttpServletRequest request) throws Exception {
+	public String regMemberPost(HttpServletRequest request, Model model) throws Exception {
 		//태그이름
 		String imageName="member_img";
 		//저장경로
 		String savePath="D:/images/";
-		
+		String encType = "UTF-8";
+				
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
-
-		System.out.println("member_email : "+multi.getParameter("member_email"));
+		
+		MemberDto dto = new MemberDto();
+		dto.setMember_email(multi.getParameter("member_email"));
+		dto.setMember_pwd(multi.getParameter("member_pwd"));
+		dto.setMember_first_name(multi.getParameter("member_first_name"));
+		dto.setMember_last_name(multi.getParameter("member_last_name"));
+		dto.setMember_country(multi.getParameter("member_country"));
+		dto.setMember_phone("+" + multi.getParameter("country_num") 
+								+ "-" 
+								+ multi.getParameter("member_phone1")
+								+ "-"
+								+ multi.getParameter("member_phone2")
+								+ "-"
+								+ multi.getParameter("member_phone3"));
+		dto.setMember_img(multi.getMultipartContentType("member_img"));
+		dto.setMember_birthday(multi.getParameter("member_birthday"));
+		
+		model.addAttribute("memberDto", dto);
+		
 		fileUploader.fileUpload(savePath,imageName, multi); // 이미지 업로드
 		
-		
-		
-		
-		
-/*		logger.info("OriginalFileName : " + file.getOriginalFilename());
-		logger.info("contentType : " + file.getContentType());
-		
-		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
-		
-		model.addAttribute("savedName", savedName);
-		model.addAttribute("registrate", "success");
-		*/
 		return "/member/loginPost";
 		
 	}

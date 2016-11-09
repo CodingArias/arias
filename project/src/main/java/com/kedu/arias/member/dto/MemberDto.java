@@ -9,10 +9,10 @@ public class MemberDto {
 	private String member_country;
 	private String member_img;
 	private String member_email;
-	private String phone;
 	private String member_pwd;
-	private Date member_birthday;
-	private Date member_reg_date;
+	private String member_phone;
+	private String member_birthday;
+	private String member_reg_date;
 	public int getMember_id() {
 		return member_id;
 	}
@@ -49,37 +49,35 @@ public class MemberDto {
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 	public String getMember_pwd() {
 		return member_pwd;
 	}
 	public void setMember_pwd(String member_pwd) {
 		this.member_pwd = member_pwd;
 	}
-	public Date getMember_birthday() {
+	public String getMember_phone() {
+		return member_phone;
+	}
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
+	public String getMember_birthday() {
 		return member_birthday;
 	}
-	public void setMember_birthday(Date member_birthday) {
+	public void setMember_birthday(String member_birthday) {
 		this.member_birthday = member_birthday;
 	}
-	public Date getMember_reg_date() {
+	public String getMember_reg_date() {
 		return member_reg_date;
 	}
-	public void setMember_reg_date(Date member_reg_date) {
+	public void setMember_reg_date(String member_reg_date) {
 		this.member_reg_date = member_reg_date;
 	}
 	@Override
 	public String toString() {
 		return "MemberDto [member_id=" + member_id + ", member_first_name=" + member_first_name + ", member_last_name="
 				+ member_last_name + ", member_country=" + member_country + ", member_img=" + member_img
-				+ ", member_email=" + member_email + ", phone=" + phone + ", member_pwd=" + member_pwd
+				+ ", member_email=" + member_email + ", member_pwd=" + member_pwd + ", member_phone=" + member_phone
 				+ ", member_birthday=" + member_birthday + ", member_reg_date=" + member_reg_date + "]";
 	}
-	
-	
 }
