@@ -34,17 +34,16 @@ public class ProductInsertController {
 	@RequestMapping(value = "/product_insert", method = RequestMethod.POST)
 	public String product_insert(HttpServletRequest request) throws Exception {
 		
-/*
-		String root_path = request.getSession().getServletContext().getRealPath("/");
+
 		String attach_path = "resources/product/product_main_image/";
-		String savePath = root_path + attach_path;
-*/
+
+
 		ProductDto pDto = new ProductDto();
 		pDto.setP_main_img("dasd");
 		pDto.setMember_id("201611030001");
 		
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
-		fileUploader.fileUpload(savePath,"product_main_img", multi);
+		fileUploader.fileUpload(attach_path,"product_main_img", multi);
 		
 		
 		/*MultipartFile file = multi.getFile("product_main_img");
