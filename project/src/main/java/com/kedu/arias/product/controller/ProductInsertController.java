@@ -34,52 +34,20 @@ public class ProductInsertController {
 	@RequestMapping(value = "/product_insert", method = RequestMethod.POST)
 	public String product_insert(HttpServletRequest request) throws Exception {
 		
-
+		String imageNames[];
 		String attach_path = "resources/product/product_main_image/";
-
 
 		ProductDto pDto = new ProductDto();
 		pDto.setP_main_img("dasd");
 		pDto.setMember_id("201611030001");
 		
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
-		fileUploader.fileUpload(attach_path,"product_main_img", multi);
+		imageNames=fileUploader.fileUpload(attach_path,"product_main_img", multi);
 		
-		
-		/*MultipartFile file = multi.getFile("product_main_img");
-		String reNameFile = "";
-
-		try {
-			if (file.isEmpty()) { // 파일 유무 검사
-				return reNameFile;
-			} else if (file.getSize() > sizeLimit) {
-				System.out.println("## 용량이 너무 큽니다. \n 3메가 이하로 해주세요.");
-				return "error";
-			}
-
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_hhmmss");
-			Calendar c = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"));
-
-			String uploadDir = savePath + File.separator;
-			new File(uploadDir).mkdir(); // 해당 경로 폴더 없을 떄 폴더 생성.
-			String getFileName[] = file.getOriginalFilename().split("\\.");// 파일
-																			// 이름
-																			// 및
-																			// 확장자
-																			// 분리//
-			// 파일 이름 설정 = 원본 파일 이름 _ 사용자ID _ 년월일분초 .확장자.
-
-			reNameFile = getFileName[0] + "_" + sdf.format(c.getTime()) + "." + getFileName[1];
-			file.transferTo(new File(savePath + reNameFile));
-
-			System.out.println("fileName -----> \n" + file.getOriginalFilename() + " \n " + file.getSize()+ "\n reName : " + reNameFile);
-
-		} catch (IOException e) {
-			throw new RuntimeException(e.getMessage());
+		for(int i=0;i<imageNames.length;i++){
+			System.out.println("이미지 이름 : "+imageNames[i]);
 		}
-
-		System.out.println(pDto);*/
-
+	
 		return "/product/product_insert";
 	}
 

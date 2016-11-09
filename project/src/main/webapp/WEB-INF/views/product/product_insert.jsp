@@ -9,10 +9,15 @@
 <link rel="stylesheet" type="text/css" href="/resources/datepicker/daterangepicker.css">
 <script type="text/javascript" src="/resources/datepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="/resources/js/date.js"></script>
+<script type="text/javascript" src="/resources/js/fileUpload.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&libraries=places&callback=initMap"
 async defer></script>
 
 <script type="text/javascript">
+$(function(){
+	imageChange($("#image"),$("#product_main_img"));
+	
+});
 	var map;
 
 	var marker;
@@ -114,6 +119,8 @@ async defer></script>
 		});
 
 	}
+	
+
 </script>
 <style>
 * {
@@ -240,7 +247,10 @@ form {
 .info1_div .product_input_div p {
 	padding-top: 10px;
 }
-
+#image{
+	width:300px;
+	heigth:400px;
+}
 </style>
 
 <div class="main">
@@ -258,7 +268,7 @@ form {
 			<div class="info1_div">
 				<div class="image_div">
 					<input type="file" name="product_main_img" id="product_main_img" />
-					<img class="img-rounded" alt="product_image" src="/resources/img/noimage.jpg">
+					<img class="img-rounded" id="image" alt="product_image" src="/resources/img/noimage.jpg">
 				</div>
 
 				<div class="product_input_div">
