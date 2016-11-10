@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@	page session="false" %>
@@ -36,7 +35,7 @@ $(function() {
     });
 });
 
-$('#modal-country').on('shown.bs.modal', function () {
+$('#modal-country').on('modal', function () {
 	  $('#search-country').focus();
 });
 
@@ -69,7 +68,6 @@ $(".fileDrop").on("drop", function(event) {
 		}
 	});
 });
-
 
 </script>
 <style type="text/css">
@@ -126,6 +124,11 @@ $(".fileDrop").on("drop", function(event) {
 	border-left: none;
 	margin-left: auto;
 	margin-right: auto;
+	font-size: 12px;
+}
+
+#modal-countryTb tbody tr td{
+	height : 30px;
 }
 
 #modal-countryTb thead tr td{
@@ -134,7 +137,6 @@ $(".fileDrop").on("drop", function(event) {
 	text-align: center;
 	background-color: #424242;
 	color: white;
-	font-size: 12px;
 }
 
 #modal-countryNumTb thead tr td{
@@ -175,8 +177,8 @@ $(".fileDrop").on("drop", function(event) {
 				<tr>
 					<td><label class="col-sm-2 control-label">Country</label></td>
 					<td>
-						 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-country" 
-								 id="search" style="float:left;">Search</button> 
+							
+						 <button type="button" class="btn btn-primary" id="search" data-toggle="modal" data-target="#modal-country" style="float:left;">Search</button> 
 						<!-- Large modal -->
 						<input type="text" name="member_country" class="form-control" readonly="readonly" style="float:right; width:400px;">					
 					</td>
@@ -203,7 +205,6 @@ $(".fileDrop").on("drop", function(event) {
 					<td id="form-img" align="center" >
 						<label for="searchFile" class="btn btn-primary search-img" id="search">Search img</label>
 						<input type="file" id="searchFile" name="member_img">
-						<!-- <button type="button" class="btn btn-primary search-img" id="search">Search img</button> -->
 					</td>
 					<td><label class="col-sm-2 control-label">Birthday</label></td>
 					<td>
@@ -233,12 +234,12 @@ $(".fileDrop").on("drop", function(event) {
 				<div class="modal-body">
 					<div id="search-keyword">
 						<input type="text" name="country_name" id="search-country" placeholder="Searching Country name" style="height: 25px;">
-						<button type="submit" class="btn btn-info modal-search-country" style="height:25px; padding-bottom: 0px; padding-top: 0px;">Search</button>
+						<button type="submit" class="btn btn-info modal-search-country" id="searchCountryBtn" style="height:25px; padding-bottom: 0px; padding-top: 0px;">Search</button>
 					</div>
 					<br>
-					<div>
+					<div class="countryList">
 						<table id="modal-countryTb">
-							<thead>
+							<thead class="country_thead">
 								<tr>
 									<td>country_id</td>
 									<td>country_name_eng</td>
@@ -246,18 +247,17 @@ $(".fileDrop").on("drop", function(event) {
 								</tr>
 							</thead>
 							<c:forEach items="${listCountry }" var="country">
-							<tbody>
+							<tbody class="country_tbody">
 								<tr>
 									<td>${country.country_id }</td>
 									<td>${country.country_name_eng }</td>
 									<td>${country.country_name_kor }</td>
 								</tr>
 							</tbody>
-							</c:forEach>
+ 							</c:forEach>
 						</table>
 					</div>
-					
-					<div class="text-center">
+					<%-- <div class="text-center" id="countryPaging">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">
 								<li>
@@ -265,9 +265,8 @@ $(".fileDrop").on("drop", function(event) {
 								</li>
 							</c:if>
 							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-								<li>
-									<c:out value="${pageMaker.pcri.page == idx?'class=active':''}"/>
-									<a href="member_reg?page=${idx}">${idx}</a>
+								<li	<c:out value="${pageMaker.pcri.page == idx?'class=active':'' }"/>>
+									<a href="#modal-country?page=${idx}">${idx}</a>
 								</li>
 							</c:forEach>
 							
@@ -277,8 +276,7 @@ $(".fileDrop").on("drop", function(event) {
 								</li>
 							</c:if>
 						</ul>
-					</div>
-									
+					</div> --%>
 				</div>
 				
 				<div class="modal-footer">

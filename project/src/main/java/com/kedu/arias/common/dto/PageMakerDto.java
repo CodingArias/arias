@@ -8,7 +8,7 @@ public class PageMakerDto {
 	private boolean prev;
 	private boolean next;
 	
-	private int displayPageNum = 20;
+	private int displayPageNum = 5;
 	
 	private PageCriteria pcri;
 	

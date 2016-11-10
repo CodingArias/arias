@@ -144,6 +144,5 @@ public class MemberController {
 	public void goHome(Model model) throws Exception{
 
 	}
-	
 
 }
