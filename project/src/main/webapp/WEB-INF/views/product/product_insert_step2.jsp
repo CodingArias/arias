@@ -12,6 +12,8 @@
 
 
 <script type="text/javascript">
+	var listArray = new Array();
+	
 	$(function() {
 		var dates = new Array();
 		function invalid() {
@@ -21,20 +23,10 @@
 			date_array_print(dates);
 		}
 
-		invalid();
 
 		var startDate;
 		var endDate;
-		$('#reportrange').daterangepicker({
-		    "singleDatePicker": true,
-		    "showCustomRangeLabel": false,
-		    "alwaysShowCalendars": true,
-		    "startDate": "11/04/2016",
-		    "endDate": "11/10/2016"
-		}, function(start, end, label) {
-		  console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-		});
-/* 		$('#reportrange').daterangepicker({
+ 		$('#reportrange').daterangepicker({
 			startDate : moment(),
 			endDate : moment(),
 			format : 'YYYY-MM-DD',
@@ -49,15 +41,28 @@
 
 		}, function(start, end) {
 			
-			if(!date_invalid_check(start.format('YYYY-MM-DD'),end.format('YYYY-MM-DD'),dates)){
+			/* if(!date_invalid_check(start.format('YYYY-MM-DD'),end.format('YYYY-MM-DD'),dates)){
 				console.log("해당 기간은 이미 예약 되어있습니다.");
 			}else{
-				startDate = start;
-				endDate = end;
-				console.log("시작일 : "+start.format('YYYY-MM-DD'));
-				console.log("종료일 : "+end.format('YYYY-MM-DD'));		
+
+			} */
+			startDate = start;
+			endDate = end;
+//			console.log("시작일 : "+start.format('YYYY-MM-DD'));
+//		console.log("종료일 : "+end.format('YYYY-MM-DD'));		
+			var date = new Object();
+			date.start = start.format('YYYY-MM-DD');
+			date.end = end.format('YYYY-MM-DD');
+			listArray.push(date);
+			
+			for(var i=0; i < listArray.length;i++){
+				console.log("start : "+listArray[i].start);
+				console.log("end : "+listArray[i].end);
 			}
-		}); */
+			$("#list_tbody").append("<tr><td>"+date.start+" ~ "+date.end+"</td></tr>");
+			
+		});
+ 		
 		
 	});
 </script>
@@ -70,7 +75,7 @@
 .container {
 	/*상 우 하 좌  */
 	margin: 0px auto;
-	width: 80%;
+	width: 60%;
 	height: 100%;
 	background: white;
 }
@@ -81,41 +86,46 @@
 .info_div {
 	height: 30%;
 }
-.notsales_date_div{
-	height: 20%
-}
 .notsales_datelist_div{
 	height: auto;
 }
 .btn_div{
 	height: 10%;
 }
+.info_div input {
+	margin-bottom: 10px;
+}
+
 
 
 </style>
 
 <div class="main">
 	<div class="container">
-			<div class="step_div">
-				<h2>Hosting Step 2</h2>
-				<hr>
-			</div>
-			<div class="info_div">
+		<div class="step_div">
+			<h2>Hosting Step 2</h2>
+			<hr>
+		</div>
+		<div class="info_div">
+
 				<p style="color: gray;">최소 숙박 가능일수</p>
-				<input type="text" class="form-control" name="product_name" id="product_name" required="required"/>
+				<input type="number" name="product_mindt" id="product_mindt" class="form-control input_type3" required="required"/>
 				<p style="color: gray;">최대 숙박 가능일수</p>
-				<input type="text" class="form-control" name="product_name" id="product_name" required="required"/>
+				<input type="number" name="product_maxdt" id="product_maxdt" class="form-control input_type3" required="required"/>
 				<p style="color: gray;">준비 기간</p>
-				<input type="text" class="form-control" name="product_name" id="product_name" required="required"/>
+				<input type="number" name="product_readydt" id="product_readydt" class="form-control input_type3" required="required"/>
 				<p style="color: gray;">최소 몇 일 전 예약</p>
-				<input type="text" class="form-control" name="product_name" id="product_name" required="required"/>
+				<input type="number" name="product_prepdt" id="product_prepdt" class="form-control input_type3" required="required"/>
 																
 			</div>
-			<div class="notsales_date_div">
-				<input class="" type="text" name="daterange" id="reportrange" value="01/01/2015 - 01/31/2015" />
-				
-			</div>
 			<div class="notsales_datelist_div">
+			<p><span>예약 불가날짜 선택 </span><input class="form-control input_type3 info" type="text" name="daterange" id="reportrange"/>
+				</p>
+				<table id="date_list"  class="table table-hover table-striped input_type3">
+					<tbody id="list_tbody" >
+						
+					</tbody>
+				</table>
 			</div>
 			<div class="btn_div">
 			</div>

@@ -219,17 +219,6 @@ form {
 	height: 5%;
 }
 
-.input_type1 {
-	width: 100px;
-}
-
-.input_type2 {
-	width: 150px;
-}
-
-.input_type3 {
-	width: 400px;
-}
 
 #product_main_img {
 	margin-bottom: 5px;
