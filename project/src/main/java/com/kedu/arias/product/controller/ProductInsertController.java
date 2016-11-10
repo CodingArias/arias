@@ -1,6 +1,5 @@
 package com.kedu.arias.product.controller;
 
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +20,6 @@ public class ProductInsertController {
 
 	@Inject
 	ProductService service;
-	
-	String savePath="D:/images/";
 	int sizeLimit = 3 * 1024 * 1024;
 	FileUploader fileUploader = FileUploader.getInstance();
 
@@ -32,16 +29,20 @@ public class ProductInsertController {
 	}
 
 	@RequestMapping(value = "/product_insert", method = RequestMethod.POST)
-	public String product_insert(HttpServletRequest request) throws Exception {
+	public String product_insert(HttpServletRequest request,ProductDto test) throws Exception {
 		
 		String imageNames[];
+		//이미지가 저장될 가상 디렉토리
 		String attach_path = "resources/product/product_main_image/";
-
 		ProductDto pDto = new ProductDto();
 		pDto.setP_main_img("dasd");
 		pDto.setMember_id("201611030001");
+		System.out.println(test);
 		
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
+		System.out.println(multi.getParameter("product_name"));
+		
+		//이미지 저장 후 이름들을 반환한다.
 		imageNames=fileUploader.fileUpload(attach_path,"product_main_img", multi);
 		
 		for(int i=0;i<imageNames.length;i++){
@@ -51,10 +52,8 @@ public class ProductInsertController {
 		return "/product/product_insert";
 	}
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public void main_test() {
-	}
 
+	
 	@RequestMapping(value = "/map2", method = RequestMethod.GET)
 	public void map() throws Exception {
 		ProductDto pDto = new ProductDto();

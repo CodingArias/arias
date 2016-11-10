@@ -10,12 +10,18 @@
 <script type="text/javascript" src="/resources/datepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="/resources/js/date.js"></script>
 <script type="text/javascript" src="/resources/js/fileUpload.js"></script>
+<script type="text/javascript" src="/resources/js/validation.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&libraries=places&callback=initMap"
 async defer></script>
 
 <script type="text/javascript">
 $(function(){
 	imageChange($("#image"),$("#product_main_img"));
+	$("#saveBtn").click(function(){
+		var valid=true;
+		valid=valid&&inputCheck($("#product_addr"),"주소",1);
+		return valid;
+	});
 	
 });
 	var map;
@@ -208,6 +214,8 @@ form {
 }
 
 .bottons_div {
+	margin-top:10px;
+	text-align:right;
 	height: 5%;
 }
 
@@ -267,29 +275,29 @@ form {
 
 			<div class="info1_div">
 				<div class="image_div">
-					<input type="file" name="product_main_img" id="product_main_img" />
+					<input type="file" name="product_main_img" id="product_main_img"  required="required"/>
 					<img class="img-rounded" id="image" alt="product_image" src="/resources/img/noimage.jpg">
 				</div>
 
 				<div class="product_input_div">
 					<p style="color: gray;">Hosting Name</p>
-					<input type="text" class="input_type3" name="product_name" id="product_name"/>
+					<input type="text" class="form-control" name="product_name" id="product_name" required="required"/>
 
 					<p style="color: gray;">Hosting Price</p>
-					<input type="text" name="product_price" id="product_price"/>
+					<input type="number" class="form-control input_type2" name="product_price" id="product_price" placeholder="$" required="required" />
 
 					<p style="color: gray;">Country</p>
-					<select id="country_id" name="country_id">
-						<option value="co_185">Korea</option>
+					<select id="country_id" name="country_id" class="form-control input_type2">
+						<option value="co_185" selected="selected">Korea</option>
 						<option value="co_23">U.S.A</option>
 						<option value="co_44">Japan</option>
 					</select> 
 
 					<p style="color: gray;">Address</p>
-					<input type="text" class="input_type3" name="product_addr" id="product_addr" readonly="readonly"/>
+					<input type="text" class="form-control" name="product_addr" id="product_addr" readonly="readonly" placeholder="지도에서 집의 위치를 찾아주세요." required="required"/>
 
 					<p style="color: gray;">Detail Address</p>
-					<input type="text" class="input_type3" name="product_addr_detail" id="product_addr_detail" />
+					<input type="text" class="form-control" name="product_addr_detail" id="product_addr_detail"  placeholder="상세주소를 입력해주세요." required="required"/>
 				</div>
 				<hr>
 			</div>
@@ -302,7 +310,7 @@ form {
 			<div class="info2_div">
 				<hr>
 			
-				<textarea style="padding: 20px;" rows="" cols="" name="product_info" id="product_info">집에 대한 간단한 소개를 적어주세요 !! 
+				<textarea style="padding: 20px;" class="controls"   rows="" cols="" name="product_info" id="product_info" required="required">집에 대한 간단한 소개를 적어주세요 !! 
 
 ex :)
 저희 집은 공항, 공원, 문화예술, 도심, 대중교통 근처에 있습니다. 
@@ -310,7 +318,7 @@ ex :)
 저희 집은 커플, 나홀로 여행족, 출장자, (아이 동반) 가족, 단체, 반려동물 동반에 적합합니다.</textarea>
 			</div>
 			<div class="bottons_div">
-				<input class="btn btn-default" type="submit" value="1단계 저장"/>
+				<input id="saveBtn" class="btn btn-success" type="submit" value="1단계 저장"/>
 			</div>
 		</form>
 
