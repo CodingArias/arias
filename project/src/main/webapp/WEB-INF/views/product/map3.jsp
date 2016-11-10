@@ -65,8 +65,9 @@
     </style>
   </head>
   <body>
+  
+    <input type="button" name="btn"id="btn" style="height: 200px; width: 200px;" />
     <input id="pac-input" class="controls" type="text" placeholder="Search Address">
-    <div id="map"></div>
     <script>
 
 function initAutocomplete() {
@@ -80,7 +81,7 @@ function initAutocomplete() {
 
 
   //검색을 눌렀을 때, 호출되는 리스너
-  searchBox.addListener('places_changed', function() {
+/*   searchBox.addListener('places_changed', function() {
 		
 		var places = searchBox.getPlaces();
 		if (places.length == 0) {
@@ -105,7 +106,34 @@ function initAutocomplete() {
 	    });
 	    
 	    
-	  });
+	  }); */
+  
+  document.getElementById('btn').onclick = function () {
+  	var places = searchBox.getPlaces();
+  	if(places!=null){
+		if (places.length == 0) {
+			return;
+		}
+		console.log(places);
+		
+	    // For each place, get the icon, name and location.
+	    var bounds = new google.maps.LatLngBounds();
+	    places.forEach(function(place) {
+	
+	      
+	      bounds.extend(place.geometry.location);
+	   
+	      
+	      //검색한 지점의 주소
+	      console.log(place.formatted_address);
+	      //검색한 지점의 x,y 좌표
+		  console.log(place.geometry.location.lng());
+	      console.log(place.geometry.location.lat());
+	      
+	    });
+  	}
+  };
+  
 }
 
 
