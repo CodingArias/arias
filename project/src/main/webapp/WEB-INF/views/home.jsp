@@ -53,7 +53,11 @@
 
 <br>
 <!-- Search&달력 -->
-<form class="form-inline text-center form-group-lg">
+<form class="form-inline text-center form-group-lg" method="get" action="search?">
+	<input type='hidden' name='checkin' id='checkin'>
+	<input type='hidden' name='checkout' id='checkout'>
+	<input type='hidden' name='lng' id='lng'>
+	<input type='hidden' name='lat' id='lat'>
 	<div class="form-group">
 		<input type="text" class="form-control" id="pac-input"
 			placeholder="나라 이름">
@@ -65,8 +69,8 @@
 	</div>
 	<div class="form-group">
 		<!-- db로 코드를 넣어줘야함 -->
-		<select class="form-control">
-			<option>숙박인원 1명</option>
+		<select class="form-control" name="tt">
+			<option value="1">숙박인원 1명</option>
 			<option>숙박인원 2명</option>
 			<option>숙박인원 3명</option>
 			<option>숙박인원 4명</option>
@@ -74,13 +78,14 @@
 		</select>
 	</div>
 	<div class="form-group">
-		<button type="button" id="sub" class="btn btn-primary btn-lg">숙소 검색</button>
+		<input type="button" id="btn" class="btn btn-primary btn-lg" value="숙소 검색">
 	</div>
 </form>
 <!-- 달력 끝  -->
 
 <!--달력 스크립트  -->
 <script type="text/javascript">
+var lat, lng;
 	$(function() {
 		// 시작 날짜와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다
 		var start_date = moment().subtract(29, 'days');
@@ -108,7 +113,10 @@
 					'startDate' : start_date,
 					'endDate' : end_date
 				}, cb);
+		$('#checkin').val(start_date);
+		$('#checkout').val(end_date);
 	});
+	
 </script>
 <!--달력 스크립트  끝-->
 <div class="container text-center">
@@ -254,6 +262,40 @@
 	<p>Footer Text</p>
 </footer>
 
+<script>
+
+function initAutocomplete() {
+	  //검색창 요소
+	  var input = document.getElementById('pac-input');
+	  //searchBox
+	  var searchBox = new google.maps.places.SearchBox(input);
+	  
+	  
+	  document.getElementById('btn').onclick = function () {
+	  	var places = searchBox.getPlaces();
+	  	if(places!=null){
+			if (places.length == 0) {
+				return;
+			}
+			console.log(places);
+		    // For each place, get the icon, name and location.
+		    var bounds = new google.maps.LatLngBounds();
+		    places.forEach(function(place) {
+		      bounds.extend(place.geometry.location);
+		      //검색한 지점의 주소
+		      console.log(place.formatted_address);
+		      //검색한 지점의 x,y 좌표
+			  console.log(place.geometry.location.lng());
+		      console.log(place.geometry.location.lat());
+		      $("#lat").val(place.geometry.location.lng());
+		      $("#lng").val(place.geometry.location.lat());
+		      var form=$(document).find("form");
+		      form[0].submit();
+		    });
+	  	}
+	  };
+	};
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&libraries=places&callback=initAutocomplete"
          async defer></script>
 </body>
