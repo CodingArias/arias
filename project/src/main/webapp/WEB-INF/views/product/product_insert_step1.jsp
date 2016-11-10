@@ -264,7 +264,7 @@ form {
 <div class="main">
 	<div class="container">
 	
-		<form method="post" action="product_insert" enctype="multipart/form-data">
+		<form method="post" action="product_insert_step1" enctype="multipart/form-data">
 			<input type="hidden" name="product_lat" id="product_lat">
 			<input type="hidden" name="product_lng" id="product_lng">
 			

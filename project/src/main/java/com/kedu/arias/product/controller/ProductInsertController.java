@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.service.ProductService;
@@ -23,35 +24,44 @@ public class ProductInsertController {
 	int sizeLimit = 3 * 1024 * 1024;
 	FileUploader fileUploader = FileUploader.getInstance();
 
-	@RequestMapping(value = "/product_insert", method = RequestMethod.GET)
-	public void product_insert() {
+	@RequestMapping(value = "/product_insert_step1", method = RequestMethod.GET)
+	public String product_insert() {
 
+		System.out.println("이아아아아아아!!!!");
+		return "/product/product_insert_step1";
 	}
 
-	@RequestMapping(value = "/product_insert", method = RequestMethod.POST)
-	public String product_insert(HttpServletRequest request,ProductDto test) throws Exception {
+	@RequestMapping(value = "/product_insert_step1", method = RequestMethod.POST)
+	public String product_insert(HttpServletRequest request,ProductDto pDto,
+			RedirectAttributes redirectAttributes) throws Exception {
 		
 		String imageNames[];
 		//이미지가 저장될 가상 디렉토리
 		String attach_path = "resources/product/product_main_image/";
-		ProductDto pDto = new ProductDto();
-		pDto.setP_main_img("dasd");
+		
 		pDto.setMember_id("201611030001");
-		System.out.println(test);
+		System.out.println(pDto);
 		
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
-		System.out.println(multi.getParameter("product_name"));
 		
 		//이미지 저장 후 이름들을 반환한다.
 		imageNames=fileUploader.fileUpload(attach_path,"product_main_img", multi);
 		
 		for(int i=0;i<imageNames.length;i++){
 			System.out.println("이미지 이름 : "+imageNames[i]);
+			pDto.setP_main_img(imageNames[i]);
 		}
+		service.step1_insert(pDto);
 	
-		return "/product/product_insert";
+	    return "redirect:/product/product_insert_step2";
 	}
 
+
+	@RequestMapping(value = "/product_insert_step2", method = RequestMethod.GET)
+	public String product_insert_step2() throws Exception {
+		System.out.println("product_insert_step2 ");
+		return "/product/product_insert_step2";
+	}
 
 	
 	@RequestMapping(value = "/map2", method = RequestMethod.GET)
