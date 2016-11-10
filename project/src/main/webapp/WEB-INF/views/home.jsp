@@ -55,7 +55,7 @@
 <!-- Search&달력 -->
 <form class="form-inline text-center form-group-lg">
 	<div class="form-group">
-		<input type="text" class="form-control" id="exampleInputName2"
+		<input type="text" class="form-control" id="pac-input"
 			placeholder="나라 이름">
 	</div>
 	<div id="reportrange" class="form-group form-control"
@@ -74,7 +74,7 @@
 		</select>
 	</div>
 	<div class="form-group">
-		<button type="button" class="btn btn-primary btn-lg">숙소 검색</button>
+		<button type="button" id="sub" class="btn btn-primary btn-lg">숙소 검색</button>
 	</div>
 </form>
 <!-- 달력 끝  -->
@@ -254,6 +254,8 @@
 	<p>Footer Text</p>
 </footer>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&libraries=places&callback=initAutocomplete"
+         async defer></script>
 </body>
 </html>
 
