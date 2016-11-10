@@ -22,6 +22,11 @@ public class ProductDaoImpl implements ProductDao{
 		session.insert(namespace+".product_insert_step1", pDto);
 		return false;
 	}
+	@Override
+	public int create_next_product_seq(String member_id) {
+			
+		return session.selectOne(namespace+".create_next_product_seq",member_id);
+	}
 
 
 

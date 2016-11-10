@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                        , product_lng
                                        , product_step)
                                        VALUES ( 
-                                        create_next_product_seq
+                                        #{product_seq,jdbcType=NUMERIC}
 									  , #{p_main_img,jdbcType=VARCHAR}
                                       , #{member_id,jdbcType=VARCHAR}
                                       , #{product_name,jdbcType=VARCHAR}
@@ -32,5 +32,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                       , #{product_lng,jdbcType=NUMERIC}
                                       , 1)
 	</insert>
+	<update id="product_insert_step2" parameterType="com.kedu.arias.product.dto.ProductDto">
+	UPDATE PRODUCT
+		SET product_mindt = #{product_mindt}
+		,   product_maxdt = #{product_maxdt}
+        ,   product_readydt = #{product_readydt}
+        ,   product_prepdt = #{product_prepdt} 
+	where product_seq = #{product_seq};
+	</update>
+	<select id="create_next_product_seq" parameterType="String" resultType="Integer">
+		select create_next_product_seq from dual
+	</select>
 </mapper>
 

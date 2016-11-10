@@ -40,16 +40,10 @@ function date_invalid_check(start,end, invalid_date){
 	
 	var start_date = new Date(start);
 	var end_date = new Date(end);
-	
-	console.log('------invalid dates--------');
-	date_array_print(invalid_date);
-
-	console.log('------select dates--------');
 	while (start_date.getTime() <= end_date.getTime()) {
 		if(invalid_date.indexOf(formatDate(start_date))>-1)
 			return false;
 		
-		console.log("check : "+formatDate(start_date));
 		start_date.setDate(start_date.getDate() + 1);
 	}
 	return true;

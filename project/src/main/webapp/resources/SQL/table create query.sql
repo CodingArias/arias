@@ -240,6 +240,11 @@ CREATE TABLE product_space(
 
 
 
+ALTER TABLE PRODUCT
+add number_of_people NUMBER DEFAULT 0;
+
+
+
 
 
 

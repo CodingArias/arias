@@ -16,5 +16,9 @@ public class ProductServiceImpl implements ProductService {
 	public boolean step1_insert(ProductDto pDto) throws Exception {
 		return pDao.step1_insert(pDto);
 	}
+	@Override
+	public int create_next_product_seq(String member_id) {
+		return pDao.create_next_product_seq(member_id);
+	}
 
 }

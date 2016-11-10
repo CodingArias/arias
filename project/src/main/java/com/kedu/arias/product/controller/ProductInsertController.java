@@ -1,8 +1,11 @@
 package com.kedu.arias.product.controller;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.service.ProductService;
 import com.kedu.arias.util.FileUploader;
+import com.kedu.arias.util.JsonManager;
 
 @Controller
 @RequestMapping("/product")
@@ -23,6 +32,7 @@ public class ProductInsertController {
 	ProductService service;
 	int sizeLimit = 3 * 1024 * 1024;
 	FileUploader fileUploader = FileUploader.getInstance();
+	JsonManager jsonManager=JsonManager.getInstance();
 
 	@RequestMapping(value = "/product_insert_step1", method = RequestMethod.GET)
 	public String product_insert() {
@@ -35,13 +45,19 @@ public class ProductInsertController {
 	public String product_insert(HttpServletRequest request,ProductDto pDto,
 			RedirectAttributes redirectAttributes) throws Exception {
 		
+		HttpSession session =request.getSession();
+		
+		if(session.getAttribute("product_seq")!=null){
+			session.removeAttribute("product_seq");
+		}
+		
 		String imageNames[];
 		//이미지가 저장될 가상 디렉토리
 		String attach_path = "resources/product/product_main_image/";
-		
-		pDto.setMember_id("201611030001");
+		String member_id="201611030001";
+		pDto.setMember_id(member_id);
+		pDto.setProduct_seq(service.create_next_product_seq(member_id));
 		System.out.println(pDto);
-		
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
 		
 		//이미지 저장 후 이름들을 반환한다.
@@ -52,14 +68,34 @@ public class ProductInsertController {
 			pDto.setP_main_img(imageNames[i]);
 		}
 		service.step1_insert(pDto);
-	
+		session.setAttribute("product_seq", pDto.getProduct_seq());
 	    return "redirect:/product/product_insert_step2";
 	}
 
 
 	@RequestMapping(value = "/product_insert_step2", method = RequestMethod.GET)
-	public String product_insert_step2() throws Exception {
+	public String product_insert_step2(HttpServletRequest request) throws Exception {
+		if(request.getSession().getAttribute("product_seq")!=null){
+			System.out.println("product_seq : "+request.getSession().getAttribute("product_seq"));
+		}else{
+			
+		}
 		System.out.println("product_insert_step2 ");
+		return "/product/product_insert_step2";
+	}
+	
+	@RequestMapping(value = "/product_insert_step2", method = RequestMethod.POST)
+	public String product_insert_step2(ProductDto pDto,@RequestParam("notsales") String notsales ) throws Exception {
+		System.out.println("product_insert_step2 ");
+
+		
+	    Gson gson = new Gson();
+	    JsonObject jsonObject = new JsonParser().parse(notsales).getAsJsonObject();
+	    String jsonString =jsonObject.get("notsales").toString();
+	    List<NotsalesDto> notsalesList = gson.fromJson(jsonString, new TypeToken<List<NotsalesDto>>(){}.getType());
+	    
+		System.out.println(pDto);
+		System.out.println(notsalesList);	    
 		return "/product/product_insert_step2";
 	}
 
