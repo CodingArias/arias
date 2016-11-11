@@ -9,11 +9,7 @@
 <script type="text/javascript"
 	src="/resources/datepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="/resources/js/date.js"></script>
-<script type="text/javascript" src="/resources/js/fileUpload.js"></script>
 <script type="text/javascript" src="/resources/js/validation.js"></script>
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&libraries=places&callback=initMap"
-	async defer></script>
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -27,7 +23,7 @@
 </script>
 <style type="text/css">
 .main {
-	height: 600px;
+	height: 700px;
 }
 
 .container {
@@ -37,40 +33,156 @@
 	height: 100%;
 	background: white;
 }
+.step_div {
+	height: 10%;
+}
+#all_tab_div{
+	height:80%;
+}
+#btns_div{
+	height: 10%;
+}
 
+#tab1_div{
+	height: 100%;
+}
+#tab2_div{
+	height: 100%;
+}
+#tab3_div{
+	height: 100%;
+}
+#tab4_div{
+	height: 100%;
+}
+#tab5_div{
+	height: 100%;
+}
+#blank_div{ 
+	width :15%;
+	height:100%;
+	float: left;
+}
+#select_div{
+width :35%;
+height: 80%;
+float: left;
+}
+#select_div_top{
+	height: 20%;
+}
+#explanation_div{
+background-color:#FAFAFA;
+width :40%;
+height: 100%;
+float: right;
+}
+#blank2_div{
+	width: 10%;
+	heigth:100%;
+	float: left;
+}
+#explanation {
+	background-color:white;
+	width: 60%;
+	height: 70%;
+	border: 1px solid #eeeeee;
+	margin-left: 20px;
+	margin-top: 50px;
+	padding: 20px;
+}
+#tab_place{
+	height: 100%;
+}
+#tab_place p{
+	color: gray;
+	margin-top: 30px;
+}
 
+#tab_place input{
+}
+textarea {
+	height: 100%;
+	border: none;
+}
 </style>
 
 <div class="main">
 	<div class="container">
 		<div class="step_div">
-			<h2>Hosting Step 2</h2>
-			<hr>
+			<h2>Hosting Step 3</h2>
 		</div>
-		<ul id="myTab" class="nav nav-tabs" role="tablist">
-		  <li role="presentation" class="active"><a data-target="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Home</a></li>
-		  <li role="presentation" class=""><a data-target="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Profile</a></li>
-		  <li role="presentation" class="dropdown">
-		    <a data-target="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">Dropdown <span class="caret"></span></a>
-		    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-		      <li><a data-target="#dropdown1" tabindex="-1" role="tab" id="dropdown1-tab" data-toggle="tab" aria-controls="dropdown1">@fat</a></li>
-		      <li><a data-target="#dropdown2" tabindex="-1" role="tab" id="dropdown2-tab" data-toggle="tab" aria-controls="dropdown2">@mdo</a></li>
-		    </ul>
-		  </li>
-		</ul>
-		<div id="myTabContent" class="tab-content">
-		  <div role="tabpanel" class="tab-pane fade active in" class="tab_div"id="home" aria-labelledby="home-tab">
-		    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-		  </div>
-		  <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-		    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-		  </div>
-		  <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
-		    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
-		  </div>
-		  <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
-		    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
-		  </div>
+		<div id="all_tab_div">
+			
+			<ul id="tab_bar" class="nav nav-pills " role="tablist">
+			  <li role="presentation" class="active"><a data-target="#tab1_div" role="tab" id="tab1" data-toggle="tab" aria-controls="tab1_div" aria-expanded="true">숙소 유형</a></li>
+			  <li role="presentation" class=""><a data-target="#tab2_div" role="tab" id="tab2" data-toggle="tab" aria-controls="tab1_div" aria-expanded="false">침실<span class="badge">42</span></a></li>
+			  <li role="presentation" class=""><a data-target="#tab3_div" role="tab" id="tab3" data-toggle="tab" aria-controls="tab3_div" aria-expanded="false">욕실</a></li>
+			  <li role="presentation" class=""><a data-target="#tab4_div" role="tab" id="tab4" data-toggle="tab" aria-controls="tab4_div" aria-expanded="false">편의시설</a></li>
+			  <li role="presentation" class=""><a data-target="#tab5_div" role="tab" id="tab5" data-toggle="tab" aria-controls="tab5_div" aria-expanded="false">공유 공간</a></li>
+			</ul>
+			<p style="height: 7px; width: 100%; background-color:#FFBA46;"></p>
+			
+			<div id="tab_place" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade active in" id="tab1_div" class="tab_div"  aria-labelledby="tab1">
+					<div id="blank_div"></div>
+					<div id="select_div">
+						<div id="select_div_top">
+							<h3>등록하실 숙소의 종류는 무엇인가요?</h3>
+						</div>
+						<p>최소 숙박 가능일수</p>
+						<select class="form-control input-lg"  >
+							<option>집전체</option>
+							<option>개인실</option>
+							<option>다인실</option>
+						</select>
+						<p>최소 숙박 가능일수</p>
+						<select class="form-control input-lg" >
+							<option>집전체</option>
+							<option>개인실</option>
+							<option>다인실</option>
+						</select>
+					
+					</div>
+					<div id="blank2_div"></div>
+					<div id="explanation_div">
+						<div id="explanation">
+						<textarea style="border: none; height: 100%;"  class="form-control" rows="" cols="">집 전체
+게스트에게 별채를 포함한 집 전체를 빌려줍니다.
+
+개인실
+호스트와 공유하는 공간이 있긴 하지만 게스트에게 잠을 잘 수 있는 개인실이 제공됩니다.
+
+다인실
+게스트가 단독으로 쓸 수 있는 방이 제공되지 않습니다.</textarea>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="tab2_div" aria-labelledby="tab2">
+					<div id="blank_div"></div>
+					<div id="select_div"></div>
+					<div id="explanation_div"></div>
+					<p>tab2</p>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="tab3_div" aria-labelledby="tab3">
+					<div id="blank_div"></div>
+					<div id="select_div"></div>
+					<div id="explanation_div"></div>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="tab4_div" aria-labelledby="tab4">
+					<div id="blank_div"></div>
+					<div id="select_div"></div>
+					<div id="explanation_div"></div>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="tab5_div" aria-labelledby="tab5">
+					<div id="blank_div"></div>
+					<div id="select_div"></div>
+					<div id="explanation_div"></div>
+				</div>
+				
+			</div>
+		</div>
+		<div id="btns_div">
 		</div>
 	</div>
 </div>
