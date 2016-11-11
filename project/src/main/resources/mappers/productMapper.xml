@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                        , product_info
                                        , product_lat
                                        , product_lng
+                                       , number_of_people
                                        , product_step)
                                        VALUES ( 
                                         #{product_seq,jdbcType=NUMERIC}
@@ -30,6 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                       , #{product_info,jdbcType=VARCHAR}
                                       , #{product_lat,jdbcType=NUMERIC}
                                       , #{product_lng,jdbcType=NUMERIC}
+                                      , #{number_of_people,jdbcType=NUMERIC}
                                       , 1)
 	</insert>
 	<update id="product_insert_step2" parameterType="com.kedu.arias.product.dto.ProductDto">

@@ -25,7 +25,7 @@
 
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="#">Hosting</a></li>
+				<li><a href="/product/product_insert_step1">Hosting</a></li>
 				<li><a href="#">Notice</a></li>
 				<li><a href="#">statistics</a></li>
 				<li id="mypage"><a href="#" class="dropdown"
