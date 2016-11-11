@@ -51,7 +51,17 @@ form{
 	$("title").text("Hosting Step2");
 	var listArray = new Array();
 	
+
 	$(function() {
+		
+		function item_remove(object){
+			console.log(object);
+			console.log("행 : "+object.index());
+			listArray.splice(object.index(),1);
+			object.remove();
+			createDaterangepicker()
+		}
+		
 		$("#saveBtn").click(function(){
 
 	          var product = new Object();
@@ -103,12 +113,14 @@ form{
 					listArray.push(date);
 					
 				
-					$("#list_tbody").append("<tr class='active' ><td>"+date.ns_start_dt+" ~ "+date.ns_end_dt+"</td></tr>");
+					$("#list_tbody").append("<tr class='active' ><td>"+date.ns_start_dt+" ~ "+date.ns_end_dt+"</td>"
+					+"<td style='text-align:right;' onclick='item_remove($(this).parent());'>x</td></tr>");
 					createDaterangepicker();
 				} 
 				
 			});
 		}
+	
 		createDaterangepicker();
 	});
 </script>

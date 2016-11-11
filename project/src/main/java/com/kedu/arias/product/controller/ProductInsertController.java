@@ -87,17 +87,25 @@ public class ProductInsertController {
 	}
 	
 	@RequestMapping(value = "/product_insert_step2", method = RequestMethod.POST)
-	public String product_insert_step2(ProductDto pDto,@RequestParam("notsales") String notsales ) throws Exception {
-		System.out.println("product_insert_step2 ");
+	public String product_insert_step2(HttpServletRequest request,ProductDto pDto,@RequestParam("notsales") String notsales ) throws Exception {
+		int product_seq=0;
+		if(request.getSession().getAttribute("product_seq")!=null){
+			product_seq=(Integer)request.getSession().getAttribute("product_seq");
+			System.out.println("product_seq : "+request.getSession().getAttribute("product_seq"));
+			pDto.setProduct_seq(product_seq);
+		}else{
+			
+		}
 
 		
 	    Gson gson = new Gson();
 	    JsonObject jsonObject = new JsonParser().parse(notsales).getAsJsonObject();
 	    String jsonString =jsonObject.get("notsales").toString();
 	    List<NotsalesDto> notsalesList = gson.fromJson(jsonString, new TypeToken<List<NotsalesDto>>(){}.getType());
-	    
 		System.out.println(pDto);
-		System.out.println(notsalesList);	    
+		System.out.println(notsalesList);	   
+		service.step2_insert(pDto);
+		service.notsales_insert(product_seq, notsalesList);
 		return "/product/product_insert_step2";
 	}
 

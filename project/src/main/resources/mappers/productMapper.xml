@@ -36,14 +36,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<update id="product_insert_step2" parameterType="com.kedu.arias.product.dto.ProductDto">
 	UPDATE PRODUCT
-		SET product_mindt = #{product_mindt}
-		,   product_maxdt = #{product_maxdt}
-        ,   product_readydt = #{product_readydt}
-        ,   product_prepdt = #{product_prepdt} 
-	where product_seq = #{product_seq};
+		SET product_mindt = #{product_mindt,jdbcType=NUMERIC}
+		,   product_maxdt = #{product_maxdt,jdbcType=NUMERIC}
+        ,   product_readydt = #{product_readydt,jdbcType=NUMERIC}
+        ,   product_prepdt = #{product_prepdt,jdbcType=NUMERIC}
+        ,   product_step = 2
+         
+	where product_seq = #{product_seq,jdbcType=NUMERIC}
 	</update>
 	<select id="create_next_product_seq" parameterType="String" resultType="Integer">
 		select create_next_product_seq from dual
 	</select>
+	
+	<insert id="insert_notsales" parameterType="com.kedu.arias.product.dto.NotsalesDto">
+		INSERT INTO NOTSALES_DATE(NOTSALES_SEQ,PRODUCT_SEQ,NS_START_DT,NS_END_DT) 
+		VALUES(
+		  #{notsales_seq,jdbcType=NUMERIC}
+		, #{product_seq,jdbcType=NUMERIC}
+		, #{ns_start_dt,jdbcType=DATE}
+		, #{ns_end_dt,jdbcType=DATE}
+		)
+	</insert>
 </mapper>
 

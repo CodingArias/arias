@@ -100,6 +100,7 @@ CREATE TABLE PRODUCT(
     , product_prepdt    NUMBER   DEFAULT 0
     , product_step    NUMBER 									NOT NULL
     , product_regdt    DATE  										DEFAULT SYSDATE
+    , number_of_people NUMBER DEFAULT 0
     , CONSTRAINT PRODUCT_memberid_fk FOREIGN KEY(member_id) REFERENCES MEMBER (member_id) ON DELETE CASCADE
     , CONSTRAINT PRODUCT_countryid_fk FOREIGN KEY(country_id) REFERENCES COUNTRY_CODE (country_id)    ON DELETE SET NULL
     , CONSTRAINT PRODUCT_accomid_fk FOREIGN KEY(accom_id) REFERENCES accom_code (accom_id)	 ON DELETE SET NULL
@@ -118,7 +119,7 @@ CREATE TABLE notsales_date(
     , ns_start_dt    DATE
     , ns_end_dt    DATE
     , CONSTRAINT notsalesdate_productseq_fk FOREIGN KEY(product_seq) REFERENCES product (product_seq) ON DELETE CASCADE
-    , CONSTRAINT notsalesdate_notsalesseq_pk PRIMARY KEY(notsales_seq)
+    , CONSTRAINT notsales_prod_notsalesseq_pk  PRIMARY KEY (notsales_seq,product_seq)
 );
 
 DROP TABLE product_pic;
@@ -243,7 +244,11 @@ CREATE TABLE product_space(
 ALTER TABLE PRODUCT
 add number_of_people NUMBER DEFAULT 0;
 
+ALTER TABLE NOTSALES_DATE
+DROP CONSTRAINT NOTSALESDATE_NOTSALESSEQ_PK;
 
+ALTER TABLE NOTSALES_DATE
+MODIFY (CONSTRAINT notsales_prod_notsalesseq_pk  PRIMARY KEY (notsales_seq,product_seq));
 
 
 

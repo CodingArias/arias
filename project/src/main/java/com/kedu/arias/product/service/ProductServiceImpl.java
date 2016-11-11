@@ -1,10 +1,13 @@
 package com.kedu.arias.product.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.kedu.arias.product.dao.ProductDao;
+import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
 
 @Service
@@ -19,6 +22,15 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int create_next_product_seq(String member_id) {
 		return pDao.create_next_product_seq(member_id);
+	}
+	@Override
+	public boolean step2_insert(ProductDto pDto) throws Exception {
+		return pDao.step2_insert(pDto);
+	}
+	@Override
+	public boolean notsales_insert(int product_seq,List<NotsalesDto> notsalesList) {
+		pDao.notsales_insert(product_seq, notsalesList);
+		return false;
 	}
 
 }
