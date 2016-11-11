@@ -3,20 +3,20 @@ package com.kedu.arias.member.dto;
 import java.util.Date;
 
 public class MemberDto {
-	private int member_id;
+	private String member_id;
 	private String member_first_name;
 	private String member_last_name;
-	private String member_country;
+	private String country_id;
 	private String member_img;
 	private String member_email;
 	private String member_pwd;
 	private String member_phone;
 	private String member_birthday;
 	private String member_reg_date;
-	public int getMember_id() {
+	public String getMember_id() {
 		return member_id;
 	}
-	public void setMember_id(int member_id) {
+	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
 	public String getMember_first_name() {
@@ -31,11 +31,11 @@ public class MemberDto {
 	public void setMember_last_name(String member_last_name) {
 		this.member_last_name = member_last_name;
 	}
-	public String getMember_country() {
-		return member_country;
+	public String getCountry_id() {
+		return country_id;
 	}
-	public void setMember_country(String member_country) {
-		this.member_country = member_country;
+	public void setCountry_id(String country_id) {
+		this.country_id = country_id;
 	}
 	public String getMember_img() {
 		return member_img;
@@ -76,8 +76,10 @@ public class MemberDto {
 	@Override
 	public String toString() {
 		return "MemberDto [member_id=" + member_id + ", member_first_name=" + member_first_name + ", member_last_name="
-				+ member_last_name + ", member_country=" + member_country + ", member_img=" + member_img
-				+ ", member_email=" + member_email + ", member_pwd=" + member_pwd + ", member_phone=" + member_phone
-				+ ", member_birthday=" + member_birthday + ", member_reg_date=" + member_reg_date + "]";
+				+ member_last_name + ", country_id=" + country_id + ", member_img=" + member_img + ", member_email="
+				+ member_email + ", member_pwd=" + member_pwd + ", member_phone=" + member_phone + ", member_birthday="
+				+ member_birthday + ", member_reg_date=" + member_reg_date + "]";
 	}
+	
+
 }

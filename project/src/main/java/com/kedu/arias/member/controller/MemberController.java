@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kedu.arias.member.dto.SearchCriteria;
 import com.kedu.arias.common.dto.PageCriteria;
 import com.kedu.arias.common.dto.PageMakerDto;
 import com.kedu.arias.member.dto.CountryDto;
@@ -106,7 +108,7 @@ public class MemberController {
 		dto.setMember_pwd(multi.getParameter("member_pwd"));
 		dto.setMember_first_name(multi.getParameter("member_first_name"));
 		dto.setMember_last_name(multi.getParameter("member_last_name"));
-		dto.setMember_country(multi.getParameter("member_country"));
+		dto.setCountry_id(multi.getParameter("country_id"));
 		dto.setMember_phone("+" + multi.getParameter("country_num") 
 								+ "-" 
 								+ multi.getParameter("member_phone1")
@@ -152,4 +154,63 @@ public class MemberController {
 		
 //		model.addAttribute(service.readMember(member_id));
 	}
+	
+
+	
+//현수
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+    public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+
+	    logger.info(cri.toString());
+
+	    model.addAttribute("list", service.listSearchCriteria(cri));
+
+	    System.out.println("list!!"+service.listSearchCriteria(cri));
+	
+	
+	}
+	
+	  @RequestMapping(value = "/read", method = RequestMethod.GET)
+	  public void read(@RequestParam("member_id") String member_id, @ModelAttribute("cri") SearchCriteria cri, Model model)
+		      throws Exception {
+
+		    model.addAttribute(service.read(member_id));
+		  }
+	  
+	  @RequestMapping(value = "/remove", method = RequestMethod.POST)
+	  public String remove(@RequestParam("member_id") String member_id,SearchCriteria cri,RedirectAttributes rttr) throws Exception {
+
+	    service.remove(member_id);
+
+	    rttr.addAttribute("searchType", cri.getSearchType());
+	    rttr.addAttribute("keyword", cri.getKeyword());
+	    rttr.addFlashAttribute("msg", "SUCCESS");
+
+	    return "redirect:/member/list";
+	  }
+	  
+	  @RequestMapping(value = "/modify", method = RequestMethod.GET)
+		
+	    public void modifyGET(String member_id, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+
+	        model.addAttribute(service.read(member_id));
+	      }
+	    
+	  
+	  @RequestMapping(value = "/modify", method = RequestMethod.POST)
+	  public String modifyPOST(MemberDto member, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+
+		    logger.info(cri.toString());
+		    service.modify(member);
+
+		    rttr.addAttribute("searchType", cri.getSearchType());
+		    rttr.addAttribute("keyword", cri.getKeyword());
+
+		    rttr.addFlashAttribute("msg", "SUCCESS");
+
+		    logger.info(rttr.toString());
+
+		    return "redirect:/member/list";
+		  }
+//현수
 }

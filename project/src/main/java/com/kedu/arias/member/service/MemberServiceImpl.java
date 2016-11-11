@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kedu.arias.member.dao.MemberDao;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
+import com.kedu.arias.member.dto.SearchCriteria;
 
 
 @Service
@@ -45,6 +46,34 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberDto> listAllMember() throws Exception {
 		return mdao.listAllMember();
+	}
+
+	
+	
+	//현수
+	
+	@Override
+	public List<MemberDto> listSearchCriteria(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return mdao.listSearch(cri);
+	}
+
+	@Override
+	public MemberDto read(String member_id) throws Exception {
+		// TODO Auto-generated method stub
+		return mdao.read(member_id);
+	}
+
+	@Override
+	public void modify(MemberDto member) throws Exception {
+		mdao.update(member);
+		
+	}
+
+	@Override
+	public void remove(String member_id) throws Exception {
+		mdao.delete(member_id);
+		
 	}
 
 }

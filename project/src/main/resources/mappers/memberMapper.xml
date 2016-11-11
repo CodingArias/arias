@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kedu.arias.MemberMapper">
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and member_id like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and member_last_name like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and member_email like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and country_id like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+			</if>
+		</if>
+	</sql>
+
+	<insert id="create">
+		insert into member (member_id,member_email,member_pwd, member_first_name, member_last_name,country_id,
+		                    member_phone,member_birthday,member_img)
+		values(
+		create_next_memberid,
+		#{member_email,jdbcType=VARCHAR},
+		#{member_pwd,jdbcType=VARCHAR}, 
+		#{member_first_name,jdbcType=VARCHAR}, 
+		#{member_last_name,jdbcType=VARCHAR}, 
+		#{country_id,jdbcType=VARCHAR}, 
+		#{member_phone,jdbcType=VARCHAR}, 
+		#{member_birthday,jdbcType=DATE}, 
+		#{member_img,jdbcType=VARCHAR}
+		)
+		
+	</insert>
+
+	<select id="read" resultType="com.kedu.arias.member.dto.MemberDto">
+		select
+		member_id,member_email , member_first_name,  member_last_name, country_id, member_phone
+		, member_birthday, member_reg_date
+		from
+		member
+		where member_id = #{member_id}
+	</select>
+	
+	<update id="update">
+		update member set 
+		member_email = #{member_email,jdbcType=VARCHAR}, 
+		member_first_name = #{member_first_name,jdbcType=VARCHAR},
+		member_last_name = #{member_last_name,jdbcType=VARCHAR},
+		country_id = #{country_id,jdbcType=VARCHAR},
+		member_phone = #{member_phone,jdbcType=VARCHAR}
+	  <!--  member_birthday =#{member_birthday,jdbcType=VARCHAR} -->
+	<!-- 	member_reg_date = #{member_reg_date,jdbcType=VARCHAR} -->
+	<!-- 	member_img = #{member_img,jdbcType=VARCHAR} -->
+		where member_id = #{member_id}
+	</update>
+
+	<delete id="delete">
+		delete from member where member_id = #{member_id}
+	</delete>
+
+
+	<select id="listSearch" resultType="com.kedu.arias.member.dto.MemberDto">
+<![CDATA[  
+  select *
+  from member 
+  where member_id > 0 
+]]>
+
+		<include refid="search"></include>
+  
+<![CDATA[    
+  order by member_id desc
+]]> 
+	</select>
+
+	</mapper>
