@@ -41,6 +41,8 @@ public class ProductInsertController {
 		return "/product/product_insert_step1";
 	}
 
+	
+	//숙소 저장 1단계
 	@RequestMapping(value = "/product_insert_step1", method = RequestMethod.POST)
 	public String product_insert(HttpServletRequest request,ProductDto pDto,
 			RedirectAttributes redirectAttributes) throws Exception {

@@ -15,6 +15,8 @@
 async defer></script>
 
 <script type="text/javascript">
+
+$("title").text("Hosting Step1");
 $(function(){
 	imageChange($("#image"),$("#product_main_img"));
 	$("#saveBtn").click(function(){
@@ -135,7 +137,7 @@ $(function(){
 }
 
 #map {
-	height: 100%;
+	height: 80%;
 }
 
 .controls {
@@ -181,7 +183,7 @@ $(function(){
 }
 
 .main {
-	height: 1400px;
+	height: 1800px;
 }
 
 .container {
@@ -197,7 +199,7 @@ form {
 }
 
 .step_div {
-	height: 8%;
+	height: 5%;
 }
 
 .info1_div {
@@ -205,11 +207,11 @@ form {
 }
 .map_div {
 
-	margin-top: 100px;
 	height: 30%;
 }
 
 .info2_div {
+
 	height: 20%;
 }
 
@@ -245,8 +247,14 @@ form {
 	padding-top: 10px;
 }
 #image{
-	width:300px;
-	heigth:400px;
+	width:80%;
+	heigth:80%;
+}
+em {
+	color: red;
+}
+p {
+	color: gray;
 }
 </style>
 
@@ -258,7 +266,7 @@ form {
 			<input type="hidden" name="product_lng" id="product_lng">
 			
 			<div class="step_div">
-				<h2>Hosting Step 1</h2>
+				<h2>Hosting Step 1 - <span>숙소 정보</span></h2>
 				<hr>
 			</div>
 
@@ -269,42 +277,46 @@ form {
 				</div>
 
 				<div class="product_input_div">
-					<p style="color: gray;">Hosting Name</p>
+					<h6>숙소의 제목을 붙여주세요. ( <em>*</em> )</h6>
 					<input type="text" class="form-control" name="product_name" id="product_name" required="required"/>
 
-					<p style="color: gray;">Hosting Price</p>
-					<input type="number" class="form-control input_type2" name="product_price" id="product_price" placeholder="$" required="required" />
-
-					<p style="color: gray;">Country</p>
+					<h6>숙소 가격 (1일 기준) ( <em>*</em> )</h6>
+					<input type="number" class="form-control input_type2" name="product_price" id="product_price" placeholder="화폐 단위 : $" required="required" />
+					<h6>숙소가 위치한 나라 ( <em>*</em> )</h6>
 					<select id="country_id" name="country_id" class="form-control input_type2">
 						<option value="co_185" selected="selected">Korea</option>
 						<option value="co_23">U.S.A</option>
 						<option value="co_44">Japan</option>
 					</select> 
 
-					<p style="color: gray;">Address</p>
+					<h6>주소 ( <em>*</em> )</h6>
 					<input type="text" class="form-control" name="product_addr" id="product_addr" readonly="readonly" placeholder="지도에서 집의 위치를 찾아주세요." required="required"/>
 
-					<p style="color: gray;">Detail Address</p>
+					<h6>상세주소 ( <em>*</em> )</h6>
 					<input type="text" class="form-control" name="product_addr_detail" id="product_addr_detail"  placeholder="상세주소를 입력해주세요." required="required"/>
+					
+					<h6>최대 인원 ( <em>*</em> )</h6>
+					<input type="number" class="form-control" name="number_of_people" id="number_of_people" placeholder="숙박 가능한 최대 인원수를 입력해주세요." required="required"/>
 				</div>
 				<hr>
 			</div>
 
 			<div class="map_div">
+				<h3>지도에서 숙소의 위치를 찾아아주세요.</h3>
+				<hr>
 				<input id="pac-input" class="controls" type="text"
 					placeholder="Search Address">
 				<div id="map"></div>
 			</div>
 			<div class="info2_div">
+				<h3>숙소에 대한 간단한 소개를 적어주세요.</h3>
 				<hr>
-			
-				<textarea style="padding: 20px;" class="controls"   rows="" cols="" name="product_info" id="product_info" required="required">집에 대한 간단한 소개를 적어주세요 !! 
+				<textarea style="padding: 20px;" class="controls"   rows="" cols="" name="product_info" id="product_info" required="required">
 
-ex :)
-저희 집은 공항, 공원, 문화예술, 도심, 대중교통 근처에 있습니다. 
-저희 집의 장점은 위치, 사람들, 분위기, 야외 공간, 지역입니다. 
-저희 집은 커플, 나홀로 여행족, 출장자, (아이 동반) 가족, 단체, 반려동물 동반에 적합합니다.</textarea>
+					ex :)
+					저희 집은 공항, 공원, 문화예술, 도심, 대중교통 근처에 있습니다. 
+					저희 집의 장점은 위치, 사람들, 분위기, 야외 공간, 지역입니다. 
+					저희 집은 커플, 나홀로 여행족, 출장자, (아이 동반) 가족, 단체, 반려동물 동반에 적합합니다.</textarea>
 			</div>
 			<div class="bottons_div">
 				<input id="saveBtn" class="btn btn-success" type="submit" value="1단계 저장"/>

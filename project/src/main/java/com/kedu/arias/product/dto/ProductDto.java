@@ -47,6 +47,8 @@ public class ProductDto {
 	private int product_step;
 	private String p_main_img;
 	private String product_regdt;
+	private int number_of_people;
+	
 	
 	private String accom_id;
 	private String accom_name;
@@ -240,6 +242,14 @@ public class ProductDto {
 	public void setSguest_name(String sguest_name) {
 		this.sguest_name = sguest_name;
 	}
+	
+	public int getNumber_of_people() {
+		return number_of_people;
+	}
+	public void setNumber_of_people(int number_of_people) {
+		this.number_of_people = number_of_people;
+	}
+	
 	@Override
 	public String toString() {
 		return "ProductDto [product_seq=" + product_seq + ", member_id=" + member_id + ", product_name=" + product_name
@@ -249,10 +259,10 @@ public class ProductDto {
 				+ ", product_lng=" + product_lng + ", product_score=" + product_score + ", product_mindt="
 				+ product_mindt + ", product_maxdt=" + product_maxdt + ", product_readydt=" + product_readydt
 				+ ", product_prepdt=" + product_prepdt + ", product_step=" + product_step + ", p_main_img=" + p_main_img
-				+ ", product_regdt=" + product_regdt + ", accom_id=" + accom_id + ", accom_name=" + accom_name
-				+ ", bath_id=" + bath_id + ", bath_name=" + bath_name + ", bed_id=" + bed_id + ", bed_name=" + bed_name
-				+ ", building_id=" + building_id + ", building_name=" + building_name + ", sguest_id=" + sguest_id
-				+ ", sguest_name=" + sguest_name + "]";
+				+ ", product_regdt=" + product_regdt + ", number_of_people=" + number_of_people + ", accom_id="
+				+ accom_id + ", accom_name=" + accom_name + ", bath_id=" + bath_id + ", bath_name=" + bath_name
+				+ ", bed_id=" + bed_id + ", bed_name=" + bed_name + ", building_id=" + building_id + ", building_name="
+				+ building_name + ", sguest_id=" + sguest_id + ", sguest_name=" + sguest_name + "]";
 	}	
 	
 	

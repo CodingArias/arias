@@ -16,13 +16,20 @@
 	}
 }
 .input_type1 {
-	width: 100px;
+	width: 20%;
 }
 
 .input_type2 {
-	width: 150px;
+	width: 40%;
 }
 
 .input_type3 {
-	width: 400px;
+	width: 60%;
+}
+
+.input_type4 {
+	width: 80%;
+}
+.input_type5 {
+	width: 100%;
 }
