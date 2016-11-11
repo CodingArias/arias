@@ -16,6 +16,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kedu.arias.common.dto.PageCriteria;
@@ -144,5 +145,11 @@ public class MemberController {
 	public void goHome(Model model) throws Exception{
 
 	}
-
+	
+/*	@RequestParam("member_id") String member_id, */
+	@RequestMapping(value="/member_det", method=RequestMethod.GET)
+	public void readMember(Model model) throws Exception {
+		
+//		model.addAttribute(service.readMember(member_id));
+	}
 }
