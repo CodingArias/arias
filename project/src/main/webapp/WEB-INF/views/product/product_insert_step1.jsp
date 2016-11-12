@@ -247,8 +247,8 @@ form {
 	padding-top: 10px;
 }
 #image{
-	width:80%;
-	heigth:80%;
+	width:300px;
+	heigth:300px;
 }
 em {
 	color: red;
