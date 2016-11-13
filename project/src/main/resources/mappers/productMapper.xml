@@ -57,5 +57,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, #{ns_end_dt,jdbcType=DATE}
 		)
 	</insert>
+	
+	<update id="update_product_options">
+		update product
+		set building_id = #{building_id,jdbcType=VARCHAR},
+			accom_id = #{accom_id,jdbcType=VARCHAR},
+			bed_id = #{bed_id,jdbcType=VARCHAR},
+			sguest_id = #{sguest_id,jdbcType=VARCHAR}
+		where product_seq = #{product_seq,jdbcType=NUMERIC}
+	</update>
+	
+	<insert id="insert_convin_options">
+		insert into product_convin values(#{product_seq,jdbcType=VARCHAR},#{convin_id,jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="insert_bath_options">
+		insert into product_bath values(#{product_seq,jdbcType=VARCHAR},#{bath_id,jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="insert_space_options">
+		insert into product_space values(#{product_seq,jdbcType=VARCHAR},#{space_id,jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="insert_safety_options">
+		insert into product_safety values(#{product_seq,jdbcType=VARCHAR},#{safety_id,jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="insert_regulation_options">
+		insert into product_regul values(#{product_seq,jdbcType=VARCHAR},#{regulation_id,jdbcType=VARCHAR})
+	</insert>
+	
+
+	
+	
 </mapper>
 

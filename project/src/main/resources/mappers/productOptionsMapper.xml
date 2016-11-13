@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kedu.arias.productOptionsMapper">
+
+	<select id="select_building_code" resultType="com.kedu.arias.product.dto.Building_code">
+		select * from building_code
+	</select>
+	
+	
+	<select id="select_accom_code" resultType="com.kedu.arias.product.dto.Accom_code">
+		select * from accom_code
+	</select>
+	
+	
+	<select id="select_bed_code" resultType="com.kedu.arias.product.dto.Bed_code">
+		select * from bed_code
+	</select>
+	
+	
+	<select id="select_suit_guest_code" resultType="com.kedu.arias.product.dto.Suit_guest_code">
+		select * from suit_guest_code
+	</select>
+	
+	
+	<select id="select_bath_code" resultType="com.kedu.arias.product.dto.Bath_code">
+		select * from bath_code
+	</select>
+	
+	
+	<select id="select_convin_code" resultType="com.kedu.arias.product.dto.Convin_code">
+		select * from convin_code
+	</select>
+	
+	
+	<select id="select_space_code" resultType="com.kedu.arias.product.dto.Space_code">
+		select * from space_code
+	</select>
+	
+	
+	<select id="select_safety_code" resultType="com.kedu.arias.product.dto.Safety_code">
+		select * from safety_code
+	</select>
+	
+	
+	<select id="select_regulation_code" resultType="com.kedu.arias.product.dto.Regulation_code">
+		select * from regulation_code
+	</select>
+</mapper>

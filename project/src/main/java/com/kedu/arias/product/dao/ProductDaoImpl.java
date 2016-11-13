@@ -9,8 +9,17 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kedu.arias.product.dto.Accom_code;
+import com.kedu.arias.product.dto.Bath_code;
+import com.kedu.arias.product.dto.Bed_code;
+import com.kedu.arias.product.dto.Building_code;
+import com.kedu.arias.product.dto.Convin_code;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
+import com.kedu.arias.product.dto.Regulation_code;
+import com.kedu.arias.product.dto.Safety_code;
+import com.kedu.arias.product.dto.Space_code;
+import com.kedu.arias.product.dto.Suit_guest_code;
 
 @Repository
 public class ProductDaoImpl implements ProductDao{
@@ -49,7 +58,70 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		return false;
 	}
-
-
+	
+	@Override
+	public boolean update_product_options(int product_seq, String building_id, String accom_id, String bed_id,
+			String sguest_id) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("product_seq", product_seq);
+		map.put("building_id", building_id);
+		map.put("accom_id", accom_id);
+		map.put("bed_id", bed_id);
+		map.put("sguest_id", sguest_id);
+		
+		session.insert(namespace+".update_product_options", map);
+		return false;
+	}
+	@Override
+	public boolean insert_convin_options(int product_seq, List<String> convin_code_checkeds) {
+		HashMap<String,Object> map = new HashMap<>();
+		for(String convin_id : convin_code_checkeds){
+			map.put("product_seq", product_seq);
+			map.put("convin_id", convin_id);
+			session.insert(namespace+".insert_convin_options", map);
+		}
+		return false;
+	}
+	@Override
+	public boolean insert_bath_options(int product_seq, List<String> bath_code_checkeds) {
+		HashMap<String,Object> map = new HashMap<>();
+		for(String bath_id : bath_code_checkeds){
+			map.put("product_seq", product_seq);
+			map.put("bath_id", bath_id);
+			session.insert(namespace+".insert_bath_options", map);
+		}
+		return false;
+	}
+	@Override
+	public boolean insert_safety_options(int product_seq, List<String> safety_code_checkeds) {
+		HashMap<String,Object> map = new HashMap<>();
+		for(String safety_id : safety_code_checkeds){
+			map.put("product_seq", product_seq);
+			map.put("safety_id", safety_id);
+			session.insert(namespace+".insert_safety_options", map);
+		}
+		return false;
+	}
+	@Override
+	public boolean insert_regulation_options(int product_seq, List<String> regulation_code_checkeds) {
+		HashMap<String,Object> map = new HashMap<>();
+		for(String regulation_id : regulation_code_checkeds){
+			map.put("product_seq", product_seq);
+			map.put("regulation_id", regulation_id);
+			session.insert(namespace+".insert_regulation_options", map);
+		}
+		return false;
+	}
+	@Override
+	public boolean insert_space_options(int product_seq, List<String> space_code_checkeds) {
+		HashMap<String,Object> map = new HashMap<>();
+		for(String space_id : space_code_checkeds){
+			map.put("product_seq", product_seq);
+			map.put("space_id", space_id);
+			session.insert(namespace+".insert_space_options", map);
+		}
+		return false;
+	}
 
 }

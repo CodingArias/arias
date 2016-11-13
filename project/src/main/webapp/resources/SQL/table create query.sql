@@ -210,24 +210,29 @@ CREATE TABLE product_convin(
 	product_seq    NUMBER
   , convin_id    Varchar2(10)
   , CONSTRAINT productconvin_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+  , CONSTRAINT productconvin_convinid_fk FOREIGN KEY(convin_id) REFERENCES CONVIN_CODE (convin_id)
   , CONSTRAINT productconvin_prodconvinid_PK PRIMARY KEY(product_seq,convin_id)
 );
+
+
 
 DROP TABLE product_regul;
 CREATE TABLE product_regul(
 	  product_seq    NUMBER
 	, regulation_id    Varchar2(10)
  	, CONSTRAINT productregul_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+    , CONSTRAINT productregul_regulid_fk FOREIGN KEY(regulation_id) REFERENCES REGULATION_CODE (regulation_id)
   	, CONSTRAINT productregul_prodregulid_PK PRIMARY KEY(product_seq,regulation_id)
 );
 
 
-DROP TABLE product_safty;
-CREATE TABLE product_safty(
+DROP TABLE product_safety;
+CREATE TABLE product_safety(
     product_seq    NUMBER
   , safety_id    Varchar2(10)
-  , CONSTRAINT productsafty_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
-  , CONSTRAINT productsafty_prodsafetyid_PK PRIMARY KEY(product_seq,safety_id)
+  , CONSTRAINT productsafety_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+  , CONSTRAINT productsafety_safetyid_fk FOREIGN KEY(safety_id) REFERENCES SAFETY_CODE (safety_id)  
+  , CONSTRAINT productsafety_prodsafetyid_PK PRIMARY KEY(product_seq,safety_id)
 );
 
 DROP TABLE product_space;
@@ -235,9 +240,18 @@ CREATE TABLE product_space(
       product_seq    NUMBER
 	, space_id    Varchar2(10)
     , CONSTRAINT productspace_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+    , CONSTRAINT productspace_spaceid_fk FOREIGN KEY(space_id) REFERENCES SPACE_CODE (space_id)  
     , CONSTRAINT productspace_prodspaceid_PK PRIMARY KEY(product_seq,space_id)
 );
 
+DROP TABLE product_bath;
+CREATE TABLE product_bath(
+      product_seq    NUMBER
+	, bath_id    Varchar2(10)
+    , CONSTRAINT productbath_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+    , CONSTRAINT productbath_bathid_fk FOREIGN KEY(bath_id) REFERENCES BATH_CODE (bath_id)  
+    , CONSTRAINT productbath_prodbathid_PK PRIMARY KEY(product_seq,bath_id)
+);
 
 
 
