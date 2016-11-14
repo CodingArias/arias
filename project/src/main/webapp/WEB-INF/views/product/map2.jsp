@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
+
+<jsp:include page="../header.jsp"></jsp:include>
+<script type="text/javascript" src="/resources/datepicker/moment.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/datepicker/daterangepicker.css">
+<script type="text/javascript"
+	src="/resources/datepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="/resources/js/date.js"></script>
+<script type="text/javascript" src="/resources/js/validation.js"></script>
     <style>
       html, body {
         height: 100%;
@@ -68,7 +71,9 @@
     <input id="pac-input" class="controls" type="text" placeholder="Search Address">
     <div id="map"></div>
     <script>
-
+    
+   // console.log(new Date(Date.parse("2016-04-24")).format("YYYY-MM-DD"));
+   console.log(moment("2011-10-31", "YYYY-MM-DD")); 
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.633114, lng: 127.05883500000004},

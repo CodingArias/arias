@@ -123,5 +123,15 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		return false;
 	}
+	@Override
+	public boolean insert_product_images(int product_seq, List<String> pimgs) {
+		HashMap<String,Object> map = new HashMap<>();
+		for(String pimg_name : pimgs){
+			map.put("product_seq", product_seq);
+			map.put("pimg_name", pimg_name);
+			session.insert(namespace+".insert_product_images", map);
+		}
+		return false;
+	}
 
 }

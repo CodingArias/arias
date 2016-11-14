@@ -85,5 +85,13 @@ public class ProductServiceImpl implements ProductService {
 		else
 			return false;
 	}
+	@Override
+	public boolean insert_product_images(int product_seq, List<String> pimgs) {
+		if(pimgs!=null && pimgs.size()>0)
+			return pDao.insert_product_images(product_seq, pimgs);
+		else
+			return false;
+		
+	}
 
 }

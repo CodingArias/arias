@@ -44,7 +44,7 @@ form {
 	height: 10%;
 }
 .image {
-	width: 20%;
+	width: 27%;
 	height : 20%;
 	margin: 25px;
 }
@@ -97,7 +97,7 @@ $(document).ready(function() {
 
 <div class="main">
 	<div class="container">
-		<form>
+		<form action="product_insert_step4" method="post" enctype="multipart/form-data">
 			<div class="file_div">
 				<table id="file_table">
 				</table>
