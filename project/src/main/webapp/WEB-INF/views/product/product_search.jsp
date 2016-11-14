@@ -224,7 +224,7 @@ footer {
 							<div class="media-body">
 								<br>
 								<h4 class="media-heading">${list.product_name}</h4>
-								${list.accom_name} * 숙박 인원 2명 * 별점 * 후기 갯수
+								${list.accom_name} * 숙박가능인원 ${list.number_of_people }명 * 별점 * 후기 갯수
 							</div>
 							<div class="media-right">
 								<a href="#"> <img class="media-object img-circle"
@@ -264,7 +264,6 @@ footer {
 				</div>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝-->
 
-
 			</div>
 			<div class="col-sm-5 sidenav">
 				<div id="map"></div>
@@ -278,9 +277,30 @@ footer {
 	<!-- 지도스크립트 끝 -->
 
 	<script type="text/javascript">
+		var list = new Array(); 
+
 		var map;
 		var lat1 = Number($("#lat").val());
 		var lng1 = Number($("#lng").val());
+		var marker=[];
+		
+		<c:forEach items="${list}" var="product">
+			var product = new Object();
+			product.product_lng = ${product.product_lng};
+			product.product_lat = ${product.product_lat};
+			product.product_name = '${product.product_name}';
+			
+			list.push(product);
+		</c:forEach>
+		
+		
+		
+		for(var i = 0; i < list.length;i++){
+			console.log("lng : "+list[i].product_lng +"  ,  "+"lat : "+list[i].product_lat);
+		}
+		
+		
+		// 지도 생성 밑 마커
 		function initMap() {
 			// Create a map object and specify the DOM element for display.
 			map = new google.maps.Map(document.getElementById('map'), {
@@ -292,7 +312,21 @@ footer {
 				mapTypeControl : false, //맵 타입 컨트롤 사용 여부
 				zoom : 12
 			});
-		}
+			
+			for (var i = 0; i < list.length;i++) {
+				var myLatLng = {lat: list[i].product_lat, lng: list[i].product_lng };	
+				var product_name = list[i].product_name;
+				
+				var marker = new google.maps.Marker({
+				    position: myLatLng,
+				    map: map,
+				    title: product_name
+				  });
+			}
+		} 
+		
+		
+		
 	</script>
 </body>
 </html>

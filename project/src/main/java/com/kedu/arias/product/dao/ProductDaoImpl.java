@@ -132,6 +132,7 @@ public class ProductDaoImpl implements ProductDao{
 		map.put("number_of_people", number_of_people);
 		return session.selectList(namespace+".select_product_search", map);
 	}
+	
 	@Override
 	public boolean insert_product_images(int product_seq, List<String> pimgs) {
 		HashMap<String,Object> map = new HashMap<>();

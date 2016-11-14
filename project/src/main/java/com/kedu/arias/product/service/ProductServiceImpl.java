@@ -91,6 +91,7 @@ public class ProductServiceImpl implements ProductService {
 		return pDao.select_product_search(lng, lat, number_of_people);
 	}
 	
+	
 	@Override
 	public boolean insert_product_images(int product_seq, List<String> pimgs) {
 		if(pimgs!=null && pimgs.size()>0)
