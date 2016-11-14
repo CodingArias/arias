@@ -123,7 +123,6 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		return false;
 	}
-<<<<<<< HEAD
 	
 	@Override
 	public List<ProductDto> select_product_search(double lng, double lat, int number_of_people) throws Exception {
@@ -133,7 +132,6 @@ public class ProductDaoImpl implements ProductDao{
 		map.put("number_of_people", number_of_people);
 		return session.selectList(namespace+".select_product_search", map);
 	}
-=======
 	@Override
 	public boolean insert_product_images(int product_seq, List<String> pimgs) {
 		HashMap<String,Object> map = new HashMap<>();
@@ -145,5 +143,4 @@ public class ProductDaoImpl implements ProductDao{
 		return false;
 	}
 
->>>>>>> ec4536f54ee5215dd106368a765fc3602588229b
 }

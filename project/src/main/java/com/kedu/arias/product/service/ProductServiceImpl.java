@@ -85,13 +85,12 @@ public class ProductServiceImpl implements ProductService {
 		else
 			return false;
 	}
-<<<<<<< HEAD
 	
 	@Override
 	public List<ProductDto> select_product_search(double lng, double lat, int number_of_people) throws Exception {
 		return pDao.select_product_search(lng, lat, number_of_people);
 	}
-=======
+	
 	@Override
 	public boolean insert_product_images(int product_seq, List<String> pimgs) {
 		if(pimgs!=null && pimgs.size()>0)
@@ -101,5 +100,4 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
->>>>>>> ec4536f54ee5215dd106368a765fc3602588229b
 }
