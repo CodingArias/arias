@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kedu.arias.noticeMapper">
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and notice_title like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and notice_content like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and member_id like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and country_id like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+			</if>
+		</if>
+	</sql>
+
+	<insert id="create">
+		insert into notice (notice_seq,notice_title,notice_content,member_id,notice_file)
+		values(
+		create_next_notice_seq,
+		#{notice_title,jdbcType=VARCHAR},
+		#{notice_content,jdbcType=VARCHAR}, 
+		#{member_id,jdbcType=VARCHAR},
+		#{notice_file,jdbcType=VARCHAR}
+		)
+		
+	</insert>
+
+	<select id="read" resultType="com.kedu.arias.notice.dto.NoticeDto">
+		select
+		notice_seq, 
+		notice_title,
+		notice_content,
+		member_id,
+		notice_regdate,
+		notice_count
+		from
+		notice
+		where notice_seq = #{notice_seq}
+	</select>
+	
+	<update id="update">
+		update notice set 
+		notice_title       = #{notice_title,jdbcType=VARCHAR}, 
+		notice_content     = #{notice_content,jdbcType=VARCHAR}
+		
+		where notice_seq   = #{notice_seq}
+	</update>
+
+	<delete id="delete">
+		delete from notice where notice_seq = #{notice_seq}
+	</delete>
+
+
+	<select id="listSearch" resultType="com.kedu.arias.notice.dto.NoticeDto">
+<![CDATA[  
+  select *
+  from notice 
+  where notice_seq > 0 
+]]>
+
+		<include refid="search"></include>
+  
+<![CDATA[    
+  order by notice_seq desc
+]]> 
+	</select>
+	
+	<update id="updateViewCnt">
+		update notice set notice_count = notice_count +1 where notice_seq = #{notice_seq}
+	</update>
+
+	</mapper>
