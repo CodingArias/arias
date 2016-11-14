@@ -85,7 +85,6 @@ CREATE TABLE PRODUCT(
     , product_addr    VARCHAR2 (300) 					  NOT NULL
     , product_addr_detail    Varchar2(300) 				 NOT NULL
     , accom_id    VARCHAR2 (10)
-    , bath_id    VARCHAR2 (10)
     , bed_id    VARCHAR2 (10)
     , building_id    VARCHAR2 (10)
     , sguest_id    VARCHAR2 (10)
@@ -264,6 +263,9 @@ DROP CONSTRAINT NOTSALESDATE_NOTSALESSEQ_PK;
 ALTER TABLE NOTSALES_DATE
 MODIFY (CONSTRAINT notsales_prod_notsalesseq_pk  PRIMARY KEY (notsales_seq,product_seq));
 
+
+ALTER TABLE PRODUCT
+DROP COLUMN bath_id;
 
 
 
