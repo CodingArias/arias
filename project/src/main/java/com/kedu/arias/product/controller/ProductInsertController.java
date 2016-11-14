@@ -259,14 +259,15 @@ public class ProductInsertController {
 		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession();
 		
-		
+		/*
 		if (session.getAttribute("product_seq") == null || session.getAttribute("product_step")==null 
-				|| (Integer)session.getAttribute("product_step")!=4) {
+				|| (Integer)session.getAttribute("product_step")!=9) {
 			modelAndView.setViewName("redirect:/");
 		} 
 		else {
-			modelAndView.setViewName("/product/product_insert_step4");
-		}
+			modelAndView.setViewName("/product/product_insert_step_last");
+		}*/
+		modelAndView.setViewName("/product/product_insert_step_last");
 		
 		return modelAndView;
 	}
