@@ -29,4 +29,5 @@ public interface ProductService {
 	
 	public int create_next_product_seq(String member_id);
 
+	public List<ProductDto> select_product_search(double lng, double lat, int number_of_people) throws Exception;
 }

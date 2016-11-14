@@ -123,5 +123,13 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		return false;
 	}
-
+	
+	@Override
+	public List<ProductDto> select_product_search(double lng, double lat, int number_of_people) throws Exception {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("lng", lng);
+		map.put("lat", lat);
+		map.put("number_of_people", number_of_people);
+		return session.selectList(namespace+".select_product_search", map);
+	}
 }

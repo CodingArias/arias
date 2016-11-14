@@ -34,7 +34,7 @@ public interface ProductDao {
 	
 
 	
-	
+	public List<ProductDto> select_product_search(double lng, double lat, int number_of_people) throws Exception;
 
 
 }

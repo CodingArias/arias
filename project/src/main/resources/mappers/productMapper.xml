@@ -88,7 +88,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 
+	<select id="select_product_search" resultType="com.kedu.arias.product.dto.ProductDto">
+	<![CDATA[
 	
+ 	SELECT *
+	FROM
+	(
+		SELECT p.product_seq
+        			, p.product_name
+                    , p.product_price
+                    , a.ACCOM_NAME
+                    , p.NUMBER_OF_PEOPLE
+                    , p.P_MAIN_IMG
+                    , ( 6371 * acos( cos( radians(#{lat,jdbcType=NUMERIC}) ) * cos( radians(product_lat) ) * cos( radians( product_lng ) - radians(#{lng,jdbcType=NUMERIC}) ) + sin( radians(#{lat,jdbcType=NUMERIC})) * sin( radians( product_lat ) ) ) ) AS distance
+		FROM PRODUCT P, ACCOM_CODE a
+        WHERE a.ACCOM_ID=p.ACCOM_ID
+        AND number_of_people >= #{number_of_people, jdbcType=NUMERIC}
+ 	) x
+ 	WHERE  distance <= 30
+ 	ORDER BY distance
+	]]>
+	</select>
 	
 </mapper>
 
