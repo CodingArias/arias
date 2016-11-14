@@ -10,6 +10,8 @@ public class NoticeDto {
 	private String notice_content;
 	private Date notice_regdate;
 	private int notice_count;
+	private String notice_file;
+	
 	public Integer getNotice_seq() {
 		return notice_seq;
 	}
@@ -46,11 +48,20 @@ public class NoticeDto {
 	public void setNotice_count(int notice_count) {
 		this.notice_count = notice_count;
 	}
+
+	public String getNotice_file() {
+		return notice_file;
+	}
+	public void setNotice_file(String notice_file) {
+		this.notice_file = notice_file;
+	}
 	@Override
 	public String toString() {
 		return "NoticeDto [notice_seq=" + notice_seq + ", member_id=" + member_id + ", notice_title=" + notice_title
 				+ ", notice_content=" + notice_content + ", notice_regdate=" + notice_regdate + ", notice_count="
-				+ notice_count + "]";
+				+ notice_count + ", notice_file=" + notice_file + "]";
 	}
+	
+	
 
 }

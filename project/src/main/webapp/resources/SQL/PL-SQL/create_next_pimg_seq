@@ -1,0 +1,13 @@
+CREATE OR REPLACE FUNCTION create_next_pimg_seq
+(product_seq PRODUCT.product_seq%TYPE)
+RETURN number
+IS
+pimg_seq PRODUCT_PIC.pimg_seq%TYPE;
+BEGIN
+
+SELECT NVL(MAX(p.PIMG_SEQ),0)+1 INTO pimg_seq
+FROM PRODUCT_PIC p
+WHERE p.PRODUCT_SEQ=product_seq;
+
+RETURN pimg_seq;
+END;

@@ -25,7 +25,7 @@ public interface ProductDao {
 	public boolean insert_safety_options(int product_seq, List<String> safety_code_checkeds);
 	public boolean insert_regulation_options(int product_seq, List<String> regulation_code_checkeds);
 	public boolean insert_space_options(int product_seq, List<String> space_code_checkeds);
-	
+	public boolean insert_product_images(int product_seq,List<String> pimgs);
 
 	
 	public boolean update_product_options(int product_seq, String building_id, String accom_id, String bed_id, String sguest_id);

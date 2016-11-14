@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                       , #{product_lat,jdbcType=NUMERIC}
                                       , #{product_lng,jdbcType=NUMERIC}
                                       , #{number_of_people,jdbcType=NUMERIC}
-                                      , 1)
+                                      , 2)
 	</insert>
 	<update id="product_insert_step2" parameterType="com.kedu.arias.product.dto.ProductDto">
 	UPDATE PRODUCT
@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,   product_maxdt = #{product_maxdt,jdbcType=NUMERIC}
         ,   product_readydt = #{product_readydt,jdbcType=NUMERIC}
         ,   product_prepdt = #{product_prepdt,jdbcType=NUMERIC}
-        ,   product_step = 2
+        ,   product_step = 3
          
 	where product_seq = #{product_seq,jdbcType=NUMERIC}
 	</update>
@@ -63,7 +63,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set building_id = #{building_id,jdbcType=VARCHAR},
 			accom_id = #{accom_id,jdbcType=VARCHAR},
 			bed_id = #{bed_id,jdbcType=VARCHAR},
-			sguest_id = #{sguest_id,jdbcType=VARCHAR}
+			sguest_id = #{sguest_id,jdbcType=VARCHAR},
+			product_step = 4
+		where product_seq = #{product_seq,jdbcType=NUMERIC}
+	</update>
+	<update id="update_product_last">
+		update product
+		set product_step = 9
 		where product_seq = #{product_seq,jdbcType=NUMERIC}
 	</update>
 	
@@ -85,6 +91,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insert_regulation_options">
 		insert into product_regul values(#{product_seq,jdbcType=VARCHAR},#{regulation_id,jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="insert_product_images">
+		insert into product_pic (pimg_seq,product_seq, pimg_name)
+							values(
+								  create_next_pimg_seq(#{product_seq,jdbcType=NUMERIC})
+								, #{product_seq,jdbcType=NUMERIC}
+								, #{pimg_name,jdbcType=VARCHAR}
+								)
 	</insert>
 	
 

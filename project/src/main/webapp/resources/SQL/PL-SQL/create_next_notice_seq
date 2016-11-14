@@ -1,0 +1,11 @@
+CREATE OR REPLACE FUNCTION create_next_notice_seq
+RETURN number
+IS
+notice_seq notice.notice_seq%TYPE;
+BEGIN
+
+SELECT NVL(MAX(notice_seq),0)+1 INTO notice_seq
+FROM notice;
+
+RETURN notice_seq;
+END;

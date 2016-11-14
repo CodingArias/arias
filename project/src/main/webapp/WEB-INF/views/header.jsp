@@ -19,14 +19,14 @@
 				<!--화면 축소시 생기는 버튼 리스트들-->
 				<span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Logo</a>
+			<a class="navbar-brand" href="/">Logo</a>
 		</div>
 
 
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="/product/product_insert_step1">Hosting</a></li>
-				<li><a href="#">Notice</a></li>
+				<li><a href="/notice/list">Notice</a></li>
 				<li><a href="#">statistics</a></li>
 				<li id="mypage"><a href="#" class="dropdown"
 					data-toggle="dropdown">My page</a>
