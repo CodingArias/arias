@@ -71,9 +71,6 @@
 						<option value="w"
 							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
 							회원ID</option>
-						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							국적</option>
 </select> <input type="text" name='keyword' id="keywordInput"
 						value='${cri.keyword }'>
 					<button id='searchBtn'>Search</button>
