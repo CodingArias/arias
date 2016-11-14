@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.support.RequestPartServletServerHttpRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.kedu.arias.common.dao.CountryDao;
 import com.kedu.arias.common.dao.ProductOptionsDao;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
@@ -31,6 +31,8 @@ import com.kedu.arias.util.JsonManager;
 public class ProductInsertController {
 
 	@Inject
+	CountryDao countryDao;
+	@Inject
 	ProductService service;
 	@Inject
 	ProductOptionsDao productOptionsDao;
@@ -39,8 +41,9 @@ public class ProductInsertController {
 	JsonManager jsonManager = JsonManager.getInstance();
 
 	@RequestMapping(value = "/product_insert_step1", method = RequestMethod.GET)
-	public String product_insert(HttpServletRequest request) {
+	public ModelAndView product_insert(HttpServletRequest request) {
 		
+		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession();
 	
 		if(session.getAttribute("product_step")!=null && (Integer)session.getAttribute("product_step")!=1)	{
@@ -51,10 +54,10 @@ public class ProductInsertController {
 			session.removeAttribute("product_seq");
 		}
 		request.getSession().setAttribute("product_step", 1);
+		modelAndView.setViewName("/product/product_insert_step1");
+		modelAndView.addObject("country_list",countryDao.selectAllCountry());
 		
-		
-		
-		return "/product/product_insert_step1";
+		return modelAndView;
 	}
 
 	// 숙소 저장 1단계
