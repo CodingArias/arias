@@ -50,17 +50,11 @@ form{
 <script type="text/javascript">
 	$("title").text("Hosting Step2");
 	var listArray = new Array();
-	
+
 
 	$(function() {
 		
-		function item_remove(object){
-			console.log(object);
-			console.log("행 : "+object.index());
-			listArray.splice(object.index(),1);
-			object.remove();
-			createDaterangepicker()
-		}
+		
 		
 		$("#saveBtn").click(function(){
 
@@ -114,13 +108,24 @@ form{
 					
 				
 					$("#list_tbody").append("<tr class='active' ><td>"+date.ns_start_dt+" ~ "+date.ns_end_dt+"</td>"
-					+"<td style='text-align:right;' onclick='item_remove($(this).parent());'>x</td></tr>");
+					+"<td id="+date.ns_start_dt+" style='text-align:right;'>x</td></tr>");
+					$("#"+date.ns_start_dt).on("click",function(){
+						console.log($(this).parent());
+						console.log("행 : "+$(this).parent().index());
+						listArray.splice($(this).parent().index(),1);
+						for(var i=0; i< listArray.length;i++){
+							console.log(listArray[i].ns_start_dt);
+							console.log(listArray[i].ns_end_dt);
+							
+						}
+						$(this).parent().remove();
+						createDaterangepicker()
+					});
 					createDaterangepicker();
 				} 
 				
 			});
 		}
-	
 		createDaterangepicker();
 	});
 </script>
