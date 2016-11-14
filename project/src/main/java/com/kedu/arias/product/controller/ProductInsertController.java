@@ -254,6 +254,23 @@ public class ProductInsertController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="/product_insert_step_last", method = RequestMethod.GET)
+	public ModelAndView product_insert_step_last(HttpServletRequest request) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		
+		if (session.getAttribute("product_seq") == null || session.getAttribute("product_step")==null 
+				|| (Integer)session.getAttribute("product_step")!=4) {
+			modelAndView.setViewName("redirect:/");
+		} 
+		else {
+			modelAndView.setViewName("/product/product_insert_step4");
+		}
+		
+		return modelAndView;
+	}
+	
 	@RequestMapping(value = "/map2", method = RequestMethod.GET)
 	public void map() throws Exception {
 
