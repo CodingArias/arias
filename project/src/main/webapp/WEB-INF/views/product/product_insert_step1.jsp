@@ -284,9 +284,16 @@ p {
 					<input type="number" class="form-control input_type2" name="product_price" id="product_price" placeholder="화폐 단위 : $" required="required" />
 					<h6>숙소가 위치한 나라 ( <em>*</em> )</h6>
 					<select id="country_id" name="country_id" class="form-control input_type2">
-						<option value="co_185" selected="selected">Korea</option>
-						<option value="co_23">U.S.A</option>
-						<option value="co_44">Japan</option>
+						<c:forEach var="country" items="${country_list}" varStatus="status">
+							<c:if test="${status.first}">
+								<option value="${country.country_id}" selected="selected">
+									${country.country_name_kor }
+								</option>
+							</c:if>
+							<option value="${country.country_id}" selected="selected">
+								${country.country_name_kor }
+							</option>
+						</c:forEach>
 					</select> 
 
 					<h6>주소 ( <em>*</em> )</h6>

@@ -19,7 +19,7 @@
 				<!--화면 축소시 생기는 버튼 리스트들-->
 				<span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Logo</a>
+			<a class="navbar-brand" href="/">Logo</a>
 		</div>
 
 
