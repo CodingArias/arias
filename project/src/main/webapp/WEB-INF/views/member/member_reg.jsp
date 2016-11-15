@@ -38,6 +38,13 @@ $(function() {
         	format : 'YYYY-MM-DD'
         }
     });
+    
+    $("#regist_btn").click(function(){
+    	$("#member_phone").val($("#country_num").val() 
+    						+ "-" + $("#member_phone1").val() 
+    						+ "-" + $("#member_phone2").val()
+    						+ "-" + $("#member_phone3").val());
+    });
 });
 
 
@@ -166,13 +173,16 @@ function countryNum_select(country_num) {
 </head>
 <body>
 	<div id="reg-form" align="center">
-		<form action="/member/list" method="post" name="frm" enctype="multipart/form-data">
+		<form action="member_reg" method="post" name="frm" enctype="multipart/form-data">
 			<input type="hidden" name="country_id" id="country_id">
+			<input type="hidden" name="member_id" id="member_id">
+			<input type="hidden" name="member_phone" id="member_phone">
+			
 			<table class="reg-form-tb">
 				<tr>
- 					<td rowspan="5" id="form-img" align="center" class="fileDrop">
+ 					<td rowspan="7" id="form-img" align="center" class="fileDrop">
  						<div class="uploadImg">
- 							<img src="/resources/img/noimage.jpg" class="img-rounded member-img" name="member_img" id="img" width="208" height="250">
+ 							<img src="/resources/img/noimage.jpg" class="img-rounded member-img" id="img" width="208" height="250">
  						</div>
  					</td>
 					<td><label class="col-sm-2 control-label">Email</label></td>
@@ -181,9 +191,16 @@ function countryNum_select(country_num) {
 				
 				<tr>
 					<td><label class="col-sm-2 control-label">Password</label></td>
-					<td><input type="password" name="member_pwd" class="form-control" placeholder="password"></td>
+					<td><input type="password" name="member_pwd" id="member_pwd" class="form-control" placeholder="password"></td>
 				</tr>
-				
+				<tr>
+					<td><label class="col-sm-2 control-label">Password confirm</label></td>
+					<td><input type="password" id="member_pwd_confirm" class="form-control" placeholder="password confirm"></td>
+				</tr>
+				<tr>
+					<td><label class="col-sm-2 control-label" id="confirm-message-label"></label></td>
+					<td><div id="confirm-message"></div></td>
+				</tr>
 				<tr>
 					<td><label class="col-sm-2 control-label">Name</label></td>
 					<td>
@@ -198,7 +215,7 @@ function countryNum_select(country_num) {
 							
 						 <button type="button" class="btn btn-primary" id="search" data-toggle="modal" data-target="#modal-country" style="float:left;">Search</button> 
 						<!-- Large modal -->
-						<input type="text" name="member_country" id="member_country" class="form-control" readonly="readonly" style="float:right; width:400px;">					
+						<input type="text" id="member_country" class="form-control" readonly="readonly" style="float:right; width:400px;">					
 					</td>
 				</tr>
 				
@@ -210,11 +227,11 @@ function countryNum_select(country_num) {
 						<div style="float:right;">
 							<input type="text" name="country_num" id="country_num" class="form-control" readonly="readonly" style="width:94px; float:left;" placeholder="country#">
 							<span style="float:left;">_</span> 
-							<input type="text" name="member_phone1" class="form-control" style="width:94px; float:left;"> 
+							<input type="text" name="member_phone1" id="member_phone1" class="form-control" style="width:94px; float:left;"> 
 							<span style="float:left;">_</span>
-							<input type="text" name="member_phone2" class="form-control" style="width:94px; float:left;">
+							<input type="text" name="member_phone2" id="member_phone2" class="form-control" style="width:94px; float:left;">
 							<span style="float:left;">_</span>
-							<input type="text" name="member_phone3" class="form-control" style="width:94px; float:right;">
+							<input type="text" name="member_phone3" id="member_phone3" class="form-control" style="width:94px; float:right;">
 						</div>							
 					</td>
 				</tr>
@@ -234,7 +251,7 @@ function countryNum_select(country_num) {
 			<br>
 			<div class="insert-button" align="center">
 				<button type="button" class='btn btn-primary btn-goHome'>Go Home</button>
-				<button type="submit" class='btn btn-info'>Regist</button>
+				<button type="submit" id="regist_btn" class='btn btn-info'>Regist</button>
 				<button type="reset" class='btn btn-default'>Reset</button>			
 			</div>
 		</form>

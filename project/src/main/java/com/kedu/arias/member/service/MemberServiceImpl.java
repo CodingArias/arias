@@ -29,21 +29,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void updateMember(MemberDto mdto) throws Exception {
-		mdao.updateMember(mdto);
+	public String create_next_memberid() throws Exception {
+		return mdao.create_next_memberid(); 
 	}
-
-	@Override
-	public void deleteMember(String member_id) throws Exception {
-		mdao.deleteMember(member_id);
-	}
-
-	@Override
-	public List<MemberDto> listAllMember() throws Exception {
-		return mdao.listAllMember();
-	}
-
-	
 	
 	//현수
 	
@@ -70,5 +58,6 @@ public class MemberServiceImpl implements MemberService {
 		mdao.delete(member_id);
 		
 	}
+
 
 }

@@ -1,6 +1,7 @@
 package com.kedu.arias.member.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kedu.arias.member.dao.MemberDao;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.member.dto.SearchCriteria;
@@ -47,6 +50,11 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping(value="/member_reg_confirm", method=RequestMethod.GET)
+	public void regSuccess() throws Exception {
+		
+	}
+	
 	
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
 	public void loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
@@ -66,62 +74,47 @@ public class MemberController {
 		logger.info(cri.toString());
 		
 		model.addAttribute("listCountry", coService.listAll());
-		
-		
 	}
-	
-	
-	
-	
-	
-	/*@RequestMapping(value="/member_reg", method=RequestMethod.GET)
-	public void regMemberGet(@ModelAttribute("cri") SearchCriteria cri, HttpSession session, Model model) {
+
+	@RequestMapping(value="/member_reg", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public ModelAndView regMemberPost(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
 		
-	}*/
-	
+		HttpSession session = request.getSession();
+		ModelAndView mnv = new ModelAndView();
+
+		MultipartHttpServletRequest multi = (MultipartHttpServletRequest) request;
+		MemberDto mdto = new MemberDto();
+		mdto.setMember_id(service.create_next_memberid());
+		mdto.setMember_first_name(multi.getParameter("member_first_name"));
+		mdto.setMember_last_name(multi.getParameter("member_last_name"));
+		mdto.setCountry_id(multi.getParameter("country_id"));
+		mdto.setMember_email(multi.getParameter("member_email"));
+		mdto.setMember_pwd(multi.getParameter("member_pwd"));
+		mdto.setMember_phone(multi.getParameter("member_phone"));
+		mdto.setMember_birthday(multi.getParameter("member_birthday"));
+		System.out.println(mdto);
+		
+		List<String> imageNames;
+		String attach_path = "resources/member/member_img/";
+		
+		imageNames = fileUploader.fileUpload(attach_path, "member_img", multi);
+		
+		if(imageNames != null && imageNames.size() > 0) {
+			for(int i = 0; i < imageNames.size(); i++) {
+				System.out.println("회원사진 이름 : " + imageNames.get(i));
+				mdto.setMember_img(imageNames.get(i));
+			}
+		}
+	    service.create(mdto);
+
+		session.setAttribute("member_id", mdto.getMember_id());
+		mnv.setViewName("redirect:/member/member_reg_confirm");
+		
+		return mnv;
+	}
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
-	
-	//MultipartFile file, MemberDto mdto, Model model
-	@RequestMapping(value="/member_reg", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String regMemberPost(HttpServletRequest request, Model model) throws Exception {
-		//태그이름
-		String imageName="member_img";
-		//저장경로
-
-		String attach_path = "resources/member/";
-		
-		
-		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
-		
-		MemberDto dto = new MemberDto();
-		dto.setMember_email(multi.getParameter("member_email"));
-		dto.setMember_pwd(multi.getParameter("member_pwd"));
-		dto.setMember_first_name(multi.getParameter("member_first_name"));
-		dto.setMember_last_name(multi.getParameter("member_last_name"));
-		dto.setCountry_id(multi.getParameter("country_id"));
-		dto.setMember_phone("+" + multi.getParameter("country_num") 
-								+ "-" 
-								+ multi.getParameter("member_phone1")
-								+ "-"
-								+ multi.getParameter("member_phone2")
-								+ "-"
-								+ multi.getParameter("member_phone3"));
-		/*dto.setMember_img(multi.getMultipartContentType("member_img"));*/
-		dto.setMember_birthday(multi.getParameter("member_birthday"));
-		
-		model.addAttribute("memberDto", dto);
-		
-		System.out.println("dto : " + dto);
-		
-		
-		fileUploader.fileUpload(attach_path,imageName, multi); // 이미지 업로드
-		
-		return "/member/list";
-		
-	}
 	
 	private String uploadFile(String originalName, byte[] fileData) throws Exception{
 		

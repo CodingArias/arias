@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into member (member_id,member_email,member_pwd, member_first_name, member_last_name,country_id,
 		                    member_phone,member_birthday,member_img)
 		values(
-		create_next_memberid,
+		#{member_id, jdbcType=VARCHAR},
 		#{member_email,jdbcType=VARCHAR},
 		#{member_pwd,jdbcType=VARCHAR}, 
 		#{member_first_name,jdbcType=VARCHAR}, 
@@ -38,6 +38,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 		
 	</insert>
+	
+	
+	<select id="create_next_memberid" resultType="String">
+		select create_next_memberid from dual
+	</select>
+
 
 	<select id="read" resultType="com.kedu.arias.member.dto.MemberDto">
 		select
