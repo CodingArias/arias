@@ -36,7 +36,7 @@
 	});
  	
  	$(".listallBtn").on("click", function(){
- 		formObj.attr("action", "/notice/list");
+ 		formObj.attr("action", "/notice/list?notice_seq=12&${searchType}=&${keyword}=?${notice_seq}&${searchType}=&${keyword}");
 		formObj.attr("method", "get");		
 		formObj.submit();
 	});
