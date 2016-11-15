@@ -18,6 +18,8 @@ public interface ProductService {
 	public boolean step1_insert(ProductDto pDto)throws Exception;
 	public boolean step2_insert(ProductDto pDto)throws Exception;
 	public boolean notsales_insert(int product_seq,List<NotsalesDto> notsalesList);
+	public boolean insert_product_images(int product_seq,List<String> pimgs);
+	
 	public boolean insert_convin_options(int product_seq, List<String> convin_code_checkeds);
 	public boolean insert_bath_options(int product_seq, List<String> bath_code_checkeds);
 	public boolean insert_safety_options(int product_seq, List<String> safety_code_checkeds);
@@ -29,4 +31,9 @@ public interface ProductService {
 	
 	public int create_next_product_seq(String member_id);
 
+	
+	public List<ProductDto> select_product_search(double lng, double lat, int number_of_people) throws Exception;
+	
+	public ProductDto select_product_detail(int product_seq) throws Exception;
+	
 }

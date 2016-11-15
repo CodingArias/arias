@@ -15,7 +15,7 @@
 .container {
 	/*상 우 하 좌  */
 	margin: 0px auto;
-	width: 80%;
+	width: 85%;
 	height: 100%;
 	background: white;
 }
@@ -44,11 +44,16 @@ form {
 	height: 10%;
 }
 .image {
-	width: 20%;
-	height : 50%;
+	width: 27%;
+	height : 20%;
 	margin: 25px;
-	
 }
+.sample_image {
+	width: 27%;
+	height : 20%;
+	margin: 25px;
+}
+
 .file_div{
 	display: none;
 }
@@ -63,22 +68,20 @@ $(document).ready(function() {
 				'	<input type="file" name="files" id="files'+ fileIndex +'"/>'+
 				'</td></tr>');
 		
+		
 		$("#files"+ fileIndex).on("change", function(evt) {
 			
-			console.log($("#files"+ fileIndex));
 			var files = evt.target.files; 
 			f= files[0];
 		    var selected_file_name = $(this).val();
-		  
 		    if ( selected_file_name.length > 0 ) {
-		    	
-		    	$("#image_edit_div").append('<img class="img-rounded image" id="image'+fileIndex+'" alt="product_image" src="/resources/img/main/paris.jpg">');
-		    	imageView($("#image"+fileIndex),$("#files"+ fileIndex));
-		    }
-		    else {
-		    	console.log("file select cancel");
+		    	$("#image_edit_div").append('<img class="img-rounded image" id="image'+fileIndex+'" alt="product_image">');
+		    	$("#sample_images_div").css("display","none");
+		    	 imageView($("#image"+fileIndex),this); 
 		    }
 		});
+
+		//imageChange($("#image"+fileIndex),$("#files"+ fileIndex));
 		
 		
 		$("#files"+ fileIndex).trigger('click');
@@ -94,22 +97,27 @@ $(document).ready(function() {
 
 <div class="main">
 	<div class="container">
-		<form>
+		<form action="product_insert_step4" method="post" enctype="multipart/form-data">
 			<div class="file_div">
 				<table id="file_table">
 				</table>
 			</div>
+
 			<div class="step_div">
 				<h2>Hosting Step 4 - <span>숙소 이미지</span></h2>			
 			</div>
 			<hr>
-			<div class="image_edit_div" id="image_edit_div">
-				<img class="img-rounded image" alt="product_image" src="/resources/img/main/paris.jpg">	
-				<img class="img-rounded image" alt="product_image" src="/resources/img/main/paris.jpg">
-				<img class="img-rounded image" alt="product_image" src="/resources/img/main/paris.jpg">
-				<img class="img-rounded image" alt="product_image" src="/resources/img/main/paris.jpg">
-				<img class="img-rounded image" alt="product_image" src="/resources/img/main/paris.jpg">
-				<img class="img-rounded image" alt="product_image" src="/resources/img/main/paris.jpg">
+			<div class="image_edit_div" id="image_edit_div">	
+				<div id="sample_images_div" style="width: 100%;">
+					<h3>숙소의 내부 공간을 찍어서 올려주세요.</h3>
+					<img class="img-rounded sample_image" alt="" src="/resources/img/image.jpg"> 
+					<img class="img-rounded sample_image" alt="" src="/resources/img/image2.jpg"> 
+					<img class="img-rounded sample_image" alt="" src="/resources/img/image3.jpg"> 
+					<img class="img-rounded sample_image" alt="" src="/resources/img/image4.jpg"> 
+					<img class="img-rounded sample_image" alt="" src="/resources/img/image5.jpg"> 
+					<img class="img-rounded sample_image" alt="" src="/resources/img/image7.jpg"> 
+
+				</div>
 			</div>
 				
 			<div class="bottons_div">

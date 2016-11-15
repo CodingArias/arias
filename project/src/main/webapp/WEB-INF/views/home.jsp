@@ -53,14 +53,14 @@
 
 <br>
 <!-- Search&달력 -->
-<form class="form-inline text-center form-group-lg" method="get" action="search?">
+<form class="form-inline text-center form-group-lg" method="get" action="search">
 	<input type='hidden' name='checkin' id='checkin'>
 	<input type='hidden' name='checkout' id='checkout'>
 	<input type='hidden' name='lng' id='lng'>
 	<input type='hidden' name='lat' id='lat'>
 	<div class="form-group">
 		<input type="text" class="form-control" id="pac-input"
-			placeholder="나라 이름">
+			placeholder="나라 이름" name="keyword">
 	</div>
 	<div id="reportrange" class="form-group form-control"
 		style="background: #fff; cursor: pointer;">
@@ -69,7 +69,7 @@
 	</div>
 	<div class="form-group">
 		<!-- db로 코드를 넣어줘야함 -->
-		<select class="form-control" name="tt">
+		<select class="form-control" name="number_of_people">
 			<option value="1">숙박인원 1명</option>
 			<option>숙박인원 2명</option>
 			<option>숙박인원 3명</option>
@@ -88,33 +88,25 @@
 var lat, lng;
 	$(function() {
 		// 시작 날짜와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다
-		var start_date = moment().subtract(29, 'days');
+		var start_date = moment();
 		var end_date = moment();
 		function cb(start, end) {
 			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' - '
 							+ end.format('YYYY-MM-DD'));
+
+			$('#checkin').val(start.format('YYYY-MM-DD'));
+			$('#checkout').val(end.format('YYYY-MM-DD'));
 		}
 		cb(start_date, end_date);
 		$('#reportrange').daterangepicker(
 				{
-					ranges : {
-						'오늘' : [ moment(), moment() ],
-						'어제' : [ moment().subtract(1, 'days'),
-								moment().subtract(1, 'days') ],
-						'지난 7일' : [ moment().subtract(6, 'days'), moment() ],
-						'지난 30일' : [ moment().subtract(29, 'days'), moment() ],
-						'이번 달' : [ moment().startOf('month'),
-								moment().endOf('month') ],
-						'지난 달' : [
-								moment().subtract(1, 'month').startOf('month'),
-								moment().subtract(1, 'month').endOf('month') ]
-					},
-					'startDate' : start_date,
-					'endDate' : end_date
+			 		   "autoApply": true,
+						startDate : moment(),
+						endDate : moment(),
+						format : 'YYYY-MM-DD',
+						"showDropdowns" : true,
 				}, cb);
-		$('#checkin').val(start_date);
-		$('#checkout').val(end_date);
 	});
 	
 </script>
@@ -287,8 +279,8 @@ function initAutocomplete() {
 		      //검색한 지점의 x,y 좌표
 			  console.log(place.geometry.location.lng());
 		      console.log(place.geometry.location.lat());
-		      $("#lat").val(place.geometry.location.lng());
-		      $("#lng").val(place.geometry.location.lat());
+		      $("#lat").val(place.geometry.location.lat());
+		      $("#lng").val(place.geometry.location.lng());
 		      var form=$(document).find("form");
 		      form[0].submit();
 		    });

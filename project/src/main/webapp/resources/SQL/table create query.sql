@@ -34,6 +34,7 @@ CREATE TABLE notice(
   , notice_content    Varchar2(3000) not null
   , notice_regdate    DATE DEFAULT SYSDATE
   , notice_count    NUMBER DEFAULT 0
+  , notice_file VARCHAR2(1000)
   , CONSTRAINT notice_memberid_fk FOREIGN KEY(member_id) REFERENCES MEMBER (member_id) ON DELETE CASCADE
   , CONSTRAINT notice_noticeseq_pk PRIMARY KEY(notice_seq)
 );
@@ -85,7 +86,6 @@ CREATE TABLE PRODUCT(
     , product_addr    VARCHAR2 (300) 					  NOT NULL
     , product_addr_detail    Varchar2(300) 				 NOT NULL
     , accom_id    VARCHAR2 (10)
-    , bath_id    VARCHAR2 (10)
     , bed_id    VARCHAR2 (10)
     , building_id    VARCHAR2 (10)
     , sguest_id    VARCHAR2 (10)
@@ -101,6 +101,8 @@ CREATE TABLE PRODUCT(
     , product_step    NUMBER 									NOT NULL
     , product_regdt    DATE  										DEFAULT SYSDATE
     , number_of_people NUMBER DEFAULT 0
+    , checkin_time VARCHAR2 (30) NULL
+    , checkout_time VARCHAR2 (30) NULL
     , CONSTRAINT PRODUCT_memberid_fk FOREIGN KEY(member_id) REFERENCES MEMBER (member_id) ON DELETE CASCADE
     , CONSTRAINT PRODUCT_countryid_fk FOREIGN KEY(country_id) REFERENCES COUNTRY_CODE (country_id)    ON DELETE SET NULL
     , CONSTRAINT PRODUCT_accomid_fk FOREIGN KEY(accom_id) REFERENCES accom_code (accom_id)	 ON DELETE SET NULL
@@ -126,7 +128,7 @@ DROP TABLE product_pic;
 CREATE TABLE product_pic (
 	  pimg_seq    number
 	, product_seq   NUMBER
-	, pimg_path    Varchar2(1000) not NULL
+	, pimg_name    Varchar2(1000) not NULL
     , CONSTRAINT productpic_productseq_fk FOREIGN KEY(product_seq) REFERENCES product (product_seq)	ON DELETE CASCADE
     , CONSTRAINT productpic_pimg_product_seq_PK PRIMARY KEY(pimg_seq, product_seq)
 );
@@ -209,7 +211,7 @@ DROP TABLE product_convin;
 CREATE TABLE product_convin(
 	product_seq    NUMBER
   , convin_id    Varchar2(10)
-  , CONSTRAINT productconvin_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+  , CONSTRAINT productconvin_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq) on delete cascade
   , CONSTRAINT productconvin_convinid_fk FOREIGN KEY(convin_id) REFERENCES CONVIN_CODE (convin_id)
   , CONSTRAINT productconvin_prodconvinid_PK PRIMARY KEY(product_seq,convin_id)
 );
@@ -220,7 +222,7 @@ DROP TABLE product_regul;
 CREATE TABLE product_regul(
 	  product_seq    NUMBER
 	, regulation_id    Varchar2(10)
- 	, CONSTRAINT productregul_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+ 	, CONSTRAINT productregul_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq) on delete cascade
     , CONSTRAINT productregul_regulid_fk FOREIGN KEY(regulation_id) REFERENCES REGULATION_CODE (regulation_id)
   	, CONSTRAINT productregul_prodregulid_PK PRIMARY KEY(product_seq,regulation_id)
 );
@@ -230,7 +232,7 @@ DROP TABLE product_safety;
 CREATE TABLE product_safety(
     product_seq    NUMBER
   , safety_id    Varchar2(10)
-  , CONSTRAINT productsafety_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+  , CONSTRAINT productsafety_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq) on delete cascade
   , CONSTRAINT productsafety_safetyid_fk FOREIGN KEY(safety_id) REFERENCES SAFETY_CODE (safety_id)  
   , CONSTRAINT productsafety_prodsafetyid_PK PRIMARY KEY(product_seq,safety_id)
 );
@@ -239,7 +241,7 @@ DROP TABLE product_space;
 CREATE TABLE product_space(
       product_seq    NUMBER
 	, space_id    Varchar2(10)
-    , CONSTRAINT productspace_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+    , CONSTRAINT productspace_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq) on delete cascade
     , CONSTRAINT productspace_spaceid_fk FOREIGN KEY(space_id) REFERENCES SPACE_CODE (space_id)  
     , CONSTRAINT productspace_prodspaceid_PK PRIMARY KEY(product_seq,space_id)
 );
@@ -248,12 +250,14 @@ DROP TABLE product_bath;
 CREATE TABLE product_bath(
       product_seq    NUMBER
 	, bath_id    Varchar2(10)
-    , CONSTRAINT productbath_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq)
+    , CONSTRAINT productbath_productseq_fk FOREIGN KEY(product_seq) REFERENCES PRODUCT (product_seq) on delete cascade
     , CONSTRAINT productbath_bathid_fk FOREIGN KEY(bath_id) REFERENCES BATH_CODE (bath_id)  
     , CONSTRAINT productbath_prodbathid_PK PRIMARY KEY(product_seq,bath_id)
 );
 
 
+
+이후 테이블수정코드
 
 ALTER TABLE PRODUCT
 add number_of_people NUMBER DEFAULT 0;
@@ -265,15 +269,26 @@ ALTER TABLE NOTSALES_DATE
 MODIFY (CONSTRAINT notsales_prod_notsalesseq_pk  PRIMARY KEY (notsales_seq,product_seq));
 
 
+ALTER TABLE PRODUCT
+DROP COLUMN bath_id;
 
 
+CREATE SEQUENCE product_pic_seq INCREMENT BY 1 ;
+
+ALTER TABLE PRODUCT_PIC
+RENAME COLUMN pimg_path TO pimg_name;
 
 
+ALTER TABLE NOTICE
+ADD  notice_file VARCHAR2(1000);
 
 
+ALTER TABLE PRODUCT
+ADD  checkout_time VARCHAR2 (30) NULL;
 
 
-
+ALTER TABLE PRODUCT
+ADD  checkin_time VARCHAR2 (30) NULL;
 
 
 

@@ -6,10 +6,10 @@
 
 <jsp:include page="../header.jsp"></jsp:include>
 <style>
-.main {
+/* .main {
 	height: auto;
 }
-
+ */
 </style>
 <script>
 	var result = '${msg}';
@@ -57,30 +57,28 @@
 <div class="main">
 <div class="container">
  <h2>ADMINISTER</h2>
- <h1><strong>회원목록</strong></h1>	
+ <h1><strong>공지사항</strong></h1>	
 <select name="searchType">
 						<option value="n"
 							<c:out value="${cri.searchType == null?'selected':''}"/>>
 							---</option>
 						<option value="t"
 							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-							회원번호</option>
+							제목</option>
 						<option value="c"
 							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
-							회원이름</option>
+							내용</option>
 						<option value="w"
 							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
 							회원ID</option>
-						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							국적</option>
 </select> <input type="text" name='keyword' id="keywordInput"
 						value='${cri.keyword }'>
 					<button id='searchBtn'>Search</button>
 					<button id='newBtn'>New Board</button>
-</div>	
-					
-<div class="member_list">
+</div>
+
+
+<div class="notice_list">
   <h1></h1>
   <h1></h1>			
   	
@@ -88,23 +86,26 @@
   
     <thead>
       <tr>
-        <th>회원번호</th>
-        <th>회원이름</th>
-        <th>회원id</th>
-        <th>국적</th>
+        <th  style= "text-align: center">공지번호</th>
+        <th  style= "text-align: center">제목</th>
+        <th  style= "text-align: center">글쓴이</th>
+        <th  style= "text-align: center">등록일</th>
+        <th  style= "text-align: center">조회수</th>
       </tr>
     </thead>
     
 
     <tbody>
     
-     <c:forEach items="${list}" var="mdto">
+     <c:forEach items="${list}" var="ndto">
 
-							<tr>
-								<td>${mdto.member_id}</td>
-								<td><a href='/member/read?member_id=${mdto.member_id}'>${mdto.member_last_name}</a></td>
-								<td>${mdto.member_email}</td>
-								<td>${mdto.country_id}</td>
+							<tr align="center">
+								<td>${ndto.notice_seq}</td>
+								<td><a href='/notice/read?notice_seq=${ndto.notice_seq}'>${ndto.notice_title}</a></td>
+								<td>${ndto.member_id}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" 
+								value="${ndto.notice_regdate}"/></td>
+								<td><span>${ndto.notice_count}</span></td>
 							</tr>
 
      </c:forEach>

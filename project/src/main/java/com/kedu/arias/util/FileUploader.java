@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -30,30 +31,34 @@ public class FileUploader {
 		return instance;
 	}
 	
-	public String[] fileUpload(String attach_path, String imageName, MultipartHttpServletRequest multi){
+	public List<String> fileUpload(String attach_path, String imageName, MultipartHttpServletRequest multi){
 
 		String root_path = multi.getSession().getServletContext().getRealPath("/");
 		String uploadPath = root_path + attach_path;
 		List<MultipartFile> files = multi.getFiles(imageName);
-		String []result = new String[files.size()];
+		List<String> file_names =null;
 
-		
-		for(int i=0;i<files.size();i++){
-
-			String fileName = fileRename(files.get(i).getOriginalFilename());
-			result[i]=fileName;
-			new File(uploadPath).mkdirs();
-		    File f = new File(uploadPath+fileName);
-		    try {
-		    	files.get(i).transferTo(f);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+		if(files.size()>0){
+			file_names = new ArrayList<>();
+			for(int i=0;i<files.size();i++){
+				if(files.get(i).getSize()>0){
+					String fileName = fileRename(files.get(i).getOriginalFilename());
+					file_names.add(fileName);
+					new File(uploadPath).mkdirs();
+					System.out.println(uploadPath+fileName);
+				    File f = new File(uploadPath+fileName);
+				    try {
+				    	files.get(i).transferTo(f);
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 		
-		return result;
+		return file_names;
 	}
 	
 	public String fileRename(String fileName){

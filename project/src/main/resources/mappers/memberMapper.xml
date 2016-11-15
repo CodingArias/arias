@@ -50,15 +50,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="update">
 		update member set 
-		member_email = #{member_email,jdbcType=VARCHAR}, 
+		member_email      = #{member_email,jdbcType=VARCHAR}, 
 		member_first_name = #{member_first_name,jdbcType=VARCHAR},
-		member_last_name = #{member_last_name,jdbcType=VARCHAR},
-		country_id = #{country_id,jdbcType=VARCHAR},
-		member_phone = #{member_phone,jdbcType=VARCHAR}
+		member_last_name  = #{member_last_name,jdbcType=VARCHAR},
+		country_id        = #{country_id,jdbcType=VARCHAR},
+		member_phone      = #{member_phone,jdbcType=VARCHAR}
 	  <!--  member_birthday =#{member_birthday,jdbcType=VARCHAR} -->
 	<!-- 	member_reg_date = #{member_reg_date,jdbcType=VARCHAR} -->
 	<!-- 	member_img = #{member_img,jdbcType=VARCHAR} -->
-		where member_id = #{member_id}
+		where member_id   = #{member_id}
 	</update>
 
 	<delete id="delete">

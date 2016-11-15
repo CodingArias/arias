@@ -1,6 +1,7 @@
 function readURL(file,image) {
 	console.log(file.files);
 	console.log(file.files[0]);
+	console.log(image);
 	
 	if (file.files && file.files[0]) {
 		console.log('ok');

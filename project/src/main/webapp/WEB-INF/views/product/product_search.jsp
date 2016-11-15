@@ -16,11 +16,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<!--지도 스크립트  -->
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&callback=initMap"
-	async defer></script>
-<!-- 지도스크립트 끝 -->
 
 
 <!-- 한글화 및 한국식 날짜표기를 적용한 datepicker 구성요소-->
@@ -30,21 +25,7 @@
 <script type="text/javascript"
 	src="/resources/datepicker/daterangepicker.js"></script>
 
-<script type="text/javascript">
-	var map;
-	function initMap() {
-		// Create a map object and specify the DOM element for display.
-		map = new google.maps.Map(document.getElementById('map'), {
-			center : {
-				lat : 36.4569,
-				lng : 127.1569
-			},
-			scrollwheel : true, //마우스 휠로 확대 축소 사용 여부
-			mapTypeControl : false, //맵 타입 컨트롤 사용 여부
-			zoom : 8
-		});
-	}
-</script>
+
 
 <style>
 #map {
@@ -90,6 +71,11 @@ footer {
 .image {
 	position: relative;
 	float: left;
+	
+}
+.img {
+	width:472px;
+	height:314px 	
 }
 
 .image .text {
@@ -136,12 +122,16 @@ footer {
 
 				<!-- Search&달력 form -->
 				<form class="form-horizontal">
+					<input type="hidden" id='lng' value='${lng}'> <input
+						type="hidden" id='lat' value='${lat}'> <input
+						type="hidden" id="checkin" value="${checkin}"> <input
+						type="hidden" id="checkout" value="${checkout}">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-1 control-label"> 검
 							색 </label>
 						<div class="col-sm-1"></div>
 						<div class="col-sm-6">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${keyword}">
 						</div>
 
 						<div class="col-sm-4"></div>
@@ -194,59 +184,48 @@ footer {
 				<!--달력 스크립트  -->
 				<script type="text/javascript">
 					$(function() {
-						// 시작 날짜와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다
-						var start_date = moment().subtract(29, 'days');
-						var end_date = moment();
+						// 시작날짜와와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다
+						var start_date = moment($("#checkin").val());
+						var end_date = moment($("#checkout").val());
 						function cb(start, end) {
 							$('#reportrange span').html(
 									start.format('YYYY-MM-DD') + ' - '
 											+ end.format('YYYY-MM-DD'));
+
+							$('#checkin').val(start.format('YYYY-MM-DD'));
+							$('#checkout').val(end.format('YYYY-MM-DD'));
 						}
 						cb(start_date, end_date);
-						$('#reportrange').daterangepicker(
-								{
-									ranges : {
-										'오늘' : [ moment(), moment() ],
-										'어제' : [ moment().subtract(1, 'days'),
-												moment().subtract(1, 'days') ],
-										'지난 7일' : [
-												moment().subtract(6, 'days'),
-												moment() ],
-										'지난 30일' : [
-												moment().subtract(29, 'days'),
-												moment() ],
-										'이번 달' : [ moment().startOf('month'),
-												moment().endOf('month') ],
-										'지난 달' : [
-												moment().subtract(1, 'month')
-														.startOf('month'),
-												moment().subtract(1, 'month')
-														.endOf('month') ]
-									},
-									'startDate' : start_date,
-									'endDate' : end_date
-								}, cb);
+						$('#reportrange').daterangepicker({
+							"autoApply" : true,
+							startDate : moment($("#checkin").val()),
+							endDate : moment($("#checkout").val()),
+							format : 'YYYY-MM-DD',
+							"showDropdowns" : true,
+						}, cb);
 					});
 				</script>
 				<!--달력 스크립트  끝-->
 
 				<br>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
+				<c:forEach items="${list}" var="list">
 				<div class="col-sm-6">
 					<div class="col-sm-12 image">
-						<img src="/resources/img/main/seoul.jpg"
-							class="img-rounded img-responsive" alt="Responsive image">
-							<div class="text">
-							<h4>￦100000</h4>
+						<a href='/detail?product_seq=${list.product_seq}'><img src="/resources/product/product_main_image/${list.p_main_img}"
+							class="img-rounded img-responsive img" alt="Responsive image">
+						<div class="text">
+							<h4>￦ ${list.product_price}</h4>
 						</div>
 					</div>
+						</a>
 					<!-- 상품 설명 -->
 					<div class="col-sm-12">
 						<div class="media">
 							<div class="media-body">
 								<br>
-								<h4 class="media-heading">나의 집이다</h4>
-								개인실 * 숙박 인원 2명 * 별점 * 후기 갯수
+								<h4 class="media-heading">${list.product_name}</h4>
+								${list.accom_name} * 숙박가능인원 ${list.number_of_people }명 * 별점 * 후기 갯수
 							</div>
 							<div class="media-right">
 								<a href="#"> <img class="media-object img-circle"
@@ -256,38 +235,15 @@ footer {
 						</div>
 					</div>
 				</div>
+				</c:forEach>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝-->
+				
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
 				<div class="col-sm-6">
 					<div class="col-sm-12 image">
 						<img src="/resources/img/main/seoul.jpg"
 							class="img-rounded img-responsive" alt="Responsive image">
-							<div class="text">
-							<h4>￦100000</h4>
-						</div>
-					</div>
-					<!-- 상품 설명 -->
-					<div class="col-sm-12">
-						<div class="media">
-							<div class="media-body">
-								<br>
-								<h4 class="media-heading">나의 집이다</h4>
-								개인실 * 숙박 인원 2명 * 별점 * 후기 갯수
-							</div>
-							<div class="media-right">
-								<a href="#"> <img class="media-object img-circle"
-									src="/resources/img/search/original_12.jpg" alt="">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝--><!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
-				<div class="col-sm-6">
-					<div class="col-sm-12 image">
-						<img src="/resources/img/main/seoul.jpg"
-							class="img-rounded img-responsive" alt="Responsive image">
-							<div class="text">
+						<div class="text">
 							<h4>￦100000</h4>
 						</div>
 					</div>
@@ -308,7 +264,6 @@ footer {
 					</div>
 				</div>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝-->
-				
 
 			</div>
 			<div class="col-sm-5 sidenav">
@@ -316,8 +271,64 @@ footer {
 			</div>
 		</div>
 	</div>
+	<!--지도 스크립트  -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&callback=initMap"
+		async defer></script>
+	<!-- 지도스크립트 끝 -->
 
+	<script type="text/javascript">
+		var list = new Array(); 
 
+		var map;
+		var lat1 = Number($("#lat").val());
+		var lng1 = Number($("#lng").val());
+		var marker=[];
+		
+		<c:forEach items="${list}" var="product">
+			var product = new Object();
+			product.product_lng = ${product.product_lng};
+			product.product_lat = ${product.product_lat};
+			product.product_name = '${product.product_name}';
+			
+			list.push(product);
+		</c:forEach>
+		
+		
+		
+		for(var i = 0; i < list.length;i++){
+			console.log("lng : "+list[i].product_lng +"  ,  "+"lat : "+list[i].product_lat);
+		}
+		
+		
+		// 지도 생성 밑 마커
+		function initMap() {
+			// Create a map object and specify the DOM element for display.
+			map = new google.maps.Map(document.getElementById('map'), {
+				center : {
+					lat : lat1,
+					lng : lng1
+				},
+				scrollwheel : true, //마우스 휠로 확대 축소 사용 여부
+				mapTypeControl : false, //맵 타입 컨트롤 사용 여부
+				zoom : 12
+			});
+			
+			for (var i = 0; i < list.length;i++) {
+				var myLatLng = {lat: list[i].product_lat, lng: list[i].product_lng };	
+				var product_name = list[i].product_name;
+				
+				var marker = new google.maps.Marker({
+				    position: myLatLng,
+				    map: map,
+				    title: product_name
+				  });
+			}
+		} 
+		
+		
+		
+	</script>
 </body>
 </html>
 
