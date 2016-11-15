@@ -133,24 +133,14 @@
 					<div class="col-sm-2 text-left">
 						<strong>사용 가능 공간</strong>
 					</div>
-					<div class="col-sm-10 text-center">
-					<span class="col-sm-5 text-center">부엌</span>
-					<span class="col-sm-5 text-center">주차장</span>
-					<br>
-					
-					<span class="col-sm-5 text-center">부엌</span>
-					<span class="col-sm-5 text-center">주차장</span>
-					<br>
-					
-					<span class="col-sm-5 text-center">부엌</span>
-					<span class="col-sm-5 text-center">주차장</span>
-					<br>
-					
-					<span class="col-sm-5 text-center">부엌</span>
-					<span class="col-sm-5 text-center">주차장</span>
-					<br>
-					
-					
+					<div class="col-sm-10 text-left">
+						<div class="col-sm-6 text-left">부엌</div>
+						<div class="col-sm-6 text-left">주차장</div>
+						<div class="col-sm-6 text-left">수영장</div>
+						<div class="col-sm-6 text-left">서재</div>
+						<div class="col-sm-6 text-left">헬스장</div>
+						<div class="col-sm-6 text-left">발코니</div>
+						<div class="col-sm-6 text-left">옥상</div>
 					</div>
 
 					
