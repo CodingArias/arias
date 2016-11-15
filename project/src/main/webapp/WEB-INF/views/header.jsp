@@ -34,6 +34,7 @@
 						<li class="h4"><a href="#">My Information</a></li>
 						<li class="h4"><a href="#">Reservation Status</a></li>
 						<li class="h4"><a href="#">Hosting List</a></li>
+						<li class="h4"><a href="/member/list">Administer</a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

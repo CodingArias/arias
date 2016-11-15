@@ -86,11 +86,11 @@
   
     <thead>
       <tr>
-        <th>공지번호</th>
-        <th>제목</th>
-        <th>글쓴이</th>
-        <th>등록일</th>
-        <th>조회수</th>
+        <th  style= "text-align: center">공지번호</th>
+        <th  style= "text-align: center">제목</th>
+        <th  style= "text-align: center">글쓴이</th>
+        <th  style= "text-align: center">등록일</th>
+        <th  style= "text-align: center">조회수</th>
       </tr>
     </thead>
     
@@ -99,7 +99,7 @@
     
      <c:forEach items="${list}" var="ndto">
 
-							<tr>
+							<tr align="center">
 								<td>${ndto.notice_seq}</td>
 								<td><a href='/notice/read?notice_seq=${ndto.notice_seq}'>${ndto.notice_title}</a></td>
 								<td>${ndto.member_id}</td>

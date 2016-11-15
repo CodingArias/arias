@@ -45,18 +45,18 @@
   <form id='registerForm' role="form" method="post">
     <div class="form-group">
       <label for="member_id">WRITER</label>
-      <input value="201611030003" type="text" class="form-control" name="member_id" placeholder="회원아이디" readonly="readonly">
+      <input style="text-align: center; width: auto" value="201611030003" type="text" class="form-control" name="member_id" placeholder="회원아이디" readonly="readonly">
       
     </div>
     
     <div class="form-group">
       <label for="notice_title">TITLE</label>
-      <input type="text" class="form-control" name="notice_title" placeholder="제목">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="notice_title" placeholder="제목">
     </div>
     
      <div class="form-group">
       <label for="notice_content">CONTENT</label>
-      <textarea class="form-control" name="notice_content" placeholder="내용">
+      <textarea rows="10" cols="30" class="form-control" name="notice_content" placeholder="내용">
       </textarea>
     </div>
     
