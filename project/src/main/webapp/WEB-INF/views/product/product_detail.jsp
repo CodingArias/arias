@@ -251,6 +251,8 @@
 			</div>
 
 			<!-- 후기 foreach -->
+			
+			<!-- 후기 작성칸 -->
 			<div class="col-sm-12 text-left">
 				<div class="col-sm-1"></div>
 				<div class="media col-sm-10">
@@ -271,8 +273,7 @@
 					<hr>
 				</div>
 			</div>
-
-
+			
 			<div class="col-sm-12 text-left">
 				<div class="col-sm-1"></div>
 				<div class="media col-sm-10">
@@ -285,15 +286,47 @@
 					</div>
 					<!-- 댓글 작성창 -->
 					<div class="media-body text-left">
-						<span>멋 져 요</span>
+						<span>참 좋은 곳이군요 호호호</span> <br> 날짜 입력칸
 					</div>
-
 				</div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-12 text-left">
 					<hr>
 				</div>
 			</div>
+			
+			<div id="replies" class="col-sm text-left">
+			</div>
+			<script>
+				var product_seq = ${product_detail.product_seq};					
+				$.getJSON("/replies/all/"+product_seq, function(data) {
+					var str = "";
+					console.log(data.length);
+					
+					$(data).each(
+							function(){
+								str += "<div data-product_seq='"+this.product_seq+"' class='col-sm-12 text-left'>"
+								+ "<div class='col-sm-1'></div>"
+								+ "<div class='media col-sm-10'>"
+								+ "<div class='media-left text-center'>"
+								+ "<a href='#'> <img class='media-object img-circle' src='/resources/img/search/original_12.jpg' alt='...'>"
+								+ "</a>"+this.member_id
+								+ "</div>"
+								+ "<div class='media-body text-left'>"
+								+ "<span>"+this.preply_content+"</span>"
+								+ "<br>"
+								+ "<span> 별점 : " +this.member_score+"</span>"
+								+ "</div>"
+								+ "</div>"
+								+ "<div class='col-sm-1'></div>"
+								+ "<div class='col-sm-12 text-left'>"
+								+ "<hr>"
+								+ "</div>"
+								+ "</div>";	
+							});
+					$("#replies").html(str);
+				});
+			</script>
 			<!-- 후기 foreach 끝 -->
 
 			<!-- 호스트 정보 -->

@@ -58,6 +58,7 @@ public class ProductReplyController {
 		
 		ResponseEntity<String> entity = null;
 		System.out.println(dto);
+		System.out.println(member_id);
 		
 		try {
 			dto.setMember_id(member_id);
@@ -70,6 +71,21 @@ public class ProductReplyController {
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		
+		return entity;
+	}
+	
+	@RequestMapping(value = "/{product_seq}/{member_id}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delete_reply(@PathVariable("product_seq") int product_seq,
+			@PathVariable("member_id") String member_id){
+		
+		ResponseEntity<String> entity = null;
+		try {
+			service.delete_reply(product_seq, member_id);
+			entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 		return entity;
 	}
 	

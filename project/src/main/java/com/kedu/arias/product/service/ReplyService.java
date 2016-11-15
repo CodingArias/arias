@@ -11,5 +11,5 @@ public interface ReplyService {
 	
 	public void update_reply(ReplyDto dto) throws Exception;
 	
-	public void delete_reply(ReplyDto dto) throws Exception;
+	public void delete_reply(int product_seq, String member_id) throws Exception;
 }
