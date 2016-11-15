@@ -75,4 +75,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update notice set notice_count = notice_count +1 where notice_seq = #{notice_seq}
 	</update>
 
-	</mapper>
+	<select id="selectAllNoticeCount" resultType="int" >
+		SELECT count(*) FROM NOTICE
+		where 1=1 		<include refid="search"></include>
+	</select>
+	
+	<select id="selectNoticeList" resultType="com.kedu.arias.notice.dto.NoticeDto">
+	
+	
+		SELECT notice.*
+		FROM ( 
+				SELECT ROWNUM ro,n.* 
+                FROM ( 
+   	    				SELECT * 
+                        FROM notice 
+                        where 1 = 1 <include refid="search"></include>
+                        ORDER BY notice_seq DESC
+                      ) n
+			) notice 
+		WHERE  1=1 AND ro BETWEEN #{start} AND #{end}
+	
+	</select>
+	
+</mapper>

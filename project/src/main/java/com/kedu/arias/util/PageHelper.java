@@ -1,7 +1,17 @@
-package com.kedu.arias.common.dto;
+package com.kedu.arias.util;
+
+import com.kedu.arias.common.dto.PageDto;
 
 public class PageHelper {
-	public static PageDto getBlockGroup(int curPage, int recordPerPage, int totalRecord)
+	private static PageHelper instance=null;
+	public static PageHelper getInstance(){
+		if(instance == null)
+			instance = new PageHelper();
+		return instance;
+	}
+	
+	private PageHelper(){}
+	public void getBlockGroup(int curPage, int recordPerPage, int totalRecord, PageDto pDto)
 	{
 		/*
 		 * pagePerRecord - 한 페이지에 표시되는 레코드(게시물) 수
@@ -10,7 +20,7 @@ public class PageHelper {
 		 * curBlockGroup 이 1이면  1~5 블록들이 보이고 
 		 * curBlockGroup 이 3이면 10~15 블록들이 보인다.
 		 */
-		PageDto pDto =new PageDto();
+		
 		
 		if(totalRecord==0)
 		{
@@ -19,10 +29,12 @@ public class PageHelper {
 			pDto.setLastBlock(1);
 			pDto.setNextPage(0);
 			pDto.setPrevPage(0);
-			return pDto;
+			pDto.setCurPage(1);
+			return;
 		}
 		else{
-			 pDto.setIsEmpty(1);		
+			 pDto.setIsEmpty(1);	
+			 pDto.setCurPage(curPage);
 		}
 		
 		int blockPerPage = 5;//블록 그룹 - 블록을 5개로 묶는다.
@@ -49,7 +61,7 @@ public class PageHelper {
 			}
 		}
 		else{
-			return null;
+			return;
 		}
 		
 		//총 블록 수를 구한다.
@@ -89,6 +101,6 @@ public class PageHelper {
 		pDto.setNextPage(nextPage);
 		pDto.setPrevPage(prevPage);
 		
-		return pDto;
+		return;
 	}
 }

@@ -2,6 +2,7 @@ package com.kedu.arias.notice.dao;
 
 import java.util.List;
 
+import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.notice.dto.NoticeDto;
 import com.kedu.arias.notice.dto.SearchCriteria;
 
@@ -20,5 +21,8 @@ public interface NoticeDao {
 	
 	public void updateViewCnt(Integer notice_seq)throws Exception;
 	
+	public Integer selectAllNoticeCount(PageDto pageDto)throws Exception;
+	
+	public List<NoticeDto> selectNoticeList (PageDto pageDto,int recordPerPage);
 
 }

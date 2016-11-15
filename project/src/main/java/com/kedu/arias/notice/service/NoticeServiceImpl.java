@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kedu.arias.notice.dto.SearchCriteria;
+import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.notice.dao.NoticeDao;
 import com.kedu.arias.notice.dto.NoticeDto;
 
@@ -42,6 +43,16 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void remove(Integer notice_seq) throws Exception {
 		ndao.delete(notice_seq);
+	}
+
+	@Override
+	public Integer selectAllNoticeCount(PageDto pageDto) throws Exception {
+		return ndao.selectAllNoticeCount(pageDto);
+	}
+
+	@Override
+	public List<NoticeDto> selectNoticeList(PageDto pageDto, int recordPerPage) {
+		return ndao.selectNoticeList(pageDto, recordPerPage);
 	}
 	
 }

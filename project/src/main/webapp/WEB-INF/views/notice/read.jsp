@@ -36,10 +36,13 @@
 	});
  	
  	$(".listallBtn").on("click", function(){
- 		formObj.attr("action", "/notice/list");
+ 
+
+ 		location.href="/notice/list?curPage=${page.curPage}&keyword=${page.keyword}&searchType=${page.searchType}";
+ /* 		formObj.attr("action", "/notice/list?curPage='${page.curPage}'&keyword='${page.keyword}'&searchType='${page.searchType}'");
 		formObj.attr("method", "get");		
 		formObj.submit();
-	});
+ */	});
  	
   });
 	</script>
