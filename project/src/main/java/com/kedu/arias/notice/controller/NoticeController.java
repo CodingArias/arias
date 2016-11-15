@@ -1,30 +1,25 @@
 package com.kedu.arias.notice.controller;
 
-import java.io.File;
-import java.util.UUID;
+import java.util.List;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.notice.dto.NoticeDto;
 import com.kedu.arias.notice.dto.SearchCriteria;
 import com.kedu.arias.notice.service.NoticeService;
-import com.kedu.arias.util.FileUploader;
+import com.kedu.arias.util.PageHelper;
 
 
 @Controller
@@ -33,6 +28,7 @@ public class NoticeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 	
+	private PageHelper pageHelper = PageHelper.getInstance();
 	@Inject
 	private NoticeService service;
 	
@@ -48,6 +44,7 @@ public class NoticeController {
 	    logger.info("regist post ...........");
 	    logger.info(notice.toString());
 	    String member_id = "201611030003";
+
 	 /*  MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
 
 		String imageNames[];
@@ -69,19 +66,34 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-    public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+    public void listAll( Model model
+    		,@ModelAttribute("page") PageDto pageDto
+    		) throws Exception {
 
-	    logger.info(cri.toString());
-
-	    model.addAttribute("list", service.listSearchCriteria(cri));
-
-	    System.out.println("list!!"+service.listSearchCriteria(cri));
-	
-	
+		if(pageDto.getCurPage()<1)
+			pageDto.setCurPage(1);
+		
+	    int recordPerPage = 5;
+	    
+	    //공지사항의 총 개수 
+	    int totalRecord   = service.selectAllNoticeCount(pageDto);
+	    List<NoticeDto> nDto = service.selectNoticeList(pageDto, recordPerPage);
+	    model.addAttribute("list", nDto);
+	    System.out.println("totalRecord : "+ totalRecord);
+	    System.out.println(nDto);
+	    System.out.println(nDto.size());
+	    
+	    
+	    //페이징 블럭 그룹 생성
+	    pageHelper.getBlockGroup(pageDto.getCurPage(), recordPerPage, totalRecord,pageDto);
+	    System.out.println(pageDto);
 	}
 	
+	
+	
+	
 	  @RequestMapping(value = "/read", method = RequestMethod.GET)
-	  public void read(@RequestParam("notice_seq") Integer notice_seq, @ModelAttribute("cri") SearchCriteria cri, Model model)
+	  public void read(@RequestParam("notice_seq") Integer notice_seq, @ModelAttribute("page") PageDto page, Model model)
 		      throws Exception {
 
 		    model.addAttribute(service.read(notice_seq));

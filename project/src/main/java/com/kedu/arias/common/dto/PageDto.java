@@ -9,8 +9,9 @@ public class PageDto {
 	private int isEmpty;
 	private int curPage;
 	
-	private String searchText;
+	private String searchType;
 	private String keyword;
+			
 	
 	
 	public int getCurPage() {
@@ -19,11 +20,13 @@ public class PageDto {
 	public void setCurPage(int curPage) {
 		this.curPage = curPage;
 	}
-	public String getSearchText() {
-		return searchText;
+
+	
+	public String getSearchType() {
+		return searchType;
 	}
-	public void setSearchText(String searchText) {
-		this.searchText = searchText;
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
 	}
 	public String getKeyword() {
 		return keyword;
@@ -64,7 +67,8 @@ public class PageDto {
 	@Override
 	public String toString() {
 		return "PageDto [firstBlock=" + firstBlock + ", lastBlock=" + lastBlock + ", prevPage=" + prevPage
-				+ ", nextPage=" + nextPage + ", isEmpty=" + isEmpty + "]";
+				+ ", nextPage=" + nextPage + ", isEmpty=" + isEmpty + ", curPage=" + curPage + ", searchType="
+				+ searchType + ", keyword=" + keyword + "]";
 	}
 	
 }
