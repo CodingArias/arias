@@ -36,9 +36,9 @@
 	});
  	
  	$(".listallBtn").on("click", function(){
-<<<<<<< HEAD
+
  		formObj.attr("action", "/notice/list?notice_seq=12&${searchType}=&${keyword}=?${notice_seq}&${searchType}=&${keyword}");
-=======
+
  
 
  		location.href="/notice/list?curPage=${page.curPage}&keyword=${page.keyword}&searchType=${page.searchType}";
