@@ -3,17 +3,8 @@ package com.kedu.arias.product.dao;
 
 import java.util.List;
 
-import com.kedu.arias.product.dto.Accom_code;
-import com.kedu.arias.product.dto.Bath_code;
-import com.kedu.arias.product.dto.Bed_code;
-import com.kedu.arias.product.dto.Building_code;
-import com.kedu.arias.product.dto.Convin_code;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
-import com.kedu.arias.product.dto.Regulation_code;
-import com.kedu.arias.product.dto.Safety_code;
-import com.kedu.arias.product.dto.Space_code;
-import com.kedu.arias.product.dto.Suit_guest_code;
 
 public interface ProductDao {
 	public boolean step1_insert(ProductDto pDto)throws Exception;
@@ -36,5 +27,5 @@ public interface ProductDao {
 	
 	public List<ProductDto> select_product_search(double lng, double lat, int number_of_people) throws Exception;
 
-
+	public ProductDto select_product_detail(int prdouct_seq) throws Exception;
 }

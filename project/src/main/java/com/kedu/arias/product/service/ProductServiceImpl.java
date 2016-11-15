@@ -100,5 +100,10 @@ public class ProductServiceImpl implements ProductService {
 			return false;
 		
 	}
+		
+	@Override
+	public ProductDto select_product_detail(int product_seq) throws Exception {
+		return pDao.select_product_detail(product_seq);
+	}
 
 }

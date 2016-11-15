@@ -127,5 +127,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
 	</select>
 	
+	<select id="select_product_detail" resultType="com.kedu.arias.product.dto.ProductDto">
+	select *
+	  from product p, a.accom_id
+	 where product_seq = #{product_seq}
+	   and a.accom_id = p.accom_id
+	</select>
+	
 </mapper>
 

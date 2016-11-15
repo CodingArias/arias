@@ -212,12 +212,13 @@ footer {
 				<c:forEach items="${list}" var="list">
 				<div class="col-sm-6">
 					<div class="col-sm-12 image">
-						<img src="/resources/product/product_main_image/${list.p_main_img}"
+						<a href='/detail?product_seq=${list.product_seq}'><img src="/resources/product/product_main_image/${list.p_main_img}"
 							class="img-rounded img-responsive img" alt="Responsive image">
 						<div class="text">
 							<h4>￦ ${list.product_price}</h4>
 						</div>
 					</div>
+						</a>
 					<!-- 상품 설명 -->
 					<div class="col-sm-12">
 						<div class="media">

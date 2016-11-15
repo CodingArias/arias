@@ -96,11 +96,10 @@
 						</a>
 					</div>
 					<div class="media-body text-left">
-						<h3 class="media-heading">Katie&Jake's home in central
-							Seoul(Type-A)</h3>
+						<h3 class="media-heading">${product_detail.product_name }</h3>
 						<!-- 위치  별점 예시-->
-						<h4>중구, 서울, 한국 별점</h4>
-						<h4>개인실, 숙박인원 2명, 침대 한개</h4>
+						<h4>${product_detail.product_addr}  별점</h4>
+						<h4>, 숙박인원 ${product_detail.number_of_people}명, 침대 한개</h4>
 					</div>
 				</div>
 			</div>
@@ -112,14 +111,7 @@
 				<h5>
 					<strong>상세 설명</strong>
 				</h5>
-				<span>Welcome to Katie & Jake’s home located in the heart of
-					Seoul. - Cozy private room with a beautiful city view - Walking
-					distance from attractions in central Seoul (Cityhall, Gwanghuamoon,
-					Deoksoo Palace, Namdaemoon Market, Namsan, Myungdong) - Easy access
-					to popular tourist attractions ( Hongdae, Dondaemoon, Itaewon) - 2
-					min walk from Seodaemoon subway station(#5) and 10 min walk fron
-					seoul city hall station(#1,#2) - Supermarket, 24 hours convenient
-					stores, bakery, starbucks, bank in a 3 minute.</span>
+				<span>${product_detail.product_info }</span>
 			</div>
 			<div class="col-sm-12">
 				<hr>
@@ -131,7 +123,7 @@
 					<strong>숙소</strong>
 				</div>
 				<div class="col-sm-5 text-left">
-					숙박 가능 인원 : 2<br> 욕실 : 1 <br> 침대 종류 : 침대<br> 침실 : 1<br>
+					숙박 가능 인원 : ${product_detail.number_of_people }<br> 욕실 : 1 <br> 침대 종류 : 침대<br> 침실 : 1<br>
 					침대 : 1
 				</div>
 				<div class="col-sm-5 text-left">
@@ -149,10 +141,38 @@
 					<strong>시설</strong>
 				</div>
 				<div class="col-sm-5 text-left">
+					
 					건물 내 엘리베이터<br> 인터넷
 				</div>
 				<div class="col-sm-5 text-left">
 					아침 식사 <br> 옷걸이<br>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<hr>
+			</div>
+			
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>시설</strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<div class="col-sm-6">
+					abc
+					</div>
+					<div class="col-sm-6">
+					def
+					</div>
+					<div class="col-sm-6">
+					def
+					</div>
+					<div class="col-sm-6">
+					def
+					</div>
+					<div class="col-sm-6">
+					def
+					</div>
 				</div>
 			</div>
 

@@ -144,4 +144,8 @@ public class ProductDaoImpl implements ProductDao{
 		return false;
 	}
 
+	@Override
+	public ProductDto select_product_detail(int prdouct_seq) throws Exception {
+		return session.selectOne(namespace+".select_product_detail", prdouct_seq);
+	}
 }
