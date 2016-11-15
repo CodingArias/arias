@@ -86,11 +86,11 @@
   
     <thead>
       <tr>
-        <th  style= "text-align: center">공지번호</th>
-        <th  style= "text-align: center">제목</th>
-        <th  style= "text-align: center">글쓴이</th>
-        <th  style= "text-align: center">등록일</th>
-        <th  style= "text-align: center">조회수</th>
+        <th  style= "text-align: center">BNO</th>
+        <th  style= "text-align: center">TITLE</th>
+        <th  style= "text-align: center">WIRTER</th>
+        <th  style= "text-align: center">REGDATE</th>
+        <th  style= "text-align: center">COUNT</th>
       </tr>
     </thead>
     

@@ -77,7 +77,7 @@
 </select> <input type="text" name='keyword' id="keywordInput"
 						value='${cri.keyword }'>
 					<button id='searchBtn'>Search</button>
-					<button id='newBtn'>New Board</button>
+					<button id='newBtn'>New register</button>
 </div>	
 					
 <div class="member_list">
@@ -88,11 +88,11 @@
   
     <thead>
       <tr>
-        <th>회원번호</th>
-        <th>회원이름</th>
-        <th>회원id</th>
-        <th>국적</th>
-      </tr>
+        <th width="10%" style= "text-align: center">회원번호</th>
+        <th width="10%" style= "text-align: center">회원이름</th>
+        <th width="10%" style= "text-align: center">회원id</th>
+        <th width="10%" style= "text-align: center">국적</th>
+ 
     </thead>
     
 
@@ -100,7 +100,7 @@
     
      <c:forEach items="${list}" var="mdto">
 
-							<tr>
+							<tr align="center">
 								<td>${mdto.member_id}</td>
 								<td><a href='/member/read?member_id=${mdto.member_id}'>${mdto.member_last_name}</a></td>
 								<td>${mdto.member_email}</td>
