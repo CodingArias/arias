@@ -56,6 +56,8 @@
 					<div class="media-right text-center">
 						<h3>즐거운 우리집 우리집으로 놀러오세요. 좋은 하루~</h3>
 						<h6>대한민국 서울특별시 노원구 월계동 산60-1</h6>
+						<h6>사슴아파트 1단지 102-505</h6>
+						
 					</div>
 	
 	
@@ -91,82 +93,169 @@
 						<strong>숙소</strong>
 					</div>
 					<div class="col-sm-5 text-left">
-						숙박 가능 인원 : 2<br> 욕실 : 1 <br> 침대 종류 : 침대<br> 침실 : 1<br>
-						침대 : 1
+						숙박 가능 인원 : 2<br> 침대 종류 : 2층 침대<br> 숙소 유형 : 단체실<br>
 					</div>
 					<div class="col-sm-5 text-left">
-						체크인 : 14:00 이후<br> 체크아웃 : 12:00<br> 집 유형 : 아파트<br>
-						숙소 유형 : 개인실
+						건물 유형 : 아파트<br>
+						<c:if test="${1==2}">dddasdasdd</c:if>
+						추천 손님 : 가족 여행
 					</div>
 				</div>
 
 				<div class="col-sm-12">
 					<hr>
 				</div>
-				<!-- 시설 -->
+
+				<!-- 예약 정보 -->
 				<div class="col-sm-12 text-left">
 					<div class="col-sm-2 text-left">
-						<strong>시설</strong>
+						<strong>예약 정보</strong>
 					</div>
 					<div class="col-sm-5 text-left">
-						건물 내 엘리베이터<br> 인터넷
+						최소 숙박 가능 일수 : 3일<br> 
+						최대 숙박 가능 일수 : 2일<br>
+						준비 기간	: 5일<br>
+						최소 몇일 전 예약  : 2일
+
 					</div>
 					<div class="col-sm-5 text-left">
-						아침 식사 <br> 옷걸이<br>
+						체크인 : 14:00 이후<br> 
+						체크아웃 : 12:00
 					</div>
+				</div>
+				<div class="col-sm-12">
+				<hr>
 				</div>
 
-				<div class="col-sm-12">
-					<hr>
-				</div>
-				<!-- 가격-->
+				
+				<!-- 사용 가능 공간 -->
 				<div class="col-sm-12 text-left">
 					<div class="col-sm-2 text-left">
-						<strong>가격</strong>
+						<strong>사용 가능 공간</strong>
 					</div>
-					<div class="col-sm-5 text-left">일 단위 요금 : ￦42319</div>
-					<div class="col-sm-5 text-left"></div>
+					<div class="col-sm-10 text-center">
+					<span class="col-sm-5 text-center">부엌</span>
+					<span class="col-sm-5 text-center">주차장</span>
+					<br>
+					
+					<span class="col-sm-5 text-center">부엌</span>
+					<span class="col-sm-5 text-center">주차장</span>
+					<br>
+					
+					<span class="col-sm-5 text-center">부엌</span>
+					<span class="col-sm-5 text-center">주차장</span>
+					<br>
+					
+					<span class="col-sm-5 text-center">부엌</span>
+					<span class="col-sm-5 text-center">주차장</span>
+					<br>
+					
+					
+					</div>
+
+					
+					<!-- <div class="col-sm-5 text-left">
+					
+						부엌<br> 
+						주차장<br>
+						수영장<br>
+						서재<br>
+					</div>
+					<div class="col-sm-5 text-left">
+						헬스장 <br> 
+						발코니<br>
+						옥상<br>
+					</div> -->
 				</div>
 				<div class="col-sm-12">
 					<hr>
 				</div>
-
+					
+				<!-- 제공 서비스 -->
+				<div class="col-sm-12 text-left">
+					<div class="col-sm-2 text-left">
+						<strong>제공 서비스 </strong>
+					</div>
+					<div class="col-sm-5 text-left">
+						무선 인터넷<br> 
+						샴푸<br>
+						옷장/서랍장<br>
+						TV<br>
+						난방<br>
+						에어컨<br>
+						벽난로<br>
+						
+					</div>
+					<div class="col-sm-5 text-left">
+						다리미<br>
+						헤어 드라이기<br>
+						컴퓨터<br>
+						휴대폰 충전기<br>
+						세탁기<br>
+						건조기<br>
+						조식, 커피, 차<br>
+						필수 품목(수건, 비누, 화장지)<br>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<hr>
+				</div>
+				<!-- 안전 기능 -->
+				<div class="col-sm-12 text-left">
+					<div class="col-sm-2 text-left">
+						<strong>안전 기능</strong>
+					</div>
+					<div class="col-sm-5 text-left">
+						연기 감지기<br> 
+						일산화탄소 감지기<br>
+						구급 상자<br>
+						안전 정보 카드<br>
+						소화기<br>
+						침실 잠금 장치<br>
+						
+					</div>
+					<div class="col-sm-5 text-left">
+						금고<br>
+						스프링 쿨러<br>
+						세콤<br>
+						CCTV<br>
+						전자 도어락<br>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<hr>
+				</div>				
+				
+				
 				<!-- 숙소 이용규칙 -->
 				<div class="col-sm-12 text-left">
 					<div class="col-sm-2 text-left">
 						<strong>숙소 이용규칙</strong>
 					</div>
 					<div class="col-sm-10 text-left">
-						흡연 금지 <br> 반려동물 동반에 적합하지 않음<br> 파티나 이벤트 금지<br>
-						어린이(0-12세) 숙박에 안전하거나 적합하지 않을 수 있음 <br> 체크인은 14:00 이후입니다. <br>
-						No smoking No drinking <br> Only for women and couple(No
-						Kids) <br>
+						흡연 금지 <br> 
+						애완동물 동반 금지<br> 
+						주류 반입 금지<br>
+						마약류 반입 금지<br> 
+						파티 금지<br>
+						남녀 혼숙 금지<br> 
 					</div>
 				</div>
-
 				<div class="col-sm-12">
 					<hr>
-				</div>
+				</div>	
+				<!-- 가격-->
 				<div class="col-sm-12 text-left">
 					<div class="col-sm-2 text-left">
-						<strong>안전 기능</strong>
+						<strong>가격</strong>
 					</div>
-					<div class="col-sm-5 text-left">화재 감지기</div>
-					<div class="col-sm-5 text-left">소화기</div>
+					<div class="col-sm-5 text-left">일 단위 요금 : ￦42319</div>
 				</div>
-
 				<div class="col-sm-12">
 					<hr>
-				</div>
-				<!-- 예약 가능 여부 -->
-				<div class="col-sm-12 text-left">
-					<div class="col-sm-2 text-left">
-						<strong>예약 가능 여부</strong>
-					</div>
-					<div class="col-sm-5 text-left">최소 숙박 1일</div>
-					<div class="col-sm-5 text-left"></div>
-				</div>
-				<!-- 예약 가능 여부 -->
+				</div>	
+
+
 			</div>
 		</div>
 	</div>
