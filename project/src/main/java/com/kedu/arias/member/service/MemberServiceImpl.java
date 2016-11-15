@@ -6,10 +6,12 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.member.dao.MemberDao;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.member.dto.SearchCriteria;
+import com.kedu.arias.notice.dto.NoticeDto;
 
 
 @Service
@@ -69,6 +71,16 @@ public class MemberServiceImpl implements MemberService {
 	public void remove(String member_id) throws Exception {
 		mdao.delete(member_id);
 		
+	}
+
+	@Override
+	public Integer selectAllNoticeCount(PageDto pageDto) throws Exception {
+		return mdao.selectAllNoticeCount(pageDto);
+	}
+
+	@Override
+	public List<NoticeDto> selectNoticeList(PageDto pageDto, int recordPerPage) {
+		return mdao.selectNoticeList(pageDto, recordPerPage);
 	}
 
 }

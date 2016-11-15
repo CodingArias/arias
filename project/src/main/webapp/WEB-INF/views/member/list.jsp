@@ -6,10 +6,10 @@
 
 <jsp:include page="../header.jsp"></jsp:include>
 <style>
-.main {
+/* .main {
 	height: auto;
 }
-
+ */
 </style>
 <script>
 	var result = '${msg}';
@@ -60,22 +60,22 @@
  <h1><strong>회원목록</strong></h1>	
 <select name="searchType">
 						<option value="n"
-							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							<c:out value="${page.searchType == null?'selected':''}"/>>
 							---</option>
 						<option value="t"
-							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							<c:out value="${page.searchType eq 't'?'selected':''}"/>>
 							회원번호</option>
 						<option value="c"
-							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							<c:out value="${page.searchType eq 'c'?'selected':''}"/>>
 							회원이름</option>
 						<option value="w"
-							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+							<c:out value="${page.searchType eq 'w'?'selected':''}"/>>
 							회원ID</option>
 						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+							<c:out value="${page.searchType eq 'tc'?'selected':''}"/>>
 							국적</option>
 </select> <input type="text" name='keyword' id="keywordInput"
-						value='${cri.keyword }'>
+						value='${page.keyword }'>
 					<button id='searchBtn'>Search</button>
 					<button id='newBtn'>New register</button>
 </div>	
@@ -102,7 +102,8 @@
 
 							<tr align="center">
 								<td>${mdto.member_id}</td>
-								<td><a href='/member/read?member_id=${mdto.member_id}'>${mdto.member_last_name}</a></td>
+								<td><a href='/member/read?member_id=${mdto.member_id}&curPage=${page.curPage}&keyword=${page.keyword}&searchType=${page.searchType}'>${mdto.member_last_name}</a>
+								</td>
 								<td>${mdto.member_email}</td>
 								<td>${mdto.country_id}</td>
 							</tr>
@@ -112,7 +113,47 @@
     </tbody>
   </table>
  </div>
+ 
+ <nav aria-label="Page navigation" style=" text-align: center;">
+  <ul class="pagination">
+    <li>
+    
+      <c:if test="${page.prevPage!=0}">
+	      <a href="/member/list?curPage=${page.prevPage}&keyword=${page.keyword}&searchType=${searchType}" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+      </c:if>
+    </li>
+    
+    
+    <c:if test="${page.lastBlock == 1}">
+    	<li><a href="#">1</a></li>
+    </c:if>	
+    
+    <c:if test="${page.lastBlock != 1}">
+	    <c:forEach var="block" begin="${page.firstBlock}" end="${page.lastBlock}">
+	    	<c:if test="${page.curPage == block}">
+	    		<li class="active"><a href="/member/list?curPage=${block}&keyword=${page.keyword}&searchType=${page.searchType}">${block}</a></li>
+	    	</c:if>
+	    	
+	    	<c:if test="${page.curPage != block}">
+	    		<li><a href="/member/list?curPage=${block}&keyword=${page.keyword}&searchType=${page.searchType}">${block}</a></li>
+	    	</c:if>
+	    	
+	    </c:forEach>
+     </c:if>
+     	
+    <li>
+    	<c:if test="${page.nextPage!=0}">
+      <a href="/member/list?curPage=${page.nextPage}&keyword=${page.keyword}&searchType=${page.searchType}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+      </c:if>
+    </li>
+  </ul>
+</nav>
 </div>
+
 
 
 <jsp:include page="../footer.jsp"></jsp:include>

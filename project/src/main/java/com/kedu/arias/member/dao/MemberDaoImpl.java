@@ -1,5 +1,6 @@
 package com.kedu.arias.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kedu.arias.member.dto.SearchCriteria;
+import com.kedu.arias.notice.dto.NoticeDto;
+import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
 
@@ -70,5 +73,35 @@ public class MemberDaoImpl implements MemberDao {
 	public void delete(String member_id) throws Exception {
 		session.delete(namespace+".delete",member_id);
 
+	}
+
+	@Override
+	public Integer selectAllNoticeCount(PageDto pageDto) throws Exception {
+		HashMap<String,Object> map =new HashMap<>(); 
+
+		map.put("searchType", pageDto.getSearchType());
+		map.put("keyword", pageDto.getKeyword());
+		return session.selectOne(namespace+".selectAllNoticeCount",map);
+	}
+
+	@Override
+	public List<NoticeDto> selectNoticeList(PageDto pageDto, int recordPerPage) {
+		HashMap<String,Object> map =new HashMap<>(); 
+		int curPage = pageDto.getCurPage();
+		if (curPage < 1)
+			curPage = 1;
+
+		int start = ((curPage - 1) * recordPerPage) + 1;
+		int end = start + recordPerPage - 1;
+		
+		System.out.println("start : "+ start);
+		System.out.println("end : "+ end);
+		
+		map.put("start", start);
+		map.put("end", end);
+		map.put("searchType", pageDto.getSearchType());
+		map.put("keyword", pageDto.getKeyword());
+		
+		return session.selectList(namespace+".selectNoticeList", map);
 	}
 }

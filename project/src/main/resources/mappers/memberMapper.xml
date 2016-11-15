@@ -79,5 +79,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   order by member_id desc
 ]]> 
 	</select>
+	
+	
+	<select id="selectAllNoticeCount" resultType="int" >
+		SELECT count(*) FROM member
+		where 1=1 		<include refid="search"></include>
+	</select>
+	
+	<select id="selectNoticeList" resultType="com.kedu.arias.member.dto.MemberDto">
+	
+	
+		SELECT member.*
+		FROM ( 
+				SELECT ROWNUM ro,n.* 
+                FROM ( 
+   	    				SELECT * 
+                        FROM member 
+                        where 1 = 1 <include refid="search"></include>
+                        ORDER BY member_id DESC
+                      ) n
+			) member 
+		WHERE  1=1 AND ro BETWEEN #{start} AND #{end}
+	
+	</select>
 
 	</mapper>
