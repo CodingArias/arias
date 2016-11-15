@@ -10,9 +10,7 @@ public interface MemberDao {
 	
 	public MemberDto login(LoginDto ldto) throws Exception;
 	
-	public void regMember(MemberDto mdto) throws Exception;
-	
-	public MemberDto readMember(String member_id) throws Exception;
+	public void create(MemberDto mdto) throws Exception;
 	
 	public void updateMember(MemberDto mdto) throws Exception;
 	

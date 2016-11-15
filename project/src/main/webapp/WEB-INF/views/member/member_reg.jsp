@@ -13,19 +13,24 @@
 <link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/fileUpload.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-
 <script type="text/javascript">
 $(document).ready(function(){
 	var formobj = $("form[role='form']");
+	
 	$(".btn-goHome").on("click", function(){
-		self.location = "/member/home";
+		self.location = "/";
 	});
+
 });
 
+
 $(function() {
+    imageChange($("#img"),$("#searchFile"));
+    
     $('input[name="member_birthday"]').daterangepicker({
     	singleDatePicker: true,
         showDropdowns: true,
@@ -35,6 +40,7 @@ $(function() {
     });
 });
 
+
 $('#modal-country').on('modal', function () {
 	  $('#search-country').focus();
 });
@@ -43,31 +49,16 @@ $('#modal-countryNum').on('shown.bs.modal', function() {
 	$('#search-country-num').focus();
 });
 
+function country_select(country_name_eng,country_name_kor,country_id){
+	$("#country_id").val(country_id);
+	$("#member_country").val(country_name_eng+" ("+country_name_kor+")");
+	$('#modal-country').modal('hide');
+}
 
-$('.fileDrop').on("dragenter dragover", function(){
-	event.preventDefault();
-});
-
-$(".fileDrop").on("drop", function(event) {
-	event.preventDefault();
-	
-	var files = event.originalEvent.dataTransfer.files;
-	var file = files[0];
-	var formData = new FormData();
-	formData.append("file", file);
-	
-	$.ajax({
-		url : '/regMemberPost',
-		data : formData,
-		dataType: 'text',
-		processData: false,
-		contentType: false,
-		type: 'post',
-		success: function(data) {
-			var fileInfo = getFileInfo(data);
-		}
-	});
-});
+function countryNum_select(country_num) {
+	$("#country_num").val("+"+country_num);
+	$('#modal-countryNum').modal('hide');
+}
 
 </script>
 <style type="text/css">
@@ -127,6 +118,11 @@ $(".fileDrop").on("drop", function(event) {
 	font-size: 12px;
 }
 
+#modal-countryNumTb tbody tr td{
+	height : 30px;
+	font-size: 12px;
+}
+
 #modal-countryTb tbody tr td{
 	height : 30px;
 }
@@ -147,15 +143,37 @@ $(".fileDrop").on("drop", function(event) {
 	color: white;
 	font-size: 12px;
 }
+
+#modal-country_div, #modal-countryNum_div{
+	overflow-y: initial !important
+}
+
+#modal-country_div .modal-body, #modal-countryNum_div .modal-body{
+	height : 800px;
+	overflow-y: auto;
+}
+
+#country_insert_row:hover{
+	background-color: #eee;
+	cursor:default;
+}
+
+#countryNum_insert_row:hover{
+	background-color: #eee;
+	cursor:default;
+}
 </style>
 </head>
 <body>
 	<div id="reg-form" align="center">
-		<form action="/member/member_reg" method="post" name="frm" enctype="multipart/form-data">
+		<form action="/member/list" method="post" name="frm" enctype="multipart/form-data">
+			<input type="hidden" name="country_id" id="country_id">
 			<table class="reg-form-tb">
 				<tr>
  					<td rowspan="5" id="form-img" align="center" class="fileDrop">
- 						<img src="/resources/img/noimage.jpg" class="img-rounded member-img" name="member_img" width="208" height="250">
+ 						<div class="uploadImg">
+ 							<img src="/resources/img/noimage.jpg" class="img-rounded member-img" name="member_img" id="img" width="208" height="250">
+ 						</div>
  					</td>
 					<td><label class="col-sm-2 control-label">Email</label></td>
 					<td><input type="email" name="member_email" class="form-control" placeholder="aaa.kim@example.com"></td>
@@ -180,7 +198,7 @@ $(".fileDrop").on("drop", function(event) {
 							
 						 <button type="button" class="btn btn-primary" id="search" data-toggle="modal" data-target="#modal-country" style="float:left;">Search</button> 
 						<!-- Large modal -->
-						<input type="text" name="member_country" class="form-control" readonly="readonly" style="float:right; width:400px;">					
+						<input type="text" name="member_country" id="member_country" class="form-control" readonly="readonly" style="float:right; width:400px;">					
 					</td>
 				</tr>
 				
@@ -190,7 +208,7 @@ $(".fileDrop").on("drop", function(event) {
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-countryNum"
 							    id="search" style="float:left;">Search</button>
 						<div style="float:right;">
-							<input type="text" name="country_num" class="form-control" readonly="readonly" style="width:94px; float:left;" placeholder="country#">
+							<input type="text" name="country_num" id="country_num" class="form-control" readonly="readonly" style="width:94px; float:left;" placeholder="country#">
 							<span style="float:left;">_</span> 
 							<input type="text" name="member_phone1" class="form-control" style="width:94px; float:left;"> 
 							<span style="float:left;">_</span>
@@ -204,7 +222,7 @@ $(".fileDrop").on("drop", function(event) {
 				<tr>
 					<td id="form-img" align="center" >
 						<label for="searchFile" class="btn btn-primary search-img" id="search">Search img</label>
-						<input type="file" id="searchFile" name="member_img">
+						<input type="file" id="searchFile" name="member_img" >
 					</td>
 					<td><label class="col-sm-2 control-label">Birthday</label></td>
 					<td>
@@ -224,7 +242,7 @@ $(".fileDrop").on("drop", function(event) {
 	
 	<!-- MODAL FORM FOR SEARCHING COUNTRY -->
 	<div class="modal fade bs-example-modal-lg" role="dialog" id="modal-country">
-		<div class="modal-dialog">
+		<div class="modal-dialog" id="modal-country_div">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -233,6 +251,11 @@ $(".fileDrop").on("drop", function(event) {
 				
 				<div class="modal-body">
 					<div id="search-keyword">
+						<select id="country_search" style="height: 25px;">
+							<option value="" selected="selected">== 검색조건 ==</option>
+							<option value="country_name_eng">English(영어)</option>
+							<option value="country_name_kor">Korean(한국어)</option>
+						</select>
 						<input type="text" name="country_name" id="search-country" placeholder="Searching Country name" style="height: 25px;">
 						<button type="submit" class="btn btn-info modal-search-country" id="searchCountryBtn" style="height:25px; padding-bottom: 0px; padding-top: 0px;">Search</button>
 					</div>
@@ -248,7 +271,7 @@ $(".fileDrop").on("drop", function(event) {
 							</thead>
 							<c:forEach items="${listCountry }" var="country">
 							<tbody class="country_tbody">
-								<tr>
+								<tr id="country_insert_row" onclick="country_select('${country.country_name_eng }','${country.country_name_kor }','${country.country_id }')" >
 									<td>${country.country_id }</td>
 									<td>${country.country_name_eng }</td>
 									<td>${country.country_name_kor }</td>
@@ -257,31 +280,8 @@ $(".fileDrop").on("drop", function(event) {
  							</c:forEach>
 						</table>
 					</div>
-					<%-- <div class="text-center" id="countryPaging">
-						<ul class="pagination">
-							<c:if test="${pageMaker.prev }">
-								<li>
-									<a href="member_reg?page=${pageMaker.startPage-1 }">&laquo;</a>
-								</li>
-							</c:if>
-							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-								<li	<c:out value="${pageMaker.pcri.page == idx?'class=active':'' }"/>>
-									<a href="#modal-country?page=${idx}">${idx}</a>
-								</li>
-							</c:forEach>
-							
-							<c:if test="${pageMaker.next && pageMaker.endPage>0 }">
-								<li>
-									<a href="member_reg?page=${pageMaker.endPage +1 }">&raquo;</a>
-								</li>
-							</c:if>
-						</ul>
-					</div> --%>
 				</div>
-				
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -290,7 +290,7 @@ $(".fileDrop").on("drop", function(event) {
 	
 	<!-- MODAL FORM FOR SEARCHING COUNTRY_NUMBER -->
 	<div class="modal fade bs-example-modal-lg" role="dialog" id="modal-countryNum">
-		<div class="modal-dialog">
+		<div class="modal-dialog" id="modal-countryNum_div">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -299,6 +299,12 @@ $(".fileDrop").on("drop", function(event) {
 			
 				<div class="modal-body">
 					<div>
+						<select id="countryNum_search" style="height: 25px;">
+							<option value="" selected="selected">== 검색조건 ==</option>
+							<option value="country_name_eng">English(영어)</option>
+							<option value="country_name_kor">Korean(한국어)</option>
+							<option value="country_num">Country#(국가번호)</option>
+						</select>
 						<input type="text" name="country_num" id="search-countryNum" placeholder="Search Country" style="height: 25px;">
 						<button type="submit" class="btn btn-info modal-search-countryNum" style="height:25px; padding-bottom: 0px; padding-top: 0px;">Search</button>
 					</div>
@@ -312,20 +318,20 @@ $(".fileDrop").on("drop", function(event) {
 								<td>Country_Number</td>
 							</tr>	
 						</thead>
-						<tbody>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
+						<c:forEach items="${listCountry }" var="country">
+						<tbody class="country_tbody">
+							<tr id="countryNum_insert_row" onclick="countryNum_select('${country.country_num }')" >
+								<td>${country.country_id }</td>
+								<td>${country.country_name_eng }</td>
+								<td>${country.country_name_kor }</td>
+								<td>${country.country_num }</td>
 							</tr>
 						</tbody>
+						</c:forEach>
 					</table>
 				</div>
 			
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->

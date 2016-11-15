@@ -26,13 +26,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void regMember(MemberDto mdto) throws Exception {
+	public void create(MemberDto mdto) throws Exception {
 		session.insert(namespace+ ".regMember", mdto);
-	}
-
-	@Override
-	public MemberDto readMember(String member_id) throws Exception {
-		return session.selectOne(namespace +".readMember", member_id);
 	}
 
 	@Override

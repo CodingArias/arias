@@ -24,13 +24,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void regMember(MemberDto mdto) throws Exception {
-		mdao.regMember(mdto);
-	}
-
-	@Override
-	public MemberDto readMember(String member_id) throws Exception {
-		return mdao.readMember(member_id);
+	public void create(MemberDto mdto) throws Exception {
+		mdao.create(mdto);
 	}
 
 	@Override

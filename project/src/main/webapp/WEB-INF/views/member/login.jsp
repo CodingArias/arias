@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@	page session="false" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
 <link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script>
+<script type="text/javascript">
 function loginCheck() {
 	if(document.frm.member_email.value.length == 0 || document.frm.member_email.value == ""){
 		alert(" 등록된 이메일 주소를 입력해주세요.\n please insert your email address.");
@@ -23,6 +25,7 @@ function loginCheck() {
 	return true;
 }
 </script>
+
 </head>
 <body>
 	<form class="form-horizontal" action="/member/loginPost" method="post" name="frm">
@@ -57,7 +60,7 @@ function loginCheck() {
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="button" class="btn btn-primary">ID/PW 분실했어요</button>
 					<input type="submit" class="btn btn-info" id="loninbtn" onclick="return loginCheck()" value="Login">
-					<button type="reset" class="btn btn-default">Reset</button>
+					<button type="button" class="btn btn-default btn-reg" onclick="location.href='/member/member_reg'">회원가입</button>
 				</div>
 			</div>
 		</div>

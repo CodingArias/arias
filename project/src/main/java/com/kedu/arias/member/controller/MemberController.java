@@ -20,12 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kedu.arias.member.dto.SearchCriteria;
-import com.kedu.arias.common.dto.PageCriteria;
-import com.kedu.arias.common.dto.PageMakerDto;
-import com.kedu.arias.member.dto.CountryDto;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
+import com.kedu.arias.member.dto.SearchCriteria;
 import com.kedu.arias.member.service.CountrycodeService;
 import com.kedu.arias.member.service.MemberService;
 import com.kedu.arias.util.FileUploader;
@@ -64,17 +61,13 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/member_reg", method=RequestMethod.GET)
-	public void regMemberGet(HttpSession session, Model model, PageCriteria pcri) throws Exception {
+	public void regMemberGet(HttpSession session, Model model, SearchCriteria cri) throws Exception {
 		
-		logger.info(pcri.toString());
+		logger.info(cri.toString());
 		
-		model.addAttribute("listCountry", coService.listCriteria(pcri));
+		model.addAttribute("listCountry", coService.listAll());
 		
-		PageMakerDto pageMaker = new PageMakerDto();
-		pageMaker.setCri(pcri);
-		pageMaker.setTotalCount(235);
 		
-		model.addAttribute("pageMaker", pageMaker);
 	}
 	
 	
@@ -126,7 +119,7 @@ public class MemberController {
 		
 		fileUploader.fileUpload(attach_path,imageName, multi); // 이미지 업로드
 		
-		return "/member/loginPost";
+		return "/member/list";
 		
 	}
 	
@@ -190,11 +183,14 @@ public class MemberController {
 	  }
 	  
 	  @RequestMapping(value = "/modify", method = RequestMethod.GET)
+	  public void modifyGET(String member_id, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {  
 		
-	    public void modifyGET(String member_id, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-
-	        model.addAttribute(service.read(member_id));
-	      }
+		  logger.info(cri.toString());
+		  
+		  model.addAttribute("list", service.listSearchCriteria(cri));
+		  model.addAttribute(service.read(member_id));
+		  
+	  }
 	    
 	  
 	  @RequestMapping(value = "/modify", method = RequestMethod.POST)

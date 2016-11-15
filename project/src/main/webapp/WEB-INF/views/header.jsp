@@ -37,7 +37,7 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li id="login_status"><a href="#"><span
+				<li id="login_status"><a href="/member/login"><span
 						class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
 		</div>
