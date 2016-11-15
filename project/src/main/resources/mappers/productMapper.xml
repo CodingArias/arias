@@ -130,11 +130,112 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="select_product_detail" resultType="com.kedu.arias.product.dto.ProductDto">
-	select *
-	  from product p, a.accom_id
+	SELECT    P. PRODUCT_SEQ
+			, P.P_MAIN_IMG
+			, P.MEMBER_ID
+			, P.PRODUCT_NAME
+			, P.PRODUCT_PRICE
+			, P.COUNTRY_ID
+			, P.PRODUCT_ADDR
+			, P.PRODUCT_ADDR_DETAIL
+			, P.ACCOM_ID
+			, P.BED_ID
+			, P.BUILDING_ID
+			, P.SGUEST_ID
+			, P.PRODUCT_INFO
+			, P.PRODUCT_SIMPLE_INFO
+			, P.PRODUCT_LAT
+			, P.PRODUCT_LNG
+			, P.PRODUCT_SCORE
+			, P.PRODUCT_MINDT
+			, P.PRODUCT_MAXDT
+			, P.PRODUCT_READYDT
+			, P.PRODUCT_PREPDT
+			, P.PRODUCT_STEP
+			, P.PRODUCT_REGDT
+			, P.NUMBER_OF_PEOPLE
+			, P.CHECKIN_TIME
+			, P.CHECKOUT_TIME
+            , A.ACCOM_NAME
+            , B.BED_NAME 
+            , C.BUILDING_NAME
+            , D.SGUEST_NAME
+	  from PRODUCT P, ACCOM_CODE A, BED_CODE B, BUILDING_CODE C, SUIT_GUEST_CODE D
 	 where product_seq = #{product_seq}
-	   and a.accom_id = p.accom_id
+	   and P.ACCOM_ID = A.ACCOM_ID
+	   and P.BED_ID = B.BED_ID
+	   AND P.BUILDING_ID = C.BUILDING_ID
+	   AND P.SGUEST_ID = D.SGUEST_ID
 	</select>
+	
+	<select id="product_safety" resultType="com.kedu.arias.product.dto.Safety_code" >
+		SELECT A.SAFETY_NAME
+		  FROM PRODUCT P, PRODUCT_SAFETY S, SAFETY_CODE A
+		 WHERE P.PRODUCT_SEQ = S.PRODUCT_SEQ
+		   AND S.SAFETY_ID = A.SAFETY_ID
+		   AND S.PRODUCT_SEQ = #{product_seq}
+	</select>
+	
+	<select id="product_convin" resultType="com.kedu.arias.product.dto.Convin_code">
+		SELECT A.CONVIN_NAME
+		  FROM PRODUCT P, PRODUCT_CONVIN C, CONVIN_CODE A
+		 WHERE P.PRODUCT_SEQ = C.PRODUCT_SEQ
+     	   AND C.CONVIN_ID = A.CONVIN_ID
+     	   AND C.PRODUCT_SEQ = #{product_seq}
+	</select>
+	<select id="product_space" resultType="com.kedu.arias.product.dto.Space_code">
+		SELECT A.SPACE_NAME
+		  FROM PRODUCT P, PRODUCT_SPACE C, SPACE_CODE A
+		 WHERE P.PRODUCT_SEQ = C.PRODUCT_SEQ
+	       AND C.SPACE_ID = A.SPACE_ID
+    	   AND C.PRODUCT_SEQ = #{product_seq}
+	</select>
+	
+	<select id="product_regulation" resultType="com.kedu.arias.product.dto.Regulation_code">
+	     SELECT A.REGULATION_NAME
+ 		   FROM PRODUCT P, PRODUCT_REGUL C, REGULATION_CODE A
+		  WHERE P.PRODUCT_SEQ = C.PRODUCT_SEQ
+     	    AND C.REGULATION_ID = A.REGULATION_ID
+            AND C.PRODUCT_SEQ = #{product_seq}
+	</select>
+	
+	<select id="product_member" resultType="com.kedu.arias.member.dto.MemberDto">
+		 SELECT M.MEMBER_FIRST_NAME,
+		        M.MEMBER_LAST_NAME,
+                M.MEMBER_IMG,
+                M.MEMBER_REG_DATE,
+                M.MEMBER_ID
+ 		   FROM MEMBER M, PRODUCT P
+ 		  WHERE P.MEMBER_ID = M.MEMBER_ID
+     		AND P.PRODUCT_SEQ = #{product_seq}
+	</select>
+	
+	<insert id="insert_reply">
+		INSERT INTO PRODUCT_REPLY (PRODUCT_SEQ, MEMBER_ID, PREPLY_CONTENT, MEMBER_SCORE)
+		VALUES (#{product_seq,jdbcType=NUMERIC}, #{member_id,jdbcType=VARCHAR}, #{preply_content,jdbcType=VARCHAR}, #{member_score,jdbcType=NUMERIC})
+	</insert>
+	
+	<select id="list_reply" resultType="com.kedu.arias.product.dto.ReplyDto">
+		SELECT *
+		  FROM PRODUCT_REPLY
+		 WHERE PRODUCT_SEQ = #{product_seq}
+		 ORDER BY PREPLY_REGDT
+	</select>
+	
+	<update id="update_reply">
+		UPDATE PRODUCT_REPLY
+		   SET PREPLY_CONTENT = #{preply_content}
+		 WHERE PRODUCT_SEQ = #{product_seq}
+		   AND MEMBER_ID = #{member_id}
+	</update>
+	
+	<delete id="delete_reply">
+		DELETE FROM PRODUCT_REPLY
+		 WHERE PRODUCT_SEQ = #{product_seq}
+		   AND MEMBER_ID = #{member_id}
+	</delete>
+	
+	
 	
 </mapper>
 

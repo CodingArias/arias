@@ -2,17 +2,13 @@ package com.kedu.arias.product.service;
 
 import java.util.List;
 
-import com.kedu.arias.product.dto.Accom_code;
-import com.kedu.arias.product.dto.Bath_code;
-import com.kedu.arias.product.dto.Bed_code;
-import com.kedu.arias.product.dto.Building_code;
+import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.product.dto.Convin_code;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.dto.Regulation_code;
 import com.kedu.arias.product.dto.Safety_code;
 import com.kedu.arias.product.dto.Space_code;
-import com.kedu.arias.product.dto.Suit_guest_code;
 
 public interface ProductService {
 	public boolean step1_insert(ProductDto pDto)throws Exception;
@@ -33,7 +29,10 @@ public interface ProductService {
 
 	
 	public List<ProductDto> select_product_search(double lng, double lat, int number_of_people) throws Exception;
-	
 	public ProductDto select_product_detail(int product_seq) throws Exception;
-	
+	public List<Safety_code> product_safety(int product_seq) throws Exception;
+	public List<Convin_code> product_convin(int product_seq) throws Exception;
+	public List<Space_code> product_space(int product_seq) throws Exception;
+	public List<Regulation_code> product_regulation(int product_seq) throws Exception;
+	public MemberDto product_member(int product_seq) throws Exception;
 }

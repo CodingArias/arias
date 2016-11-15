@@ -2,24 +2,19 @@ package com.kedu.arias.product.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.kedu.arias.product.dto.Accom_code;
-import com.kedu.arias.product.dto.Bath_code;
-import com.kedu.arias.product.dto.Bed_code;
-import com.kedu.arias.product.dto.Building_code;
+import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.product.dto.Convin_code;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.dto.Regulation_code;
 import com.kedu.arias.product.dto.Safety_code;
 import com.kedu.arias.product.dto.Space_code;
-import com.kedu.arias.product.dto.Suit_guest_code;
 
 @Repository
 public class ProductDaoImpl implements ProductDao{
@@ -147,5 +142,30 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public ProductDto select_product_detail(int prdouct_seq) throws Exception {
 		return session.selectOne(namespace+".select_product_detail", prdouct_seq);
+	}
+	
+	@Override
+	public List<Safety_code> product_safety(int product_seq) throws Exception {
+		return session.selectList(namespace+".product_safety", product_seq);
+	}
+	
+	@Override
+	public List<Convin_code> product_convin(int product_seq) throws Exception {
+		return session.selectList(namespace+".product_convin", product_seq);
+	}
+	
+	@Override
+	public List<Space_code> product_space(int product_seq) throws Exception {
+		return session.selectList(namespace+".product_space", product_seq);
+	}
+	
+	@Override
+	public List<Regulation_code> product_regulation(int product_seq) throws Exception {
+		return session.selectList(namespace+".product_regulation", product_seq);
+	}
+	
+	@Override
+	public MemberDto product_member(int product_seq) throws Exception {
+		return session.selectOne(namespace+".product_member", product_seq);
 	}
 }
