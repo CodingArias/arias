@@ -40,6 +40,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,   product_maxdt = #{product_maxdt,jdbcType=NUMERIC}
         ,   product_readydt = #{product_readydt,jdbcType=NUMERIC}
         ,   product_prepdt = #{product_prepdt,jdbcType=NUMERIC}
+        ,   checkin_time = #{checkin_time,jdbcType=VARCHAR}
+        ,   checkout_time = #{checkout_time,jdbcType=VARCHAR}
         ,   product_step = 3
          
 	where product_seq = #{product_seq,jdbcType=NUMERIC}
@@ -64,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			accom_id = #{accom_id,jdbcType=VARCHAR},
 			bed_id = #{bed_id,jdbcType=VARCHAR},
 			sguest_id = #{sguest_id,jdbcType=VARCHAR},
-			product_step = 4
+			product_step = 9
 		where product_seq = #{product_seq,jdbcType=NUMERIC}
 	</update>
 	<update id="update_product_last">

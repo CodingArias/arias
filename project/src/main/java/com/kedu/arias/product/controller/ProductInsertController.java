@@ -104,12 +104,14 @@ public class ProductInsertController {
 	@RequestMapping(value = "/product_insert_step2", method = RequestMethod.GET)
 	public String product_insert_step2(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("product_seq") != null && session.getAttribute("product_step")!=null) {
+/*		if (session.getAttribute("product_seq") != null && session.getAttribute("product_step")!=null) {
 			if((Integer)session.getAttribute("product_step")==2){
 				return "/product/product_insert_step2";
 			}
-		} 
-		return "redirect:/";
+		} */
+		return "/product/product_insert_step2";
+		
+		//return "redirect:/";
 		
 	}
 
@@ -259,14 +261,15 @@ public class ProductInsertController {
 		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession();
 		
-		
+		/*
 		if (session.getAttribute("product_seq") == null || session.getAttribute("product_step")==null 
-				|| (Integer)session.getAttribute("product_step")!=4) {
+				|| (Integer)session.getAttribute("product_step")!=9) {
 			modelAndView.setViewName("redirect:/");
 		} 
 		else {
-			modelAndView.setViewName("/product/product_insert_step4");
-		}
+			modelAndView.setViewName("/product/product_insert_step_last");
+		}*/
+		modelAndView.setViewName("/product/product_insert_step_last");
 		
 		return modelAndView;
 	}

@@ -101,6 +101,8 @@ CREATE TABLE PRODUCT(
     , product_step    NUMBER 									NOT NULL
     , product_regdt    DATE  										DEFAULT SYSDATE
     , number_of_people NUMBER DEFAULT 0
+    , checkin_time VARCHAR2 (30) NULL
+    , checkout_time VARCHAR2 (30) NULL
     , CONSTRAINT PRODUCT_memberid_fk FOREIGN KEY(member_id) REFERENCES MEMBER (member_id) ON DELETE CASCADE
     , CONSTRAINT PRODUCT_countryid_fk FOREIGN KEY(country_id) REFERENCES COUNTRY_CODE (country_id)    ON DELETE SET NULL
     , CONSTRAINT PRODUCT_accomid_fk FOREIGN KEY(accom_id) REFERENCES accom_code (accom_id)	 ON DELETE SET NULL
@@ -281,7 +283,12 @@ ALTER TABLE NOTICE
 ADD  notice_file VARCHAR2(1000);
 
 
+ALTER TABLE PRODUCT
+ADD  checkout_time VARCHAR2 (30) NULL;
 
+
+ALTER TABLE PRODUCT
+ADD  checkin_time VARCHAR2 (30) NULL;
 
 
 

@@ -49,6 +49,8 @@ public class ProductDto {
 	private String product_regdt;
 	private int number_of_people;
 	
+	private String checkin_time;
+	private String checkout_time;
 	
 	private String accom_id;
 	private String accom_name;
@@ -61,6 +63,20 @@ public class ProductDto {
 	private String sguest_id;								
 	private String sguest_name;
 	
+	
+	
+	public String getCheckin_time() {
+		return checkin_time;
+	}
+	public void setCheckin_time(String checkin_time) {
+		this.checkin_time = checkin_time;
+	}
+	public String getCheckout_time() {
+		return checkout_time;
+	}
+	public void setCheckout_time(String checkout_time) {
+		this.checkout_time = checkout_time;
+	}
 	public int getProduct_seq() {
 		return product_seq;
 	}
@@ -259,10 +275,11 @@ public class ProductDto {
 				+ ", product_lng=" + product_lng + ", product_score=" + product_score + ", product_mindt="
 				+ product_mindt + ", product_maxdt=" + product_maxdt + ", product_readydt=" + product_readydt
 				+ ", product_prepdt=" + product_prepdt + ", product_step=" + product_step + ", p_main_img=" + p_main_img
-				+ ", product_regdt=" + product_regdt + ", number_of_people=" + number_of_people + ", accom_id="
-				+ accom_id + ", accom_name=" + accom_name + ", bath_id=" + bath_id + ", bath_name=" + bath_name
-				+ ", bed_id=" + bed_id + ", bed_name=" + bed_name + ", building_id=" + building_id + ", building_name="
-				+ building_name + ", sguest_id=" + sguest_id + ", sguest_name=" + sguest_name + "]";
+				+ ", product_regdt=" + product_regdt + ", number_of_people=" + number_of_people + ", checkin_time="
+				+ checkin_time + ", checkout_time=" + checkout_time + ", accom_id=" + accom_id + ", accom_name="
+				+ accom_name + ", bath_id=" + bath_id + ", bath_name=" + bath_name + ", bed_id=" + bed_id
+				+ ", bed_name=" + bed_name + ", building_id=" + building_id + ", building_name=" + building_name
+				+ ", sguest_id=" + sguest_id + ", sguest_name=" + sguest_name + "]";
 	}	
 	
 	
