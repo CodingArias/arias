@@ -6,18 +6,14 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.product.dao.ProductDao;
-import com.kedu.arias.product.dto.Accom_code;
-import com.kedu.arias.product.dto.Bath_code;
-import com.kedu.arias.product.dto.Bed_code;
-import com.kedu.arias.product.dto.Building_code;
 import com.kedu.arias.product.dto.Convin_code;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.dto.Regulation_code;
 import com.kedu.arias.product.dto.Safety_code;
 import com.kedu.arias.product.dto.Space_code;
-import com.kedu.arias.product.dto.Suit_guest_code;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -105,5 +101,29 @@ public class ProductServiceImpl implements ProductService {
 	public ProductDto select_product_detail(int product_seq) throws Exception {
 		return pDao.select_product_detail(product_seq);
 	}
-
+	
+	@Override
+	public List<Safety_code> product_safety(int product_seq) throws Exception {
+		return pDao.product_safety(product_seq);
+	}
+	
+	@Override
+	public List<Convin_code> product_convin(int product_seq) throws Exception {
+		return pDao.product_convin(product_seq);
+	}
+	
+	@Override
+	public List<Space_code> product_space(int product_seq) throws Exception {
+		return pDao.product_space(product_seq);
+	}
+	
+	@Override
+	public List<Regulation_code> product_regulation(int product_seq) throws Exception {
+		return pDao.product_regulation(product_seq);
+	}
+	
+	@Override
+	public MemberDto product_member(int product_seq) throws Exception {
+		return pDao.product_member(product_seq);
+	}
 }
