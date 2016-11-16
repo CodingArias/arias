@@ -9,7 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Registration</title>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-
 <script type="text/javascript" src="/resources/js/fileUpload.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
@@ -21,35 +20,27 @@ $(document).ready(function(){
 	$(".btn-goHome").on("click", function(){
 		self.location = "/";
 	});
-	
-	$("#regist_btn").on("click", function() {
-		var pwd_check_message = document.getElementById("pwd-check-message").innerHTML;
-		var member_pwd = document.getElementById("member_pwd").value;
-		var member_pwd_check = document.getElementById("member_pwd_check").value;
-		
-		if(pwd_check_message == "") {
-			alert ("비밀번호를 확인해주세요 \n\nPlease check your password.\n");
-			return false;
-		}
-		if(member_pwd != member_pwd_check) {
-			alert ("입력하신 비밀번호가 일치하지 않습니다. \n\nPassword is not agree.\n");
-			return false;
-		} else {
-			return true;
-		}		
-	});
 });
 
 $(function() {
     imageChange($("#img"),$("#searchFile"));
-    
+        
     $('input[name="member_birthday"]').daterangepicker({
+    	autoUpdateInput: false,
     	singleDatePicker: true,
-        showDropdowns: true,
-        locale: {
-        	format : 'YYYY-MM-DD'
+    	showDropdowns: true,
+    	locale: {
+            cancelLabel: 'Clear'
         }
     });
+    
+    $('input[name="member_birthday"]').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('YYYY-MM-DD'));
+    });
+    $('input[name="member_birthday"]').on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('');
+    });
+    
     
     $("#regist_btn").click(function(){
     	$("#member_phone").val($("#country_num").val() 
@@ -212,12 +203,12 @@ function countryNum_select(country_num) {
  						</div>
  					</td>
 					<td><label class="col-sm-2 control-label">Email</label></td>
-					<td><input type="email" name="member_email" class="form-control" placeholder="aaa.kim@example.com"></td>
+					<td><input type="email" name="member_email" class="form-control" placeholder="aaa.kim@example.com" required="required"></td>
 				</tr>
 				
 				<tr>
 					<td><label class="col-sm-2 control-label">Password</label></td>
-					<td><input type="password" name="member_pwd" id="member_pwd" class="form-control" placeholder="password"></td>
+					<td><input type="password" name="member_pwd" id="member_pwd" class="form-control" placeholder="password" required="required"></td>
 				</tr>
 				<tr>
 					<td><label class="col-sm-2 control-label">Password Check</label></td>
@@ -233,8 +224,8 @@ function countryNum_select(country_num) {
 				<tr>
 					<td><label class="col-sm-2 control-label">Name</label></td>
 					<td>
-						<input type="text" name="member_first_name" class="form-control" placeholder="이름 / first name" style="float:left; width:242px;">
-						<input type="text" name="member_last_name" class="form-control" placeholder="성 / last_name" style="float:right; width:242px;">
+						<input type="text" name="member_first_name" class="form-control" placeholder="이름 / first name" style="float:left; width:242px;" required="required">
+						<input type="text" name="member_last_name" class="form-control" placeholder="성 / last_name" style="float:right; width:242px;" required="required">
 					</td>
 				</tr>
 				
@@ -256,11 +247,11 @@ function countryNum_select(country_num) {
 						<div style="float:right;">
 							<input type="text" name="country_num" id="country_num" class="form-control" readonly="readonly" style="width:94px; float:left;" placeholder="country#">
 							<span style="float:left;">_</span> 
-							<input type="text" name="member_phone1" id="member_phone1" class="form-control" style="width:94px; float:left;"> 
+							<input type="text" name="member_phone1" id="member_phone1" class="form-control" required="required" style="width:94px; float:left;"> 
 							<span style="float:left;">_</span>
-							<input type="text" name="member_phone2" id="member_phone2" class="form-control" style="width:94px; float:left;">
+							<input type="text" name="member_phone2" id="member_phone2" class="form-control" required="required" style="width:94px; float:left;">
 							<span style="float:left;">_</span>
-							<input type="text" name="member_phone3" id="member_phone3" class="form-control" style="width:94px; float:right;">
+							<input type="text" name="member_phone3" id="member_phone3" class="form-control" required="required" style="width:94px; float:right;">
 						</div>							
 					</td>
 				</tr>
@@ -268,11 +259,11 @@ function countryNum_select(country_num) {
 				<tr>
 					<td id="form-img" align="center" >
 						<label for="searchFile" class="btn btn-primary search-img" id="search">Search img</label>
-						<input type="file" id="searchFile" name="member_img" >
+						<input type="file" id="searchFile" name="member_img" required="required">
 					</td>
 					<td><label class="col-sm-2 control-label">Birthday</label></td>
 					<td>
-						<input type="text" name="member_birthday" class="form-control">
+						<input type="text" name="member_birthday" class="form-control" required="required">
 					</td>
 				</tr>				
 			</table>
@@ -280,7 +271,7 @@ function countryNum_select(country_num) {
 			<br>
 			<div class="insert-button" align="center">
 				<button type="button" class='btn btn-primary btn-goHome'>Go Home</button>
-				<button type="button" id="regist_btn" class='btn btn-info' onclick="regInputCheck()">Register</button>
+				<input type="submit" id="regist_btn" class='btn btn-info' onclick="regInputCheck()" value="Register">
 				<button type="reset" class='btn btn-default'>Reset</button>			
 			</div>
 		</form>
