@@ -1,6 +1,8 @@
 package com.kedu.arias.product.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kedu.arias.common.dto.PageCriteria;
+import com.kedu.arias.common.dto.PageMakerDto;
 import com.kedu.arias.product.dto.ReplyDto;
 import com.kedu.arias.product.service.ReplyService;
 
@@ -86,6 +90,41 @@ public class ProductReplyController {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
+		return entity;
+	}
+	
+	
+	@RequestMapping(value = "/{product_seq}/{page}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> reply_page(@PathVariable("product_seq") int product_seq,
+			@PathVariable("page") int page) {
+		
+		ResponseEntity<Map<String, Object>> entity = null;
+		
+		try {
+			PageCriteria cri= new PageCriteria();
+			cri.setPage(page);
+			
+			PageMakerDto pageMaker = new PageMakerDto();
+			pageMaker.setCri(cri);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			List<ReplyDto> list = service.reply_page(product_seq, cri);
+			
+			map.put("list", list);
+			
+			int reply_count = service.reply_count(product_seq);
+			pageMaker.setTotalCount(reply_count);
+			
+			map.put("pageMaker", pageMaker);
+			
+			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+		}
+		
 		return entity;
 	}
 	

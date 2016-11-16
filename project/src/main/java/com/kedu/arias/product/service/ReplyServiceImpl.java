@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.kedu.arias.common.dto.PageCriteria;
 import com.kedu.arias.product.dao.ReplyDao;
 import com.kedu.arias.product.dto.ReplyDto;
 
@@ -38,5 +39,15 @@ public class ReplyServiceImpl implements ReplyService {
 		map.put("product_seq", product_seq);
 		map.put("member_id", member_id);
 		rDao.delete_reply(map);
+	}
+	
+	@Override
+	public List<ReplyDto> reply_page(int product_seq, PageCriteria cri) throws Exception {
+		return rDao.reply_page(product_seq, cri);
+	}
+
+	@Override
+	public int reply_count(int product_seq) throws Exception {
+		return rDao.reply_count(product_seq);
 	}
 }

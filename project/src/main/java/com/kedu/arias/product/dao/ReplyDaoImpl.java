@@ -1,5 +1,6 @@
 package com.kedu.arias.product.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kedu.arias.common.dto.PageCriteria;
 import com.kedu.arias.product.dto.ReplyDto;
 
 @Repository
@@ -36,5 +38,20 @@ public class ReplyDaoImpl implements ReplyDao {
 	@Override
 	public void delete_reply(Map<String, Object> map) throws Exception {
 		session.delete(namespace+".delete_reply", map);
+	}
+	
+	@Override
+	public List<ReplyDto> reply_page(int product_seq, PageCriteria cri) throws Exception {
+		Map<String, Object> paramMap = new HashMap<>();
+		
+		paramMap.put("product_seq", product_seq);
+		paramMap.put("cri", cri);
+		
+		return session.selectList(namespace+".replyPage", paramMap);
+	}
+	
+	@Override
+	public int reply_count(int product_seq) throws Exception {
+		return session.selectOne(namespace + ".replyCount", product_seq);
 	}
 }

@@ -32,7 +32,12 @@ public class PageCriteria {
 	}
 	
 	public int getPageStart() {
-		return(this.page - 1) * perPageNum;
+		return(this.page - 1) * perPageNum + 1;
+	}
+	
+	public int getPageEnd(){
+		System.out.println(this.page * perPageNum);
+		return this.page * perPageNum;
 	}
 	
 	public int getPerPageNum() {

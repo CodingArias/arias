@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -255,18 +257,10 @@
 			<!-- 후기 작성칸 -->
 			<div class="col-sm-12 text-left">
 				<div class="col-sm-1"></div>
-				<div class="media col-sm-10">
-					<div class="media-left text-center">
-						<!-- 임의 이미지  -->
-						<a href="#"> <img class="media-object img-circle"
-							src="/resources/img/search/original_12.jpg" alt="...">
-
-						</a> 아이디
-					</div>
-					<!-- 댓글 작성창 -->
-					<div class="media-body text-left">
-						<span>참 좋은 곳이군요 호호호</span> <br> 날짜 입력칸
-					</div>
+				<div class="col-sm-10">
+					<div class="col-sm-12"><textarea rows="3" class="form-control" id="preply_content" name="preply_content"></textarea></div>
+					<div class="col-sm-10"></div>
+					<div class="col-sm-2"><button id="replyAddBtn" class="btn-primary btn">후기 입력</button></div>
 				</div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-12 text-left">
@@ -295,38 +289,141 @@
 				</div>
 			</div>
 			
-			<div id="replies" class="col-sm text-left">
+			<div id="replies" class="col-sm-12 text-left">
+			</div>
+			<div id="paging" class="col-sm-12 text-left">
+				<ul class='pagination'>
+				</ul>
 			</div>
 			<script>
-				var product_seq = ${product_detail.product_seq};					
-				$.getJSON("/replies/all/"+product_seq, function(data) {
-					var str = "";
-					console.log(data.length);
+				getPageList(1);
+				
+				var product_seq = ${product_detail.product_seq};
+				var page = 1;
+				
+				
+				
+				function getPageList(page){
+					var product_seq = ${product_detail.product_seq};
 					
-					$(data).each(
-							function(){
-								str += "<div data-product_seq='"+this.product_seq+"' class='col-sm-12 text-left'>"
-								+ "<div class='col-sm-1'></div>"
-								+ "<div class='media col-sm-10'>"
-								+ "<div class='media-left text-center'>"
-								+ "<a href='#'> <img class='media-object img-circle' src='/resources/img/search/original_12.jpg' alt='...'>"
-								+ "</a>"+this.member_id
-								+ "</div>"
-								+ "<div class='media-body text-left'>"
-								+ "<span>"+this.preply_content+"</span>"
-								+ "<br>"
-								+ "<span> 별점 : " +this.member_score+"</span>"
-								+ "</div>"
-								+ "</div>"
-								+ "<div class='col-sm-1'></div>"
-								+ "<div class='col-sm-12 text-left'>"
-								+ "<hr>"
-								+ "</div>"
-								+ "</div>";	
-							});
-					$("#replies").html(str);
+					$.getJSON("/replies/"+product_seq+"/"+page, function(data) {
+						var str = "";
+						console.log(data.list.length);
+						$(data.list).each(
+								function(){
+									str += "<div data-product_seq='"+this.product_seq+"' class='col-sm-12 text-left'>"
+									+ "<div class='col-sm-1'></div>"
+									+ "<div class='media col-sm-10'>"
+									+ "<div class='media-left text-center'>"
+									+ "<a href='#'> <img class='media-object img-circle' src='/resources/img/search/original_12.jpg' alt='...'>"
+									+ "</a>" +this.member_id
+									+ "</div>"
+									+ "<div class='media-body text-left'>"
+									+ "<span>"+this.preply_content+"</span>"
+									+ "<br>"
+									+ "<span> 별점 : " +this.member_score+"</span>"
+									+ "<br>"+this.preply_regdt
+									+ "</div>"
+									+ "</div>"
+									+ "<div class='col-sm-1'></div>"
+									+ "<div class='col-sm-12 text-left'>"
+									+ "<hr>"
+									+ "</div>"
+									+ "</div>";	
+								});
+						$("#replies").html(str);
+						
+						printPaging(data.pageMaker);
+						
+					});	
+				}
+				/* function getAllList(){
+					var product_seq = ${product_detail.product_seq};					
+					$.getJSON("/replies/all/"+product_seq, function(data) {
+						var str = "";
+						console.log(data.length);
+						
+						
+						$(data).each(
+								function(){
+									str += "<div data-product_seq='"+this.product_seq+"' class='col-sm-12 text-left'>"
+									+ "<div class='col-sm-1'></div>"
+									+ "<div class='media col-sm-10'>"
+									+ "<div class='media-left text-center'>"
+									+ "<a href='#'> <img class='media-object img-circle' src='/resources/img/search/original_12.jpg' alt='...'>"
+									+ "</a>"+this.member_id
+									+ "</div>"
+									+ "<div class='media-body text-left'>"
+									+ "<span>"+this.preply_content+"</span>"
+									+ "<br>"
+									+ "<span> 별점 : " +this.member_score+"</span>"
+									+ "<br>"+ this.preply_regdt
+									+ "</div>"
+									+ "</div>"
+									+ "<div class='col-sm-1'></div>"
+									+ "<div class='col-sm-12 text-left'>"
+									+ "<hr>"
+									+ "</div>"
+									+ "</div>";	
+								});
+						$("#replies").html(str);
+					});
+				} */
+				
+				$("#replyAddBtn").on("click", function() {
+					var preply_content = $("#preply_content").val();
+					var product_seq = ${product_detail.product_seq};
+					var member_id = 201611030016;
+					var member_score = 5;
+					$.ajax({
+						type : 'post',
+						url : '/replies',
+						headers : {
+							"Content-Type" : "application/json",
+							"X-HTTP-Method-Override" : "POST"
+						},
+						dataType : 'text',
+						data : JSON.stringify({
+							product_seq : product_seq,
+							member_id :  member_id,
+							preply_content : preply_content,
+							member_score : member_score=5
+						}),
+						success : function(){
+							getAllList();
+						}
+					});
+					
 				});
-			</script>
+				
+			function printPaging(pageMaker) {
+				var str="";
+				var product_seq = ${product_detail.product_seq};
+				if(pageMaker.prev) {
+					str += "<li><a href='"+(pageMaker.startPage-1)+"'> << </a></li>";
+				}
+				
+				for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
+					var strClass = pageMaker.pcri.page == i?'class=active':'';
+					str += "<li "+strClass+"><a href='"+i+"'>"+i+"</a></li>";
+				}
+				
+				if(pageMaker.next){
+					str += "<li><a href='"+(pageMaker.endPage + 1)+"'> >> </a></li>";
+				}
+				
+				$('.pagination').html(str);
+			}
+				
+			var replyPage = 1;
+			$(".pagination").on("click", "li a", function(event){
+				event.preventDefault();
+				
+				replyPage = $(this).attr("href");
+				
+				getPageList(replyPage);
+			})
+				</script>
 			<!-- 후기 foreach 끝 -->
 
 			<!-- 호스트 정보 -->
