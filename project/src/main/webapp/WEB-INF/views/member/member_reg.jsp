@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@	page session="false" %>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<%@include file="../header.jsp"%>
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Registration</title>
@@ -17,6 +17,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<script type="text/javascript" src="/resources/js/validation_memberReg.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	var formobj = $("form[role='form']");
@@ -24,9 +25,24 @@ $(document).ready(function(){
 	$(".btn-goHome").on("click", function(){
 		self.location = "/";
 	});
-
+	
+	$("#regist_btn").on("click", function() {
+		var pwd_check_message = document.getElementById("pwd-check-message").innerHTML;
+		var member_pwd = document.getElementById("member_pwd").value;
+		var member_pwd_check = document.getElementById("member_pwd_check").value;
+		
+		if(pwd_check_message == "") {
+			alert ("비밀번호를 확인해주세요 \n\nPlease check your password.\n");
+			return false;
+		}
+		if(member_pwd != member_pwd_check) {
+			alert ("입력하신 비밀번호가 일치하지 않습니다. \n\nPassword is not agree.\n");
+			return false;
+		} else {
+			return true;
+		}		
+	});
 });
-
 
 $(function() {
     imageChange($("#img"),$("#searchFile"));
@@ -56,6 +72,7 @@ $('#modal-countryNum').on('shown.bs.modal', function() {
 	$('#search-country-num').focus();
 });
 
+
 function country_select(country_name_eng,country_name_kor,country_id){
 	$("#country_id").val(country_id);
 	$("#member_country").val(country_name_eng+" ("+country_name_kor+")");
@@ -69,10 +86,19 @@ function countryNum_select(country_num) {
 
 </script>
 <style type="text/css">
+#content-head {
+	margin-top: 50px;
+	width : 1060px;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: #eee solid 1px;	
+}
+
 #reg-form{
-	margin-top: 250px;
+	margin-top: 100px;
 	margin-left: auto;
 	margin-right: auto;	
+	margin-bottom: 100px;	
 }
 
 .reg-form-tb{
@@ -170,8 +196,12 @@ function countryNum_select(country_num) {
 	cursor:default;
 }
 </style>
-</head>
-<body>
+
+<!-- body -->
+	<div id="content-head">
+	<h2>Membership</h2>
+	<h1><strong>회원가입</strong></h1>
+	</div>
 	<div id="reg-form" align="center">
 		<form action="member_reg" method="post" name="frm" enctype="multipart/form-data">
 			<input type="hidden" name="country_id" id="country_id">
@@ -194,17 +224,20 @@ function countryNum_select(country_num) {
 					<td><input type="password" name="member_pwd" id="member_pwd" class="form-control" placeholder="password"></td>
 				</tr>
 				<tr>
-					<td><label class="col-sm-2 control-label">Password confirm</label></td>
-					<td><input type="password" id="member_pwd_confirm" class="form-control" placeholder="password confirm"></td>
+					<td><label class="col-sm-2 control-label">Password Check</label></td>
+					<td><input type="password" id="member_pwd_check" class="form-control" placeholder="password check"></td>
 				</tr>
 				<tr>
-					<td><label class="col-sm-2 control-label" id="confirm-message-label"></label></td>
-					<td><div id="confirm-message"></div></td>
+					<td><label class="col-sm-2 control-label" id="pwd-check-msglabel"></label></td>
+					<td>
+						<button type="button" id="search" class='btn btn-info' onclick="passwordCheck()">Check</button>
+						<span id="pwd-check-message"></span>
+					</td>
 				</tr>
 				<tr>
 					<td><label class="col-sm-2 control-label">Name</label></td>
 					<td>
-						<input type="text" name="member_first_name" class="form-control" placeholder="이름 / first name" style="float:left; width:242;">
+						<input type="text" name="member_first_name" class="form-control" placeholder="이름 / first name" style="float:left; width:242px;">
 						<input type="text" name="member_last_name" class="form-control" placeholder="성 / last_name" style="float:right; width:242px;">
 					</td>
 				</tr>
@@ -251,7 +284,7 @@ function countryNum_select(country_num) {
 			<br>
 			<div class="insert-button" align="center">
 				<button type="button" class='btn btn-primary btn-goHome'>Go Home</button>
-				<button type="submit" id="regist_btn" class='btn btn-info'>Regist</button>
+				<button type="button" id="regist_btn" class='btn btn-info' onclick="regInputCheck()">Register</button>
 				<button type="reset" class='btn btn-default'>Reset</button>			
 			</div>
 		</form>
@@ -353,5 +386,6 @@ function countryNum_select(country_num) {
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-</body>
-</html>
+
+	
+<%@include file="../footer.jsp"%>

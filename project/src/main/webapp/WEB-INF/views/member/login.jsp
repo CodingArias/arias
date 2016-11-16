@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@	page session="false" %>
-<html>
-<head>
+
+<%@include file="../header.jsp"%>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login</title>
 <link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript">
 function loginCheck() {
@@ -26,10 +26,26 @@ function loginCheck() {
 }
 </script>
 
-</head>
-<body>
+<style type="text/css">
+#content-head {
+	margin-top: 50px;
+	width : 1060px;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: #eee solid 1px;	
+}
+
+</style>
+
+<!-- body -->
+	<div id="content-head">
+	<h2>Log in</h2>
+	<h1><strong>로그인</strong></h1>
+	</div>	
+	
+	<div style="margin-bottom: 300px;">
 	<form class="form-horizontal" action="/member/loginPost" method="post" name="frm">
-		<div style="margin-top:300px; margin-left: 30%;">
+		<div style="margin-top:200px; margin-left: 30%;">
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-10">
@@ -65,6 +81,6 @@ function loginCheck() {
 			</div>
 		</div>
 	</form>
+	</div>
 	
-</body>
-</html>
+<%@include file="../footer.jsp"%>
