@@ -637,6 +637,8 @@ $("title").text("Hosting Write Completed..");
 			<div class="col-sm-12">
 				<hr>
 			</div>
+			<!-- 숙소 이용규칙 끝-->
+			
 			<!-- 가격-->
 			<div class="col-sm-12 text-left">
 				<div class="col-sm-2 text-left">
@@ -697,8 +699,8 @@ $("title").text("Hosting Write Completed..");
 			</div>			
 			
 			<div class="col-sm-12 text-right">
-				<input id="saveBtn" class="btn btn-success" type="submit"
-					value="저장 확인" />
+				<input id="saveBtn" class="btn btn-success" type="button"
+					value="저장 확인" onclick="location.href='/';"/>
 			</div>
 
 		</div>
