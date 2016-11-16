@@ -261,17 +261,17 @@ public class ProductInsertController {
 	public ModelAndView product_insert_step_last(HttpServletRequest request) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession();
-		int product_seq= 0;
+		int product_seq= 65;
 		if(session.getAttribute("product_seq")!=null){
 			product_seq = (Integer)session.getAttribute("product_seq");
-			/*
+			
 			if (session.getAttribute("product_seq") == null || session.getAttribute("product_step")==null 
 					|| (Integer)session.getAttribute("product_step")!=9) {
 				modelAndView.setViewName("redirect:/");
 			} 
 			else {
 				modelAndView.setViewName("/product/product_insert_step_last");
-			}*/
+			}
 			
 			System.out.println(service.select_product_detail(product_seq));
 			modelAndView.addObject("product_member", service.product_member(product_seq));
@@ -280,8 +280,10 @@ public class ProductInsertController {
 			modelAndView.addObject("product_space", service.product_space(product_seq));
 			modelAndView.addObject("product_regulation", service.product_regulation(product_seq));
 			modelAndView.addObject("product",service.select_product_detail(product_seq));
-			modelAndView.setViewName("/product/product_insert_step_last");
+			modelAndView.addObject("product_pic",service.selectAllproductPicture(product_seq));
 			
+			modelAndView.setViewName("/product/product_insert_step_last");
+		
 		}
 		else{
 			modelAndView.setViewName("redirect:/");

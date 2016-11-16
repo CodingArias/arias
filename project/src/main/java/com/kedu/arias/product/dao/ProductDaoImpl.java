@@ -12,6 +12,7 @@ import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.product.dto.Convin_code;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
+import com.kedu.arias.product.dto.ProductImgDto;
 import com.kedu.arias.product.dto.Regulation_code;
 import com.kedu.arias.product.dto.Safety_code;
 import com.kedu.arias.product.dto.Space_code;
@@ -167,5 +168,9 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public MemberDto product_member(int product_seq) throws Exception {
 		return session.selectOne(namespace+".product_member", product_seq);
+	}
+	@Override
+	public List<ProductImgDto> selectAllproductPicture(int product_seq) {
+		return session.selectList(namespace+".selectAllproductPicture", product_seq);
 	}
 }
