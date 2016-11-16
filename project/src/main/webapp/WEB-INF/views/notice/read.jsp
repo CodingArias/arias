@@ -36,10 +36,17 @@
 	});
  	
  	$(".listallBtn").on("click", function(){
- 		formObj.attr("action", "/notice/list");
+
+ 		formObj.attr("action", "/notice/list?notice_seq=12&${searchType}=&${keyword}=?${notice_seq}&${searchType}=&${keyword}");
+
+ 
+
+ 		location.href="/notice/list?curPage=${page.curPage}&keyword=${page.keyword}&searchType=${page.searchType}";
+ /* 		formObj.attr("action", "/notice/list?curPage='${page.curPage}'&keyword='${page.keyword}'&searchType='${page.searchType}'");
+>>>>>>> a899ca656ab5f46f4cb1ffb15e3ef91da4636fc7
 		formObj.attr("method", "get");		
 		formObj.submit();
-	});
+ */	});
  	
   });
 	</script>

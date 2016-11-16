@@ -51,7 +51,7 @@
 
 <body>
 
-<div class="container">
+<div align="center" class="container">
   <h2>회원상세정보</h2>
   
   <form role="form" action="modify" method="post">
@@ -64,38 +64,38 @@
   
     <div class="form-group">
       <label for="member_id">회원번호</label>
-      <input type="text" class="form-control" name="member_id" value="${memberDto.member_id}" readonly="readonly">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_id" value="${memberDto.member_id}" readonly="readonly">
     </div>
   
     <div class="form-group">
       <label for="member_email">회원아이디</label>
-      <input type="text" class="form-control" name="member_email" value="${memberDto.member_email}" readonly="readonly">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_email" value="${memberDto.member_email}" readonly="readonly">
     </div>
     
      <div class="form-group">
       <label for="member_last_name">회원이름</label>
-      <input type="text" class="form-control" name="member_last_name" value="${memberDto.member_last_name}" readonly="readonly">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_last_name" value="${memberDto.member_last_name}" readonly="readonly">
     </div>
     
     <div class="form-group">
       <label for="country_id">국적</label>
-      <input type="text" class="form-control" name="member_country" value="${memberDto.country_id}" readonly="readonly">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_country" value="${memberDto.country_id}" readonly="readonly">
     </div>
     
     <div class="form-group">
       <label for="member_phone">전화번호</label> 
-      <input type="text" class="form-control" name="member_phone" value="${memberDto.member_phone}" readonly="readonly">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_phone" value="${memberDto.member_phone}" readonly="readonly">
     </div>
     
     <div class="form-group">
       <label for="member_birthday">생년월일</label>
-      <input type="text" class="form-control" name="member_birthday" 
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_birthday" 
       value="${memberDto.member_birthday}" readonly="readonly">
     </div>
     
      <div class="form-group">
       <label for="member_reg_date">등록일</label>
-      <input type="text" class="form-control" name="member_reg_date" 
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_reg_date" 
       value="${memberDto.member_reg_date}" pattern="YYYY-MM-dd" readonly = "readonly">
     </div>
     

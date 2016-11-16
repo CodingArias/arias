@@ -16,13 +16,25 @@ public class ProductDetailController {
 	@Inject
 	private ProductService service;
 	
+	
+	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String home(@RequestParam("product_seq") int product_seq, Model model) throws Exception{
 		
 		
 		System.out.println(service.select_product_detail(product_seq));
+		
+		model.addAttribute("product_safety", service.product_safety(product_seq));
+		model.addAttribute("product_convin", service.product_convin(product_seq));
+		model.addAttribute("product_space", service.product_space(product_seq));
+		model.addAttribute("product_regulation", service.product_regulation(product_seq));
+		
 		model.addAttribute("product_detail",service.select_product_detail(product_seq));
+		
+		model.addAttribute("product_member", service.product_member(product_seq));
 		
 		return "product/product_detail";
 	}
+	
+	
 }

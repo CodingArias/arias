@@ -44,40 +44,40 @@
 
 <body>
 
-<div class="container">
+<div align="center" class="container">
   <h2>회원정보수정</h2>
   
   <form role="form" method="post" action="modify">
     
     <div class="form-group">
       <label for="member_id">회원번호</label>
-      <input type="text" class="form-control" name="member_id" value="${memberDto.member_id}" readonly="readonly">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_id" value="${memberDto.member_id}" readonly="readonly">
     </div>
   
     <div class="form-group">
       <label for="member_email">회원아이디</label>
-      <input type="text" class="form-control" name="member_email" value="${memberDto.member_email}" readonly="readonly">
+      <input style="text-align: center; width: auto"  type="text" class="form-control" name="member_email" value="${memberDto.member_email}" readonly="readonly">
       
     </div>
     
     <div class="form-group">
       <label for="member_first_name">회원'성'</label>
-      <input type="text" class="form-control" name="member_first_name" value="${memberDto.member_first_name}">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_first_name" value="${memberDto.member_first_name}">
     </div>
     
      <div class="form-group">
       <label for="member_last_name">회원'이름'</label>
-      <input type="text" class="form-control" name="member_last_name" value="${memberDto.member_last_name}">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_last_name" value="${memberDto.member_last_name}">
     </div>
     
     <div class="form-group">
       <label for="country_id">국적</label>
-      <input type="text" class="form-control" name="country_id" value="${memberDto.country_id}">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="country_id" value="${memberDto.country_id}">
     </div>
     
     <div class="form-group">
       <label for="member_phone">전화번호</label> 
-      <input type="text" class="form-control" name="member_phone" value="${memberDto.member_phone}">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_phone" value="${memberDto.member_phone}">
     </div>
     
     

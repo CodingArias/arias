@@ -5,13 +5,7 @@
 
 <%@include file="../header.jsp"%>
 
-<!--지도 스크립트  -->
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&callback=initMap"
-	async defer>
-</script>
 
-<!-- 지도스크립트 끝 -->
 <!-- 한글화 및 한국식 날짜표기를 적용한 datepicker 구성요소-->
 <link rel="stylesheet" type="text/css"
 	href="/resources/datepicker/daterangepicker.css">
@@ -20,21 +14,7 @@
 	src="/resources/datepicker/daterangepicker.js"></script>
 
 
-<script type="text/javascript">
-	var map;
-	function initMap() {
-		// Create a map object and specify the DOM element for display.
-		map = new google.maps.Map(document.getElementById('map'), {
-			center : {
-				lat : 37.566535,
-				lng : 126.9779692
-			},
-			scrollwheel : true, //마우스 휠로 확대 축소 사용 여부
-			mapTypeControl : false, //맵 타입 컨트롤 사용 여부
-			zoom : 17
-		});
-	}
-</script>
+
 <style>
 #map {
 	height: 700px;
@@ -117,35 +97,88 @@
 				<hr>
 			</div>
 
-			<!-- 숙소 -->
+		
+			
 			<div class="col-sm-12 text-left">
 				<div class="col-sm-2 text-left">
 					<strong>숙소</strong>
 				</div>
-				<div class="col-sm-5 text-left">
-					숙박 가능 인원 : ${product_detail.number_of_people }<br> 욕실 : 1 <br> 침대 종류 : 침대<br> 침실 : 1<br>
-					침대 : 1
+				<div class="col-sm-10 text-left">
+					<div class="col-sm-6">
+					숙박 가능 인원 : ${product_detail.number_of_people}
+					</div>
+					<div class="col-sm-6">
+					건물유형 : ${product_detail.building_name}
+					</div>
+					<div class="col-sm-6">
+					침대 종류 : ${product_detail.bed_name }
+					</div>
+					<div class="col-sm-6">
+					추천 손님 : ${product_detail.sguest_name }
+					</div>
+					<div class="col-sm-6">
+					숙소 유형 : ${product_detail.accom_name}
+					</div>
 				</div>
-				<div class="col-sm-5 text-left">
-					체크인 : 14:00 이후<br> 체크아웃 : 12:00<br> 집 유형 : 아파트<br>
-					숙소 유형 : 개인실
+			</div>
+			<div class="col-sm-12">
+				<hr>
+			</div>
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>예약 정보</strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<div class="col-sm-6">
+					최소 숙박 가능 일수 : ${product_detail.product_mindt }일
+					</div>
+					<div class="col-sm-6">
+					체크인 : ${product_detail.checkin_time } 이후
+					</div>
+					<div class="col-sm-6">
+					최대 숙박 가능 일수 : ${product_detail.product_maxdt }일
+					</div>
+					<div class="col-sm-6">
+					체크아웃 : ${product_detail.checkout_time }
+					</div>
+					<div class="col-sm-6">
+					준비 기간 : ${product_detail.product_readydt }일
+					</div>
+					<div class="col-sm-6">
+					최소 몇일 전 예약 : ${product_detail.product_prepdt}일
+					</div>
 				</div>
 			</div>
 
 			<div class="col-sm-12">
 				<hr>
 			</div>
-			<!-- 시설 -->
 			<div class="col-sm-12 text-left">
 				<div class="col-sm-2 text-left">
-					<strong>시설</strong>
+					<strong>사용 가능 공간</strong>
 				</div>
-				<div class="col-sm-5 text-left">
-					
-					건물 내 엘리베이터<br> 인터넷
+				<div class="col-sm-10 text-left">
+					<c:forEach items="${product_space}" var="product_space">
+					<div class="col-sm-6">
+						${product_space.space_name}
+					</div>
+					</c:forEach>
 				</div>
-				<div class="col-sm-5 text-left">
-					아침 식사 <br> 옷걸이<br>
+			</div>
+
+			<div class="col-sm-12">
+				<hr>
+			</div>
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>제공 서비스</strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<c:forEach items="${product_convin}" var="product_convin">
+					<div class="col-sm-6">
+						${product_convin.convin_name}
+					</div>
+					</c:forEach>
 				</div>
 			</div>
 
@@ -155,24 +188,32 @@
 			
 			<div class="col-sm-12 text-left">
 				<div class="col-sm-2 text-left">
-					<strong>시설</strong>
+					<strong>안전 기능</strong>
 				</div>
 				<div class="col-sm-10 text-left">
+					<c:forEach items="${product_safety}" var="product_safety">
 					<div class="col-sm-6">
-					abc
+						${product_safety.safety_name}
 					</div>
+					</c:forEach>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<hr>
+			</div>
+			
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>숙소 이용 규칙</strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<c:forEach items="${product_regulation}" var="product_regulation">
 					<div class="col-sm-6">
-					def
+						${product_regulation.regulation_name}
 					</div>
-					<div class="col-sm-6">
-					def
-					</div>
-					<div class="col-sm-6">
-					def
-					</div>
-					<div class="col-sm-6">
-					def
-					</div>
+					</c:forEach>
+					
 				</div>
 			</div>
 
@@ -184,69 +225,18 @@
 				<div class="col-sm-2 text-left">
 					<strong>가격</strong>
 				</div>
-				<div class="col-sm-5 text-left">일 단위 요금 : ￦42319</div>
-				<div class="col-sm-5 text-left"></div>
-			</div>
-
-			<div class="col-sm-12">
-				<hr>
-			</div>
-			<!-- 설명-->
-			<div class="col-sm-12 text-left">
-				<div class="col-sm-2 text-left">
-					<strong>설명</strong>
-				</div>
 				<div class="col-sm-10 text-left">
-					<span>서울의 중심에 위치한 뷰가 좋은 고층아파트 입니다. 서대문역에서 도보 2분이며, 시청역 10번
-						출구에서도 도보 10분 정도면 접근가능합니다. 인근에 덕수궁 돌담길, 정동길, 서울 시립미술관, 경희궁, 서울역사박물관
-						등이 소재하여, 명동, 서울역, 광화문, 서울시청, 남대문시장, 남산 등 많은 관광명소에 도보로 접근가능합니다. 인근에
-						농협 하나로마트, 편의점, 파리바게뜨 베이커리, 스타벅스, 폴바셋 등 커피샵, 농협은행, 하나은행 등 생활편의시설이
-						소재하여 이용에 편리합니다.</span>
-				</div>
+				<div class="col-sm-6">
+						일 단위 요금 :＄${product_detail.product_price}
+					</div>
 			</div>
 
 			<div class="col-sm-12">
 				<hr>
 			</div>
-			<!-- 숙소 이용규칙 -->
-			<div class="col-sm-12 text-left">
-				<div class="col-sm-2 text-left">
-					<strong>숙소 이용규칙</strong>
-				</div>
-				<div class="col-sm-10 text-left">
-					흡연 금지 <br> 반려동물 동반에 적합하지 않음<br> 파티나 이벤트 금지<br>
-					어린이(0-12세) 숙박에 안전하거나 적합하지 않을 수 있음 <br> 체크인은 14:00 이후입니다. <br>
-					No smoking No drinking <br> Only for women and couple(No Kids)
-					<br>
-				</div>
-			</div>
+			
+			
 
-			<div class="col-sm-12">
-				<hr>
-			</div>
-			<div class="col-sm-12 text-left">
-				<div class="col-sm-2 text-left">
-					<strong>안전 기능</strong>
-				</div>
-				<div class="col-sm-5 text-left">화재 감지기</div>
-				<div class="col-sm-5 text-left">소화기</div>
-			</div>
-
-			<div class="col-sm-12">
-				<hr>
-			</div>
-			<!-- 예약 가능 여부 -->
-			<div class="col-sm-12 text-left">
-				<div class="col-sm-2 text-left">
-					<strong>예약 가능 여부</strong>
-				</div>
-				<div class="col-sm-5 text-left">최소 숙박 1일</div>
-				<div class="col-sm-5 text-left"></div>
-			</div>
-
-			<div class="col-sm-12">
-				<hr>
-			</div>
 			<div class="col-sm-12">
 				<br>
 			</div>
@@ -323,14 +313,11 @@
 						<!-- 임의 이미지  -->
 						<a href="#"> <img class="media-object img-circle"
 							src="/resources/img/search/original_12.jpg" alt="...">
-
-						</a> 아이디
+						</a>
 					</div>
-					<!-- 댓글 작성창 -->
 					<div class="media-body text-left">
-						<h4 class="media-heading">호스트 아이디</h4>
-						호스트 주소 회원 가입일<br>
-						<p>저희집으로 놀러오세요</p>
+						<h4 class="media-heading">${product_member.member_id}</h4>
+						회원 가입일 : ${product_member.member_reg_date }<br>
 					</div>
 				</div>
 				<div class="col-sm-1"></div>
@@ -343,7 +330,7 @@
 				<br>
 			</div>
 		</div>
-
+</div>
 
 		<!-- 가격 및 날짜표시 -->
 		<div class="col-sm-3">
@@ -382,8 +369,39 @@
 	</div>
 </div>
 
-
 <br>
+
+<!--지도 스크립트  -->
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&callback=initMap"
+	async defer>
+</script>
+
+<!-- 지도스크립트 끝 -->
+<script type="text/javascript">
+	var map;
+	
+	
+	
+	
+	function initMap() {
+		// Create a map object and specify the DOM element for display.
+		map = new google.maps.Map(document.getElementById('map'), {
+			center : {
+				lat : Number('${product_detail.product_lat}'),
+				lng : Number('${product_detail.product_lng}')
+			},
+			scrollwheel : true, //마우스 휠로 확대 축소 사용 여부
+			mapTypeControl : false, //맵 타입 컨트롤 사용 여부
+			zoom : 15
+		});
+		var myLatLng = {lat: Number('${product_detail.product_lat}') , lng:Number('${product_detail.product_lng}') };
+		var marker = new google.maps.Marker({
+		    position: myLatLng,
+		    map: map,
+		  });
+	}
+</script>
 
 <%@include file="../footer.jsp"%>
 <!--달력 스크립트  -->

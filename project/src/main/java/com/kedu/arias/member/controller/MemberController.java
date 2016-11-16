@@ -21,14 +21,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.kedu.arias.member.dao.MemberDao;
+import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.member.dto.SearchCriteria;
 import com.kedu.arias.member.service.CountrycodeService;
 import com.kedu.arias.member.service.MemberService;
+import com.kedu.arias.notice.dto.NoticeDto;
 import com.kedu.arias.util.FileUploader;
+import com.kedu.arias.util.PageHelper;
 
 
 @Controller
@@ -37,6 +39,7 @@ public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
+	private PageHelper pageHelper = PageHelper.getInstance();
 	@Inject
 	private MemberService service;
 	
@@ -145,16 +148,40 @@ public class MemberController {
 	
 //현수
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-    public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+    /*public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
 	    logger.info(cri.toString());
 
 	    model.addAttribute("list", service.listSearchCriteria(cri));
 
-	    System.out.println("list!!"+service.listSearchCriteria(cri));
+	    System.out.println("list!!"+service.listSearchCriteria(cri));*/
 	
-	
+	public void listAll( Model model
+    		,@ModelAttribute("page") PageDto pageDto
+    		) throws Exception {
+
+		if(pageDto.getCurPage()<1)
+			pageDto.setCurPage(1);
+		
+	    int recordPerPage = 5;
+	    
+	    //공지사항의 총 개수 
+	    int totalRecord   = service.selectAllNoticeCount(pageDto);
+	    List<NoticeDto> nDto = service.selectNoticeList(pageDto, recordPerPage);
+	    model.addAttribute("list", nDto);
+	    System.out.println("totalRecord : "+ totalRecord);
+	    System.out.println(nDto);
+	    System.out.println(nDto.size());
+	    
+	    
+	    //페이징 블럭 그룹 생성
+	    pageHelper.getBlockGroup(pageDto.getCurPage(), recordPerPage, totalRecord,pageDto);
+	    System.out.println(pageDto);
 	}
+	
+	
+	
+	
 	
 	  @RequestMapping(value = "/read", method = RequestMethod.GET)
 	  public void read(@RequestParam("member_id") String member_id, @ModelAttribute("cri") SearchCriteria cri, Model model)
