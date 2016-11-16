@@ -11,6 +11,7 @@ import com.kedu.arias.product.dao.ProductDao;
 import com.kedu.arias.product.dto.Convin_code;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
+import com.kedu.arias.product.dto.ProductImgDto;
 import com.kedu.arias.product.dto.Regulation_code;
 import com.kedu.arias.product.dto.Safety_code;
 import com.kedu.arias.product.dto.Space_code;
@@ -125,5 +126,9 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public MemberDto product_member(int product_seq) throws Exception {
 		return pDao.product_member(product_seq);
+	}
+	@Override
+	public List<ProductImgDto> selectAllproductPicture(int product_seq) {
+		return pDao.selectAllproductPicture(product_seq);
 	}
 }

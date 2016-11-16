@@ -1,6 +1,7 @@
 package com.kedu.arias.product.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -33,7 +34,7 @@ public class ReplyDaoImpl implements ReplyDao {
 		session.update(namespace+".update_reply", dto);
 	}
 	@Override
-	public void delete_reply(ReplyDto dto) throws Exception {
-		session.delete(namespace+".delete_reply", dto);
+	public void delete_reply(Map<String, Object> map) throws Exception {
+		session.delete(namespace+".delete_reply", map);
 	}
 }

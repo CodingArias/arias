@@ -16,7 +16,7 @@ async defer></script>
 
 <script type="text/javascript">
 
-$("title").text("Hosting Step1");
+$("title").text("Hosting Step1 - 숙소 정보");
 $(function(){
 	imageChange($("#image"),$("#product_main_img"));
 	$("#saveBtn").click(function(){

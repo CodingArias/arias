@@ -6,10 +6,464 @@
 <%@include file="../header.jsp"%>
 
 
+<script type="text/javascript"
+	src="/resources/js/gallery_slider/jssor.slider-21.1.6.mini.js"></script>
 
+<script type="text/javascript">
+
+$("title").text("Hosting Write Completed..");
+	jQuery(document).ready(function($) {
+
+		var jssor_1_SlideshowTransitions = [ {
+			$Duration : 1200,
+			x : 0.3,
+			$During : {
+				$Left : [ 0.3, 0.7 ]
+			},
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			x : -0.3,
+			$SlideOut : true,
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			x : -0.3,
+			$During : {
+				$Left : [ 0.3, 0.7 ]
+			},
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			x : 0.3,
+			$SlideOut : true,
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			y : 0.3,
+			$During : {
+				$Top : [ 0.3, 0.7 ]
+			},
+			$Easing : {
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			y : -0.3,
+			$SlideOut : true,
+			$Easing : {
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			y : -0.3,
+			$During : {
+				$Top : [ 0.3, 0.7 ]
+			},
+			$Easing : {
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			y : 0.3,
+			$SlideOut : true,
+			$Easing : {
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			x : 0.3,
+			$Cols : 2,
+			$During : {
+				$Left : [ 0.3, 0.7 ]
+			},
+			$ChessMode : {
+				$Column : 3
+			},
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			x : 0.3,
+			$Cols : 2,
+			$SlideOut : true,
+			$ChessMode : {
+				$Column : 3
+			},
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			y : 0.3,
+			$Rows : 2,
+			$During : {
+				$Top : [ 0.3, 0.7 ]
+			},
+			$ChessMode : {
+				$Row : 12
+			},
+			$Easing : {
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			y : 0.3,
+			$Rows : 2,
+			$SlideOut : true,
+			$ChessMode : {
+				$Row : 12
+			},
+			$Easing : {
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			y : 0.3,
+			$Cols : 2,
+			$During : {
+				$Top : [ 0.3, 0.7 ]
+			},
+			$ChessMode : {
+				$Column : 12
+			},
+			$Easing : {
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			y : -0.3,
+			$Cols : 2,
+			$SlideOut : true,
+			$ChessMode : {
+				$Column : 12
+			},
+			$Easing : {
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			x : 0.3,
+			$Rows : 2,
+			$During : {
+				$Left : [ 0.3, 0.7 ]
+			},
+			$ChessMode : {
+				$Row : 3
+			},
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			x : -0.3,
+			$Rows : 2,
+			$SlideOut : true,
+			$ChessMode : {
+				$Row : 3
+			},
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			x : 0.3,
+			y : 0.3,
+			$Cols : 2,
+			$Rows : 2,
+			$During : {
+				$Left : [ 0.3, 0.7 ],
+				$Top : [ 0.3, 0.7 ]
+			},
+			$ChessMode : {
+				$Column : 3,
+				$Row : 12
+			},
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			x : 0.3,
+			y : 0.3,
+			$Cols : 2,
+			$Rows : 2,
+			$During : {
+				$Left : [ 0.3, 0.7 ],
+				$Top : [ 0.3, 0.7 ]
+			},
+			$SlideOut : true,
+			$ChessMode : {
+				$Column : 3,
+				$Row : 12
+			},
+			$Easing : {
+				$Left : $Jease$.$InCubic,
+				$Top : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			$Delay : 20,
+			$Clip : 3,
+			$Assembly : 260,
+			$Easing : {
+				$Clip : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			$Delay : 20,
+			$Clip : 3,
+			$SlideOut : true,
+			$Assembly : 260,
+			$Easing : {
+				$Clip : $Jease$.$OutCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			$Delay : 20,
+			$Clip : 12,
+			$Assembly : 260,
+			$Easing : {
+				$Clip : $Jease$.$InCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		}, {
+			$Duration : 1200,
+			$Delay : 20,
+			$Clip : 12,
+			$SlideOut : true,
+			$Assembly : 260,
+			$Easing : {
+				$Clip : $Jease$.$OutCubic,
+				$Opacity : $Jease$.$Linear
+			},
+			$Opacity : 2
+		} ];
+
+		var jssor_1_options = {
+			$AutoPlay : true,
+			$SlideshowOptions : {
+				$Class : $JssorSlideshowRunner$,
+				$Transitions : jssor_1_SlideshowTransitions,
+				$TransitionsOrder : 1
+			},
+			$ArrowNavigatorOptions : {
+				$Class : $JssorArrowNavigator$
+			},
+			$ThumbnailNavigatorOptions : {
+				$Class : $JssorThumbnailNavigator$,
+				$Cols : 10,
+				$SpacingX : 8,
+				$SpacingY : 8,
+				$Align : 360
+			}
+		};
+
+		var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+		/*responsive code begin*/
+		/*you can remove responsive code if you don't want the slider scales while window resizing*/
+		function ScaleSlider() {
+			var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+			if (refSize) {
+				refSize = Math.min(refSize, 800);
+				jssor_1_slider.$ScaleWidth(refSize);
+			} else {
+				window.setTimeout(ScaleSlider, 30);
+			}
+		}
+		ScaleSlider();
+		$(window).bind("load", ScaleSlider);
+		$(window).bind("resize", ScaleSlider);
+		$(window).bind("orientationchange", ScaleSlider);
+		/*responsive code end*/
+	});
+</script>
 
 
 <style>
+/* jssor slider arrow navigator skin 05 css */
+/*
+        .jssora05l                  (normal)
+        .jssora05r                  (normal)
+        .jssora05l:hover            (normal mouseover)
+        .jssora05r:hover            (normal mouseover)
+        .jssora05l.jssora05ldn      (mousedown)
+        .jssora05r.jssora05rdn      (mousedown)
+        .jssora05l.jssora05lds      (disabled)
+        .jssora05r.jssora05rds      (disabled)
+        */
+.jssora05l, .jssora05r {
+	display: block;
+	position: absolute;
+	/* size of arrow element */
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	background: url('/resources/img/gallery_slider/a17.png') no-repeat;
+	overflow: hidden;
+}
+
+.jssora05l {
+	background-position: -10px -40px;
+}
+
+.jssora05r {
+	background-position: -70px -40px;
+}
+
+.jssora05l:hover {
+	background-position: -130px -40px;
+}
+
+.jssora05r:hover {
+	background-position: -190px -40px;
+}
+
+.jssora05l.jssora05ldn {
+	background-position: -250px -40px;
+}
+
+.jssora05r.jssora05rdn {
+	background-position: -310px -40px;
+}
+
+.jssora05l.jssora05lds {
+	background-position: -10px -40px;
+	opacity: .3;
+	pointer-events: none;
+}
+
+.jssora05r.jssora05rds {
+	background-position: -70px -40px;
+	opacity: .3;
+	pointer-events: none;
+}
+/* jssor slider thumbnail navigator skin 01 css */
+/*.jssort01 .p            (normal).jssort01 .p:hover      (normal mouseover).jssort01 .p.pav        (active).jssort01 .p.pdn        (mousedown)*/
+.jssort01 .p {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 72px;
+	height: 72px;
+}
+
+.jssort01 .t {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.jssort01 .w {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.jssort01 .c {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 68px;
+	height: 68px;
+	border: #000 2px solid;
+	box-sizing: content-box;
+	background: url('/resources/img/gallery_slider/t01.png') -800px -800px
+		no-repeat;
+	_background: none;
+}
+
+.jssort01 .pav .c {
+	top: 2px;
+	_top: 0px;
+	left: 2px;
+	_left: 0px;
+	width: 68px;
+	height: 68px;
+	border: #000 0px solid;
+	_border: #fff 2px solid;
+	background-position: 50% 50%;
+}
+
+.jssort01 .p:hover .c {
+	top: 0px;
+	left: 0px;
+	width: 70px;
+	height: 70px;
+	border: #fff 1px solid;
+	background-position: 50% 50%;
+}
+
+.jssort01 .p.pdn .c {
+	background-position: 50% 50%;
+	width: 68px;
+	height: 68px;
+	border: #000 2px solid;
+}
+
+* html .jssort01 .c, * html .jssort01 .pdn .c, * html .jssort01 .pav .c
+	{ /* ie quirks mode adjust */
+	width /**/: 72px;
+	height /**/: 72px;
+}
+
 .main {
 	height: auto;
 	width: 100%;
@@ -23,230 +477,230 @@
 	background: white;
 }
 
-.product_info_div{
+.product_info_div {
 	width: 50%;
-	height:100%;
+	height: 100%;
 	float: left;
 }
 
 .product_step {
 	height: 100px;
 }
+
 .row {
 	height: 1000px;
 }
-
 </style>
 
 <div class="main">
 	<div class="container">
 		<div class="product_step">
-			<h3>Hosting 완료 페이지</h3>
+		
+			<h3>Hosting Write Completed..</h3>
 			<hr>
 		</div>
 		<div class="row">
 			<!-- product 설명 구간-->
-			<div class="">
-				<div class="col-sm-12 text-left">
-					<div class="media-left text-center">
-						<!-- 임의 이미지  -->
-					<img style="width: 100px; height: 100px;" class="img-circle" src="/resources/img/main/liverpool.jpg" >
-						 <h4>회원 이름</h4>
-					</div>
-					<div class="media-right text-center">
-						<h3>즐거운 우리집 우리집으로 놀러오세요. 좋은 하루~</h3>
-						<h6>대한민국 서울특별시 노원구 월계동 산60-1</h6>
-						<h6>사슴아파트 1단지 102-505</h6>
-						
-					</div>
-	
-	
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-3 text-left">
+					<!-- 임의 이미지  -->
+					<img style="width: 100px; height: 100px;" class="img-circle"
+						src="/resources/img/main/liverpool.jpg">
+					<h4>회원 이름</h4>
 				</div>
-				
-
-
-				<div class="col-sm-12">
-					<hr>
+				<div class="col-sm-7 text-center">
+					<h2>${product.product_name }</h2>
+					<h6>${product.product_addr }</h6>
+					<h6>${product.product_addr_detail }</h6>
 				</div>
-				<!-- 상세 설명 -->
-				<div class="col-sm-12 text-left">
-					<h5>
-						<strong>상세 설명</strong>
-					</h5>
-					<span>Welcome to Katie & Jake’s home located in the heart of
-						Seoul. - Cozy private room with a beautiful city view - Walking
-						distance from attractions in central Seoul (Cityhall,
-						Gwanghuamoon, Deoksoo Palace, Namdaemoon Market, Namsan,
-						Myungdong) - Easy access to popular tourist attractions ( Hongdae,
-						Dondaemoon, Itaewon) - 2 min walk from Seodaemoon subway
-						station(#5) and 10 min walk fron seoul city hall station(#1,#2) -
-						Supermarket, 24 hours convenient stores, bakery, starbucks, bank
-						in a 3 minute.</span>
-				</div>
-				<div class="col-sm-12">
-					<hr>
-				</div>
-
-				<!-- 숙소 -->
-				<div class="col-sm-12 text-left">
-					<div class="col-sm-2 text-left">
-						<strong>숙소</strong>
-					</div>
-					<div class="col-sm-5 text-left">
-						숙박 가능 인원 : 2<br> 침대 종류 : 2층 침대<br> 숙소 유형 : 단체실<br>
-					</div>
-					<div class="col-sm-5 text-left">
-						건물 유형 : 아파트<br>
-						<c:if test="${1==2}">dddasdasdd</c:if>
-						추천 손님 : 가족 여행
-					</div>
-				</div>
-
-				<div class="col-sm-12">
-					<hr>
-				</div>
-
-				<!-- 예약 정보 -->
-				<div class="col-sm-12 text-left">
-					<div class="col-sm-2 text-left">
-						<strong>예약 정보</strong>
-					</div>
-					<div class="col-sm-5 text-left">
-						최소 숙박 가능 일수 : 3일<br> 
-						최대 숙박 가능 일수 : 2일<br>
-						준비 기간	: 5일<br>
-						최소 몇일 전 예약  : 2일
-
-					</div>
-					<div class="col-sm-5 text-left">
-						체크인 : 14:00 이후<br> 
-						체크아웃 : 12:00
-					</div>
-				</div>
-				<div class="col-sm-12">
-				<hr>
-				</div>
-
-				
-				<!-- 사용 가능 공간 -->
-				<div class="col-sm-12 text-left">
-					<div class="col-sm-2 text-left">
-						<strong>사용 가능 공간</strong>
-					</div>
-					<div class="col-sm-10 text-left">
-						<div class="col-sm-6 text-left">부엌</div>
-						<div class="col-sm-6 text-left">주차장</div>
-						<div class="col-sm-6 text-left">수영장</div>
-						<div class="col-sm-6 text-left">서재</div>
-						<div class="col-sm-6 text-left">헬스장</div>
-						<div class="col-sm-6 text-left">발코니</div>
-						<div class="col-sm-6 text-left">옥상</div>
-					</div>
-
-					
-					<!-- <div class="col-sm-5 text-left">
-					
-						부엌<br> 
-						주차장<br>
-						수영장<br>
-						서재<br>
-					</div>
-					<div class="col-sm-5 text-left">
-						헬스장 <br> 
-						발코니<br>
-						옥상<br>
-					</div> -->
-				</div>
-				<div class="col-sm-12">
-					<hr>
-				</div>
-					
-				<!-- 제공 서비스 -->
-				<div class="col-sm-12 text-left">
-					<div class="col-sm-2 text-left">
-						<strong>제공 서비스 </strong>
-					</div>
-					<div class="col-sm-5 text-left">
-						무선 인터넷<br> 
-						샴푸<br>
-						옷장/서랍장<br>
-						TV<br>
-						난방<br>
-						에어컨<br>
-						벽난로<br>
-						
-					</div>
-					<div class="col-sm-5 text-left">
-						다리미<br>
-						헤어 드라이기<br>
-						컴퓨터<br>
-						휴대폰 충전기<br>
-						세탁기<br>
-						건조기<br>
-						조식, 커피, 차<br>
-						필수 품목(수건, 비누, 화장지)<br>
-					</div>
-				</div>
-				<div class="col-sm-12">
-					<hr>
-				</div>
-				<!-- 안전 기능 -->
-				<div class="col-sm-12 text-left">
-					<div class="col-sm-2 text-left">
-						<strong>안전 기능</strong>
-					</div>
-					<div class="col-sm-5 text-left">
-						연기 감지기<br> 
-						일산화탄소 감지기<br>
-						구급 상자<br>
-						안전 정보 카드<br>
-						소화기<br>
-						침실 잠금 장치<br>
-						
-					</div>
-					<div class="col-sm-5 text-left">
-						금고<br>
-						스프링 쿨러<br>
-						세콤<br>
-						CCTV<br>
-						전자 도어락<br>
-					</div>
-				</div>
-				<div class="col-sm-12">
-					<hr>
-				</div>				
-				
-				
-				<!-- 숙소 이용규칙 -->
-				<div class="col-sm-12 text-left">
-					<div class="col-sm-2 text-left">
-						<strong>숙소 이용규칙</strong>
-					</div>
-					<div class="col-sm-10 text-left">
-						흡연 금지 <br> 
-						애완동물 동반 금지<br> 
-						주류 반입 금지<br>
-						마약류 반입 금지<br> 
-						파티 금지<br>
-						남녀 혼숙 금지<br> 
-					</div>
-				</div>
-				<div class="col-sm-12">
-					<hr>
-				</div>	
-				<!-- 가격-->
-				<div class="col-sm-12 text-left">
-					<div class="col-sm-2 text-left">
-						<strong>가격</strong>
-					</div>
-					<div class="col-sm-5 text-left">일 단위 요금 : ￦42319</div>
-				</div>
-				<div class="col-sm-12">
-					<hr>
-				</div>	
 
 
 			</div>
+
+			<div class="col-sm-12">
+				<hr>
+			</div>
+			<!-- 상세 설명 -->
+			<div class="col-sm-12 text-left">
+				<h5>
+					<strong>상세 설명</strong>
+				</h5>
+				<span>${product.product_info}</span>
+			</div>
+			<div class="col-sm-12">
+				<hr>
+			</div>
+
+			<!-- 숙소 -->
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>숙소</strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<div class="col-sm-6 text-left">숙박 가능 인원 :
+						${product.number_of_people }</div>
+					<div class="col-sm-6 text-left">침대 종류 : ${product.bed_name }</div>
+					<div class="col-sm-6 text-left">숙소 유형 : ${product.accom_name }</div>
+					<div class="col-sm-6 text-left">건물 유형 :
+						${product.building_name }</div>
+					<div class="col-sm-6 text-left">추천 손님 : ${product.sguest_name }</div>
+				</div>
+
+			</div>
+
+			<div class="col-sm-12">
+				<hr>
+			</div>
+
+			<!-- 예약 정보 -->
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>예약 정보</strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<div class="col-sm-6 text-left">최소 숙박 가능 일수 :
+						${product.product_mindt }</div>
+					<div class="col-sm-6 text-left">준비 기간 :
+						${product.product_readydt }</div>
+					<div class="col-sm-6 text-left">최대 숙박 가능 일수 :
+						${product.product_maxdt }</div>
+					<div class="col-sm-6 text-left">Check-In Time :
+						${product.checkin_time } 이후</div>
+					<div class="col-sm-6 text-left">최소 몇 일 전 예약 :
+						${product.product_prepdt }</div>
+					<div class="col-sm-6 text-left">Check-Out Time :
+						${product.checkout_time }</div>
+				</div>
+
+			</div>
+			<div class="col-sm-12">
+				<hr>
+			</div>
+
+
+			<!-- 사용 가능 공간 -->
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>사용 가능 공간</strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<c:forEach var="space" items="${product_space }">
+						<div class="col-sm-6 text-left">${space.space_name}</div>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<hr>
+			</div>
+
+			<!-- 제공 서비스 -->
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>제공 서비스 </strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<c:forEach var="convin" items="${product_convin}">
+						<div class="col-sm-6 text-left">${convin.convin_name}</div>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<hr>
+			</div>
+			<!-- 안전 기능 -->
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>안전 기능</strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<c:forEach var="safety" items="${product_safety}">
+						<div class="col-sm-6 text-left">${safety.safety_name}</div>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<hr>
+			</div>
+
+
+			<!-- 숙소 이용규칙 -->
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>숙소 이용규칙</strong>
+				</div>
+				<div class="col-sm-10 text-left">
+					<c:forEach var="regulation" items="${product_regulation}">
+						<div class="col-sm-6 text-left">${regulation.regulation_name}</div>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<hr>
+			</div>
+			<!-- 가격-->
+			<div class="col-sm-12 text-left">
+				<div class="col-sm-2 text-left">
+					<strong>가격</strong>
+				</div>
+				<div class="col-sm-5 text-left">일 단위 요금 :
+					$${product.product_price }</div>
+			</div>
+			<div class="col-sm-12">
+				<hr>
+			</div>
+			<div class="col-sm-12 text-left">
+				<div id="jssor_1"
+					style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 800px; height: 456px; overflow: hidden; visibility: hidden; background-color: #24262e;">
+					<!-- Loading Screen -->
+					<div data-u="loading"
+						style="position: absolute; top: 0px; left: 0px;">
+						<div
+							style="filter: alpha(opacity = 70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+						<div
+							style="position: absolute; display: block; background: url('/resources/img/gallery_slider/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+					</div>
+					<div data-u="slides"
+						style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 356px; overflow: hidden;">
+						<c:forEach var="product_img" items="${product_pic}">
+							<div data-p="144.50">
+								<img data-u="image" src="/resources/product/product_images/${product_img.pimg_name}" /> <img
+									data-u="thumb" src="/resources/product/product_images/${product_img.pimg_name}" />
+							</div>
+						</c:forEach>
+					
+					</div>
+					<!-- Thumbnail Navigator -->
+					<div data-u="thumbnavigator" class="jssort01"
+						style="position: absolute; left: 0px; bottom: 0px; width: 800px; height: 100px;"
+						data-autocenter="1">
+						<!-- Thumbnail Item Skin Begin -->
+						<div data-u="slides" style="cursor: default;">
+							<div data-u="prototype" class="p">
+								<div class="w">
+									<div data-u="thumbnailtemplate" class="t"></div>
+								</div>
+								<div class="c"></div>
+							</div>
+						</div>
+						<!-- Thumbnail Item Skin End -->
+					</div>
+					<!-- Arrow Navigator -->
+					<span data-u="arrowleft" class="jssora05l"
+						style="top: 158px; left: 8px; width: 40px; height: 40px;"></span>
+					<span data-u="arrowright" class="jssora05r"
+						style="top: 158px; right: 8px; width: 40px; height: 40px;"></span>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<hr>
+			</div>			
+			
+			<div class="col-sm-12 text-right">
+				<input id="saveBtn" class="btn btn-success" type="submit"
+					value="저장 확인" />
+			</div>
+
 		</div>
 	</div>
 </div>

@@ -234,6 +234,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE PRODUCT_SEQ = #{product_seq}
 		   AND MEMBER_ID = #{member_id}
 	</delete>
+	<select id="selectAllproductPicture" resultType="com.kedu.arias.product.dto.ProductImgDto">
+		select * from product_pic where product_seq = #{product_seq}
+	</select>
 	
 	
 	

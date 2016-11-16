@@ -85,6 +85,7 @@
 
 <!--달력 스크립트  -->
 <script type="text/javascript">
+$("title").text("Travel Arias");
 var lat, lng;
 	$(function() {
 		// 시작 날짜와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다

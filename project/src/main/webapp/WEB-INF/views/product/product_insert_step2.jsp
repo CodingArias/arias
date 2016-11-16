@@ -48,7 +48,7 @@ form{
 
 
 <script type="text/javascript">
-	$("title").text("Hosting Step2");
+	$("title").text("Hosting Step2 - 예약 관리");
 	var listArray = new Array();
 
 

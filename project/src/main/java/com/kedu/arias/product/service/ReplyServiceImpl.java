@@ -1,6 +1,8 @@
 package com.kedu.arias.product.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -31,7 +33,10 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public void delete_reply(ReplyDto dto) throws Exception {
-		rDao.delete_reply(dto);
+	public void delete_reply(int product_seq, String member_id) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("product_seq", product_seq);
+		map.put("member_id", member_id);
+		rDao.delete_reply(map);
 	}
 }

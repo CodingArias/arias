@@ -14,7 +14,10 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <script>
+
+$("title").text("Hosting Step3 - 숙소 옵션 설정");
         $(document).ready(function() {
             $('a[data-toggle="tab"]').on('hidden.bs.tab', function(e){
                 alert("이벤트 실행됨");
@@ -136,7 +139,7 @@ select {
 	<div class="container">
 		<form action="product_insert_step3" method="post">
 			<div class="step_div">
-				<h2>Hosting Step 3</h2>
+				<h2>Hosting Step 3 - 숙소 옵션 설정</h2>
 			</div>
 			<div id="all_tab_div">
 				
