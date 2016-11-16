@@ -59,12 +59,16 @@ img {
 	width: 100%;
 	height : 20%;
 }
+.important {
+	color: red;
+}
 </style>
 
 
 <script type="text/javascript">
 	$("title").text("Reservation - 숙소 예약 ");
 
+	var product_price = '${product.product_price}'
 	$(function() {
 		$('#payment').change(function(){
 			var payment_type = $(this).val();
@@ -80,17 +84,21 @@ img {
 		var listArray = new Array();
 		
 		function invalid() {
-			
-
-			var date = new Object();
-			date.ns_start_dt = moment().format('YYYY-MM-DD');
-			date.ns_end_dt = moment().format('YYYY-MM-DD');
-			listArray.push(date);
+			<c:forEach var="date" items="${notsales}">
+				var date = new Object();
+				date.ns_start_dt = "${date.ns_start_dt}";
+				date.ns_end_dt = "${date.ns_end_dt}";
+				listArray.push(date);
+			</c:forEach>
+						
 			var dates = new Array();
 			for(var i=0; i< listArray.length;i++){
+				console.log(listArray[i].ns_start_dt +" ~ " + listArray[i].ns_end_dt);
 				dates = dates.concat(get_period(listArray[i].ns_start_dt, listArray[i].ns_end_dt));
 			}
-			//dates = dates.concat(get_period("2016-12-13", "2016-12-20"));
+			for(var i=0; i<dates.length;i++){
+				console.log(dates[i]);
+			}
 			return dates;
 		}
 
@@ -101,8 +109,8 @@ img {
 			
 			$('#reportrange').daterangepicker({
 	 		   "autoApply": true,
-				startDate : moment(),
-				endDate : moment(),
+				startDate : '${reservation.checkin_dt}',
+				endDate : '${reservation.checkout_dt}',
 				format : 'YYYY-MM-DD',
 				"showDropdowns" : true,
 				isInvalidDate : function(date) {
@@ -121,20 +129,25 @@ img {
 					date.ns_start_dt = start.format('YYYY-MM-DD');
 					date.ns_end_dt = end.format('YYYY-MM-DD');
 					console.log("start : "+date.ns_start_dt +"  end : " + date.ns_end_dt);
-					var days=getDateTerm(date.ns_start_dt ,date.ns_end_dt);
-					var price =42014;
-					$("#ckin_dt").text(date.ns_start_dt);
-					$("#ckout_dt").text(date.ns_end_dt);
-					$("#hosting_day").text(days +" 일");
-					
-					$("#total_price").text("총 합계 : $"+ (price*days));
+					showTotalPrice(date.ns_start_dt,date.ns_end_dt);
 				} 
 				
 			});
+			function showTotalPrice(start,end){
+				var days=getDateTerm(start ,end);
+				
+				$("#ckin_dt").text(start);
+				$("#ckout_dt").text(end);
+				$("#hosting_day").text(days +" 일");
+				
+				$("#total_price").text("총 합계 : $"+ (product_price*days));
+			}
+
+			showTotalPrice('${reservation.checkin_dt}','${reservation.checkout_dt}');
 	});
+
 	function getDateTerm(start,end){
 		var today = new Date();  
-		var dateString = "2012-04-25";  
 		  
 		var startArray = start.split("-");  
 		var startDate = new Date(startArray[0], Number(startArray[1])-1, startArray[2]);  
@@ -147,6 +160,7 @@ img {
 		
 		return betweenDay+1;
 	}
+
 </script>
 
 
@@ -167,11 +181,7 @@ img {
 						<strong>숙소 소개</strong>
 					</div>
 					<div class="col-sm-10 text-left">
-						<span>이제는 마법부 직원으로 격무에 시달리면서도 한 여자의 남편이자 학교에 다니는 세 자녀의 아빠로서
-							책임을 다해야 하는 해리 포터. 이야기는 혼잡하고 붐비는 킹스 크로스 역에서 시작된다. 서른일곱이 된 해리는 지금
-							호그와트로 가는 두 아들을 배웅하는 길이다. 겉보기엔 영락없이 자상한 아빠지만 그에게는 아빠 역할이 조금 버겁다.
-							남들처럼 보고 배울 아버지가 없었기 때문이다. 그의 이런 고민은 둘째 아들, 알버스 세베루스 포터와의 사이에서 더욱
-							깊어진다. </span>
+						<span>${product.product_info}</span>
 					</div>
 				</div>
 				<div class="col-sm-12">
@@ -181,12 +191,12 @@ img {
 				<!-- 투숙인원 확인 -->				
 				<div class="col-sm-12 text-left" >
 					<div class="col-sm-2 text-left">
-						<strong>투숙 인원 확인</strong>
+						<strong>숙박 인원 <span class="important">*</span></strong>
 					</div>
 					<div class="col-sm-10 text-left">
 						<input type="number" class="form-control input_type1 col-sm-7" name="" id="" 
 							   placeholder="" required="required">
-						<span class="span_type01 col-sm-4">최대숙박인원 : 00 명</span>
+						<span class="span_type01 col-sm-4">최대숙박인원 : ${product.number_of_people} 명</span>
 					</div>
 				</div>	
 				<div class="col-sm-12">
@@ -196,7 +206,7 @@ img {
 				<!-- 자기소개 -->	
 				<div class="col-sm-12 text-left" >
 					<div class="col-sm-2 text-left">
-						<strong>자기 소개</strong>
+						<strong>자기 소개 <span class="important">*</span> </strong>
 					</div>
 					<div class="col-sm-10 text-left">
 						<textarea cols="30" rows="10" class="form-control" name="" id=""> 간단한 자기소개와 여행가는 이유를 알려주세요.
@@ -213,17 +223,31 @@ img {
 						<strong>숙소 이용규칙</strong>
 					</div>
 					<div class="col-sm-10 text-left">
-						<div class="col-sm-6 text-left">흡연 금지</div>
-						<div class="col-sm-6 text-left">반려 동물 동반 금지</div>
-						<div class="col-sm-6 text-left">혼숙 금지</div>
-						<div class="col-sm-6 text-left">파티나 이벤트 금지</div>
-						<div class="col-sm-6 text-left">주류 반입 금지</div>
-						
-			<%-- 			<c:forEach var="regulation" items="${product_regulation}">
-							<div class="col-sm-6 text-left">${regulation.regulation_name}</div>
-						</c:forEach> --%>
+						<c:forEach var="regul" items="${regulation}">
+							<div class="col-sm-6 text-left">${regul.regulation_name}</div>
+						</c:forEach>
 					</div>
 				</div>
+				<!-- 체크인 체크아웃 시간 -->		
+				<div class="col-sm-12">
+					<hr>
+				</div>			
+				<div class="col-sm-12 text-left" >
+					<div class="col-sm-2 text-left">
+						<strong>체크 인/아웃</strong>
+					</div>
+					<div class="col-sm-10 text-left">
+						<div class="col-sm-12 text-left">
+							<span>체크인 시간 - ${product.checkin_time }</span>
+						</div>
+						
+						<div class="col-sm-12 text-left">
+							<span>체크아웃 시간 - ${product.checkout_time} 이후</span>
+						</div>
+					</div>
+					
+				</div>	
+				<!-- 체크인 체크아웃 시간 끝-->						
 				<div class="col-sm-12">
 					<hr>
 				</div>
@@ -231,7 +255,7 @@ img {
 				<!-- 결제 방법 -->				
 				<div class="col-sm-12 text-left" >
 					<div class="col-sm-2 text-left">
-						<strong>결제 방법</strong>
+						<strong>결제 방법  <span class="important">*</span></strong>
 					</div>
 					<div class="col-sm-10 text-left">
 						<select id="payment" name="" class="form-control col-sm-5 input_type2">
@@ -257,40 +281,26 @@ img {
 				<!-- 숙소 메인 이미지 -->
 				<div class="col-sm-12 text-center">
 					<div class="col-sm-12 text-left">
-						<h1>$42014</h1>
+						<h1>$${product.product_price}</h1>
 					</div>
 					<div class="col-sm-12 text-left">
-						<span>숙박 일시</span>
+						<span>숙박 일시  <span class="important">*</span></span>
 						<input class="form-control" type="text" name="daterange" id="reportrange"/>
 					</div>	
 					<div class="col-sm-12 text-left">
 						<hr>
 					</div>
-					<div class="col-sm-12 text-left">
-						<span>숙박 인원</span>
-						<select class="form-control">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-							<option>6</option>
-						</select>
-					</div>	
-					<div class="col-sm-12 text-left">
-						<hr>
-					</div>		
 										
 					<div class="col-sm-12 text-left">
-						<span>Check-In Date</span>
-						<p id="ckin_dt" class="form-control"></p>						
+						<span>Check-In Date  </span>
+						<p id="ckin_dt" class="form-control">${reservation.checkin_dt }</p>						
 					</div>	
 					<div class="col-sm-12 text-left">
 						<hr>
 					</div>					
 					<div class="col-sm-12 text-left">
-						<span>Check-Out Date</span>
-						<p id="ckout_dt" class="form-control"></p>
+						<span>Check-Out Date  </span>
+						<p id="ckout_dt" class="form-control">${reservation.checkout_dt }</p>
 					</div>	
 					<div class="col-sm-12 text-left">
 						<hr>

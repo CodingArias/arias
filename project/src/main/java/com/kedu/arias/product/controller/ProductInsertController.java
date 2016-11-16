@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +23,9 @@ import com.kedu.arias.common.dao.CountryDao;
 import com.kedu.arias.common.dao.ProductOptionsDao;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
+import com.kedu.arias.product.dto.ReservationDto;
 import com.kedu.arias.product.service.ProductService;
+import com.kedu.arias.product.service.ReservationService;
 import com.kedu.arias.util.FileUploader;
 import com.kedu.arias.util.JsonManager;
 
@@ -39,6 +40,8 @@ public class ProductInsertController {
 	ProductService service;
 	@Inject
 	ProductOptionsDao productOptionsDao;
+	@Inject
+	ReservationService reservService;
 	int sizeLimit = 3 * 1024 * 1024;
 	FileUploader fileUploader = FileUploader.getInstance();
 	JsonManager jsonManager = JsonManager.getInstance();
@@ -294,13 +297,28 @@ public class ProductInsertController {
 	
 	@RequestMapping(value = "/reservation_step1", method=RequestMethod.GET)
 	public ModelAndView reservation_step1(
-			@RequestParam(value="product_seq",required=false) Integer product_seq){
+			@ModelAttribute("reservation") ReservationDto reservDto
+		  , HttpSession session) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
-		product_seq=65;
-		
+		String start_dt="2016-11-16";
+		String end_dt="2016-11-30";
+		int reserv_count=4;
+		int product_seq=65;
+		reservDto.setCheckin_dt(start_dt);
+		reservDto.setCheckout_dt(end_dt);
+		reservDto.setReserv_count(reserv_count);
+		reservDto.setProduct_seq(product_seq);
+
+		ProductDto pDto = service.select_product_detail(product_seq);
+		if(pDto.getNumber_of_people()>100)
+			pDto.setNumber_of_people(100);
+		//session.setAttribute("reserv_product_seq", product_seq);
+		System.out.println( "select_product_detail : "+pDto);
+		modelAndView.addObject("product", pDto);
+		modelAndView.addObject("regulation", service.product_regulation(product_seq));
 		modelAndView.addObject("product_seq", product_seq);
 		modelAndView.setViewName("/product/product_reservation_step1");
-		
+		modelAndView.addObject("notsales",reservService.selectInvalidReservationDate(product_seq));
 		
 		
 		return modelAndView;

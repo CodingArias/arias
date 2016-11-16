@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kedu.arias.reservationMapper">
+	
+	<select id="duplicateReservationCheck" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM RESERVATION 
+		WHERE member_id = #{member_id,jdbcType=VARCHAR}
+		AND product_seq = #{product_seq,jdbcType=NUMERIC} 
+		AND reserv_status=0;
+	</select>
+	
+	<insert id="insertReservation" parameterType="com.kedu.arias.product.dto.ReservationDto">
+		INSERT INTO RESERVATION VALUES(
+										  create_next_reservation_seq 
+										, #{product_seq,jdbcType=NUMERIC}
+										, #{member_id,jdbcType=VARCHAR}
+										, #{reserv_count,jdbcType=NUMERIC}
+										, #{checkin_dt,jdbcType=VARCHAR}
+										, #{checkout_dt,jdbcType=VARCHAR}
+										, SYSDATE
+										, #{member_intro,jdbcType=VARCHAR}
+										,0);
+	</insert>
+	
+	<update id="updateReservationStatus">
+		UPDATE RESERVATION
+		SET reserv_status = #{reserv_status, jdbcType=NUMERIC}
+		WHERE member_id = #{member_id, jdbcType=VARCHAR}
+		AND product_seq = #{product_seq, jdbcType=NUMERIC}
+		AND reservation_seq = #{reservation_seq, jdbcType=NUMERIC}
+	</update>
+	
+	<select id="selectInvalidReservationDate" resultType="com.kedu.arias.product.dto.NotsalesDto">
+		 SELECT TO_CHAR(ns_start_dt, 'YYYY-MM-DD') ns_start_dt
+					,TO_CHAR(ns_end_dt, 'YYYY-MM-DD') ns_end_dt
+		 FROM NOTSALES_DATE 
+		 WHERE product_seq=#{product_seq, jdbcType=NUMERIC}
+		 UNION 
+		 SELECT TO_CHAR(checkin_dt, 'YYYY-MM-DD') ns_start_dt
+					,TO_CHAR(checkout_dt, 'YYYY-DD-MM') ns_end_dt
+		 FROM RESERVATION 
+		 WHERE product_seq = #{product_seq, jdbcType=NUMERIC}
+		 AND reserv_status =1 	
+			
+	</select>
+
+</mapper>

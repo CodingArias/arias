@@ -130,7 +130,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="select_product_detail" resultType="com.kedu.arias.product.dto.ProductDto">
-	SELECT    P. PRODUCT_SEQ
+	 	SELECT    P. PRODUCT_SEQ
 			, P.P_MAIN_IMG
 			, P.MEMBER_ID
 			, P.PRODUCT_NAME
@@ -162,10 +162,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             , D.SGUEST_NAME
 	  from PRODUCT P, ACCOM_CODE A, BED_CODE B, BUILDING_CODE C, SUIT_GUEST_CODE D
 	 where product_seq = #{product_seq}
-	   and P.ACCOM_ID = A.ACCOM_ID
-	   and P.BED_ID = B.BED_ID
-	   AND P.BUILDING_ID = C.BUILDING_ID
-	   AND P.SGUEST_ID = D.SGUEST_ID
+	   and  P.ACCOM_ID  = A.ACCOM_ID (+)
+	   and  P.BED_ID  = B.BED_ID (+)
+	   AND  P.BUILDING_ID  = C.BUILDING_ID (+)
+	   AND  P.SGUEST_ID  = D.SGUEST_ID (+)
 	</select>
 	
 	<select id="product_safety" resultType="com.kedu.arias.product.dto.Safety_code" >
