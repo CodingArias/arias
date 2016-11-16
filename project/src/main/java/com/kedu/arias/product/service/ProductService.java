@@ -6,6 +6,7 @@ import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.product.dto.Convin_code;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
+import com.kedu.arias.product.dto.ProductImgDto;
 import com.kedu.arias.product.dto.Regulation_code;
 import com.kedu.arias.product.dto.Safety_code;
 import com.kedu.arias.product.dto.Space_code;
@@ -35,4 +36,6 @@ public interface ProductService {
 	public List<Space_code> product_space(int product_seq) throws Exception;
 	public List<Regulation_code> product_regulation(int product_seq) throws Exception;
 	public MemberDto product_member(int product_seq) throws Exception;
+	
+	public List<ProductImgDto> selectAllproductPicture(int product_seq);	
 }

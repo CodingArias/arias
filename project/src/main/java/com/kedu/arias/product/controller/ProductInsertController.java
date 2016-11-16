@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +32,7 @@ import com.kedu.arias.util.JsonManager;
 @RequestMapping("/product")
 public class ProductInsertController {
 
+	
 	@Inject
 	CountryDao countryDao;
 	@Inject
@@ -104,14 +107,13 @@ public class ProductInsertController {
 	@RequestMapping(value = "/product_insert_step2", method = RequestMethod.GET)
 	public String product_insert_step2(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-/*		if (session.getAttribute("product_seq") != null && session.getAttribute("product_step")!=null) {
+		if (session.getAttribute("product_seq") != null && session.getAttribute("product_step")!=null) {
 			if((Integer)session.getAttribute("product_step")==2){
 				return "/product/product_insert_step2";
 			}
-		} */
-		return "/product/product_insert_step2";
+		} 
 		
-		//return "redirect:/";
+		return "redirect:/";
 		
 	}
 
@@ -249,7 +251,7 @@ public class ProductInsertController {
 			}
 			if(product_seq!=-1)
 				service.insert_product_images(product_seq, imageNames);
-			modelAndView.setViewName("/product/product_insert_step4");
+			modelAndView.setViewName("redirect:/product/product_insert_step_last");
 			session.setAttribute("product_step", 9);
 		}
 		
@@ -260,19 +262,63 @@ public class ProductInsertController {
 	public ModelAndView product_insert_step_last(HttpServletRequest request) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession();
-		
-		/*
-		if (session.getAttribute("product_seq") == null || session.getAttribute("product_step")==null 
-				|| (Integer)session.getAttribute("product_step")!=9) {
-			modelAndView.setViewName("redirect:/");
-		} 
-		else {
+		int product_seq= 65;
+		if(session.getAttribute("product_seq")!=null){
+			product_seq = (Integer)session.getAttribute("product_seq");
+			
+			if (session.getAttribute("product_seq") == null || session.getAttribute("product_step")==null 
+					|| (Integer)session.getAttribute("product_step")!=9) {
+				modelAndView.setViewName("redirect:/");
+			} 
+			else {
+				modelAndView.setViewName("/product/product_insert_step_last");
+			}
+			
+			System.out.println(service.select_product_detail(product_seq));
+			modelAndView.addObject("product_member", service.product_member(product_seq));
+			modelAndView.addObject("product_safety", service.product_safety(product_seq));
+			modelAndView.addObject("product_convin", service.product_convin(product_seq));
+			modelAndView.addObject("product_space", service.product_space(product_seq));
+			modelAndView.addObject("product_regulation", service.product_regulation(product_seq));
+			modelAndView.addObject("product",service.select_product_detail(product_seq));
+			modelAndView.addObject("product_pic",service.selectAllproductPicture(product_seq));
+			
 			modelAndView.setViewName("/product/product_insert_step_last");
-		}*/
-		modelAndView.setViewName("/product/product_insert_step_last");
+		
+		}
+		else{
+			modelAndView.setViewName("redirect:/");
+		}
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/reservation_step1", method=RequestMethod.GET)
+	public ModelAndView reservation_step1(
+			@RequestParam(value="product_seq",required=false) Integer product_seq){
+		ModelAndView modelAndView = new ModelAndView();
+		product_seq=65;
+		
+		modelAndView.addObject("product_seq", product_seq);
+		modelAndView.setViewName("/product/product_reservation_step1");
+		
+		
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/reservation_step_last", method=RequestMethod.GET)
+	public ModelAndView reservation_step_last(){
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.setViewName("/product/product_reservation_step_last");
+		
+		
+		
+		return modelAndView;
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/map2", method = RequestMethod.GET)
 	public void map() throws Exception {

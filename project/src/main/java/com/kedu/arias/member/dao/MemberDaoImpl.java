@@ -30,24 +30,13 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void create(MemberDto mdto) throws Exception {
-		session.insert(namespace+ ".regMember", mdto);
+		session.insert(namespace+ ".create", mdto);
 	}
-
+	
 	@Override
-	public void updateMember(MemberDto mdto) throws Exception {
-		session.update(namespace + ".updateMember", mdto);
+	public String create_next_memberid() throws Exception {
+		return session.selectOne(namespace + ".create_next_memberid");
 	}
-
-	@Override
-	public void deleteMember(String member_id) throws Exception {
-		session.delete(namespace + ".deleteMember", member_id);
-	}
-
-	@Override
-	public List<MemberDto> listAllMember() throws Exception {
-		return session.selectList(namespace + ".listAllMember");
-	}
-
 
 	//현수
 	

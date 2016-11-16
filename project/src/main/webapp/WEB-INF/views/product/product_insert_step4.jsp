@@ -59,6 +59,8 @@ form {
 }
 </style>
 <script type="text/javascript">
+
+$("title").text("Hosting Step4 - 숙소 이미지");
 $(document).ready(function() {
 	//add more file components if Add is clicked
 	$('#addImage').click(function() {
@@ -71,13 +73,16 @@ $(document).ready(function() {
 		
 		$("#files"+ fileIndex).on("change", function(evt) {
 			
-			var files = evt.target.files; 
-			f= files[0];
 		    var selected_file_name = $(this).val();
 		    if ( selected_file_name.length > 0 ) {
 		    	$("#image_edit_div").append('<img class="img-rounded image" id="image'+fileIndex+'" alt="product_image">');
 		    	$("#sample_images_div").css("display","none");
 		    	 imageView($("#image"+fileIndex),this); 
+		    	$("#image"+fileIndex).on("click",function(){
+		    		confirm("정말 삭제하시겠습니까?");
+		    		$("#image"+fileIndex).remove();
+		    		$("#files"+ fileIndex).remove();
+		    	});
 		    }
 		});
 
