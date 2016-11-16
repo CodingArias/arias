@@ -54,8 +54,16 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member_reg_confirm", method=RequestMethod.GET)
-	public void regSuccess() throws Exception {
-		
+	public String regSuccess(HttpServletRequest request) throws Exception {
+		HttpSession session =request.getSession();
+		if(session.getAttribute("reg_status")!=null&&session.getAttribute("reg_status").equals("completed")){
+
+			session.removeAttribute("reg_status");
+			return "/member/member_reg_confirm";
+		}
+		else{
+			return "redirect:/";
+		}
 	}
 	
 	
@@ -111,6 +119,7 @@ public class MemberController {
 	    service.create(mdto);
 
 		session.setAttribute("member_id", mdto.getMember_id());
+		session.setAttribute("reg_status", "completed");
 		mnv.setViewName("redirect:/member/member_reg_confirm");
 		
 		return mnv;

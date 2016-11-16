@@ -216,7 +216,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="list_reply" resultType="com.kedu.arias.product.dto.ReplyDto">
-		SELECT *
+		SELECT PRODUCT_SEQ, MEMBER_ID
+			 , PREPLY_CONTENT
+			 , MEMBER_SCORE
+			 , TO_CHAR(PREPLY_REGDT, 'YYYY-MM-DD HH24:MI:SS') AS PREPLY_REGDT
 		  FROM PRODUCT_REPLY
 		 WHERE PRODUCT_SEQ = #{product_seq}
 		 ORDER BY PREPLY_REGDT
@@ -238,7 +241,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from product_pic where product_seq = #{product_seq}
 	</select>
 	
+	<select id="replyPage" resultType="com.kedu.arias.product.dto.ReplyDto">
 	
+	<![CDATA[
+	  SELECT PRODUCT_REPLY.*
+		FROM (
+				SELECT ROWNUM as rnum, n.*
+                FROM (
+   	    				SELECT *
+                        FROM PRODUCT_REPLY
+                        WHERE PRODUCT_SEQ = #{product_seq,jdbcType=NUMERIC} 
+                      ) n
+                      WHERE ROWNUM <= #{cri.pageEnd,jdbcType=NUMERIC}
+			) PRODUCT_REPLY
+		WHERE rnum >= #{cri.pageStart,jdbcType=NUMERIC}
+		ORDER BY  PREPLY_REGDT DESC
+	]]>
+	</select>
+	
+	<select id="replyCount" resultType="int">
+	SELECT COUNT(PRODUCT_SEQ) 
+	  FROM PRODUCT_REPLY
+	 WHERE PRODUCT_SEQ = #{PRODUCT_SEQ}
+	</select>
+	
+	<select id="select_product_list">
+	SELECT *
+	  FROM 
+	</select>
 	
 </mapper>
 

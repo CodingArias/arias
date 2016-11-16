@@ -1,13 +1,12 @@
 package com.kedu.arias.product.dto;
 
-import java.util.Date;
 
 public class ReplyDto {
 	private int product_seq;
 	private String member_id;
 	private String preply_content;
 	private int member_score;
-	private Date preply_regdt;
+	private String preply_regdt;
 	public int getProduct_seq() {
 		return product_seq;
 	}
@@ -32,10 +31,10 @@ public class ReplyDto {
 	public void setMember_score(int member_score) {
 		this.member_score = member_score;
 	}
-	public Date getPreply_regdt() {
+	public String getPreply_regdt() {
 		return preply_regdt;
 	}
-	public void setPreply_regdt(Date preply_regdt) {
+	public void setPreply_regdt(String preply_regdt) {
 		this.preply_regdt = preply_regdt;
 	}
 	@Override

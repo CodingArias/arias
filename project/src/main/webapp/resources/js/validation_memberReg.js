@@ -19,7 +19,11 @@ function passwordCheck() {
 
 function regInputCheck() {
 	var member_email = document.frm.member_email.value;
-	var member_pwd = document.frm.member_pwd.value;
+	
+	var pwd_check_message = document.getElementById("pwd-check-message").innerHTML;
+	var member_pwd = document.getElementById("member_pwd").value;
+	var member_pwd_check = document.getElementById("member_pwd_check").value;
+	
 	var member_first_name = document.frm.member_first_name.value;
 	var member_last_name = document.frm.member_last_name.value;
 	var member_phone1 = document.frm.member_phone1.value;
@@ -33,9 +37,12 @@ function regInputCheck() {
 		frm.member_email.focus();
 		return false;
 	}
-	if(member_pwd = "" || member_pwd.length == 0) {
-		alert("비밀번호를 입력해주세요. \n\nPlease insert your password.\n");
+	if(pwd_check_message == "") {
+		alert ("비밀번호를 확인해주세요 \n\nPlease check your password.\n");
 		frm.member_pwd.focus();
+		return false;
+	} else if(member_pwd != member_pwd_check) {
+		alert ("입력하신 비밀번호가 일치하지 않습니다. \n\nPassword is not agree.\n");
 		return false;
 	}
 	if(member_first_name = "" || member_first_name.length == 0) {
@@ -62,7 +69,5 @@ function regInputCheck() {
 		alert("사진을 등록해주세요. \n\nPlease insert your picture.\n");
 		return false;
 	}
-	
-	alert("SUCCESS!!!");
 	return true;
 }
