@@ -21,6 +21,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.kedu.arias.common.dao.CountryDao;
 import com.kedu.arias.common.dao.ProductOptionsDao;
+import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.product.dto.NotsalesDto;
 import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.dto.ReservationDto;
@@ -68,16 +69,15 @@ public class ProductInsertController {
 	// 숙소 저장 1단계
 	@RequestMapping(value = "/product_insert_step1", method = RequestMethod.POST)
 	public ModelAndView product_insert(HttpServletRequest request, ProductDto pDto,
-			RedirectAttributes redirectAttributes) throws Exception {
+			RedirectAttributes redirectAttributes, HttpSession session) throws Exception {
 
-		HttpSession session = request.getSession();
 		ModelAndView modelAndView = new ModelAndView();
 
 		if ((Integer) request.getSession().getAttribute("product_step") == 1) {
 			List<String> imageNames;
 			// 이미지가 저장될 가상 디렉토리
 			String attach_path = "resources/product/product_main_image/";
-			String member_id = "201611170001";
+			String member_id = ((MemberDto)session.getAttribute("member")).getMember_id();
 			pDto.setMember_id(member_id);
 			// product_seq 생성
 			pDto.setProduct_seq(service.create_next_product_seq(member_id));
@@ -323,7 +323,7 @@ public class ProductInsertController {
 		System.out.println(reservDto);
 		ModelAndView modelAndView = new ModelAndView();
 		if(reservDto!=null){
-			reservDto.setMember_id("201611170001");
+			reservDto.setMember_id(((MemberDto)session.getAttribute("member")).getMember_id());
 			session.setAttribute("reservation_completed", "completed");
 			redirectAttributes.addFlashAttribute("product_seq", reservDto.getProduct_seq());
 			reservService.insertReservation(reservDto);

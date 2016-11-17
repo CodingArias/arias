@@ -39,6 +39,10 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<c:if test="${member != null}">
+					<li> <img class="img-circle" style=" margin-top:5px; margin-right:10px; width: 40px; height: 40px;" src="/resources/member/member_img/${member.member_img }"></li>
+					<li> <span style="color: white; display:inline-block; padding-top: 15px;">${member.member_first_name} ${member.member_last_name}</span></li>
+				</c:if>
 				<li id="login_status">
 				<c:if test="${member == null}">
 					<a href="/member/login">
@@ -49,7 +53,6 @@
 					<span class="glyphicon glyphicon-log-in"></span> Logout</a>
 				</c:if>
 				</li>
-					
 			</ul>
 		</div>
 
