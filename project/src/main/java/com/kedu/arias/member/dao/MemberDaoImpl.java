@@ -1,18 +1,20 @@
 package com.kedu.arias.member.dao;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.kedu.arias.member.dto.SearchCriteria;
-import com.kedu.arias.notice.dto.NoticeDto;
 import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
+import com.kedu.arias.member.dto.SearchCriteria;
+import com.kedu.arias.notice.dto.NoticeDto;
 
 
 @Repository
@@ -44,6 +46,22 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne(namespace + ".create_next_memberid");
 	}
 
+
+	@Override
+	public void keepLogin(String member_id, String sessionid, Date next) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("member_id", member_id);
+		paramMap.put("sessionid", sessionid);
+		paramMap.put("next", next);
+		
+		session.update(namespace + ".keepLogin", paramMap);
+	}
+
+	@Override
+	public MemberDto checkUserWithSessionKey(String value){
+		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
+	}
+	
 	//현수
 	
 	@Override
@@ -66,7 +84,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void delete(String member_id) throws Exception {
-		session.delete(namespace+".delete",member_id);
+		session.delete(namespace+".delete", member_id);
 
 	}
 
@@ -99,4 +117,5 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return session.selectList(namespace+".selectNoticeList", map);
 	}
+
 }

@@ -1,5 +1,6 @@
 package com.kedu.arias.member.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -40,6 +41,18 @@ public class MemberServiceImpl implements MemberService {
 		return mdao.memberCheck(member_email);
 	}
 	
+
+	@Override
+	public void keepLogin(String member_id, String sessionid, Date next) throws Exception {
+		mdao.keepLogin(member_id, sessionid, next);
+	}
+	
+
+	@Override
+	public MemberDto checkLoginBefore(String value) {
+		return mdao.checkUserWithSessionKey(value);
+	}
+	
 	//현수
 	
 	@Override
@@ -75,6 +88,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<NoticeDto> selectNoticeList(PageDto pageDto, int recordPerPage) {
 		return mdao.selectNoticeList(pageDto, recordPerPage);
 	}
+
 
 	
 
