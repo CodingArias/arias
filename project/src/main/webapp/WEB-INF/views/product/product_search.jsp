@@ -124,7 +124,7 @@ footer {
 						type="hidden" id="checkin" value="${checkin}"> <input
 						type="hidden" id="checkout" value="${checkout}">
 					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-1 control-label"> 검
+						<label for="exampleInputName2" class="col-sm-1 control-label"> 검
 							색 </label>
 						<div class="col-sm-1"></div>
 						<div class="col-sm-6">
