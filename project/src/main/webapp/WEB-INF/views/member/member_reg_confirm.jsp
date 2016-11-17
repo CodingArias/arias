@@ -15,7 +15,7 @@ $(document).ready(function() {
 	});
 	
 	$('.btn-info').on('click', function() {
-/* 		self.location = ""; */
+		self.location = "/member/login"
 	});
 });	
 </script>
@@ -43,7 +43,7 @@ $(document).ready(function() {
 	
 	<div class="reg_success_footer" align="center">
 		<button type="button" class='btn btn-primary btn-goHome'>Go Home</button>
-		<button type="button" id="regist_btn" class='btn btn-info'>My Page</button>
+		<button type="button" id="regist_btn" class='btn btn-info'>Log-in</button>
 	</div>
 </div>
 </body>

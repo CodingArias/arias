@@ -40,5 +40,4 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<NotsalesDto> selectInvalidReservationDate(Integer product_seq) {
 		return reservDao.selectInvalidReservationDate(product_seq);
 	}
-
 }

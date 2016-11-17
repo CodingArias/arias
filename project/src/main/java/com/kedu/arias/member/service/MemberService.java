@@ -13,6 +13,7 @@ public interface MemberService {
 	public MemberDto login(LoginDto ldto) throws Exception;
 	public void create(MemberDto mdto) throws Exception;
 	public String create_next_memberid()throws Exception;
+	public String memberCheck(String member_email) throws Exception;
 	
 	
 	//현수

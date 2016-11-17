@@ -74,7 +74,7 @@ function countryNum_select(country_num) {
 </script>
 <style type="text/css">
 #content-head {
-	margin-top: 50px;
+	margin-top: 30px;
 	width : 1060px;
 	margin-left: auto;
 	margin-right: auto;
@@ -82,10 +82,10 @@ function countryNum_select(country_num) {
 }
 
 #reg-form{
-	margin-top: 100px;
+	margin-top: 70px;
 	margin-left: auto;
 	margin-right: auto;	
-	margin-bottom: 100px;	
+	margin-bottom: 70px;	
 }
 
 .reg-form-tb{

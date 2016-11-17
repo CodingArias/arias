@@ -9,11 +9,11 @@ import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
 
 public interface MemberDao {
-	
+	//숙영
 	public MemberDto login(LoginDto ldto) throws Exception;
 	public void create(MemberDto mdto) throws Exception;
 	public String create_next_memberid() throws Exception;
-	
+	public String memberCheck(String member_email) throws Exception;
 	
 	//현수
 	public List<MemberDto> listSearch(SearchCriteria cri)throws Exception;

@@ -1,19 +1,14 @@
 package com.kedu.arias.member.controller;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
-
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.kedu.arias.member.dao.MemberDao;
 import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
@@ -31,7 +25,6 @@ import com.kedu.arias.member.service.MemberService;
 import com.kedu.arias.notice.dto.NoticeDto;
 import com.kedu.arias.util.FileUploader;
 import com.kedu.arias.util.PageHelper;
-
 
 @Controller
 @RequestMapping("/member")
@@ -49,24 +42,10 @@ public class MemberController {
 	FileUploader fileUploader = FileUploader.getInstance();
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public void loginGET(@ModelAttribute("ldto")LoginDto ldto){
+	public void login(@ModelAttribute("ldto")LoginDto ldto){
 		
 	}
-	
-	@RequestMapping(value="/member_reg_confirm", method=RequestMethod.GET)
-	public String regSuccess(HttpServletRequest request) throws Exception {
-		HttpSession session =request.getSession();
-		if(session.getAttribute("reg_status")!=null&&session.getAttribute("reg_status").equals("completed")){
 
-			session.removeAttribute("reg_status");
-			return "/member/member_reg_confirm";
-		}
-		else{
-			return "redirect:/";
-		}
-	}
-	
-	
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
 	public void loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
 	
@@ -125,34 +104,31 @@ public class MemberController {
 		return mnv;
 	}
 	
-	@Resource(name = "uploadPath")
-	private String uploadPath;
 	
-	private String uploadFile(String originalName, byte[] fileData) throws Exception{
-		
-		UUID uid = UUID.randomUUID();
-		String savedName = uid.toString() + "_" + originalName;
-		
-		File target = new File(uploadPath, savedName);
-		FileCopyUtils.copy(fileData, target);
-		
-		return savedName;
+	@RequestMapping(value="/member_reg_confirm", method=RequestMethod.GET)
+	public String regSuccess(HttpServletRequest request) throws Exception {
+		HttpSession session =request.getSession();
+		if(session.getAttribute("reg_status")!=null&&session.getAttribute("reg_status").equals("completed")){
+
+			session.removeAttribute("reg_status");
+			return "/member/member_reg_confirm";
+		}
+		else{
+			return "redirect:/";
+		}
 	}
 	
+	
+	
+	
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 	
 	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public void goHome(Model model) throws Exception{
 
 	}
-	
-/*	@RequestParam("member_id") String member_id, */
-	@RequestMapping(value="/member_det", method=RequestMethod.GET)
-	public void readMember(Model model) throws Exception {
-		
-//		model.addAttribute(service.readMember(member_id));
-	}
-	
 
 	
 //현수

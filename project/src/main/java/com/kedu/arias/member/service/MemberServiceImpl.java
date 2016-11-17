@@ -35,6 +35,11 @@ public class MemberServiceImpl implements MemberService {
 		return mdao.create_next_memberid(); 
 	}
 	
+	@Override
+	public String memberCheck(String member_email) throws Exception {
+		return mdao.memberCheck(member_email);
+	}
+	
 	//현수
 	
 	@Override
@@ -70,5 +75,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<NoticeDto> selectNoticeList(PageDto pageDto, int recordPerPage) {
 		return mdao.selectNoticeList(pageDto, recordPerPage);
 	}
+
+	
 
 }

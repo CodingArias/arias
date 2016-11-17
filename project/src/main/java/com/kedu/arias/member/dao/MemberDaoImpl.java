@@ -22,12 +22,18 @@ public class MemberDaoImpl implements MemberDao {
 	private SqlSession session;
 	
 	private static String namespace = "com.kedu.arias.MemberMapper";
+	private static String loginspace = "com.kedu.arias.LoginMapper";
 	
 	@Override
 	public MemberDto login(LoginDto ldto) throws Exception {
-		return session.selectOne(namespace + ".login", ldto);
+		return session.selectOne(loginspace + ".login", ldto);
 	}
 
+	@Override
+	public String memberCheck(String member_email) throws Exception {
+		return session.selectOne(loginspace + ".memberCheck", member_email);
+	}
+	
 	@Override
 	public void create(MemberDto mdto) throws Exception {
 		session.insert(namespace+ ".create", mdto);

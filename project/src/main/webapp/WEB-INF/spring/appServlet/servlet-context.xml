@@ -43,7 +43,7 @@
 	<interceptors>
 		<interceptor>
 			<!-- 로그인하지 않은 사용자 이동 페이지 MAPPING -->
-			<mapping path="/member_reg"></mapping>
+			<mapping path="/login"></mapping>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>
