@@ -49,12 +49,14 @@ public class MemberController {
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
 	public void loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
 	
+		System.out.println("로그인 성공");
 		MemberDto mdto = service.login(ldto);
-		if(mdto == null) {
-			return;
-		}
+		if(session.getAttribute("member")!=null)
+			session.removeAttribute("member");
 		
-		model.addAttribute("member", mdto);
+		session.setAttribute("member", mdto);
+		System.out.println(session.getAttribute("member"));
+		//model.addAttribute("member", mdto);
 	}
 	
 	

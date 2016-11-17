@@ -79,7 +79,8 @@ function login(){
 				<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-10">
 					<input type="email" class="form-control member_email" id="inputEmail3" name="member_email" autofocus="autofocus" 
-						   placeholder="abc.kim@example.com" style="width:400px;">
+						   placeholder="abc.kim@example.com" style="width:400px;"
+						   value="test_id@naver.com">
 				</div>
 			
 			</div>
@@ -87,7 +88,8 @@ function login(){
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control member_pwd" id="inputPassword3" name="member_pwd" placeholder="Password" style="width:400px;">
+					<input type="password" class="form-control member_pwd" id="inputPassword3" name="member_pwd" placeholder="Password" style="width:400px;"
+					value="123123">
 				</div>
 			</div>
 			

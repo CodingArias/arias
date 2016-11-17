@@ -77,7 +77,7 @@ public class ProductInsertController {
 			List<String> imageNames;
 			// 이미지가 저장될 가상 디렉토리
 			String attach_path = "resources/product/product_main_image/";
-			String member_id = "201611030001";
+			String member_id = "201611170001";
 			pDto.setMember_id(member_id);
 			// product_seq 생성
 			pDto.setProduct_seq(service.create_next_product_seq(member_id));
@@ -323,7 +323,7 @@ public class ProductInsertController {
 		System.out.println(reservDto);
 		ModelAndView modelAndView = new ModelAndView();
 		if(reservDto!=null){
-			reservDto.setMember_id("201611030009");
+			reservDto.setMember_id("201611170001");
 			session.setAttribute("reservation_completed", "completed");
 			redirectAttributes.addFlashAttribute("product_seq", reservDto.getProduct_seq());
 			reservService.insertReservation(reservDto);
