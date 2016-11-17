@@ -1,8 +1,5 @@
 package com.kedu.arias.product.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.service.ProductService;
 
 /**
@@ -29,10 +25,11 @@ public class ProductListController {
 	private ProductService service;
 	
 	@RequestMapping(value = "/product/product_list", method = RequestMethod.GET)
-	public String home(@RequestParam("member_id") String member_id, Model model) {
+	public String home(@RequestParam("member_id") String member_id, Model model) throws Exception {
 		
-		
-		model.addAttribute("product_list", service)
+		System.out.println(member_id);
+		System.out.println(service.select_product_list(member_id));
+		model.addAttribute("product_list", service.select_product_list(member_id));
 		
 		
 		return "product/product_list";

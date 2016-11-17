@@ -265,9 +265,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 WHERE PRODUCT_SEQ = #{PRODUCT_SEQ}
 	</select>
 	
-	<select id="select_product_list">
+	<select id="select_product_list" resultType="com.kedu.arias.product.dto.ProductDto">
 	SELECT *
-	  FROM 
+	  FROM PRODUCT
+	 WHERE MEMBER_ID = #{member_id,jdbcType=VARCHAR}
 	</select>
 	
 </mapper>

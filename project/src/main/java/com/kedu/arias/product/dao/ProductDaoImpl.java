@@ -173,4 +173,9 @@ public class ProductDaoImpl implements ProductDao{
 	public List<ProductImgDto> selectAllproductPicture(int product_seq) {
 		return session.selectList(namespace+".selectAllproductPicture", product_seq);
 	}
+	
+	@Override
+	public List<ProductDto> select_product_list(String member_id) throws Exception {
+		return session.selectList(namespace+".select_product_list", member_id);
+	}
 }

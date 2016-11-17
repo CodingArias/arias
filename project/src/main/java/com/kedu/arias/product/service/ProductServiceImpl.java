@@ -131,4 +131,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductImgDto> selectAllproductPicture(int product_seq) {
 		return pDao.selectAllproductPicture(product_seq);
 	}
+	
+	@Override
+	public List<ProductDto> select_product_list(String member_id) throws Exception {
+		return pDao.select_product_list(member_id);
+	}
 }

@@ -42,4 +42,6 @@ public interface ProductDao {
 	
 	public List<ProductImgDto> selectAllproductPicture(int product_seq);	
 	
+	public List<ProductDto> select_product_list(String member_id) throws Exception;
+	
 }
