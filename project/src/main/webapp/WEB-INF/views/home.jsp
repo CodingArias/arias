@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -60,7 +59,7 @@
 	<input type='hidden' name='lat' id='lat'>
 	<div class="form-group">
 		<input type="text" class="form-control" id="pac-input"
-			placeholder="나라 이름" name="keyword">
+			placeholder="나라 이름" name="keyword" required="required">
 	</div>
 	<div id="reportrange" class="form-group form-control"
 		style="background: #fff; cursor: pointer;">
@@ -70,17 +69,10 @@
 	<div class="form-group">
 		<!-- db로 코드를 넣어줘야함 -->
 		
-		<input type="number" name="number_of_people" class="form-control" placeholder="숙박 인원">
-		<!-- <select class="form-control" name="number_of_people">
-			<option value="1">숙박인원 1명</option>
-			<option>숙박인원 2명</option>
-			<option>숙박인원 3명</option>
-			<option>숙박인원 4명</option>
-			<option>숙박인원 5명</option>
-		</select> -->
+		<input type="number" name="number_of_people" class="form-control" placeholder="숙박 인원 " required="required">
 	</div>
 	<div class="form-group">
-		<input type="button" id="btn" class="btn btn-primary btn-lg" value="숙소 검색">
+		<input type="submit" id="btn" class="btn btn-primary btn-lg" value="숙소 검색">
 	</div>
 </form>
 <!-- 달력 끝  -->
@@ -285,7 +277,8 @@ function initAutocomplete() {
 		      $("#lat").val(place.geometry.location.lat());
 		      $("#lng").val(place.geometry.location.lng());
 		      var form=$(document).find("form");
-		      form[0].submit();
+		      return true;
+		      //form[0].submit();
 		    });
 	  	}
 	  };

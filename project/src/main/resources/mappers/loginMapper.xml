@@ -5,10 +5,7 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.kedu.arias.LoginMapper" >
 
 	<select id="login" resultType="MemberDto">
-		SELECT member_email
-			 , member_pwd
-			 , member_first_name
-			 , member_last_name 
+		SELECT * 
 		FROM MEMBER 
 		WHERE member_email = #{member_email, jdbcType=VARCHAR} 
 		AND member_pwd = #{member_pwd, jdbcType=VARCHAR}
@@ -17,5 +14,4 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="memberCheck" resultType="String">
 		select member_pwd from member where member_email = #{member_email, jdbcType=VARCHAR}
 	</select>
-
 </mapper>

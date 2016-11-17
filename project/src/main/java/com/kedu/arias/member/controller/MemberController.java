@@ -43,6 +43,9 @@ public class MemberController {
 	@Inject
 	private MemberService service;
 	
+	
+	
+	
 	@Inject
 	private CountrycodeService coService;
 
@@ -54,13 +57,14 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
-	public void loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
+	public String loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
 	
+		System.out.println("로그인 성공");
 		MemberDto mdto = service.login(ldto);
-		if(mdto == null) {
-			return;
-		}
+		if(session.getAttribute("member")!=null)
+			session.removeAttribute("member");
 		
+<<<<<<< HEAD
 		model.addAttribute("member", mdto);
 		
 		if(ldto.isUseCookie()) {
@@ -69,6 +73,13 @@ public class MemberController {
 			
 			service.keepLogin(mdto.getMember_id(), session.getId(), sessionlimit);
 		}
+=======
+		session.setAttribute("member", mdto);
+		System.out.println(session.getAttribute("member"));
+		
+		return "redirect:/";
+		//model.addAttribute("member", mdto);
+>>>>>>> afd6e32f540ae8b175d3c0b74fdf5a7a3cf39ad6
 	}
 
 	
@@ -227,5 +238,11 @@ public class MemberController {
 
 		    return "redirect:/member/list";
 		  }
+	  
+	  @RequestMapping(value = "/logout", method=RequestMethod.GET)
+	  public String logout(HttpSession session){
+		  session.removeAttribute("member");
+		  return "redirect:/";
+	  }
 //현수
 }

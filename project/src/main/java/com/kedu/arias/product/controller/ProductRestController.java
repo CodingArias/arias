@@ -31,7 +31,7 @@ public class ProductRestController {
 			@PathVariable("product_seq") int product_seq)
 	
 	{
-		String member_id = "201611030009";
+		String member_id = "201611170001";
 		System.out.println("product_seq : "+ product_seq);
 		System.out.println("member_id : "+ member_id);
 		

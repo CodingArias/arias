@@ -81,7 +81,7 @@
 						<h3 class="media-heading">${product_detail.product_name }</h3>
 						<!-- 위치  별점 예시-->
 						<h4>${product_detail.product_addr}  별점</h4>
-						<h4>, 숙박인원 ${product_detail.number_of_people}명, 침대 한개</h4>
+						<h4>${product_detail.accom_name }, 숙박인원 ${product_detail.number_of_people}명, 침대 한개</h4>
 					</div>
 				</div>
 			</div>
