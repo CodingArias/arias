@@ -262,6 +262,7 @@ public class ProductInsertController {
 		if (session.getAttribute("product_seq") != null && session.getAttribute("product_step") != null
 				&& (Integer) session.getAttribute("product_step") == 9) {
 
+			session.removeAttribute("product_seq");
 			product_seq = (Integer) session.getAttribute("product_seq");
 			modelAndView.addObject("product_member", service.product_member(product_seq));
 			modelAndView.addObject("product_safety", service.product_safety(product_seq));
@@ -274,9 +275,48 @@ public class ProductInsertController {
 		} else {
 			modelAndView.setViewName("redirect:/");
 		}
-
 		return modelAndView;
 	}
+	
+	
+	@RequestMapping(value = "/product_simple_detail", method = RequestMethod.GET)
+	public ModelAndView product_simple_detail(HttpServletRequest request ,Integer product_seq) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		HttpSession session = request.getSession();
+
+		
+			modelAndView.addObject("product_member", service.product_member(product_seq));
+			modelAndView.addObject("product_safety", service.product_safety(product_seq));
+			modelAndView.addObject("product_convin", service.product_convin(product_seq));
+			modelAndView.addObject("product_space", service.product_space(product_seq));
+			modelAndView.addObject("product_regulation", service.product_regulation(product_seq));
+			modelAndView.addObject("product", service.select_product_detail(product_seq));
+			modelAndView.addObject("product_pic", service.selectAllproductPicture(product_seq));
+			modelAndView.setViewName("/product/product_insert_step_last");
+		 
+			System.out.println(service.select_product_detail(product_seq));
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/reservation_list", method = RequestMethod.GET)
+	public ModelAndView reservation_list(Integer product_seq) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		//HttpSession session = request.getSession();
+
+		
+			modelAndView.addObject("product_member", service.product_member(product_seq));
+			modelAndView.addObject("product_safety", service.product_safety(product_seq));
+			modelAndView.addObject("product_convin", service.product_convin(product_seq));
+			modelAndView.addObject("product_space", service.product_space(product_seq));
+			modelAndView.addObject("product_regulation", service.product_regulation(product_seq));
+			modelAndView.addObject("product", service.select_product_detail(product_seq));
+			modelAndView.addObject("product_pic", service.selectAllproductPicture(product_seq));
+			modelAndView.setViewName("/product/product_insert_step_last");
+		 
+			System.out.println(service.select_product_detail(product_seq));
+		return modelAndView;
+	}
+	
 /*
 	private Integer reservation_seq;
 	private Integer product_seq;
