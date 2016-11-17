@@ -220,5 +220,11 @@ public class MemberController {
 
 		    return "redirect:/member/list";
 		  }
+	  
+	  @RequestMapping(value = "/logout", method=RequestMethod.GET)
+	  public String logout(HttpSession session){
+		  session.removeAttribute("member");
+		  return "redirect:/";
+	  }
 //현수
 }

@@ -45,6 +45,16 @@
 			<!-- 로그인하지 않은 사용자 이동 페이지 MAPPING -->
 			<mapping path="/login"></mapping>
 			<mapping path="/product/product_insert_step1"></mapping>
+			<mapping path="/product/product_insert_step2"></mapping>
+			<mapping path="/product/product_insert_step3"></mapping>
+			<mapping path="/product/product_insert_step4"></mapping>
+			<mapping path="/product/product_insert_step_last"></mapping>
+			<mapping path="/product/reservation_step1"></mapping>
+			<mapping path="/product/reservation_step_last"></mapping>
+			
+			
+			
+			
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>

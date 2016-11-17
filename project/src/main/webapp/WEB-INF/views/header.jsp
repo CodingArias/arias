@@ -45,7 +45,7 @@
 					<span class="glyphicon glyphicon-log-in"></span> Login</a>
 				</c:if>
 				<c:if test="${member != null}">
-					<a href="#">
+					<a href="/member/logout">
 					<span class="glyphicon glyphicon-log-in"></span> Logout</a>
 				</c:if>
 				</li>
