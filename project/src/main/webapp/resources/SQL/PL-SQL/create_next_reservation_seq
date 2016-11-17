@@ -1,0 +1,11 @@
+CREATE OR REPLACE FUNCTION ARIAS.create_next_reservation_seq
+RETURN number
+IS
+reservation_seq reservation.reservation_seq%TYPE;
+BEGIN
+
+SELECT NVL(MAX(reservation_seq),0)+1 INTO reservation_seq
+FROM reservation;
+
+RETURN reservation_seq;
+END;

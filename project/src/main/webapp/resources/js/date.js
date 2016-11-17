@@ -28,10 +28,18 @@ function get_period(start, end) {
 	var dates = new Array();
 	var start_date = new Date(start);
 	var end_date = new Date(end);
-
+	console.log("start : "+start);
+	console.log("end : "+end);
+	console.log("------------");
+	
+	
+	var index = 0;
 	while (start_date.getTime() <= end_date.getTime()) {
 		dates.push(formatDate(start_date));
 		start_date.setDate(start_date.getDate() + 1);
+		console.log(dates[index]);
+		
+		index++;
 	}
 	return dates;
 }
