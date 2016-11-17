@@ -1,12 +1,9 @@
 package com.kedu.arias.product.controller;
 
-import java.util.Date;
 
 import javax.inject.Inject;
 
-import org.hamcrest.core.SubstringMatcher;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +39,10 @@ public class ProductSearchController {
 		
 		System.out.println(lat);
 		System.out.println(lng);
+		
+		System.out.println(b);
+		System.out.println(a);
+		
 		System.out.println(number_of_people);
 		
 		System.out.println(service.select_product_search(a, b, number_of_people));
