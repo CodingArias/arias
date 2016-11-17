@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,8 +39,17 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li id="login_status"><a href="/member/login"><span
-						class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li id="login_status">
+				<c:if test="${member == null}">
+					<a href="/member/login">
+					<span class="glyphicon glyphicon-log-in"></span> Login</a>
+				</c:if>
+				<c:if test="${member != null}">
+					<a href="#">
+					<span class="glyphicon glyphicon-log-in"></span> Logout</a>
+				</c:if>
+				</li>
+					
 			</ul>
 		</div>
 

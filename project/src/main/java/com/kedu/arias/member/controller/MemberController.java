@@ -36,6 +36,9 @@ public class MemberController {
 	@Inject
 	private MemberService service;
 	
+	
+	
+	
 	@Inject
 	private CountrycodeService coService;
 
@@ -47,7 +50,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
-	public void loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
+	public String loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
 	
 		System.out.println("로그인 성공");
 		MemberDto mdto = service.login(ldto);
@@ -56,6 +59,8 @@ public class MemberController {
 		
 		session.setAttribute("member", mdto);
 		System.out.println(session.getAttribute("member"));
+		
+		return "redirect:/";
 		//model.addAttribute("member", mdto);
 	}
 	
