@@ -466,8 +466,13 @@
 		<div class="col-sm-3">
 			<!-- 가격  -->
 			<div>
-				<form class="text-left">
-					<h2>￦42319</h2>
+				<form class="text-left" method="get" action="product/reservation_step1">
+					 <input
+						type="hidden" name="checkin_dt" id="checkin" value="${checkin}"> <input
+						type="hidden"  name="checkout_dt" id="checkout" value="${checkout}">
+					<input type="hidden" name="product_seq" id="product_seq" value="${product_detail.product_seq}">
+					
+					<h2>＄ ${product_detail.product_price}</h2>
 					<h5>숙박일시</h5>
 					<div id="reportrange" class="form-group form-control"
 						style="background: #fff; cursor: pointer;">
@@ -475,18 +480,11 @@
 						<b class="caret"></b>
 					</div>
 					<h5>숙박인원</h5>
-					<div class="form-group">
-						<!-- db로 코드를 넣어줘야함 -->
-						<select class="form-control">
-							<option>숙박인원 1명</option>
-							<option>숙박인원 2명</option>
-							<option>숙박인원 3명</option>
-							<option>숙박인원 4명</option>
-							<option>숙박인원 5명</option>
-						</select>
+					<div class="form-group" >
+						<input type="number" name="reserv_count" class="form-control" value="${number_of_people}">
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-primary">예약 요청</button>
+						<button type="submit" class="btn btn-primary">예약 요청</button>
 					</div>
 				</form>
 			</div>
@@ -536,34 +534,27 @@
 <%@include file="../footer.jsp"%>
 <!--달력 스크립트  -->
 <script type="text/javascript">
-	$(function() {
-		// 시작 날짜와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다
-		var start_date = moment().subtract(29, 'days');
-		var end_date = moment();
-		function cb(start, end) {
-			$('#reportrange span').html(
-					start.format('YYYY-MM-DD') + ' - '
-							+ end.format('YYYY-MM-DD'));
-		}
-		cb(start_date, end_date);
-		$('#reportrange').daterangepicker(
-				{
-					ranges : {
-						'오늘' : [ moment(), moment() ],
-						'어제' : [ moment().subtract(1, 'days'),
-								moment().subtract(1, 'days') ],
-						'지난 7일' : [ moment().subtract(6, 'days'), moment() ],
-						'지난 30일' : [ moment().subtract(29, 'days'), moment() ],
-						'이번 달' : [ moment().startOf('month'),
-								moment().endOf('month') ],
-						'지난 달' : [
-								moment().subtract(1, 'month').startOf('month'),
-								moment().subtract(1, 'month').endOf('month') ]
-					},
-					'startDate' : start_date,
-					'endDate' : end_date
-				}, cb);
-	});
+$(function() {
+	// 시작날짜와와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다
+	var start_date = moment($("#checkin").val());
+	var end_date = moment($("#checkout").val());
+	function cb(start, end) {
+		$('#reportrange span').html(
+				start.format('YYYY-MM-DD') + ' - '
+						+ end.format('YYYY-MM-DD'));
+
+		$('#checkin').val(start.format('YYYY-MM-DD'));
+		$('#checkout').val(end.format('YYYY-MM-DD'));
+	}
+	cb(start_date, end_date);
+	$('#reportrange').daterangepicker({
+		"autoApply" : true,
+		startDate : moment($("#checkin").val()),
+		endDate : moment($("#checkout").val()),
+		format : 'YYYY-MM-DD',
+		"showDropdowns" : true,
+	}, cb);
+});
 
 </script>
 <!--달력 스크립트  끝-->

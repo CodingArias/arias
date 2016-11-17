@@ -201,7 +201,7 @@ img {
 					</div>
 					<div class="col-sm-10 text-left">
 						<input type="number" class="form-control input_type1 col-sm-7" name="reserv_count" id="reserv_count" 
-							   placeholder="" required="required">
+							   placeholder="" required="required" value=${reservation.reserv_count }>
 						<span class="span_type01 col-sm-4">최대숙박인원 : ${product.number_of_people} 명</span>
 					</div>
 				</div>	

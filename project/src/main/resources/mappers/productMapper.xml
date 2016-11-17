@@ -130,7 +130,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="select_product_detail" resultType="com.kedu.arias.product.dto.ProductDto">
-	 	SELECT    P. PRODUCT_SEQ
+	 	SELECT P. PRODUCT_SEQ
 			, P.P_MAIN_IMG
 			, P.MEMBER_ID
 			, P.PRODUCT_NAME
@@ -160,10 +160,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             , B.BED_NAME 
             , C.BUILDING_NAME
             , D.SGUEST_NAME
-	  from PRODUCT P, ACCOM_CODE A, BED_CODE B, BUILDING_CODE C, SUIT_GUEST_CODE D
-	 where product_seq = #{product_seq}
-	   and  P.ACCOM_ID  = A.ACCOM_ID (+)
-	   and  P.BED_ID  = B.BED_ID (+)
+	  FROM PRODUCT P, ACCOM_CODE A, BED_CODE B, BUILDING_CODE C, SUIT_GUEST_CODE D
+	 WHERE product_seq = #{product_seq}
+	   AND  P.ACCOM_ID  = A.ACCOM_ID (+)
+	   AND  P.BED_ID  = B.BED_ID (+)
 	   AND  P.BUILDING_ID  = C.BUILDING_ID (+)
 	   AND  P.SGUEST_ID  = D.SGUEST_ID (+)
 	</select>
@@ -266,8 +266,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="select_product_list" resultType="com.kedu.arias.product.dto.ProductDto">
-	SELECT *
-	  FROM PRODUCT
+	SELECT P. PRODUCT_SEQ
+			, P.P_MAIN_IMG
+			, P.MEMBER_ID
+			, P.PRODUCT_NAME
+			, P.PRODUCT_PRICE
+			, P.COUNTRY_ID
+			, P.PRODUCT_ADDR
+			, P.PRODUCT_ADDR_DETAIL
+			, P.ACCOM_ID
+			, P.BED_ID
+			, P.BUILDING_ID
+			, P.SGUEST_ID
+			, P.PRODUCT_INFO
+			, P.PRODUCT_SIMPLE_INFO
+			, P.PRODUCT_LAT
+			, P.PRODUCT_LNG
+			, P.PRODUCT_SCORE
+			, P.PRODUCT_MINDT
+			, P.PRODUCT_MAXDT
+			, P.PRODUCT_READYDT
+			, P.PRODUCT_PREPDT
+			, P.PRODUCT_STEP
+			, TO_CHAR(P.PRODUCT_REGDT, 'YYYY"년" MM"월" DD"일" HH24"시" mi"분"') AS PRODUCT_REGDT
+			, P.NUMBER_OF_PEOPLE
+			, P.CHECKIN_TIME
+			, P.CHECKOUT_TIME
+            , A.ACCOM_NAME
+	  FROM PRODUCT P,  ACCOM_CODE A
 	 WHERE MEMBER_ID = #{member_id,jdbcType=VARCHAR}
 	</select>
 	

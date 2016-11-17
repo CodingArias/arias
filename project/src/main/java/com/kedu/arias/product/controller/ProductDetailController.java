@@ -19,10 +19,20 @@ public class ProductDetailController {
 	
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String home(@RequestParam("product_seq") int product_seq, Model model) throws Exception{
+	public String home(@RequestParam("product_seq") int product_seq, 
+			@RequestParam("checkin") String checkin,
+			@RequestParam("checkout") String checkout,
+			@RequestParam("number_of_people") int number_of_people,
+			Model model) throws Exception{
 		
 		
 		System.out.println(service.select_product_detail(product_seq));
+		
+		System.out.println(checkin);
+		
+		model.addAttribute("checkin", checkin);
+		model.addAttribute("checkout", checkout);
+		model.addAttribute("number_of_people", number_of_people);
 		
 		model.addAttribute("product_safety", service.product_safety(product_seq));
 		model.addAttribute("product_convin", service.product_convin(product_seq));

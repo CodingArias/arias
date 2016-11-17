@@ -17,7 +17,7 @@ import com.kedu.arias.product.service.ProductService;
  * Handles requests for the application home page.
  */
 @Controller
-public class ProductListController {
+public class ProductListController {	
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProductListController.class);
 	

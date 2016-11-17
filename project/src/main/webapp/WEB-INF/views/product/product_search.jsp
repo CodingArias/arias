@@ -147,16 +147,13 @@ footer {
 								<b class="caret"></b>
 							</div>
 						</div>
-						<div class="col-sm-3">
-							<select class="form-control">
-								<option>숙박인원 1명</option>
-								<option>숙박인원 2명</option>
-								<option>숙박인원 3명</option>
-								<option>숙박인원 4명</option>
-								<option>숙박인원 5명</option>
-							</select>
-						</div>
+					</div>
+					<div class="form-group">
+					<label for="inputEmail3" class="col-sm-1 control-label">숙박 인원</label>
 						<div class="col-sm-1"></div>
+						<div class="col-sm-3">
+							<input type="number" name="number_of_people" class="form-control" placeholder="숙박 인원" value="${number_of_people }">
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-1 control-label">숙소유형</label>
@@ -212,7 +209,7 @@ footer {
 				<c:forEach items="${list}" var="list">
 				<div class="col-sm-6">
 					<div class="col-sm-12 image">
-						<a href='/detail?product_seq=${list.product_seq}'><img src="/resources/product/product_main_image/${list.p_main_img}"
+						<a href='/detail?product_seq=${list.product_seq}&checkin=${checkin}&checkout=${checkout}&number_of_people=${number_of_people}'><img src="/resources/product/product_main_image/${list.p_main_img}"
 							class="img-rounded img-responsive img" alt="Responsive image">
 						<div class="text">
 							<h4>￦ ${list.product_price}</h4>

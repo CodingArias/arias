@@ -69,13 +69,15 @@
 	</div>
 	<div class="form-group">
 		<!-- db로 코드를 넣어줘야함 -->
-		<select class="form-control" name="number_of_people">
+		
+		<input type="number" name="number_of_people" class="form-control" placeholder="숙박 인원">
+		<!-- <select class="form-control" name="number_of_people">
 			<option value="1">숙박인원 1명</option>
 			<option>숙박인원 2명</option>
 			<option>숙박인원 3명</option>
 			<option>숙박인원 4명</option>
 			<option>숙박인원 5명</option>
-		</select>
+		</select> -->
 	</div>
 	<div class="form-group">
 		<input type="button" id="btn" class="btn btn-primary btn-lg" value="숙소 검색">
