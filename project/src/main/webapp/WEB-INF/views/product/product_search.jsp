@@ -73,10 +73,7 @@ footer {
 	float: left;
 	
 }
-.img {
-	width:472px;
-	height:314px 	
-}
+
 
 .image .text {
 	position: absolute;
@@ -210,7 +207,7 @@ footer {
 				<div class="col-sm-6">
 					<div class="col-sm-12 image">
 						<a href='/detail?product_seq=${list.product_seq}&checkin=${checkin}&checkout=${checkout}&number_of_people=${number_of_people}'><img src="/resources/product/product_main_image/${list.p_main_img}"
-							class="img-rounded img-responsive img" alt="Responsive image">
+							class="img-rounded img-responsive img" alt="Responsive image" style="width: 472px; height: 314px;">
 						<div class="text">
 							<h4>￦ ${list.product_price}</h4>
 						</div>
@@ -233,33 +230,6 @@ footer {
 					</div>
 				</div>
 				</c:forEach>
-				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝-->
-				
-				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
-				<div class="col-sm-6">
-					<div class="col-sm-12 image">
-						<img src="/resources/img/main/seoul.jpg"
-							class="img-rounded img-responsive" alt="Responsive image">
-						<div class="text">
-							<h4>￦100000</h4>
-						</div>
-					</div>
-					<!-- 상품 설명 -->
-					<div class="col-sm-12">
-						<div class="media">
-							<div class="media-body">
-								<br>
-								<h4 class="media-heading">나의 집이다</h4>
-								개인실 * 숙박 인원 2명 * 별점 * 후기 갯수
-							</div>
-							<div class="media-right">
-								<a href="#"> <img class="media-object img-circle"
-									src="/resources/img/search/original_12.jpg" alt="">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝-->
 
 			</div>
