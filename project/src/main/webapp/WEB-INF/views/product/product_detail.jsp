@@ -466,7 +466,7 @@
 		<div class="col-sm-3">
 			<!-- 가격  -->
 			<div>
-				<form class="text-left" method="get" action="product/reservation_step1">
+				<form class="text-left" id="frm" method="get" action="product/reservation_step1">
 					 <input
 						type="hidden" name="checkin_dt" id="checkin" value="${checkin}"> <input
 						type="hidden"  name="checkout_dt" id="checkout" value="${checkout}">
@@ -484,7 +484,7 @@
 						<input type="number" name="reserv_count" class="form-control" value="${number_of_people}">
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary">예약 요청</button>
+						<button type="button" class="btn btn-primary"   onclick="reseve_check();">예약 요청</button>
 					</div>
 				</form>
 			</div>
@@ -498,6 +498,30 @@
 </div>
 
 <br>
+
+<script>
+function reseve_check(){
+	  
+	
+	      $.ajax({
+	         header : {
+	            "Content-Type" :"application/json",
+	            "X-HTTP-Method-Override" : "GET"
+	         },
+	         type : "GET",
+	         url : "/product/reserv_dupl_check/"+'${product_detail.product_seq}',
+	         dataType: "text",
+	         success : function(result){
+	        	 var reserv = JSON.parse(result);
+	            if(reserv.duplicate==true)
+	               $("#frm").submit();
+	            else
+	               alert("이미 예약하셨습니다.");
+	         }
+	      });
+	   
+	}
+</script>
 
 <!--지도 스크립트  -->
 <script

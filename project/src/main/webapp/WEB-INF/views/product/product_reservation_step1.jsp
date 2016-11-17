@@ -170,6 +170,7 @@ img {
 <div class="main">
 	<div class="container">
 		<form action="reservation_step1" method="post">
+			<input type="hidden" name="product_seq" value="${reservation.product_seq }">
 			<input type="hidden" name="checkin_dt" id="checkin_dt">
 			<input type="hidden" name="checkout_dt" id="checkout_dt">
 			

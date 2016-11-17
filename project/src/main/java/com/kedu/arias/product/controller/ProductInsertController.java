@@ -323,8 +323,7 @@ public class ProductInsertController {
 		System.out.println(reservDto);
 		ModelAndView modelAndView = new ModelAndView();
 		if(reservDto!=null){
-			reservDto.setProduct_seq(65);
-			reservDto.setMember_id("201611150064");
+			reservDto.setMember_id("201611030009");
 			session.setAttribute("reservation_completed", "completed");
 			redirectAttributes.addFlashAttribute("product_seq", reservDto.getProduct_seq());
 			reservService.insertReservation(reservDto);

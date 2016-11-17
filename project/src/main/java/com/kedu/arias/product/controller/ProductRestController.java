@@ -26,12 +26,15 @@ public class ProductRestController {
 	@Inject
 	ReservationService reservService;
 	
-	@RequestMapping(value="/reserv_dupl_check/{product_seq}/{member_id}", method=RequestMethod.GET)
+	@RequestMapping(value="/reserv_dupl_check/{product_seq}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> reserv_dupl_check (
-			@PathVariable("product_seq") int product_seq,
-			@PathVariable("member_id") String member_id)
+			@PathVariable("product_seq") int product_seq)
 	
 	{
+		String member_id = "201611030009";
+		System.out.println("product_seq : "+ product_seq);
+		System.out.println("member_id : "+ member_id);
+		
 		ResponseEntity<Map<String, Object>> entity = null;
 		Map<String,Object> map = new HashMap<>();
 		
