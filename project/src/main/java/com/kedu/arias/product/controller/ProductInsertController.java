@@ -277,20 +277,28 @@ public class ProductInsertController {
 
 		return modelAndView;
 	}
-
+/*
+	private Integer reservation_seq;
+	private Integer product_seq;
+	private String member_id;
+	private Integer reserv_count;
+	private String checkin_dt;
+	private String checkout_dt;
+	private String reg_dt;
+	private String member_intro;
+	private Integer reserv_status;*/
+	
 	@RequestMapping(value = "/reservation_step1", method = RequestMethod.GET)
 	public ModelAndView reservation_step1(@ModelAttribute("reservation") ReservationDto reservDto, HttpSession session)
 			throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
-		String start_dt = "2016-11-16";
+/*		String start_dt = "2016-11-16";
 		String end_dt = "2016-11-30";
 		int reserv_count = 4;
 		int product_seq = 65;
-		reservDto.setCheckin_dt(start_dt);
-		reservDto.setCheckout_dt(end_dt);
-		reservDto.setReserv_count(reserv_count);
-		reservDto.setProduct_seq(product_seq);
-
+*/
+		System.out.println(reservDto);
+		int product_seq = reservDto.getProduct_seq();
 		ProductDto pDto = service.select_product_detail(product_seq);
 		if (pDto.getNumber_of_people() > 100)
 			pDto.setNumber_of_people(100);
@@ -298,8 +306,9 @@ public class ProductInsertController {
 		modelAndView.addObject("product", pDto);
 		modelAndView.addObject("regulation", service.product_regulation(product_seq));
 		modelAndView.addObject("product_seq", product_seq);
-		modelAndView.setViewName("/product/product_reservation_step1");
 		modelAndView.addObject("notsales", reservService.selectInvalidReservationDate(product_seq));
+
+		modelAndView.setViewName("/product/product_reservation_step1");
 		System.out.println(reservService.selectInvalidReservationDate(product_seq));
 
 		return modelAndView;
