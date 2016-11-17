@@ -69,6 +69,7 @@ form{
 		function invalid() {
 			var dates = new Array();
 			for(var i=0; i< listArray.length;i++){
+				console.log(listArray[i].ns_start_dt +" ~ " + listArray[i].ns_end_dt);
 				dates = dates.concat(get_period(listArray[i].ns_start_dt, listArray[i].ns_end_dt));
 			}
 			//dates = dates.concat(get_period("2016-12-13", "2016-12-20"));
@@ -88,6 +89,10 @@ form{
 				format : 'YYYY-MM-DD',
 				"showDropdowns" : true,
 				  "drops": "up",
+				  onSelect: function(dateText) {
+					  alert('3');
+					  //  display("Selected date: " + dateText + "; input's current value: " + this.value);
+					  },
 				isInvalidDate : function(date) {
 					var formatted = date.format('YYYY-MM-DD');
 					return invalid_dates.indexOf(formatted) > -1;
@@ -97,6 +102,7 @@ form{
 				
 				 if(!date_invalid_check(start.format('YYYY-MM-DD'),end.format('YYYY-MM-DD'),invalid_dates)){
 					alert("해당 기간은 이미 예약 되어있습니다.");
+
 				}else{
 					startDate = start;
 					endDate = end;	

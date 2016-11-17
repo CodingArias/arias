@@ -138,6 +138,9 @@ img {
 				
 				$("#ckin_dt").text(start);
 				$("#ckout_dt").text(end);
+				$("#checkin_dt").val(start);
+				$("#checkout_dt").val(end);
+				
 				$("#hosting_day").text(days +" 일");
 				
 				$("#total_price").text("총 합계 : $"+ (product_price*days));
@@ -166,7 +169,10 @@ img {
 
 <div class="main">
 	<div class="container">
-		<form action="#" method="post">
+		<form action="reservation_step1" method="post">
+			<input type="hidden" name="checkin_dt" id="checkin_dt">
+			<input type="hidden" name="checkout_dt" id="checkout_dt">
+			
 			<div class="col-sm-12 text-left">
 				<h2>Reservation</h2>
 			</div>	
@@ -194,7 +200,7 @@ img {
 						<strong>숙박 인원 <span class="important">*</span></strong>
 					</div>
 					<div class="col-sm-10 text-left">
-						<input type="number" class="form-control input_type1 col-sm-7" name="" id="" 
+						<input type="number" class="form-control input_type1 col-sm-7" name="reserv_count" id="reserv_count" 
 							   placeholder="" required="required">
 						<span class="span_type01 col-sm-4">최대숙박인원 : ${product.number_of_people} 명</span>
 					</div>
@@ -209,7 +215,7 @@ img {
 						<strong>자기 소개 <span class="important">*</span> </strong>
 					</div>
 					<div class="col-sm-10 text-left">
-						<textarea cols="30" rows="10" class="form-control" name="" id=""> 간단한 자기소개와 여행가는 이유를 알려주세요.
+						<textarea cols="30" rows="10" class="form-control" name="member_intro" id="member_intro"> 간단한 자기소개와 여행가는 이유를 알려주세요.
 						</textarea>
 					</div>
 				<div class="col-sm-12">
@@ -293,7 +299,7 @@ img {
 										
 					<div class="col-sm-12 text-left">
 						<span>Check-In Date  </span>
-						<p id="ckin_dt" class="form-control">${reservation.checkin_dt }</p>						
+						<p id="ckin_dt"  class="form-control">${reservation.checkin_dt }</p>						
 					</div>	
 					<div class="col-sm-12 text-left">
 						<hr>
@@ -323,7 +329,7 @@ img {
 				</div>			
 			</div>
 			<div class="bottons_div">
-				<input id="saveBtn" class="btn btn-success" type="button"
+				<input id="saveBtn" class="btn btn-success" type="submit"
 					value="예약 하기" />
 			</div>
 		</form>

@@ -10,7 +10,7 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM RESERVATION 
 		WHERE member_id = #{member_id,jdbcType=VARCHAR}
 		AND product_seq = #{product_seq,jdbcType=NUMERIC} 
-		AND reserv_status=0;
+		AND reserv_status=0
 	</select>
 	
 	<insert id="insertReservation" parameterType="com.kedu.arias.product.dto.ReservationDto">
@@ -23,7 +23,7 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 										, #{checkout_dt,jdbcType=VARCHAR}
 										, SYSDATE
 										, #{member_intro,jdbcType=VARCHAR}
-										,0);
+										,0)
 	</insert>
 	
 	<update id="updateReservationStatus">
@@ -41,10 +41,10 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE product_seq=#{product_seq, jdbcType=NUMERIC}
 		 UNION 
 		 SELECT TO_CHAR(checkin_dt, 'YYYY-MM-DD') ns_start_dt
-					,TO_CHAR(checkout_dt, 'YYYY-DD-MM') ns_end_dt
+					,TO_CHAR(checkout_dt, 'YYYY-MM-DD') ns_end_dt
 		 FROM RESERVATION 
 		 WHERE product_seq = #{product_seq, jdbcType=NUMERIC}
-		 AND reserv_status =1 	
+		 AND reserv_status =0 	
 			
 	</select>
 
