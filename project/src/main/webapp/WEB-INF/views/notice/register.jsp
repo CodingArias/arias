@@ -69,6 +69,13 @@
    		 })
 	})
 	</script>
+	
+	<script>
+	
+
+ 		
+    </script>
+	
 
 </head>
 
@@ -87,12 +94,12 @@
     
     <div class="form-group">
       <label for="notice_title">TITLE</label>
-      <input style="text-align: center; width: auto" type="text" class="form-control" name="notice_title" placeholder="제목">
+      <input style="text-align: center; width: 60%" type="text" class="form-control" name="notice_title" placeholder="제목을 입력해주세요.">
     </div>
     
      <div class="form-group">
       <label for="notice_content">CONTENT</label>
-      <textarea id="smarteditor" class="form-control" name="notice_content" placeholder="내용">
+      <textarea id="smarteditor" class="form-control" name="notice_content" >
       </textarea>
     </div>
     
@@ -111,7 +118,7 @@
  -->
     <!-- <input type="button" id="savebutton" value="submit"> -->
      <button type="submit" id="savebutton" class="btn btn-default">Submit</button>
-     
+     <button type="button" id="listallBtn" class="btn btn-default" onclick="location.href='/notice/list'">List all</button>
    </form>
   
 </div>

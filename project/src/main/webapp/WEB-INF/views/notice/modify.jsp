@@ -82,34 +82,27 @@
   <form role="form" method="post" action="modify">
     
     <div style="float: left; width: 33%;" class="form-group">
-      <label for="notice_seq">공지번호</label>
+      <label for="notice_seq">BNO</label>
       <input style="text-align: center; width: auto" type="text" class="form-control" name="notice_seq" value="${noticeDto.notice_seq}" readonly="readonly">
     </div>
     
     <div class="form-group">
-      <label for="member_id">글쓴이</label>
+      <label for="member_id">WRITER</label>
       <input style="text-align: center; width: auto" type="text" class="form-control" name="member_id" value="${noticeDto.member_id}" readonly="readonly">
     </div>
  
   
-    <div style="float: left; width: 33%;" class="form-group">
-      <label for="notice_title">공지제목</label>
-      <input style="text-align: center; width: 80%" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}">
-    </div>
-   
-   
     <div class="form-group">
-      <label for="notice_count">조회수</label>
-      <input style="text-align: center; width: auto" type="text" class="form-control" name="notice_count" 
-      value="${noticeDto.notice_count}" readonly="readonly">
+      <label for="notice_title">TITLE</label>
+      <input style="text-align: center; width: 60%" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}">
     </div>
-    
-     <div class="form-group">
-      <label for="notice_content">공지내용</label>
+       
+    <div class="form-group">
+      <label for="notice_content">CONTENT</label>
       <textarea id="smarteditor" rows="10" cols="30" class="form-control" name="notice_content">
       ${noticeDto.notice_content}
       </textarea>     
-     </div>
+    </div>
      
     
     <button type="submit" id="savebutton" class="btn modifyBtn">SAVE</button>

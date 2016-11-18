@@ -55,7 +55,11 @@
 
 <div class="main">
 <div class="container">
+
+<c:if test="${admin == true}">
  <h2>ADMINISTER</h2>
+</c:if>
+
  <h1><strong>공지사항</strong></h1>	
 <select name="searchType">
 						<option value="n"
