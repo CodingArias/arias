@@ -259,7 +259,7 @@ function initAutocomplete() {
 	  
 	  document.getElementById('btn').onclick = function () {
 		
-		 google.maps.event.trigger(input, 'focus')
+		google.maps.event.trigger(input, 'focus')
 	    google.maps.event.trigger(input, 'keydown', {
 	    	keyCode: 13
 	    }); 
