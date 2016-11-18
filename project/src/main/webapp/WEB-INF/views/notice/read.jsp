@@ -51,6 +51,41 @@
   });
 	</script>
 
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+  
+  <script>
+  $(function(){
+    //전역변수선언
+    var editor_object = [];
+     
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: editor_object,
+        elPlaceHolder: "smarteditor",
+        sSkinURI: "/resources/smarteditor/SmartEditor2Skin.html ", 
+        htParams : {
+            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseToolbar : false,             
+            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : true,     
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : false, 
+        }
+    });
+     
+    //전송버튼 클릭이벤트
+    $("#savebutton").click(function(){
+        //id가 smarteditor인 textarea에 에디터에서 대입
+        editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+         
+        // 이부분에 에디터 validation 검증
+         
+        //폼 submit
+        $("#frm").submit();
+   		 })
+	})
+	</script>
+
 
 
 </head>
@@ -68,30 +103,22 @@
   <input type='hidden' name='keyword'    value="${cri.keyword}">
   
   </form>
-  
-    <div class="form-group">
+
+    <div style="float: left; width: 33%;" class="form-group">
       <label for="notice_seq">공지번호</label>
       <input style="text-align: center; width: auto" type="text" class="form-control" name="notice_seq" value="${noticeDto.notice_seq}" readonly="readonly">
     </div>
-  
-    <div class="form-group">
-      <label for="notice_title">공지제목</label>
-      <input style="text-align: center; width: auto" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}" readonly="readonly">
-    </div>
     
-     <div class="form-group">
-      <label for="notice_content">공지내용</label>
-      <textarea  rows="10" cols="30" class="form-control" name="notice_content" readonly="readonly">
-      ${noticeDto.notice_content}
-      </textarea>     
-     </div>
-     
-     
     <div class="form-group">
       <label for="member_id">글쓴이</label>
       <input  style="text-align: center; width: auto" type="text" class="form-control" name="member_id" value="${noticeDto.member_id}" readonly="readonly">
     </div>
- 
+    
+    <div  style="float: left; width: 33%;" class="form-group">
+      <label for="notice_title">공지제목</label>
+      <input style="text-align: center; width: 80%" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}" readonly="readonly">
+    </div>
+    
     <div class="form-group">
       <label for="notice_regdate">등록일</label>
       <input  style="text-align: center; width: auto" type="text" class="form-control" name="notice_regdate" 
@@ -104,6 +131,13 @@
       value="${noticeDto.notice_count}" readonly="readonly">
     </div>
     
+     <div class="form-group">
+      <label for="notice_content">공지내용</label>
+	      <pre>
+	      ${noticeDto.notice_content}
+	      </pre>     
+     </div>
+     
 
     <button type="submit" class="btn modifyBtn"> Modify </button>
     <button type="submit" class="btn removeBtn"> Remove </button>

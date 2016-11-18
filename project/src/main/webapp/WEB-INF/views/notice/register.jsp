@@ -36,7 +36,7 @@
   </script>
   
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
   
   <script>
   $(function(){
@@ -78,11 +78,11 @@
  <h2>ADMINISTER</h2>
  <h1><strong>공지사항 등록</strong></h1>	
   
-  <form id='registerForm' role="form" method="post">
+  <form id='register' role="form" method="post">
+  
     <div class="form-group">
       <label for="member_id">WRITER</label>
       <input style="text-align: center; width: auto" value="201611030003" type="text" class="form-control" name="member_id" placeholder="회원아이디" readonly="readonly">
-      
     </div>
     
     <div class="form-group">
@@ -92,7 +92,7 @@
     
      <div class="form-group">
       <label for="notice_content">CONTENT</label>
-      <textarea style="width: 30%" name="smarteditor" id="smarteditor" class="form-control" name="notice_content" placeholder="내용">
+      <textarea id="smarteditor" class="form-control" name="notice_content" placeholder="내용">
       </textarea>
     </div>
     
@@ -109,8 +109,10 @@
     </div>
     
  -->
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+    <!-- <input type="button" id="savebutton" value="submit"> -->
+     <button type="submit" id="savebutton" class="btn btn-default">Submit</button>
+     
+   </form>
   
 </div>
 

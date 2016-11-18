@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="false"%>
 
 <jsp:include page="../header.jsp"></jsp:include>
 <style>
@@ -74,7 +73,11 @@
 </select> <input type="text" name='keyword' id="keywordInput"
 						value='${page.keyword }'>
 					<button id='searchBtn'>Search</button>
-					<button id='newBtn'>New Board</button>
+					
+					<c:if test="${admin != null}">
+						<button id='newBtn'>New Board</button>
+					</c:if>
+						
 </div>
 
 
