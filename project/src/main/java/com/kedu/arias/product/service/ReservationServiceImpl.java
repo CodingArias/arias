@@ -47,7 +47,7 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public Integer reservationHostCheck(Integer product_seq, String member_id) {
+	public boolean reservationHostCheck(Integer product_seq, String member_id) {
 		return reservDao.reservationHostCheck(product_seq,member_id);
 	}
 }

@@ -178,4 +178,9 @@ public class ProductDaoImpl implements ProductDao{
 	public List<ProductDto> select_product_list(String member_id) throws Exception {
 		return session.selectList(namespace+".select_product_list", member_id);
 	}
+	
+	@Override
+	public List<ProductDto> select_product_new() throws Exception {
+		return session.selectList(namespace+".select_product_new");
+	}
 }

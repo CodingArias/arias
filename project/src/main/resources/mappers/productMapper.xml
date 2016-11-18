@@ -299,5 +299,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 WHERE MEMBER_ID = #{member_id,jdbcType=VARCHAR}
 	  AND a.ACCOM_ID (+) =p.ACCOM_ID
 	</select>
+	
+	<select id="select_product_new" resultType="com.kedu.arias.product.dto.ProductDto">
+	<![CDATA[
+	SELECT * FROM 
+    (
+    	SELECT * FROM PRODUCT
+ 	 	 WHERE product_step = 9
+    	 ORDER BY PRODUCT_regdt DESC
+    ) n
+	WHERE ROWNUM < 7    
+    ]]>
+	</select>
 </mapper>
 

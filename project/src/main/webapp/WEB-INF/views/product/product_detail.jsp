@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page session="false"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -484,7 +483,12 @@
 						<input type="number" name="reserv_count" class="form-control" value="${number_of_people}">
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-primary"   onclick="reseve_check();">예약 요청</button>
+						<c:if test="${duplicate != true}">
+							<button type="submit" class="btn btn-primary">예약 요청</button>
+						</c:if>
+						<c:if test="${duplicate == true}">
+							<button type="button" class="btn btn-primary">이미 예약 중...</button>
+						</c:if>
 					</div>
 				</form>
 			</div>
@@ -498,30 +502,6 @@
 </div>
 
 <br>
-
-<script>
-function reseve_check(){
-	  
-	
-	      $.ajax({
-	         header : {
-	            "Content-Type" :"application/json",
-	            "X-HTTP-Method-Override" : "GET"
-	         },
-	         type : "GET",
-	         url : "/product/reserv_dupl_check/"+'${product_detail.product_seq}',
-	         dataType: "text",
-	         success : function(result){
-	        	 var reserv = JSON.parse(result);
-	            if(reserv.duplicate==true)
-	               $("#frm").submit();
-	            else
-	               alert("이미 예약하셨습니다.");
-	         }
-	      });
-	   
-	}
-</script>
 
 <!--지도 스크립트  -->
 <script

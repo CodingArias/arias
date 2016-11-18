@@ -136,4 +136,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductDto> select_product_list(String member_id) throws Exception {
 		return pDao.select_product_list(member_id);
 	}
+	
+	@Override
+	public List<ProductDto> select_product_new() throws Exception {
+		return pDao.select_product_new();
+	}
 }

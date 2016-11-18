@@ -110,28 +110,15 @@ var lat, lng;
 	<br>
 
 	<div class="row">
-		<!-- 나중에 최신 순서로 뿌려주기 foreach 예정 -->
-		<div class="col-sm-4 image">
-			<img src="/resources/img/main/paris.jpg" class="img-responsive"
-				style="width: 100%" alt="Image">
+		<c:forEach var="product" items="${list}">
+		<div class="col-sm-4 image" style="margin-top: 10px;">
+			<img src="http://192.168.0.6:8080/resources/product/product_main_image/${product.p_main_img}" class="img-responsive"
+				style="width: 100%; height: 20%;" alt="Image">
 			<div class="text">
-				<h4>파리</h4>
+				<h4>${product.product_name }</h4>
 			</div>
 		</div>
-		<div class="col-sm-4 image">
-			<img src="/resources/img/main/rome.jpg" class="img-responsive"
-				style="width: 100%" alt="Image">
-			<div class="text">
-				<h4>로마</h4>
-			</div>
-		</div>
-		<div class="col-sm-4 image">
-			<img src="/resources/img/main/LA.jpg" class="img-responsive"
-				style="width: 100%" alt="Image">
-			<div class="text">
-				<h4>로스앤젤레스</h4>
-			</div>
-		</div>
+		</c:forEach>
 		<!-- 나중에 최신 순서로 뿌려주기 foreach 예정 끝-->
 	</div>
 </div>
@@ -151,7 +138,7 @@ var lat, lng;
 		</div>
 
 		<div class="col-sm-3 image">
-			<a href="#"> <img src="/resources/img/main/rome.jpg"
+			<a href="search?checkin=${date }&checkout=${date }&lng=12.496365500000024&lat=41.90278349999999&keyword=이탈리아라치오로마&number_of_people=1"> <img src="/resources/img/main/rome.jpg"
 				class="img-responsive" style="width: 100%" alt="Image">
 			</a>
 			<div class="text">
@@ -162,7 +149,7 @@ var lat, lng;
 
 		</div>
 		<div class="col-sm-3 image">
-			<a href="#"><img src="/resources/img/main/LA.jpg"
+			<a href="search?checkin=${date }&checkout=${date }&lng=-118.2436849&lat=34.0522342&keyword=미국캘리포니아로스앤젤레스&number_of_people=1"><img src="/resources/img/main/LA.jpg"
 				class="img-responsive" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
@@ -171,7 +158,7 @@ var lat, lng;
 			</div>
 		</div>
 		<div class="col-sm-3 image" style="top: 1em;">
-			<a href="#"><img src="/resources/img/main/lisboa.jpg"
+			<a href="search?checkin=${date }&checkout=${date }&lng=-9.139336599999979&lat=38.7222524&keyword=리스본&number_of_people=1"><img src="/resources/img/main/lisboa.jpg"
 				class="img-responsive" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
@@ -180,7 +167,7 @@ var lat, lng;
 			</div>
 		</div>
 		<div class="col-sm-3 image" style="top: 1em;">
-			<a href="#"><img src="/resources/img/main/tokyo.jpg"
+			<a href="search?checkin=${date }&checkout=${date }&lng=139.73199249999993&lat=35.7090259&keyword=%EC%9D%BC%EB%B3%B8+%EB%8F%84%EC%BF%84&number_of_people=1"><img src="/resources/img/main/tokyo.jpg"
 				class="img-responsive" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
@@ -193,7 +180,7 @@ var lat, lng;
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="image">
-				<a href="#"><img src="/resources/img/main/newyork.jpg"
+				<a href="search?checkin=${date }&checkout=${date }&lng=-74.00594130000002&lat=40.7127837&keyword=미국뉴욕&number_of_people=1"><img src="/resources/img/main/newyork.jpg"
 					class="img-responsive" style="width: 100%" alt="Image"> </a>
 				<div class="text">
 					<h4>
@@ -202,7 +189,7 @@ var lat, lng;
 				</div>
 			</div>
 			<div class="image" style="top: 1em;">
-				<a href="#"><img src="/resources/img/main/amsterdam.jpg"
+				<a href="search?checkin=${date }&checkout=${date }&lng=4.895167899999933&lat=52.3702157&keyword=네덜란드노르트홀란트암스테르담&number_of_people=1"><img src="/resources/img/main/amsterdam.jpg"
 					class="img-responsive" style="width: 100%" alt="Image"> </a>
 				<div class="text">
 					<h4>
@@ -213,7 +200,7 @@ var lat, lng;
 		</div>
 
 		<div class="col-sm-6 image">
-			<a href="#"><img src="/resources/img/main/liverpool.jpg"
+			<a href="search?checkin=${date }&checkout=${date }&lng=-2.9915726000000404&lat=53.4083714&keyword=영국잉글랜드리버풀&number_of_people=1"><img src="/resources/img/main/liverpool.jpg"
 				class="img-responsive" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
@@ -222,7 +209,7 @@ var lat, lng;
 			</div>
 		</div>
 		<div class="col-sm-3 image">
-			<a href="#"><img src="/resources/img/main/barcelona.jpg"
+			<a href="search?checkin=${date }&checkout=${date }&lng=2.1734034999999494&lat=41.38506389999999&keyword=스페인카탈루나바르셀로나&number_of_people=1"><img src="/resources/img/main/barcelona.jpg"
 				class="img-responsive" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
@@ -231,7 +218,7 @@ var lat, lng;
 			</div>
 		</div>
 		<div class="col-sm-3 image" style="top: 1em;">
-			<a href="#"><img src="/resources/img/main/berlin.jpg"
+			<a href="search?checkin=${date }&checkout=${date }&lng=13.404953999999975&lat=52.52000659999999&keyword=독일베를린&number_of_people=1"><img src="/resources/img/main/berlin.jpg"
 				class="img-responsive" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
@@ -259,10 +246,11 @@ function initAutocomplete() {
 	  
 	  document.getElementById('btn').onclick = function () {
 		
-		google.maps.event.trigger(input, 'focus')
+//검색창 enter 강제 트리거		  
+/* 		google.maps.event.trigger(input, 'focus')
 	    google.maps.event.trigger(input, 'keydown', {
 	    	keyCode: 13
-	    }); 
+	    });  */
 		  
 	  	var places = searchBox.getPlaces();
 	  	if(places!=null){
