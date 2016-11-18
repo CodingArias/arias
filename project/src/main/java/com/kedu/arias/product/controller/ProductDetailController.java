@@ -34,7 +34,7 @@ public class ProductDetailController {
 		boolean duplicate =false;
 		
 		//이미 예약중인지 검사
-		if(reservService.duplicateReservationCheck(mDto.getMember_id(), product_seq)>0)
+		if(mDto!=null && reservService.duplicateReservationCheck(mDto.getMember_id(), product_seq)>0)
 			duplicate=true;
 		
 		System.out.println(service.select_product_detail(product_seq));

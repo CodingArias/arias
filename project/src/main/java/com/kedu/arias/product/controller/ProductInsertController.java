@@ -257,7 +257,7 @@ public class ProductInsertController {
 	public ModelAndView product_insert_step_last(HttpServletRequest request) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession();
-		int product_seq = 65;
+		int product_seq = -1;
 
 		if (session.getAttribute("product_seq") != null && session.getAttribute("product_step") != null
 				&& (Integer) session.getAttribute("product_step") == 9) {

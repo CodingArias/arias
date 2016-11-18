@@ -1,5 +1,6 @@
 package com.kedu.arias.product.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kedu.arias.product.dto.NotsalesDto;
+import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.dto.ReservationDto;
 
 @Repository
@@ -60,5 +62,14 @@ public class ReservationDaoImpl implements ReservationDao{
 		else
 			return false;
 	}
+
+	@Override
+	public ReservationDto selectReservationDetail(Integer product_seq, String member_id) {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("product_seq", product_seq);
+		map.put("member_id", member_id);
+		return session.selectOne(namespace+".selectReservationDetail",map);
+	}
+
 
 }

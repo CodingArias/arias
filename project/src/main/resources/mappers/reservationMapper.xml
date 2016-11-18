@@ -28,10 +28,11 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateReservationStatus">
 		UPDATE RESERVATION
-		SET reserv_status = #{reserv_status, jdbcType=NUMERIC}
+		SET reserv_status = 1
 		WHERE member_id = #{member_id, jdbcType=VARCHAR}
 		AND product_seq = #{product_seq, jdbcType=NUMERIC}
 		AND reservation_seq = #{reservation_seq, jdbcType=NUMERIC}
+		AND reserv_status = 0
 	</update>
 	
 	<select id="selectInvalidReservationDate" resultType="com.kedu.arias.product.dto.NotsalesDto">
@@ -49,9 +50,19 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="selectReservationList" resultType="com.kedu.arias.product.dto.ReservationDto">
-		SELECT m.MEMBER_First_NAME ||' '|| m.MEMBER_LAST_NAME member_name , r.*
+		SELECT  m.MEMBER_First_NAME ||' '|| m.MEMBER_LAST_NAME member_name 
+			  , m.member_img
+		      , r.RESERVATION_SEQ
+		      , r.PRODUCT_SEQ
+		      , r.MEMBER_ID
+		      , r.RESERV_COUNT
+		      , to_char(r.CHECKIN_DT,'YYYY-MM-DD') CHECKIN_DT
+		      , to_char(r.CHECKOUT_DT,'YYYY-MM-DD') CHECKOUT_DT 
+		      , to_char(r.REG_DT,'YYYY-MM-DD') REG_DT
+		      , r.MEMBER_INTRO
+		      , r.RESERV_STATUS
 		FROM RESERVATION r , MEMBER m
-		WHERE r.product_seq = #{product_seq, jdbcType=NUMERIC} AND r.reserv_status=0
+		WHERE r.product_seq = #{product_seq, jdbcType=NUMERIC} AND r.reserv_status IN (0,1)
 		AND r.member_id = m.member_id
 	</select>
 	
@@ -59,5 +70,26 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 		FROM PRODUCT
 		WHERE product_seq = #{product_seq} and member_id =#{member_id}
+	</select>
+	
+	<select id="selectNowReservNum" resultType="int">
+		SELECT COUNT(*) FROM RESERVATION
+		WHERE product_seq = #{product_seq}
+		and reserv_status=0
+	</select>
+	<select id="selectReservationDetail" resultType="com.kedu.arias.product.dto.ReservationDto">
+		SELECT 
+	         RESERVATION_SEQ
+	       , PRODUCT_SEQ
+	       , MEMBER_ID
+	       , RESERV_COUNT
+	       , to_char(CHECKIN_DT,'YYYY-MM-DD') CHECKIN_DT
+	       , to_char(CHECKOUT_DT,'YYYY-MM-DD') CHECKOUT_DT
+	       , to_char(REG_DT,'YYYY-MM-DD') REG_DT
+	       , MEMBER_INTRO
+	       , RESERV_STATUS
+		FROM RESERVATION
+		WHERE product_seq = #{product_seq}
+		AND member_id = #{member_id}
 	</select>
 </mapper>
