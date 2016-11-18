@@ -54,12 +54,15 @@ public class MemberDaoImpl implements MemberDao {
 		paramMap.put("sessionid", sessionid);
 		paramMap.put("next", next);
 		
-		session.update(namespace + ".keepLogin", paramMap);
+		session.update(namespace + ".keeplogin", paramMap);
 	}
 
 	@Override
 	public MemberDto checkUserWithSessionKey(String value){
+		System.out.println("checkUserWithSessionKey : " + value);
+		
 		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
+		
 	}
 	
 	//현수
