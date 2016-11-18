@@ -1,6 +1,7 @@
 package com.kedu.arias;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -10,8 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.kedu.arias.product.dto.ProductDto;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application home page.
@@ -25,15 +25,15 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public ModelAndView home(Locale locale, Model model) {
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
+		ModelAndView modelAndView =new ModelAndView();
+		Date today = new Date();
+		SimpleDateFormat f_date =new SimpleDateFormat("yyyy-MM-dd");
+		modelAndView.setViewName("home");
+		modelAndView.addObject("date", f_date.format(today));
 		
-		
-		return "home";
+		return modelAndView;
 	}
 	
 	

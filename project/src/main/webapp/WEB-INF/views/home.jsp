@@ -143,7 +143,7 @@ var lat, lng;
 	<br>
 	<div class="row">
 		<div class="col-sm-6 image">
-			<a href="#"> <img src="/resources/img/main/paris.jpg"
+			<a href="search?checkin=${date }&checkout=${date }&lng=2.3522219000000177&lat=48.85661400000001&keyword=프랑스일+드+프랑스파리&number_of_people=1"> <img src="/resources/img/main/paris.jpg"
 				class="img-responsive" style="width: 100%" alt="Image">
 				<div class="text">
 					<h4>파리</h4>
