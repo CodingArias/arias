@@ -50,12 +50,15 @@ public class ReservationDaoImpl implements ReservationDao{
 	}
 
 	@Override
-	public Integer reservationHostCheck(Integer product_seq, String member_id) {
+	public boolean reservationHostCheck(Integer product_seq, String member_id) {
 		HashMap<String,Object> map = new HashMap<>();
 		map.put("product_seq", product_seq);
 		map.put("member_id", member_id);
-		
-		return session.selectOne(namespace+".reservationHostCheck",map);
+		Integer count =session.selectOne(namespace+".reservationHostCheck",map);
+		if(count>0)
+			return true;
+		else
+			return false;
 	}
 
 }
