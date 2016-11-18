@@ -31,4 +31,6 @@ public interface MemberDao {
     public Integer selectAllNoticeCount(PageDto pageDto)throws Exception;
 	
 	public List<NoticeDto> selectNoticeList (PageDto pageDto,int recordPerPage);
+	
+	public boolean adminCheck(String member_id);
 }
