@@ -44,4 +44,6 @@ public interface ProductDao {
 	
 	public List<ProductDto> select_product_list(String member_id) throws Exception;
 	
+	public List<ProductDto> select_product_new() throws Exception;
+	
 }

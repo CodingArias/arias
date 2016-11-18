@@ -40,4 +40,6 @@ public interface ProductService {
 	public List<ProductImgDto> selectAllproductPicture(int product_seq);	
 
 	public List<ProductDto> select_product_list(String member_id) throws Exception;
+	
+	public List<ProductDto> select_product_new() throws Exception;
 }

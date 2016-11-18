@@ -1,8 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<<<<<<< HEAD
 
-=======
->>>>>>> c9b33c71c70e0600460987e5017111be1661cf3f
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -171,15 +168,16 @@ footer {
 								<br>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
 				<c:forEach items="${list}" var="list">
-				<div class="col-sm-6">
+				<div class="col-sm-6" style="margin-top: 10px;">
 					<div class="col-sm-12 image">
 						<a href='/detail?product_seq=${list.product_seq}&checkin=${checkin}&checkout=${checkout}&number_of_people=${number_of_people}'><img src="http://192.168.0.6:8080/resources/product/product_main_image/${list.p_main_img}"
-							class="img-rounded img-responsive img" alt="Responsive image" style="width: 100%; height: 80%;">
+							class="img-rounded img-responsive img" alt="Responsive image" style="width: 100%; height: 30%;">
 						<div class="text">
 							<h4>￦ ${list.product_price}</h4>
 						</div>
 					</div>
 						</a>
+						
 					<!-- 상품 설명 -->
 					<div class="col-sm-12">
 						<div class="media">
@@ -195,7 +193,9 @@ footer {
 							</div>
 						</div>
 					</div>
+					
 				</div>
+	
 				</c:forEach>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝-->
 				<script>
@@ -248,7 +248,7 @@ footer {
 				},
 				scrollwheel : true, //마우스 휠로 확대 축소 사용 여부
 				mapTypeControl : false, //맵 타입 컨트롤 사용 여부
-				zoom : 12
+				zoom : 13
 			});
 			
 			for (var i = 0; i < list.length;i++) {
