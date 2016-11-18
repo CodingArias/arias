@@ -262,7 +262,6 @@ public class ProductInsertController {
 		if (session.getAttribute("product_seq") != null && session.getAttribute("product_step") != null
 				&& (Integer) session.getAttribute("product_step") == 9) {
 
-			session.removeAttribute("product_seq");
 			product_seq = (Integer) session.getAttribute("product_seq");
 			modelAndView.addObject("product_member", service.product_member(product_seq));
 			modelAndView.addObject("product_safety", service.product_safety(product_seq));
@@ -272,6 +271,7 @@ public class ProductInsertController {
 			modelAndView.addObject("product", service.select_product_detail(product_seq));
 			modelAndView.addObject("product_pic", service.selectAllproductPicture(product_seq));
 			modelAndView.setViewName("/product/product_insert_step_last");
+			session.removeAttribute("product_seq");
 		} else {
 			modelAndView.setViewName("redirect:/");
 		}
