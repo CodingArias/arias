@@ -1,5 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<<<<<<< HEAD
+
+=======
+>>>>>>> c9b33c71c70e0600460987e5017111be1661cf3f
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -165,14 +168,13 @@ footer {
 					});
 				</script>
 				<!--달력 스크립트  끝-->
-
-				<br>
+								<br>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 -->
 				<c:forEach items="${list}" var="list">
 				<div class="col-sm-6">
 					<div class="col-sm-12 image">
-						<a href='/detail?product_seq=${list.product_seq}&checkin=${checkin}&checkout=${checkout}&number_of_people=${number_of_people}'><img src="/resources/product/product_main_image/${list.p_main_img}"
-							class="img-rounded img-responsive img" alt="Responsive image" style="width: 472px; height: 314px;">
+						<a href='/detail?product_seq=${list.product_seq}&checkin=${checkin}&checkout=${checkout}&number_of_people=${number_of_people}'><img src="http://192.168.0.6:8080/resources/product/product_main_image/${list.p_main_img}"
+							class="img-rounded img-responsive img" alt="Responsive image" style="width: 100%; height: 80%;">
 						<div class="text">
 							<h4>￦ ${list.product_price}</h4>
 						</div>
@@ -188,7 +190,7 @@ footer {
 							</div>
 							<div class="media-right">
 								<a href="#"> <img class="media-object img-circle"
-									src="/resources/img/search/original_12.jpg" alt="">
+									src="http://192.168.0.6:8080/resources/member/member_img/${list.member_img }" alt="" style="width: 60px; height: 60px;">
 								</a>
 							</div>
 						</div>
@@ -196,7 +198,10 @@ footer {
 				</div>
 				</c:forEach>
 				<!-- 상품 사진 불러오기 시작 foreach 사용해야함 끝-->
-
+				<script>
+				
+				</script>
+				
 			</div>
 			<div class="col-sm-5 sidenav">
 				<div id="map"></div>

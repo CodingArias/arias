@@ -48,4 +48,16 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 			
 	</select>
 
+	<select id="selectReservationList" resultType="com.kedu.arias.product.dto.ReservationDto">
+		SELECT m.MEMBER_First_NAME ||' '|| m.MEMBER_LAST_NAME member_name , r.*
+		FROM RESERVATION r , MEMBER m
+		WHERE r.product_seq = #{product_seq, jdbcType=NUMERIC} AND r.reserv_status=0
+		AND r.member_id = m.member_id
+	</select>
+	
+	<select id="reservationHostCheck" resultType="int">
+		SELECT COUNT(*)
+		FROM PRODUCT
+		WHERE product_seq = #{product_seq} and member_id =#{member_id}
+	</select>
 </mapper>

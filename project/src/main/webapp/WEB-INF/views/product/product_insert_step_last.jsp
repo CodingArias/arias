@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 
-$("title").text("Hosting Write Completed..");
+$("title").text("숙소 정보");
 	jQuery(document).ready(function($) {
 
 		var jssor_1_SlideshowTransitions = [ {
@@ -496,7 +496,7 @@ $("title").text("Hosting Write Completed..");
 	<div class="container">
 		<div class="product_step">
 		
-			<h3>Hosting Write Completed..</h3>
+			<h3>숙소 정보</h3>
 			<hr>
 		</div>
 		<div class="row">
@@ -504,9 +504,9 @@ $("title").text("Hosting Write Completed..");
 			<div class="col-sm-12 text-left">
 				<div class="col-sm-3 text-left">
 					<!-- 임의 이미지  -->
-					<img style="width: 100px; height: 100px;" class="img-circle"
-						src="/resources/img/main/liverpool.jpg">
-					<h4>회원 이름</h4>
+					<img  style="width: 100px; height: 100px;" class="img-circle"
+						src="/resources/member/member_img/${product_member.member_img }">
+					<h4 style="margin-left: 25px;"><strong>${product_member.member_first_name} ${product_member.member_last_name}</strong></h4>
 				</div>
 				<div class="col-sm-7 text-center">
 					<h2>${product.product_name }</h2>
@@ -700,7 +700,7 @@ $("title").text("Hosting Write Completed..");
 			
 			<div class="col-sm-12 text-right">
 				<input id="saveBtn" class="btn btn-success" type="button"
-					value="저장 확인" onclick="location.href='/';"/>
+					value="확인" onclick="location.href='/product/product_list';"/>
 			</div>
 
 		</div>

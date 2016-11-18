@@ -119,10 +119,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     , p.P_MAIN_IMG
                     , p.product_lng
                     , p.product_lat
+                    , M.MEMBER_IMG
                     , ( 6371 * acos( cos( radians(#{lat,jdbcType=NUMERIC}) ) * cos( radians(product_lat) ) * cos( radians( product_lng ) - radians(#{lng,jdbcType=NUMERIC}) ) + sin( radians(#{lat,jdbcType=NUMERIC})) * sin( radians( product_lat ) ) ) ) AS distance
-		FROM PRODUCT P, ACCOM_CODE a
-        WHERE a.ACCOM_ID=p.ACCOM_ID
-        AND number_of_people >= #{number_of_people, jdbcType=NUMERIC}
+		FROM PRODUCT P, ACCOM_CODE a, MEMBER M
+        WHERE P.ACCOM_ID=A.ACCOM_ID
+          AND P.MEMBER_ID = M.MEMBER_ID
+          AND number_of_people >= #{number_of_people, jdbcType=NUMERIC}
  	) x
  	WHERE  distance <= 30
  	ORDER BY distance
@@ -295,7 +297,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             , A.ACCOM_NAME
 	  FROM PRODUCT P,  ACCOM_CODE A
 	 WHERE MEMBER_ID = #{member_id,jdbcType=VARCHAR}
+	  AND a.ACCOM_ID (+) =p.ACCOM_ID
 	</select>
-	
 </mapper>
 

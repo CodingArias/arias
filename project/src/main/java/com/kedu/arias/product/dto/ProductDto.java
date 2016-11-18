@@ -63,8 +63,16 @@ public class ProductDto {
 	private String sguest_id;								
 	private String sguest_name;
 	
+	private String member_img;
 	
 	
+	
+	public String getMember_img() {
+		return member_img;
+	}
+	public void setMember_img(String member_img) {
+		this.member_img = member_img;
+	}
 	public String getCheckin_time() {
 		return checkin_time;
 	}
