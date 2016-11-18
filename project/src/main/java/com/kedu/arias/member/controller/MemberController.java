@@ -60,20 +60,33 @@ public class MemberController {
 	public String loginPOST(LoginDto ldto, HttpSession session, Model model) throws Exception {
 	
 		System.out.println("로그인 성공");
+		//로그인 성공시 db에서 member 정보들을 가져온다
 		MemberDto mdto = service.login(ldto);
+		
+		//이미 세션이 존재할 경우 삭제한다.
 		if(session.getAttribute("member")!=null)
 			session.removeAttribute("member");
+		if(session.getAttribute("admin")!=null)
+			session.removeAttribute("admin");
 		
-		model.addAttribute("member", mdto);
-		
+
+		//remember me 코드
 		if(ldto.isUseCookie()) {
 			int amount = 60*60*24*7;
 			Date sessionlimit = new Date(System.currentTimeMillis() + (1000*amount));
 			
 			service.keepLogin(mdto.getMember_id(), session.getId(), sessionlimit);
 		}
+		
+		//회원 정보를 세션에 추가
 		session.setAttribute("member", mdto);
+		//admin 체크
+		if(service.adminCheck(mdto.getMember_id()))
+			session.setAttribute("admin", "true");
+	
+		
 		System.out.println(session.getAttribute("member"));
+		System.out.println("admin 상태 : "+session.getAttribute("admin"));
 		
 		return "redirect:/";
 		//model.addAttribute("member", mdto);
@@ -239,6 +252,7 @@ public class MemberController {
 	  @RequestMapping(value = "/logout", method=RequestMethod.GET)
 	  public String logout(HttpSession session){
 		  session.removeAttribute("member");
+		  session.removeAttribute("admin");
 		  return "redirect:/";
 	  }
 //현수

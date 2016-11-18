@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@include file="header.jsp"%>
 <!-- 한글화 및 한국식 날짜표기를 적용한 datepicker 구성요소-->
 <link rel="stylesheet" type="text/css"
@@ -246,6 +245,13 @@ function initAutocomplete() {
 	  
 	  
 	  document.getElementById('btn').onclick = function () {
+		
+//검색창 enter 강제 트리거		  
+/* 		google.maps.event.trigger(input, 'focus')
+	    google.maps.event.trigger(input, 'keydown', {
+	    	keyCode: 13
+	    });  */
+		  
 	  	var places = searchBox.getPlaces();
 	  	if(places!=null){
 			if (places.length == 0) {

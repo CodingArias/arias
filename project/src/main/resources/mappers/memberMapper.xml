@@ -49,14 +49,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="checkUserWithSessionKey" resultType = "MemberDto">
 		select * from member
-		where sessionkey = #{value}
+		where sessionkey = #{value,jdbcType=VARCHAR}
 		and sessionlimit > now()
 	</select>
 
 	<update id="keeplogin">
 		update member
-		set sessionkey = #{sessionkey}, sessionlimit = #{next}
-		where member_id = #{member_id}
+		set sessionkey = #{sessionkey,jdbcType=VARCHAR}, sessionlimit = #{next,jdbcType=DATE}
+		where member_id = #{member_id,jdbcType=VARCHAR}
 	</update>
 	
 	<!-- 자동로그인 처리 끝 -->
@@ -125,5 +125,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE  1=1 AND ro BETWEEN #{start} AND #{end}
 	
 	</select>
+	
+	<select id="adminCheck" resultType="int">
+		SELECT COUNT(*) FROM ADMIN_CODE
+		WHERE member_id =#{member_id}
+	</select>
 
-	</mapper>
+</mapper>

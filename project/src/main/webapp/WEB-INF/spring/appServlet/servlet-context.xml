@@ -40,6 +40,7 @@
 	
 	<!-- 사용자의 로그인 상태를 확인하는 인터셉터 -->
 	<beans:bean id="authInterceptor" class="com.kedu.arias.interceptor.AuthInterceptor"></beans:bean>
+
 	<interceptors>
 		<interceptor>
 			<!-- 로그인하지 않은 사용자 이동 페이지 MAPPING -->
@@ -52,10 +53,7 @@
 			<mapping path="/product/reservation_step1"></mapping>
 			<mapping path="/product/reservation_step_last"></mapping>
 			<mapping path="/product/product_list"></mapping>
-			
-			
-			
-			
+
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>

@@ -54,12 +54,15 @@ public class MemberDaoImpl implements MemberDao {
 		paramMap.put("sessionid", sessionid);
 		paramMap.put("next", next);
 		
-		session.update(namespace + ".keepLogin", paramMap);
+		session.update(namespace + ".keeplogin", paramMap);
 	}
 
 	@Override
 	public MemberDto checkUserWithSessionKey(String value){
+		System.out.println("checkUserWithSessionKey : " + value);
+		
 		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
+		
 	}
 	
 	//현수
@@ -117,5 +120,15 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return session.selectList(namespace+".selectNoticeList", map);
 	}
+
+	@Override
+	public boolean adminCheck(String member_id) {
+		Integer count = session.selectOne(namespace+".adminCheck",member_id);
+		if(count>0){
+			return true;
+		}else
+			return false;
+	}
+	
 
 }
