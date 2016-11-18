@@ -44,4 +44,18 @@ public class ReservationDaoImpl implements ReservationDao{
 		return session.selectList(namespace+".selectInvalidReservationDate",product_seq );
 	}
 
+	@Override
+	public List<ReservationDto> selectReservationList(Integer product_seq) {
+		return session.selectList(namespace+".selectReservationList",product_seq);
+	}
+
+	@Override
+	public Integer reservationHostCheck(Integer product_seq, String member_id) {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("product_seq", product_seq);
+		map.put("member_id", member_id);
+		
+		return session.selectOne(namespace+".reservationHostCheck",map);
+	}
+
 }

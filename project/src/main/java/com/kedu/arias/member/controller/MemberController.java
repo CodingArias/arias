@@ -1,10 +1,14 @@
 package com.kedu.arias.member.controller;
 
+import java.util.Date;
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.WebUtils;
+
 import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
@@ -33,6 +39,7 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	private PageHelper pageHelper = PageHelper.getInstance();
+	
 	@Inject
 	private MemberService service;
 	
@@ -57,13 +64,21 @@ public class MemberController {
 		if(session.getAttribute("member")!=null)
 			session.removeAttribute("member");
 		
+		model.addAttribute("member", mdto);
+		
+		if(ldto.isUseCookie()) {
+			int amount = 60*60*24*7;
+			Date sessionlimit = new Date(System.currentTimeMillis() + (1000*amount));
+			
+			service.keepLogin(mdto.getMember_id(), session.getId(), sessionlimit);
+		}
 		session.setAttribute("member", mdto);
 		System.out.println(session.getAttribute("member"));
 		
 		return "redirect:/";
 		//model.addAttribute("member", mdto);
 	}
-	
+
 	
 	@RequestMapping(value="/member_reg", method=RequestMethod.GET)
 	public void regMemberGet(HttpSession session, Model model, SearchCriteria cri) throws Exception {

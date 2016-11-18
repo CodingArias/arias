@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -20,6 +19,12 @@
 <style>
 .img {
 	height: 210px;
+}
+.date {
+	color: gray;
+}
+.mybyn{
+	margin-top: 35px;
 }
 </style>
 
@@ -42,85 +47,51 @@
 		</div>
 		<div class="col-sm-9 text-left">
 			<div class="panel panel-default">
-				<div class="panel-heading"><h4>등록 진행중</h4></div>
-				<c:forEach items="${product_list}" var="product_list">
-				<c:if test="${product_list.product_step eq 1}" >
-				<div class="panel-body">
-					<div class="col-sm-5">
-						<img src="/resources/img/main/seoul.png" alt="Image" class="img-responsive img">
+				<div class="panel-heading"><h4>등록된 숙소 현황</h4></div>
+				
+				<c:if test="${p_flag == false }">
+					<div style="height: 200px; text-align: center;">
+						<h4>등록하신 숙소가 없습니다.</h4>
 					</div>
-					<div class="col-sm-7">	
-						<h5>숙소 등록이 step 1까지 완료 되었습니다.</h5>
-						<h3>${product_list.accom_name }(위치: ${product_list.product_addr})</h3>
-						<h5>최종 업데이트: ${product_list.product_regdt} </h5>
-						<br><br>
-						<button class="btn-primary">다시 작성하기</button>
-					</div>
-				</div>
 				</c:if>
-				<c:if test="${product_list.product_step eq 2}" >
-				<div class="panel-body">
-					<div class="col-sm-5">
-						<img src="/resources/img/main/seoul.png" alt="Image" class="img-responsive img">
+				<!--숙소 -->
+				<c:forEach var="product" items="${product_list }">
+					<div class="panel-body">
+						<div class="col-sm-5">
+							<img src="/resources/product/product_main_image/${product.p_main_img }" alt="Image" class="img-responsive img-rounded img">
+						</div>
+						<div class="col-sm-7">	
+
+							<h4><strong>${product.product_name }  </strong></h4>
+							<h6><span class="date">${product.product_addr }  ${product.product_addr_detail }</span></h6>
+							<h6><span class="date">가격 : $${product.product_price }</span></h6>
+							
+							<h6><span class="date">최종 수정일 : ${product.product_regdt }</span></h6>
+							
+							<c:if test="${product.product_step != 9 }">
+								<h5><strong>숙소 등록이 step ${product.product_step}까지 완료 되었습니다.</strong></h5>
+							</c:if>
+							<c:if test="${product.product_step == 9 }">
+								<input id="saveBtn" class="btn btn-success mybyn" 
+								onclick="location.href='product_simple_detail?product_seq=${product.product_seq}'" type="button" value="숙소 확인"/>
+								<button id="saveBtn" class="btn btn-success mybyn"  >예약 현황 <span class="badge"> 14</span></button>
+							</c:if>
+							<c:if test="${product.product_step != 9 }">
+								<input id="saveBtn" class="btn btn-waring mybyn" type="button" value="계속 작성 하기"/>
+							</c:if>
+						</div>
 					</div>
-					<div class="col-sm-7">	
-						<h5>숙소 등록이 step 2까지 완료 되었습니다.</h5>
-						<h3>${product_list.accom_name }(위치: ${product_list.product_addr})</h3>
-						<h5>최종 업데이트: ${product_list.product_regdt} </h5>
-						<br><br>
-						<button class="btn-primary">다시 작성하기</button>
+					<div class="col-sm-12">
+						<hr>
 					</div>
-				</div>
-				</c:if>
-				<c:if test="${product_list.product_step eq 3}" >
-				<div class="panel-body">
-					<div class="col-sm-5">
-						<img src="/resources/img/main/seoul.png" alt="Image" class="img-responsive img">
-					</div>
-					<div class="col-sm-7">	
-						<h5>숙소 등록이 step 3까지 완료 되었습니다.</h5>
-						<h3>${product_list.accom_name }(위치: ${product_list.product_addr})</h3>
-						<h5>최종 업데이트: ${product_list.product_regdt} </h5>
-						<br><br>
-						<button class="btn-primary">다시 작성하기</button>
-					</div>
-				</div>
-				</c:if>
-				<c:if test="${product_list.product_step eq 4}" >
-				<div class="panel-body">
-					<div class="col-sm-5">
-						<img src="/resources/img/main/seoul.png" alt="Image" class="img-responsive img">
-					</div>
-					<div class="col-sm-7">	
-						<h5>숙소 등록이 step 4까지 완료 되었습니다.</h5>
-						<h3>${product_list.accom_name }(위치: ${product_list.product_addr})</h3>
-						<h5>최종 업데이트: ${product_list.product_regdt} </h5>
-						<br><br>
-						<button class="btn-primary">이어서 작성하기</button>
-					</div>
-				</div>
-				</c:if>
-				<c:if test="${product_list.product_step eq 9}" >
-				<div class="panel-body">
-					<div class="col-sm-5">
-						<img src="/resources/img/main/seoul.png" alt="Image" class="img-responsive img">
-					</div>
-					<div class="col-sm-7">	
-						<h5>숙소 등록이 완료 되었습니다.</h5>
-						<h3>${product_list.accom_name }(위치: ${product_list.product_addr})</h3>
-						<h5>최종 업데이트: ${product_list.product_regdt} </h5>
-						<br><br>
-						<button class="btn-warning">숙소 확인</button>
-					</div>
-				</div>
-				</c:if>
+					<!--숙소 -->
 				</c:forEach>
+														
+				</div>
 			</div>
 		</div>
 
-
 	</div>
-</div>
 
 <br>
 

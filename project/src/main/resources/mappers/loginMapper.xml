@@ -7,11 +7,11 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="login" resultType="MemberDto">
 		SELECT * 
 		FROM MEMBER 
-		WHERE member_email = #{member_email} 
-		AND member_pwd = #{member_pwd}
+		WHERE member_email = #{member_email, jdbcType=VARCHAR} 
+		AND member_pwd = #{member_pwd, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="memberCheck" resultType="String">
-		select member_pwd from member where member_email = #{member_email}
+		select member_pwd from member where member_email = #{member_email, jdbcType=VARCHAR}
 	</select>
 </mapper>

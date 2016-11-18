@@ -11,4 +11,6 @@ public interface ReservationDao {
 	public boolean updateReservationStatus(ReservationDto reservDto);
 	
 	public List<NotsalesDto> selectInvalidReservationDate(Integer product_seq);
+	public List<ReservationDto> selectReservationList (Integer product_seq);
+	public Integer reservationHostCheck (Integer product_seq, String member_id);
 }

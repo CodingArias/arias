@@ -45,7 +45,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-	<select id="checkUserWithSessionKey"></select>
+	<!-- 자동로그인 처리 -->
+	
+	<select id="checkUserWithSessionKey" resultType = "MemberDto">
+		select * from member
+		where sessionkey = #{value}
+		and sessionlimit > now()
+	</select>
+
+	<update id="keeplogin">
+		update member
+		set sessionkey = #{sessionkey}, sessionlimit = #{next}
+		where member_id = #{member_id}
+	</update>
+	
+	<!-- 자동로그인 처리 끝 -->
+
 
 	<select id="read" resultType="com.kedu.arias.member.dto.MemberDto">
 		select

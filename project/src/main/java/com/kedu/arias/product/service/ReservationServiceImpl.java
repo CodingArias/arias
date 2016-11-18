@@ -40,4 +40,14 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<NotsalesDto> selectInvalidReservationDate(Integer product_seq) {
 		return reservDao.selectInvalidReservationDate(product_seq);
 	}
+
+	@Override
+	public List<ReservationDto> selectReservationList(Integer product_seq) {
+		return reservDao.selectReservationList(product_seq);
+	}
+
+	@Override
+	public Integer reservationHostCheck(Integer product_seq, String member_id) {
+		return reservDao.reservationHostCheck(product_seq,member_id);
+	}
 }

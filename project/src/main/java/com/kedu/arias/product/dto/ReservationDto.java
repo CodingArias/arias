@@ -4,12 +4,21 @@ public class ReservationDto {
 	private Integer reservation_seq;
 	private Integer product_seq;
 	private String member_id;
+	private String member_name;
 	private Integer reserv_count;
 	private String checkin_dt;
 	private String checkout_dt;
 	private String reg_dt;
 	private String member_intro;
 	private Integer reserv_status;
+	
+	
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
 	public Integer getReservation_seq() {
 		return reservation_seq;
 	}
@@ -67,9 +76,9 @@ public class ReservationDto {
 	@Override
 	public String toString() {
 		return "ReservationDto [reservation_seq=" + reservation_seq + ", product_seq=" + product_seq + ", member_id="
-				+ member_id + ", reserv_count=" + reserv_count + ", checkin_dt=" + checkin_dt + ", checkout_dt="
-				+ checkout_dt + ", reg_dt=" + reg_dt + ", member_intro=" + member_intro + ", reserv_status="
-				+ reserv_status + "]";
+				+ member_id + ", member_name=" + member_name + ", reserv_count=" + reserv_count + ", checkin_dt="
+				+ checkin_dt + ", checkout_dt=" + checkout_dt + ", reg_dt=" + reg_dt + ", member_intro=" + member_intro
+				+ ", reserv_status=" + reserv_status + "]";
 	}
 	
 	

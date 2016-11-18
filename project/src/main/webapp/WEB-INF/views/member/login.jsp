@@ -71,7 +71,7 @@ function login(){
 	<h2>Log in</h2>
 	<h1><strong>로그인</strong></h1>
 	</div>	
-	
+   
 	<div style="margin-bottom: 250px;">
 	<form class="form-horizontal" action="/member/loginPost" method="post" name="frm" id="frm">
 		<div style="margin-top:200px; margin-left: 30%;">

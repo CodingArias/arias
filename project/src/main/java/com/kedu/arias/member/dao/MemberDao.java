@@ -1,7 +1,7 @@
 package com.kedu.arias.member.dao;
 
+import java.util.Date;
 import java.util.List;
-
 import com.kedu.arias.member.dto.SearchCriteria;
 import com.kedu.arias.notice.dto.NoticeDto;
 import com.kedu.arias.common.dto.PageDto;
@@ -14,6 +14,9 @@ public interface MemberDao {
 	public void create(MemberDto mdto) throws Exception;
 	public String create_next_memberid() throws Exception;
 	public String memberCheck(String member_email) throws Exception;
+	
+	public void keepLogin(String member_id, String sessionid, Date next) throws Exception;
+	public MemberDto checkUserWithSessionKey(String value);
 	
 	//현수
 	public List<MemberDto> listSearch(SearchCriteria cri)throws Exception;
