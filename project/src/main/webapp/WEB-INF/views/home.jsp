@@ -259,10 +259,11 @@ function initAutocomplete() {
 	  
 	  document.getElementById('btn').onclick = function () {
 		
-		google.maps.event.trigger(input, 'focus')
+//검색창 enter 강제 트리거		  
+/* 		google.maps.event.trigger(input, 'focus')
 	    google.maps.event.trigger(input, 'keydown', {
 	    	keyCode: 13
-	    }); 
+	    });  */
 		  
 	  	var places = searchBox.getPlaces();
 	  	if(places!=null){
