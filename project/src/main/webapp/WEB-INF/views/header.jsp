@@ -54,8 +54,6 @@
 				<c:if test="${member != null}">
 					<li> <img class="img-circle" style=" margin-top:5px; margin-right:10px; width: 40px; height: 40px;" src="/resources/member/member_img/${member.member_img }"></li>
 					<li> <span style="color: white; display:inline-block; padding-top: 15px;">${member.member_first_name} ${member.member_last_name} </span></li>
-					<li> <img class="img-circle" style=" margin-top:5px; margin-right:10px; width: 40px; height: 40px;" src="http://192.168.0.6:8080/resources/member/member_img/${member.member_img }"></li>
-					<li> <span style="color: white; display:inline-block; padding-top: 15px;">${member.member_first_name} ${member.member_last_name}</span></li>
 				</c:if>
 				<li id="login_status">
 				<c:if test="${member == null}">
