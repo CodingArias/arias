@@ -52,9 +52,6 @@
 			<mapping path="/product/reservation_step1"></mapping>
 			<mapping path="/product/reservation_step_last"></mapping>
 			
-			
-			
-			
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>

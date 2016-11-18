@@ -64,7 +64,6 @@ public class MemberController {
 		if(session.getAttribute("member")!=null)
 			session.removeAttribute("member");
 		
-<<<<<<< HEAD
 		model.addAttribute("member", mdto);
 		
 		if(ldto.isUseCookie()) {
@@ -73,13 +72,11 @@ public class MemberController {
 			
 			service.keepLogin(mdto.getMember_id(), session.getId(), sessionlimit);
 		}
-=======
 		session.setAttribute("member", mdto);
 		System.out.println(session.getAttribute("member"));
 		
 		return "redirect:/";
 		//model.addAttribute("member", mdto);
->>>>>>> afd6e32f540ae8b175d3c0b74fdf5a7a3cf39ad6
 	}
 
 	
