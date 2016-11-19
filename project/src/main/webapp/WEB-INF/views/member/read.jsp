@@ -79,7 +79,7 @@
     
     <div class="form-group">
       <label for="country_id">국적</label>
-      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_country" value="${memberDto.country_id}" readonly="readonly">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_country" value="${memberDto.country_name_kor}" readonly="readonly">
     </div>
     
     <div class="form-group">

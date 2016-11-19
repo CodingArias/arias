@@ -187,7 +187,7 @@ footer {
 							class="img-rounded img-responsive img" alt="Responsive image">
 						</a>
 						<div class="text">
-							<h4>￦ ${list.product_price}</h4>
+							<h4>＄ ${list.product_price}</h4>
 						</div>
 					</div>
 						
@@ -253,7 +253,7 @@ footer {
 		function initMap() {
 			
 			// Create a map object and specify the DOM element for display.
-		
+			
 			
 			map = new google.maps.Map(document.getElementById('map'), {
 				center : {

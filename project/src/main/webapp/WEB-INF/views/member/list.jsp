@@ -70,9 +70,9 @@
 						<option value="w"
 							<c:out value="${page.searchType eq 'w'?'selected':''}"/>>
 							회원ID</option>
-						<option value="tc"
+						<%-- <option value="tc"
 							<c:out value="${page.searchType eq 'tc'?'selected':''}"/>>
-							국적</option>
+							국적</option> --%>
 </select> <input type="text" name='keyword' id="keywordInput"
 						value='${page.keyword }'>
 					<button id='searchBtn'>Search</button>
@@ -103,7 +103,7 @@
 								<td><a href='/member/read?member_id=${mdto.member_id}&curPage=${page.curPage}&keyword=${page.keyword}&searchType=${page.searchType}'>${mdto.member_last_name}</a>
 								</td>
 								<td>${mdto.member_email}</td>
-								<td>${mdto.country_id}</td>
+								<td>${mdto.country_name_kor}</td>
 							</tr>
 
      </c:forEach>
