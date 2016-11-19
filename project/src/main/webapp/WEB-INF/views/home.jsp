@@ -139,21 +139,11 @@
 					src="http://192.168.0.6:8080/resources/product/product_main_image/${product.p_main_img}"
 					class="img-responsive img-rounded" alt="Image">
 				</a>
-
+					
 				<div class="col-sm-12 text-left">
 					<h4>＄ ${product.product_price}</h4>
-					<h4>${product.member_id}의집~</h4>
-					<!-- Large modal -->
-					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target=".bs-example-modal-lg">Large modal</button>
-
-					<div class="modal fade bs-example-modal-lg" tabindex="-1"
-						role="dialog" aria-labelledby="myLargeModalLabel"
-						aria-hidden="true">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">...</div>
-						</div>
-					</div>
+					<h4>${product.member_id}의 집~</h4>
+					
 				</div>
 
 			</div>
@@ -178,7 +168,7 @@
 			<div class="text">
 				<h4>파리</h4>
 			</div>
-
+			
 		</div>
 
 		<div class="col-sm-3 image">
