@@ -4,18 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-
-
+ <jsp:include page="../header.jsp"></jsp:include>
+ 
   <script> 
   
   $(document).ready(function(){
@@ -35,14 +25,8 @@
  	
   });
   </script>
-
-
-
-
-</head>
-
-
-<body>
+  
+<!-- body -->
 
 <div align="center" class="container">
   <h2>회원정보수정</h2>
@@ -70,45 +54,32 @@
       <input style="text-align: center; width: auto" type="text" class="form-control" name="member_last_name" value="${memberDto.member_last_name}">
     </div>
     
-    <div class="form-group">
+     <div class="form-group">
       <label for="country_id">국적</label>
-      <input style="text-align: center; width: auto" type="text" class="form-control" name="country_id" value="${memberDto.country_id}">
-    </div>
-    
+    <select style="width:auto; text-align:center;" id="country_id" name="country_id" class="form-control">
+						<c:forEach var="country" items="${country_list}" varStatus="status">
+							<c:if test="${status.first}">
+								<option value="${country.country_id}" selected="selected">
+									${country.country_name_kor }
+								</option>
+							</c:if>
+							<option value="${country.country_id}" selected="selected">
+								${country.country_name_kor }
+							</option>
+						</c:forEach>
+	</select> 
+	</div>
+    		
     <div class="form-group">
       <label for="member_phone">전화번호</label> 
       <input style="text-align: center; width: auto" type="text" class="form-control" name="member_phone" value="${memberDto.member_phone}">
     </div>
     
-    
-    <%-- <div class="form-group">
-      <label for="member_birthday">생년월일</label>
-      <input id="demo" type="text" class="form-control" name="member_birthday" 
-      value="${memberDto.member_birthday}">
-    </div>
-     --%>
-    
-   <%--  <div class="form-group">
-      <label for="member_reg_date">등록일</label>
-       <input type="text" class="form-control" name="member_reg_date" 
-      value="${meberDto.member_reg_date}" pattern="yyyy-MM-dd" readonly="readonly">
-      
-    </div> --%>
-     
-   
- <%--     <div class="form-group">
-      <label for="member_reg_date">등록일</label>
-      <input type="text" class="form-control" name="member_reg_date" 
-      value="<fmt:formatDate value="${memberDto.member_reg_date}" pattern="yyyy-MM-dd hh:mm"/>" 
-      readonly="readonly">
-    </div>  --%>
-    
-
     <button type="submit" class="btn modifyBtn">SAVE</button>
     <button type="submit" class="btn listallBtn">CANCEL</button>
  
  </form>
-  
 </div>
-</body>
-</html>
+
+
+<jsp:include page="../footer.jsp"></jsp:include>

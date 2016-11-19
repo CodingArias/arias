@@ -51,8 +51,7 @@
 </script>
 
 
-
-
+<!-- head -->
 <div class="main">
 <div class="container">
  <h2>ADMINISTER</h2>
@@ -93,7 +92,7 @@
  
     </thead>
     
-
+<!-- body -->
     <tbody>
     
      <c:forEach items="${list}" var="mdto">

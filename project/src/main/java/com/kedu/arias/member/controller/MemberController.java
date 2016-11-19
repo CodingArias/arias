@@ -1,6 +1,7 @@
 package com.kedu.arias.member.controller;
 
 import java.util.Date;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
+import com.kedu.arias.common.dao.CountryDao;
 import com.kedu.arias.common.dto.PageDto;
 import com.kedu.arias.member.dto.LoginDto;
 import com.kedu.arias.member.dto.MemberDto;
@@ -32,9 +34,13 @@ import com.kedu.arias.notice.dto.NoticeDto;
 import com.kedu.arias.util.FileUploader;
 import com.kedu.arias.util.PageHelper;
 
+
 @Controller
 @RequestMapping("/member")
 public class MemberController {
+	
+	@Inject
+	CountryDao countryDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
@@ -224,6 +230,7 @@ public class MemberController {
 		
 		  logger.info(cri.toString());
 		  
+		  model.addAttribute("country_list", countryDao.selectAllCountry()); 
 		  model.addAttribute("list", service.listSearchCriteria(cri));
 		  model.addAttribute(service.read(member_id));
 		  

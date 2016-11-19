@@ -4,17 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
 
+ <jsp:include page="../header.jsp"></jsp:include>
   
   <script> 
   
@@ -45,11 +36,7 @@
 	</script>
 
 
-
-</head>
-
-
-<body>
+<!-- <body>-->
 
 <div align="center" class="container">
   <h2>회원상세정보</h2>
@@ -107,5 +94,4 @@
   
 </div>
 
-</body>
-</html>
+<jsp:include page="../footer.jsp"></jsp:include>
