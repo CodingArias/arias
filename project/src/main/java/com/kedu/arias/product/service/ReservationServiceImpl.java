@@ -57,5 +57,10 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservDao.selectReservationDetail(product_seq, member_id,reservation_seq);
 	}
 
+	@Override
+	public List<ReservationDto> selectMyReservationList(String member_id) {
+		return reservDao.selectMyReservationList(member_id);
+	}
+
 
 }

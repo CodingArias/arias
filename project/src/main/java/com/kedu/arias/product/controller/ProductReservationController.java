@@ -190,4 +190,20 @@ public class ProductReservationController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/my_reservation_list", method = RequestMethod.GET)
+	public ModelAndView my_reservation_list(
+			HttpSession session)throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		MemberDto mDto = (MemberDto)session.getAttribute("member");
+		
+		String enKey=JavaEnCryto.Encrypt(mDto.getMember_id(), key);
+		
+		List<ReservationDto> reservList =reservService.selectMyReservationList(mDto.getMember_id());
+		modelAndView.addObject("reserv_list",reservList);
+		modelAndView.addObject("member_id",enKey);
+		modelAndView.setViewName("/product/my_reservation_list");
+		return modelAndView;
+	}
+	
 }
