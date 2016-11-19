@@ -136,15 +136,23 @@
 				<a
 					href='/detail?product_seq=${product.product_seq}&checkin=${date}&checkout=${date}&number_of_people=1'
 					class=""> <img
-					src="http://192.168.0.6:8080/resources/product/product_main_image/${product.p_main_img}"
+					src="/resources/product/product_main_image/${product.p_main_img}"
 					class="img-responsive img-rounded" alt="Image">
 				</a>
-					
 				<div class="col-sm-12 text-left">
-					<h4>＄ ${product.product_price}</h4>
-					<h4>${product.member_id}의 집~</h4>
-					
-				</div>
+						<div class="media">
+							<div class="media-body">
+								<h4>＄ ${product.product_price}</h4>
+								<h4>${product.member_id}의 집~</h4>
+							</div>
+							<div class="media-right">
+								<a href="#"> <img class="media-object img-circle"
+									src="/resources/member/member_img/${product.member_img }" alt="" style="width: 60px; height: 60px;">
+								</a>
+							</div>
+						</div>
+					</div>	
+				
 
 			</div>
 
