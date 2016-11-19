@@ -2,6 +2,8 @@ package com.kedu.arias.member.dao;
 
 import java.util.List;
 
+import com.kedu.arias.member.dto.MemberDto;
+
 public interface AccountSearchDao {
 	
 	public List<String> listAccountEmail(String member_first_name
@@ -11,4 +13,6 @@ public interface AccountSearchDao {
 	public String accountPwd(String member_first_name
 						   , String member_last_name
 						   , String member_email) throws Exception;
+
+	public MemberDto loginInfo(String member_email, String member_pwd) throws Exception;
 }

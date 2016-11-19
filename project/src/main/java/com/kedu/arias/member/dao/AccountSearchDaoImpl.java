@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kedu.arias.member.dto.MemberDto;
+
 @Repository
 public class AccountSearchDaoImpl implements AccountSearchDao {
 
@@ -38,6 +40,15 @@ public class AccountSearchDaoImpl implements AccountSearchDao {
 		parameter.put("member_email", member_email);
 		
 		return session.selectOne(namespace + ".searchPwd", parameter);
+	}
+
+	@Override
+	public MemberDto loginInfo(String member_email, String member_pwd) throws Exception {
+		Map<String, Object> prm = new HashMap<String, Object>();
+		prm.put("member_email", member_email);
+		prm.put("member_pwd", member_pwd);
+		
+		return session.selectOne(namespace + ".login", prm);
 	}
 
 }

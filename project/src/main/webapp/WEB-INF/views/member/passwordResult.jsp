@@ -31,8 +31,13 @@
 </div>
 
 <div id="content" align="center">
-	<p>${result}</p>
-
+	<p><strong>${result}</strong></p>
+	<p>${resultEng}</p>
+	
+	<div id="insert-button" align="center">
+		<button type="button" class='btn btn-info btn-goHome' onclick="location.href='/member/login'">로그인 / Login</button>
+		<button type="button" id="regist_btn" class='btn btn-primary' onclick="location.href='/member/member_reg'">회원가입 / Register</button>		
+	</div>
 </div>
 
 <%@include file="../footer.jsp"%>

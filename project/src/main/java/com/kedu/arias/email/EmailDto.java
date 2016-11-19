@@ -5,7 +5,6 @@ public class EmailDto {
 	private String subject;
 	private String content;
 	private String receiver;
-	private String regDate;
 	public String getSubject() {
 		return subject;
 	}
@@ -24,15 +23,8 @@ public class EmailDto {
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
-	public String getRegDate() {
-		return regDate;
-	}
-	public void setRegDate(String regDate) {
-		this.regDate = regDate;
-	}
 	@Override
 	public String toString() {
-		return "EmailDto [subject=" + subject + ", content=" + content + ", receiver=" + receiver + ", regDate="
-				+ regDate + "]";
+		return "EmailDto [subject=" + subject + ", content=" + content + ", receiver=" + receiver + "]";
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import com.kedu.arias.member.dao.AccountSearchDao;
+import com.kedu.arias.member.dto.MemberDto;
 
 @Service
 public class AccountSearchServiceImpl implements AccountSearchService {
@@ -20,6 +21,11 @@ public class AccountSearchServiceImpl implements AccountSearchService {
 	@Override
 	public String accountPwd(String member_first_name, String member_last_name, String member_email) throws Exception {
 		return dao.accountPwd(member_first_name, member_last_name, member_email);
+	}
+
+	@Override
+	public MemberDto loginInfo(String member_email, String member_pwd) throws Exception {
+		return dao.loginInfo(member_email, member_pwd);
 	}
 
 }

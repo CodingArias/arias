@@ -51,7 +51,7 @@
 </div>
 
 <div id="reg-form" align="center">
-	<form action="checkpwd" method="post" name='frm'>
+	<form action="passwordSearching" method="post" name='frm'>
 	<input type="hidden" id="country_id" name="country_id">
 		<table class="reg-form-tb">
 			<tr>

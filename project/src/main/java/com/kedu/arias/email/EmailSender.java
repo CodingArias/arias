@@ -3,7 +3,6 @@ package com.kedu.arias.email;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
@@ -15,21 +14,24 @@ public class EmailSender {
 	
 	public void SendEmail(EmailDto email) throws Exception{
 		
-		System.out.println(email);
+		System.out.println("EmailSender email : "+email);
 		
 		MimeMessage msg = mailsender.createMimeMessage();
+		
 		try {
 			msg.setSubject(email.getSubject());
 			msg.setText(email.getContent());
 			msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email.getReceiver()));
+			
 		} catch(Exception e) {
 			System.out.println("MessageingException");
 			e.printStackTrace();
 		}
 		
+		System.out.println("SendEmail msg : " + msg);
 		try {
 			mailsender.send(msg);
-		} catch(MailException e) {
+		} catch(Exception e) {
 			System.out.println("Mail Exception 발생");
 			e.printStackTrace();
 		}
