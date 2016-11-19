@@ -70,13 +70,19 @@
 	})
 	</script>
 	
+	<!--제목 null체크 -->
 	<script>
 	
-
- 		
-    </script>
+	function titlecheck(){
 	
-
+		if($("#notice_title").val().length < 1){
+			alert("제목을 입력해주세요");
+			notice_title.focus();	
+			return false;
+		}
+	}
+	</script>
+	
 </head>
 
 <body>
@@ -94,7 +100,7 @@
     
     <div class="form-group">
       <label for="notice_title">TITLE</label>
-      <input style="text-align: center; width: 60%" type="text" class="form-control" name="notice_title" placeholder="제목을 입력해주세요.">
+      <input style="text-align: center; width: 60%" type="text" class="form-control" id="notice_title" name="notice_title" placeholder="제목을 입력해주세요." required="required">
     </div>
     
      <div class="form-group">
@@ -117,7 +123,7 @@
     
  -->
     <!-- <input type="button" id="savebutton" value="submit"> -->
-     <button type="submit" id="savebutton" class="btn btn-default">Submit</button>
+     <button type="submit" id="savebutton" class="btn btn-default" onclick="titlecheck()">Submit</button>
      <button type="button" id="listallBtn" class="btn btn-default" onclick="location.href='/notice/list'">List all</button>
    </form>
   
