@@ -62,6 +62,18 @@ footer {
 	float: left;
 	
 }
+.image>a {
+	position: relative;
+	max-height: 250px;
+	height: 100%;
+	padding:0px;
+}
+.image>a>img {
+	position: relative;
+	max-height: 250px;
+	width: 100%;
+	height: 100%;
+}
 
 
 .image .text {
@@ -93,7 +105,7 @@ footer {
 							색 </label>
 						<div class="col-sm-1"></div>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" value="${keyword}">
+							<input type="text" name="pac-input" id="pac-input" class="form-control" value="${keyword}">
 						</div>
 
 						<div class="col-sm-4"></div>
@@ -170,13 +182,14 @@ footer {
 				<c:forEach items="${list}" var="list">
 				<div class="col-sm-6" style="margin-top: 10px;">
 					<div class="col-sm-12 image">
-						<a href='/detail?product_seq=${list.product_seq}&checkin=${checkin}&checkout=${checkout}&number_of_people=${number_of_people}'><img src="http://192.168.0.6:8080/resources/product/product_main_image/${list.p_main_img}"
-							class="img-rounded img-responsive img" alt="Responsive image" style="width: 100%; height: 30%;">
+						<a href='/detail?product_seq=${list.product_seq}&checkin=${checkin}&checkout=${checkout}&number_of_people=${number_of_people}' class="embed-responsive embed-responsive-4by3">
+						<img src="http://192.168.0.6:8080/resources/product/product_main_image/${list.p_main_img}"
+							class="img-rounded img-responsive img" alt="Responsive image">
+						</a>
 						<div class="text">
 							<h4>￦ ${list.product_price}</h4>
 						</div>
 					</div>
-						</a>
 						
 					<!-- 상품 설명 -->
 					<div class="col-sm-12">
@@ -210,12 +223,12 @@ footer {
 	</div>
 	<!--지도 스크립트  -->
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&callback=initMap"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5EjijY1yCUoti4Fr2ggCay4VowpqPdvc&libraries=places&callback=initMap"
 		async defer></script>
 	<!-- 지도스크립트 끝 -->
 
 	<script type="text/javascript">
-		var list = new Array(); 
+	var list = new Array(); 
 
 		var map;
 		var lat1 = Number($("#lat").val());
@@ -231,8 +244,6 @@ footer {
 			list.push(product);
 		</c:forEach>
 		
-		
-		
 		for(var i = 0; i < list.length;i++){
 			console.log("lng : "+list[i].product_lng +"  ,  "+"lat : "+list[i].product_lat);
 		}
@@ -240,7 +251,10 @@ footer {
 		
 		// 지도 생성 밑 마커
 		function initMap() {
+			
 			// Create a map object and specify the DOM element for display.
+		
+			
 			map = new google.maps.Map(document.getElementById('map'), {
 				center : {
 					lat : lat1,
@@ -261,11 +275,50 @@ footer {
 				    title: product_name
 				  });
 			}
+			
+			 var input = document.getElementById('pac-input');
+			  //searchBox
+			  var searchBox = new google.maps.places.SearchBox(input);
+			  
+			  
+			  document.getElementById('pac-input').onkeypress = function (e) {
+				  if(e.keyCode == 13){ 
+					  var places = searchBox.getPlaces();
+					  	if(places!=null){
+							if (places.length == 0) {
+								return;
+							}
+							console.log(places);
+						    // For each place, get the icon, name and location.
+						    var bounds = new google.maps.LatLngBounds();
+						    places.forEach(function(place) {
+						      bounds.extend(place.geometry.location);
+						      //검색한 지점의 주소
+						      console.log(place.formatted_address);
+						      //검색한 지점의 x,y 좌표
+							  console.log(place.geometry.location.lng());
+						      console.log(place.geometry.location.lat());
+						      alert(place.geometry.location.lng());
+						      $("#lat").val(place.geometry.location.lat());
+						      $("#lng").val(place.geometry.location.lng());
+						    });
+					  	}
+				  }
+		//검색창 enter 강제 트리거		  
+		/* 		google.maps.event.trigger(input, 'focus')
+			    google.maps.event.trigger(input, 'keydown', {
+			    	keyCode: 13
+			    });  */
+				  
+			  	
+			  };
+			
+			
 		} 
-		
-		
-		
 	</script>
-</body>
-</html>
+	
+	
+
+
+
 
