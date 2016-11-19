@@ -168,11 +168,15 @@
 					<strong>상태</strong>
 				</div>
 				<div class="col-sm-9 text-left">
-					<c:if test="${reservation.reserv_status !=1 }">
+					<c:if test="${reservation.reserv_status == 1 }">
 						<span style=" font-weight: bold;">예약 대기중..</span>
 					</c:if>
-					<c:if test="${reservation.reserv_status ==1 }">
+					<c:if test="${reservation.reserv_status == 2 }">
 						<span style="color: red; font-weight: bold;">예약완료</span>
+					</c:if>
+					
+					<c:if test="${reservation.reserv_status == 3 }">
+						<span style="color: red; font-weight: bold;">숙박 이용 완료</span>
 					</c:if>
 				</div>
 			</div>			
@@ -190,7 +194,7 @@
 			
 			<div class="button_div">
 				<input type="button" id="listBtn" class="btn btn-success" value="목록" onclick="location.href='/product/reservation_list?product_seq=${reservation.product_seq}'"/>
-				<c:if test="${reservation.reserv_status ==0 }">
+				<c:if test="${reservation.reserv_status ==1 }">
 						<input type="submit" id="saveBtn" class="btn btn-success" value="예약 수락" onclick="return reserv_confirm();"/>
 				</c:if>
 			</div>

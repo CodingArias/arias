@@ -10,7 +10,6 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM RESERVATION 
 		WHERE member_id = #{member_id,jdbcType=VARCHAR}
 		AND product_seq = #{product_seq,jdbcType=NUMERIC} 
-		and reserv_status != 3
 	</select>
 	
 	<select id="duplicateReservationCheck" resultType="Integer">
@@ -30,16 +29,15 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 										, #{checkout_dt,jdbcType=VARCHAR}
 										, SYSDATE
 										, #{member_intro,jdbcType=VARCHAR}
-										,0)
+										,1)
 	</insert>
 	
 	<update id="updateReservationStatus">
 		UPDATE RESERVATION
-		SET reserv_status = 1
+		SET reserv_status = #{reserv_status, jdbcType=NUMERIC}
 		WHERE member_id = #{member_id, jdbcType=VARCHAR}
 		AND product_seq = #{product_seq, jdbcType=NUMERIC}
 		AND reservation_seq = #{reservation_seq, jdbcType=NUMERIC}
-		AND reserv_status = 0
 	</update>
 	
 	<select id="selectInvalidReservationDate" resultType="com.kedu.arias.product.dto.NotsalesDto">
@@ -69,8 +67,9 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 		      , r.MEMBER_INTRO
 		      , r.RESERV_STATUS
 		FROM RESERVATION r , MEMBER m
-		WHERE r.product_seq = #{product_seq, jdbcType=NUMERIC} AND r.reserv_status IN (0,1)
+		WHERE r.product_seq = #{product_seq, jdbcType=NUMERIC}
 		AND r.member_id = m.member_id
+		order by r.RESERV_STATUS asc
 	</select>
 	
 	<select id="reservationHostCheck" resultType="int">
@@ -98,6 +97,7 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM RESERVATION
 		WHERE product_seq = #{product_seq}
 		AND member_id = #{member_id}
+		and reservation_seq =#{reservation_seq}
 	</select>
 	
 

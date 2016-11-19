@@ -147,7 +147,8 @@ public class ProductReservationController {
 	public ModelAndView reservation_detail(
 			HttpSession session,
 			@RequestParam("member_id") String reserv_member_id,
-			Integer product_seq)throws Exception {
+			Integer product_seq,
+			Integer reservation_seq)throws Exception {
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -166,7 +167,7 @@ public class ProductReservationController {
 		if(mDto.getMember_id().equals(reserv_member_id) || pDto.getMember_id().equals(mDto.getMember_id()))
 		{
 			modelAndView.addObject("reserv_member",reserv_mDto);
-			modelAndView.addObject("reservation",reservService.selectReservationDetail(product_seq, reserv_member_id));
+			modelAndView.addObject("reservation",reservService.selectReservationDetail(product_seq, reserv_member_id,reservation_seq));
 			modelAndView.setViewName("/product/product_reservation_detail");
 		}
 		else{
@@ -183,6 +184,7 @@ public class ProductReservationController {
 		reservDto.setMember_id(JavaEnCryto.Decrypt(reservDto.getMember_id(), key));
 		System.out.println("reserv_member_id : "+reservDto.getMember_id());
 		System.out.println("product_seq : "+reservDto.getProduct_seq());
+		reservDto.setReserv_status(2);
 		reservService.updateReservationStatus(reservDto);
 		modelAndView.setViewName("redirect:/product/reservation_list?product_seq="+reservDto.getProduct_seq());
 		return modelAndView;

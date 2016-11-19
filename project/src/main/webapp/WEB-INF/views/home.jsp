@@ -43,13 +43,44 @@
 	<ol class="carousel-indicators">
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+		<li data-target="#myCarousel" data-slide-to="3"></li>
+		<li data-target="#myCarousel" data-slide-to="4"></li>
+		<li data-target="#myCarousel" data-slide-to="5"></li>
+		<li data-target="#myCarousel" data-slide-to="6"></li>
+		
 	</ol>
 
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
 			<!-- 이미지크기 1200x400 -->
-			<img src="/resources/img/main/seoul.png" alt="Image">
+			<img src="/resources/img/main/img1.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img2.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img3.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img4.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img5.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img6.png" alt="Image">
 			<div class="carousel-caption"></div>
 		</div>
 
@@ -136,25 +167,23 @@
 				<a
 					href='/detail?product_seq=${product.product_seq}&checkin=${date}&checkout=${date}&number_of_people=1'
 					class=""> <img
-					src="http://192.168.0.6:8080/resources/product/product_main_image/${product.p_main_img}"
+					src="/resources/product/product_main_image/${product.p_main_img}"
 					class="img-responsive img-rounded" alt="Image">
 				</a>
-
 				<div class="col-sm-12 text-left">
-					<h4>＄ ${product.product_price}</h4>
-					<h4>${product.member_id}의집~</h4>
-					<!-- Large modal -->
-					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target=".bs-example-modal-lg">Large modal</button>
-
-					<div class="modal fade bs-example-modal-lg" tabindex="-1"
-						role="dialog" aria-labelledby="myLargeModalLabel"
-						aria-hidden="true">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">...</div>
+						<div class="media">
+							<div class="media-body">
+								<h4>＄ ${product.product_price}</h4>
+								<h4>${product.member_id}의 집~</h4>
+							</div>
+							<div class="media-right">
+								<a href="#"> <img class="media-object img-circle"
+									src="/resources/member/member_img/${product.member_img }" alt="" style="width: 60px; height: 60px;">
+								</a>
+							</div>
 						</div>
-					</div>
-				</div>
+					</div>	
+				
 
 			</div>
 
@@ -178,7 +207,7 @@
 			<div class="text">
 				<h4>파리</h4>
 			</div>
-
+			
 		</div>
 
 		<div class="col-sm-3 image">

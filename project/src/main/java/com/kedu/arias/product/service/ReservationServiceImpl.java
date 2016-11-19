@@ -24,7 +24,7 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public boolean insertReservation(ReservationDto reservDto) {
 		
-		if(reservDao.duplicateReservationCheck(reservDto.getMember_id(), reservDto.getProduct_seq())>0)
+		if(reservDao.duplicateReservationCheck(reservDto.getMember_id(), reservDto.getProduct_seq())==1)
 			return false;
 		else{
 			reservDao.insertReservation(reservDto);
@@ -53,8 +53,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public ReservationDto selectReservationDetail(Integer product_seq, String member_id) {
-		return reservDao.selectReservationDetail(product_seq, member_id);
+	public ReservationDto selectReservationDetail(Integer product_seq, String member_id, Integer reservation_seq) {
+		return reservDao.selectReservationDetail(product_seq, member_id,reservation_seq);
 	}
 
 

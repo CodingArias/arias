@@ -57,10 +57,12 @@ thead tr {
 	$(function() {
 	});
 	
-	function click_tr(product_seq,member_id){
+	function click_tr(product_seq,member_id,reservation_seq){
 		console.log(product_seq+" "+member_id);
 		$("#member_id").val(member_id);
 		$("#product_seq").val(product_seq);
+		$("#reservation_seq").val(reservation_seq);
+		
 		$("#frm").submit();
 	}
 </script>
@@ -77,6 +79,8 @@ thead tr {
 				<form action="reservation_detail" method="get" id="frm">
 					<input type="hidden" id="member_id" name="member_id">
 					<input type="hidden" id="product_seq" name="product_seq">
+					<input type="hidden" id="reservation_seq" name="reservation_seq">
+					
 					
 				<table class="table table-hover">
 					<thead>
@@ -93,7 +97,7 @@ thead tr {
 					</thead>
 					<tbody>
 						<c:forEach var="reserv" items="${reserv_list}" varStatus="status">
-							<tr onclick="click_tr(${reserv.product_seq},'${reserv.member_id}')">
+							<tr onclick="click_tr(${reserv.product_seq},'${reserv.member_id}','${reserv.reservation_seq}')">
 								<td style="line-height: 40px;">${status.count}</td>
 								<td>
 								<img class="img-circle image" src="/resources/member/member_img/${reserv.member_img }">
@@ -102,12 +106,18 @@ thead tr {
 								<td style="line-height: 40px;">${reserv.checkout_dt }</td>
 								<td style="line-height: 40px;"><span class="badge">${reserv.reserv_count }</span></td>
 								<td style="line-height: 40px;">${reserv.reg_dt }</td>
-								<td style="line-height: 40px;"><c:if
-										test="${reserv.reserv_status==0}">
+								<td style="line-height: 40px;">
+								    <c:if test="${reserv.reserv_status==1}">
 										<span>예약 대기중</span>
-									</c:if> <c:if test="${reserv.reserv_status==1}">
+									</c:if> 
+									<c:if test="${reserv.reserv_status==2}">
 										<span>예약 완료</span>
-									</c:if></td>
+									</c:if>
+									<c:if test="${reserv.reserv_status==3}">
+										<span>숙박 이용 완료</span>
+									</c:if>
+									</td>
+									
 
 							</tr>
 						</c:forEach>

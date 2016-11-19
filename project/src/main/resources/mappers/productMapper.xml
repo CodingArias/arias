@@ -305,9 +305,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<![CDATA[
 	SELECT * FROM 
     (
-    	SELECT * FROM PRODUCT
- 	 	 WHERE product_step = 9
-    	 ORDER BY PRODUCT_regdt DESC
+    	SELECT 		p.product_seq
+        			, p.product_name
+                    , p.product_price
+                    , p.NUMBER_OF_PEOPLE
+                    , p.P_MAIN_IMG
+                    , p.product_lng
+                    , p.product_lat
+                    , M.MEMBER_IMG
+                    , M.MEMBER_ID
+                     FROM PRODUCT P, MEMBER M
+ 	 	 WHERE p.product_step = 9
+ 	 	  AND p.MEMBER_ID = m.MEMBER_id
+    	 ORDER BY p.PRODUCT_regdt DESC
     ) n
 	WHERE ROWNUM < 7    
     ]]>
