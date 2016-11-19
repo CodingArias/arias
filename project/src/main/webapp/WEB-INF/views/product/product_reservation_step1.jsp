@@ -68,6 +68,7 @@ img {
 <script type="text/javascript">
 	$("title").text("Reservation - 숙소 예약 ");
 
+	var reservation_flag=false;
 	var product_price = '${product.product_price}'
 	$(function() {
 		$('#payment').change(function(){
@@ -120,8 +121,27 @@ img {
 
 			}, function(start, end) {
 				
+				if(getDateTerm(moment().format('YYYY-MM-DD'),start.format('YYYY-MM-DD'))<0){
+					reservation_flag=false;
+					alert('오늘 이후에 날짜만 예약할 수 있습니다.');
+					return;
+				}
+				if(getDateTerm(moment().format('YYYY-MM-DD'),start.format('YYYY-MM-DD'))<='${product.product_prepdt}'){
+			    	reservation_flag=false;
+					alert('최소 '+'${product.product_prepdt}'+ '일 전에는 예약해주셔야합니다..');
+					return;
+				}
+				if(getDateTerm(start.format('YYYY-MM-DD') ,end.format('YYYY-MM-DD'))>'${product.product_maxdt}')
+				{
+			    	reservation_flag=false;
+					alert('최대 예약 가능일 수는 '+'${product.product_maxdt}'+ '일 입니다.');
+					return;
+				}
 				 if(!date_invalid_check(start.format('YYYY-MM-DD'),end.format('YYYY-MM-DD'),invalid_dates)){
+			     {
+			    	reservation_flag=false;
 					alert("해당 기간은 이미 예약 되어있습니다.");
+			     }
 				}else{
 					startDate = start;
 					endDate = end;	
@@ -130,6 +150,7 @@ img {
 					date.ns_end_dt = end.format('YYYY-MM-DD');
 					console.log("start : "+date.ns_start_dt +"  end : " + date.ns_end_dt);
 					showTotalPrice(date.ns_start_dt,date.ns_end_dt);
+					reservation_flag=true;
 				} 
 				
 			});
@@ -163,6 +184,21 @@ img {
 		
 		return betweenDay+1;
 	}
+	
+	function reservation_check(){
+		if(reservation_flag){
+			if(confirm('정말 예약하시겠습니까?'))			{
+				return true
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			alert('예약 날짜를 다시 확인해주세요.');
+			return false;
+		}
+	}
 
 </script>
 
@@ -181,7 +217,19 @@ img {
 				<hr>
 			</div>		
 			<div class="info_div">
-	
+				<!-- 숙소제목 -->				
+				<div class="col-sm-12 text-left" >
+					<div class="col-sm-2 text-left">
+						<strong>숙소 제목</strong>
+					</div>
+					<div class="col-sm-10 text-left">
+						<span class="span_type01">${product.product_name}</span>
+					</div>
+				</div>	
+				<div class="col-sm-12">
+					<hr>
+				</div>	
+				<!-- 숙소 제목 끝-->	
 				<!-- 숙소소개 -->		
 				<div class="col-sm-12 text-left" >
 					<div class="col-sm-2 text-left">
@@ -201,15 +249,33 @@ img {
 						<strong>숙박 인원 <span class="important">*</span></strong>
 					</div>
 					<div class="col-sm-10 text-left">
-						<input type="number" class="form-control input_type1 col-sm-7" name="reserv_count" id="reserv_count" 
-							   placeholder="" required="required" value=${reservation.reserv_count }>
-						<span class="span_type01 col-sm-4">최대숙박인원 : ${product.number_of_people} 명</span>
+						<select name="reserv_count" id="reserv_count" class="form-control input_type1 col-sm-5">
+							<c:forEach var="count" begin="1" end="${product.number_of_people}" varStatus="status">
+								<option value="${count}" >${count}</option>
+							</c:forEach>
+						</select>
+							   			   
+						<%-- <span class="span_type01 col-sm-4">최대숙박인원 : ${product.number_of_people} 명</span> --%>
 					</div>
 				</div>	
 				<div class="col-sm-12">
 					<hr>
 				</div>	
 				<!-- 투숙인원 확인 끝-->		
+				<!-- 최대 숙박일수 최소 숙박일수  -->				
+				<div class="col-sm-12 text-left" >
+					<div class="col-sm-2 text-left">
+						<strong>숙박 가능 일수 </strong>
+					</div>
+					<div class="col-sm-10 text-left">
+						<span>최대 숙박 가능 일수 : ${product.product_maxdt} </span>
+						
+					</div>
+				</div>	
+				<div class="col-sm-12">
+					<hr>
+				</div>	
+				<!-- 최대 숙박일수 최소 숙박일수 끝-->				
 				<!-- 자기소개 -->	
 				<div class="col-sm-12 text-left" >
 					<div class="col-sm-2 text-left">
@@ -233,6 +299,7 @@ img {
 						<c:forEach var="regul" items="${regulation}">
 							<div class="col-sm-6 text-left">${regul.regulation_name}</div>
 						</c:forEach>
+						<div class="col-sm-6 text-left">최소 ${product.product_prepdt}일 전에는 예약해 주셔야합니다.</div>
 					</div>
 				</div>
 				<!-- 체크인 체크아웃 시간 -->		
@@ -330,8 +397,8 @@ img {
 				</div>			
 			</div>
 			<div class="bottons_div">
-				<input id="saveBtn" class="btn btn-success" type="submit"
-					value="예약 하기" />
+				<input id="reservBtn" class="btn btn-success" type="submit"
+					value="예약 하기" onclick="return reservation_check();"/>
 			</div>
 		</form>
 	</div>

@@ -38,7 +38,7 @@ public class HomeController {
 		modelAndView.setViewName("home");
 		modelAndView.addObject("date", f_date.format(today));
 
-		System.out.println(service.select_product_new());
+		//System.out.println(service.select_product_new());
 		
 		modelAndView.addObject("list", service.select_product_new());
 		

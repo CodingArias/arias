@@ -21,6 +21,12 @@
 	height: 700px;
 }
 
+.image {
+	margin-top: 1px;
+	margin-right: 10px;
+	width: 100px;
+	height: 100px;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="/resources/css/home.css">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -72,8 +78,8 @@
 				<div class="media">
 					<div class="media-left">
 						<!-- 임의 이미지  -->
-						<a href="#"> <img class="media-object img-circle"
-							src="/resources/img/search/original_12.jpg" alt="...">
+						<a href="#"> <img class="media-object img-circle image"
+							src="/resources/product/product_main_image/${product_detail.p_main_img }" alt="...">
 						</a>
 					</div>
 					<div class="media-body text-left">
@@ -440,13 +446,13 @@
 				<div class="media col-sm-10">
 					<div class="media-left text-center">
 						<!-- 임의 이미지  -->
-						<a href="#"> <img class="media-object img-circle"
-							src="/resources/img/search/original_12.jpg" alt="...">
+						<a href="#"> 
+						<img class="media-object img-circle image"
+							src="/resources/member/member_img/${product_member.member_img }" alt="...">
 						</a>
 					</div>
 					<div class="media-body text-left">
-						<h4 class="media-heading">${product_member.member_id}</h4>
-						회원 가입일 : ${product_member.member_reg_date }<br>
+						<h4 class="media-heading" style=" line-height: 100px; font-weight: bold;">${product_member.member_first_name} ${product_member.member_last_name}</h4>
 					</div>
 				</div>
 				<div class="col-sm-1"></div>
@@ -483,11 +489,14 @@
 						<input type="number" name="reserv_count" class="form-control" value="${number_of_people}">
 					</div>
 					<div class="form-group">
-						<c:if test="${duplicate != true}">
+						<c:if test="${duplicate eq 0}">
 							<button type="submit" class="btn btn-primary">예약 요청</button>
 						</c:if>
-						<c:if test="${duplicate == true}">
+						<c:if test="${duplicate eq 1}">
 							<button type="button" class="btn btn-primary">이미 예약 중...</button>
+						</c:if>
+						<c:if test="${duplicate eq 2}">
+							<button type="button" class="btn btn-primary">예약 완료</button>
 						</c:if>
 					</div>
 				</form>
