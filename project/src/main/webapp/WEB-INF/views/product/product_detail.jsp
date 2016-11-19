@@ -498,6 +498,14 @@
 						<c:if test="${duplicate eq 2}">
 							<button type="button" class="btn btn-primary">예약 완료</button>
 						</c:if>
+						<c:if test="${duplicate eq 3}">
+							<button type="submit" class="btn btn-primary">예약 요청</button>
+							<br>
+							<br>
+							<br>
+							<strong >또 오셨군요..!</strong>
+						</c:if>
+						
 					</div>
 				</form>
 			</div>

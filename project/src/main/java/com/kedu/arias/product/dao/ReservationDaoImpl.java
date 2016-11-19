@@ -69,10 +69,12 @@ public class ReservationDaoImpl implements ReservationDao{
 	}
 
 	@Override
-	public ReservationDto selectReservationDetail(Integer product_seq, String member_id) {
+	public ReservationDto selectReservationDetail(Integer product_seq, String member_id,Integer reservation_seq) {
 		HashMap<String,Object> map = new HashMap<>();
 		map.put("product_seq", product_seq);
 		map.put("member_id", member_id);
+		map.put("reservation_seq", reservation_seq);
+		
 		return session.selectOne(namespace+".selectReservationDetail",map);
 	}
 

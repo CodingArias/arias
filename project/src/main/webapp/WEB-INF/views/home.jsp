@@ -43,13 +43,44 @@
 	<ol class="carousel-indicators">
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+		<li data-target="#myCarousel" data-slide-to="3"></li>
+		<li data-target="#myCarousel" data-slide-to="4"></li>
+		<li data-target="#myCarousel" data-slide-to="5"></li>
+		<li data-target="#myCarousel" data-slide-to="6"></li>
+		
 	</ol>
 
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
 			<!-- 이미지크기 1200x400 -->
-			<img src="/resources/img/main/seoul.png" alt="Image">
+			<img src="/resources/img/main/img1.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img2.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img3.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img4.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img5.png" alt="Image">
+			<div class="carousel-caption"></div>
+		</div>
+		<div class="item">
+			<!-- 이미지크기 1200x400 -->
+			<img src="/resources/img/main/img6.png" alt="Image">
 			<div class="carousel-caption"></div>
 		</div>
 
