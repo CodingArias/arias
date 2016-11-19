@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kedu.arias.member.dto.MemberDto;
+import com.kedu.arias.member.service.MemberService;
+import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.service.ProductService;
 import com.kedu.arias.product.service.ReservationService;
 
@@ -20,7 +22,8 @@ public class ProductDetailController {
 	private ProductService service;
 	@Inject
 	private ReservationService reservService;
-	
+	@Inject
+	private MemberService memberService;
 	
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
@@ -31,14 +34,15 @@ public class ProductDetailController {
 			HttpSession session ,
 			Model model) throws Exception{
 		MemberDto mDto = (MemberDto)session.getAttribute("member");
-		boolean duplicate =false;
-		
-		//이미 예약중인지 검사
-		if(mDto!=null && reservService.duplicateReservationCheck(mDto.getMember_id(), product_seq)>0)
-			duplicate=true;
+		int duplicate =0;
+	
+		if(mDto!=null){
+			duplicate = reservService.duplicateReservationCheck(mDto.getMember_id(), product_seq);
+
+		}
 		
 		System.out.println(service.select_product_detail(product_seq));
-		System.out.println(checkin);
+		ProductDto pDto = service.select_product_detail(product_seq);
 		
 		model.addAttribute("duplicate", duplicate);
 		model.addAttribute("checkin", checkin);
@@ -49,7 +53,7 @@ public class ProductDetailController {
 		model.addAttribute("product_convin", service.product_convin(product_seq));
 		model.addAttribute("product_space", service.product_space(product_seq));
 		model.addAttribute("product_regulation", service.product_regulation(product_seq));
-		model.addAttribute("product_detail",service.select_product_detail(product_seq));
+		model.addAttribute("product_detail",pDto);
 		model.addAttribute("product_member", service.product_member(product_seq));
 		
 		return "product/product_detail";

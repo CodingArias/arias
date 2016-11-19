@@ -150,13 +150,9 @@ form{
 				<p style="color: gray;">Check-Out Time</p>
 				<input type="time" name="checkout_time" id="checkout_time" class="form-control input_type3" required="required" placeholder="(단위 : 일)"/>
 					
-				<p style="color: gray;">최소 숙박 가능일수</p>
-				<input type="number" name="product_mindt" id="product_mindt" class="form-control input_type3" required="required" placeholder="(단위 : 일)"/>
 				<p style="color: gray;">최대 숙박 가능일수</p>
 				<input type="number" name="product_maxdt" id="product_maxdt" class="form-control input_type3" required="required" placeholder="(단위 : 일)"/>
-					
-				<p style="color: gray;">준비 기간</p>
-				<input type="number" name="product_readydt" id="product_readydt" class="form-control input_type3" required="required" placeholder="(단위 : 일)"/>
+		
 				<p style="color: gray;">최소 몇 일 전 예약</p>
 				<input type="number" name="product_prepdt" id="product_prepdt" class="form-control input_type3" required="required" placeholder="(단위 : 일)"/>
 			</div>

@@ -5,12 +5,19 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.kedu.arias.reservationMapper">
 	
+	<select id="selectMyReservationStatus" resultType="Integer">
+		SELECT reserv_status
+		FROM RESERVATION 
+		WHERE member_id = #{member_id,jdbcType=VARCHAR}
+		AND product_seq = #{product_seq,jdbcType=NUMERIC} 
+		and reserv_status != 3
+	</select>
+	
 	<select id="duplicateReservationCheck" resultType="Integer">
 		SELECT COUNT(*) 
 		FROM RESERVATION 
 		WHERE member_id = #{member_id,jdbcType=VARCHAR}
 		AND product_seq = #{product_seq,jdbcType=NUMERIC} 
-		AND reserv_status=0
 	</select>
 	
 	<insert id="insertReservation" parameterType="com.kedu.arias.product.dto.ReservationDto">
@@ -45,7 +52,7 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 					,TO_CHAR(checkout_dt, 'YYYY-MM-DD') ns_end_dt
 		 FROM RESERVATION 
 		 WHERE product_seq = #{product_seq, jdbcType=NUMERIC}
-		 AND reserv_status =0 	
+		 AND reserv_status in (0,1) 	
 			
 	</select>
 
@@ -92,4 +99,6 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE product_seq = #{product_seq}
 		AND member_id = #{member_id}
 	</select>
+	
+
 </mapper>

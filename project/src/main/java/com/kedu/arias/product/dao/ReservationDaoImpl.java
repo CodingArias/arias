@@ -25,8 +25,13 @@ public class ReservationDaoImpl implements ReservationDao{
 		HashMap<String,Object> map =new HashMap<>();
 		map.put("member_id", member_id);
 		map.put("product_seq", product_seq);
-		
-		return session.selectOne(namespace+".duplicateReservationCheck",map);
+		int reserv_status= 0;
+		int count =(Integer)session.selectOne(namespace+".duplicateReservationCheck",map);
+		System.out.println("count : " + count);
+		if(count>0)
+			reserv_status=session.selectOne(namespace+".selectMyReservationStatus",map);
+		System.out.println("reserv_status : " +reserv_status);
+		return reserv_status;
 	}
 
 	@Override
