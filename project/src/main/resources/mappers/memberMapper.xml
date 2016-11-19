@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and member_email like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
 			</if>
 			<if test="searchType == 'tc'.toString()">
-				and country_id like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+				and country_name_kor like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
 			</if>
 		</if>
 	</sql>
@@ -101,9 +101,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="listSearch" resultType="com.kedu.arias.member.dto.MemberDto">
 <![CDATA[  
-  select *
-  from member 
-  where member_id > 0 
+  select m.*
+  , c.country_name_kor
+  , c.country_name_eng
+  from member m , country_code c 
+  where m.member_id > 0 
+  and m.COUNTRY_ID=c.COUNTRY_ID
 ]]>
 
 		<include refid="search"></include>
@@ -126,10 +129,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM ( 
 				SELECT ROWNUM ro,n.* 
                 FROM ( 
-   	    				SELECT * 
-                        FROM member 
-                        where 1 = 1 <include refid="search"></include>
-                        ORDER BY member_id DESC
+   	    				SELECT m.* 
+   	    				
+						  , c.country_name_kor
+						  , c.country_name_eng
+                        from member m , country_code c 
+                        where 1 = 1 
+  						and m.COUNTRY_ID=c.COUNTRY_ID <include refid="search"></include>
+                        ORDER BY m.member_id DESC
                       ) n
 			) member 
 		WHERE  1=1 AND ro BETWEEN #{start} AND #{end}
@@ -140,5 +147,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM ADMIN_CODE
 		WHERE member_id =#{member_id}
 	</select>
-
+	
+	
 </mapper>

@@ -296,6 +296,7 @@ function countryNum_select(country_num) {
 						<input type="text" name="country_name" id="search-country" placeholder="Searching Country name" style="height: 25px;">
 						<button type="submit" class="btn btn-info modal-search-country" id="searchCountryBtn" style="height:25px; padding-bottom: 0px; padding-top: 0px;">Search</button>
 					</div>
+					
 					<br>
 					<div class="countryList">
 						<table id="modal-countryTb">
