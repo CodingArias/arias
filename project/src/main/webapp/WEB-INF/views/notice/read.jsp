@@ -128,7 +128,7 @@
     
     <div class="form-group">
       <label for="notice_title">TITLE</label>
-      <input style="text-align: center; width: 60%;" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}" readonly="readonly">
+      <input style="text-align: center; width: 50%;" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}" readonly="readonly">
     </div>
  
     <div class="form-group">
@@ -142,6 +142,7 @@
     <button type="submit" class="btn modifyBtn"> Modify </button>
     <button type="submit" class="btn removeBtn"> Remove </button>
 </c:if> 
+
     <button type="submit" class="btn listallBtn">List all</button>
  
   

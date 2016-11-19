@@ -94,7 +94,7 @@
   
     <div class="form-group">
       <label for="notice_title">TITLE</label>
-      <input style="text-align: center; width: 60%" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}">
+      <input style="text-align: center; width: 50%" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}">
     </div>
        
     <div class="form-group">
