@@ -52,9 +52,21 @@
 			<mapping path="/product/product_insert_step_last"></mapping>
 			<mapping path="/product/reservation_step1"></mapping>
 			<mapping path="/product/reservation_step_last"></mapping>
+			<mapping path="/product/reservation_list"></mapping>
+			<mapping path="/product/reservation_detail"></mapping>
 			<mapping path="/product/product_list"></mapping>
-
+			<mapping path="/member/list"></mapping>
+			<mapping path="/notice/list"></mapping>
 			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<!-- admin 인터셉터 -->
+	<beans:bean id="adminInterceptor" class="com.kedu.arias.interceptor.AdminInterceptor"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/list"/>
+			<beans:ref bean="adminInterceptor"/>
 		</interceptor>
 	</interceptors>
 

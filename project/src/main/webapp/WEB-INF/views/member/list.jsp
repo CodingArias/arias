@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="false"%>
 
 <jsp:include page="../header.jsp"></jsp:include>
 <style>
@@ -77,15 +76,14 @@
 </select> <input type="text" name='keyword' id="keywordInput"
 						value='${page.keyword }'>
 					<button id='searchBtn'>Search</button>
-					<button id='newBtn'>New register</button>
+					
 </div>	
 					
 <div class="member_list">
-  <h1></h1>
-  <h1></h1>			
+ 	 <h1></h1>
+  	 <h1></h1>			
   	
- <table class="table table-striped">
-  
+  <table class="table table-striped">
     <thead>
       <tr>
         <th width="10%" style= "text-align: center">회원번호</th>

@@ -295,6 +295,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, P.CHECKIN_TIME
 			, P.CHECKOUT_TIME
             , A.ACCOM_NAME
+            , (SELECT COUNT(*) FROM RESERVATION r WHERE r.product_seq=p.PRODUCT_SEQ) now_reserv_num
 	  FROM PRODUCT P,  ACCOM_CODE A
 	 WHERE MEMBER_ID = #{member_id,jdbcType=VARCHAR}
 	  AND a.ACCOM_ID (+) =p.ACCOM_ID

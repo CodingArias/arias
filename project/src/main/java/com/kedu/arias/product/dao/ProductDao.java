@@ -46,4 +46,6 @@ public interface ProductDao {
 	
 	public List<ProductDto> select_product_new() throws Exception;
 	
+	
+	
 }

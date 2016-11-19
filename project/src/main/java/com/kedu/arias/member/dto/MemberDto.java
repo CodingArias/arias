@@ -7,12 +7,27 @@ public class MemberDto {
 	private String member_first_name;
 	private String member_last_name;
 	private String country_id;
+	private String country_name_kor;
+	private String country_name_eng;
 	private String member_img;
 	private String member_email;
 	private String member_pwd;
 	private String member_phone;
 	private String member_birthday;
 	private String member_reg_date;
+	
+	public String getCountry_name_kor() {
+		return country_name_kor;
+	}
+	public void setCountry_name_kor(String country_name_kor) {
+		this.country_name_kor = country_name_kor;
+	}
+	public String getCountry_name_eng() {
+		return country_name_eng;
+	}
+	public void setCountry_name_eng(String country_name_eng) {
+		this.country_name_eng = country_name_eng;
+	}
 	public String getMember_id() {
 		return member_id;
 	}
@@ -76,7 +91,8 @@ public class MemberDto {
 	@Override
 	public String toString() {
 		return "MemberDto [member_id=" + member_id + ", member_first_name=" + member_first_name + ", member_last_name="
-				+ member_last_name + ", country_id=" + country_id + ", member_img=" + member_img + ", member_email="
+				+ member_last_name + ", country_id=" + country_id + ", country_name_kor=" + country_name_kor
+				+ ", country_name_eng=" + country_name_eng + ", member_img=" + member_img + ", member_email="
 				+ member_email + ", member_pwd=" + member_pwd + ", member_phone=" + member_phone + ", member_birthday="
 				+ member_birthday + ", member_reg_date=" + member_reg_date + "]";
 	}

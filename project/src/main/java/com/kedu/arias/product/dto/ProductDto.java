@@ -48,7 +48,15 @@ public class ProductDto {
 	private String p_main_img;
 	private String product_regdt;
 	private int number_of_people;
+	private int now_reserv_num;
 	
+	public int getNow_reserv_num() {
+		return now_reserv_num;
+	}
+	public void setNow_reserv_num(int now_reserv_num) {
+		this.now_reserv_num = now_reserv_num;
+	}
+
 	private String checkin_time;
 	private String checkout_time;
 	
@@ -283,11 +291,12 @@ public class ProductDto {
 				+ ", product_lng=" + product_lng + ", product_score=" + product_score + ", product_mindt="
 				+ product_mindt + ", product_maxdt=" + product_maxdt + ", product_readydt=" + product_readydt
 				+ ", product_prepdt=" + product_prepdt + ", product_step=" + product_step + ", p_main_img=" + p_main_img
-				+ ", product_regdt=" + product_regdt + ", number_of_people=" + number_of_people + ", checkin_time="
-				+ checkin_time + ", checkout_time=" + checkout_time + ", accom_id=" + accom_id + ", accom_name="
-				+ accom_name + ", bath_id=" + bath_id + ", bath_name=" + bath_name + ", bed_id=" + bed_id
-				+ ", bed_name=" + bed_name + ", building_id=" + building_id + ", building_name=" + building_name
-				+ ", sguest_id=" + sguest_id + ", sguest_name=" + sguest_name + "]";
+				+ ", product_regdt=" + product_regdt + ", number_of_people=" + number_of_people + ", now_reserv_num="
+				+ now_reserv_num + ", checkin_time=" + checkin_time + ", checkout_time=" + checkout_time + ", accom_id="
+				+ accom_id + ", accom_name=" + accom_name + ", bath_id=" + bath_id + ", bath_name=" + bath_name
+				+ ", bed_id=" + bed_id + ", bed_name=" + bed_name + ", building_id=" + building_id + ", building_name="
+				+ building_name + ", sguest_id=" + sguest_id + ", sguest_name=" + sguest_name + ", member_img="
+				+ member_img + "]";
 	}	
 	
 	
