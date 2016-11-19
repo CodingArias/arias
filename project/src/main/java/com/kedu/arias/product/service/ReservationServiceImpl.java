@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kedu.arias.product.dao.ReservationDao;
 import com.kedu.arias.product.dto.NotsalesDto;
+import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.dto.ReservationDto;
 
 @Service
@@ -47,7 +48,14 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public Integer reservationHostCheck(Integer product_seq, String member_id) {
+	public boolean reservationHostCheck(Integer product_seq, String member_id) {
 		return reservDao.reservationHostCheck(product_seq,member_id);
 	}
+
+	@Override
+	public ReservationDto selectReservationDetail(Integer product_seq, String member_id) {
+		return reservDao.selectReservationDetail(product_seq, member_id);
+	}
+
+
 }

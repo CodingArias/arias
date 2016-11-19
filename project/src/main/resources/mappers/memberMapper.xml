@@ -64,11 +64,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="com.kedu.arias.member.dto.MemberDto">
 		select
-		member_id,member_email , member_first_name,  member_last_name, country_id, member_phone
-		, member_birthday, member_reg_date
+		  m.member_id
+		, m.member_email 
+		, m.member_first_name
+		, m.member_last_name
+		, m.country_id
+		, m.member_phone
+		, m.member_img
+		, m.member_birthday
+		, m.member_reg_date
+		, c.country_name_kor
+		, c.country_name_eng
 		from
-		member
-		where member_id = #{member_id}
+		member m , country_code c
+		where m.member_id = #{member_id}
+		AND m.COUNTRY_ID=c.COUNTRY_ID
 	</select>
 	
 	<update id="update">
@@ -125,5 +135,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE  1=1 AND ro BETWEEN #{start} AND #{end}
 	
 	</select>
+	
+	<select id="adminCheck" resultType="int">
+		SELECT COUNT(*) FROM ADMIN_CODE
+		WHERE member_id =#{member_id}
+	</select>
 
-	</mapper>
+</mapper>

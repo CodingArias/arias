@@ -35,4 +35,6 @@ public interface MemberService {
 	
 	public List<NoticeDto> selectNoticeList(PageDto pageDto , int recordPerPage);
 
+	public boolean adminCheck(String member_id);
+	
 }

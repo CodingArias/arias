@@ -43,7 +43,7 @@ public class NoticeController {
 	/*	  String attach_path = "resources/member/";*/
 	    logger.info("regist post ...........");
 	    logger.info(notice.toString());
-	    String member_id = "201611030003";
+	    String member_id = "201611180004";
 
 	 /*  MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
 

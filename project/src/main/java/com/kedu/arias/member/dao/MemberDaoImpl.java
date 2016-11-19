@@ -121,4 +121,14 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectList(namespace+".selectNoticeList", map);
 	}
 
+	@Override
+	public boolean adminCheck(String member_id) {
+		Integer count = session.selectOne(namespace+".adminCheck",member_id);
+		if(count>0){
+			return true;
+		}else
+			return false;
+	}
+	
+
 }

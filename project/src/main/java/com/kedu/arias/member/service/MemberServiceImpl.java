@@ -89,6 +89,11 @@ public class MemberServiceImpl implements MemberService {
 		return mdao.selectNoticeList(pageDto, recordPerPage);
 	}
 
+	@Override
+	public boolean adminCheck(String member_id) {
+		return mdao.adminCheck(member_id);
+	}
+
 
 	
 

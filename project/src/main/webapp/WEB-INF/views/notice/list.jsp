@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="false"%>
 
 <jsp:include page="../header.jsp"></jsp:include>
 <style>
@@ -56,7 +55,11 @@
 
 <div class="main">
 <div class="container">
+
+<c:if test="${admin == true}">
  <h2>ADMINISTER</h2>
+</c:if>
+
  <h1><strong>공지사항</strong></h1>	
 <select name="searchType">
 						<option value="n"
@@ -74,7 +77,11 @@
 </select> <input type="text" name='keyword' id="keywordInput"
 						value='${page.keyword }'>
 					<button id='searchBtn'>Search</button>
-					<button id='newBtn'>New Board</button>
+					
+					<c:if test="${admin != null}">
+						<button id='newBtn'>New Board</button>
+					</c:if>
+						
 </div>
 
 

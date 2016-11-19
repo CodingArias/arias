@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@include file="header.jsp"%>
 <!-- 한글화 및 한국식 날짜표기를 적용한 datepicker 구성요소-->
 <link rel="stylesheet" type="text/css"
@@ -26,16 +25,12 @@
 			<!-- 이미지크기 1200x400 -->
 			<img src="/resources/img/main/seoul.png" alt="Image">
 			<div class="carousel-caption">
-				<h3>Sell $</h3>
-				<p>Money Money.</p>
 			</div>
 		</div>
 
 		<div class="item">
 			<img src="/resources/img/main/travel.jpg" alt="Image">
 			<div class="carousel-caption">
-				<h3>More Sell $</h3>
-				<p>Lorem ipsum...</p>
 			</div>
 		</div>
 	</div>
@@ -59,7 +54,7 @@
 	<input type='hidden' name='lat' id='lat'>
 	<div class="form-group">
 		<input type="text" class="form-control" id="pac-input"
-			placeholder="나라 이름" name="keyword" required="required">
+			placeholder="도시 이름" name="keyword" required="required">
 	</div>
 	<div id="reportrange" class="form-group form-control"
 		style="background: #fff; cursor: pointer;">
@@ -67,8 +62,6 @@
 		<b class="caret"></b>
 	</div>
 	<div class="form-group">
-		<!-- db로 코드를 넣어줘야함 -->
-		
 		<input type="number" name="number_of_people" class="form-control" placeholder="숙박 인원 " required="required">
 	</div>
 	<div class="form-group">
@@ -111,28 +104,17 @@ var lat, lng;
 	<br>
 
 	<div class="row">
-		<!-- 나중에 최신 순서로 뿌려주기 foreach 예정 -->
-		<div class="col-sm-4 image">
-			<img src="/resources/img/main/paris.jpg" class="img-responsive"
-				style="width: 100%" alt="Image">
-			<div class="text">
-				<h4>파리</h4>
+		<c:forEach var="product" items="${list}">
+		<div class="col-sm-4 image" style="margin-top: 10px;">
+			<img src="http://192.168.0.6:8080/resources/product/product_main_image/${product.p_main_img}" class="img-responsive img-rounded"
+				style="width: 100%; height: 50%;" alt="Image">
+			<div class="text text-left">
+				<h4>＄ ${product.product_price}</h4>
 			</div>
+			
 		</div>
-		<div class="col-sm-4 image">
-			<img src="/resources/img/main/rome.jpg" class="img-responsive"
-				style="width: 100%" alt="Image">
-			<div class="text">
-				<h4>로마</h4>
-			</div>
-		</div>
-		<div class="col-sm-4 image">
-			<img src="/resources/img/main/LA.jpg" class="img-responsive"
-				style="width: 100%" alt="Image">
-			<div class="text">
-				<h4>로스앤젤레스</h4>
-			</div>
-		</div>
+		
+		</c:forEach>
 		<!-- 나중에 최신 순서로 뿌려주기 foreach 예정 끝-->
 	</div>
 </div>
@@ -144,7 +126,7 @@ var lat, lng;
 	<div class="row">
 		<div class="col-sm-6 image">
 			<a href="search?checkin=${date }&checkout=${date }&lng=2.3522219000000177&lat=48.85661400000001&keyword=프랑스일+드+프랑스파리&number_of_people=1"> <img src="/resources/img/main/paris.jpg"
-				class="img-responsive" style="width: 100%" alt="Image">
+				class="img-responsive img-rounded" style="width: 100%" alt="Image">
 				<div class="text">
 					<h4>파리</h4>
 				</div>
@@ -152,8 +134,8 @@ var lat, lng;
 		</div>
 
 		<div class="col-sm-3 image">
-			<a href="#"> <img src="/resources/img/main/rome.jpg"
-				class="img-responsive" style="width: 100%" alt="Image">
+			<a href="search?checkin=${date }&checkout=${date }&lng=12.496365500000024&lat=41.90278349999999&keyword=이탈리아라치오로마&number_of_people=1"> <img src="/resources/img/main/rome.jpg"
+				class="img-responsive img-rounded" style="width: 100%" alt="Image">
 			</a>
 			<div class="text">
 				<h4>
@@ -163,8 +145,8 @@ var lat, lng;
 
 		</div>
 		<div class="col-sm-3 image">
-			<a href="#"><img src="/resources/img/main/LA.jpg"
-				class="img-responsive" style="width: 100%" alt="Image"> </a>
+			<a href="search?checkin=${date }&checkout=${date }&lng=-118.2436849&lat=34.0522342&keyword=미국캘리포니아로스앤젤레스&number_of_people=1"><img src="/resources/img/main/LA.jpg"
+				class="img-responsive img-rounded" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
 					<a href="#">로스앤젤레스</a>
@@ -172,8 +154,8 @@ var lat, lng;
 			</div>
 		</div>
 		<div class="col-sm-3 image" style="top: 1em;">
-			<a href="#"><img src="/resources/img/main/lisboa.jpg"
-				class="img-responsive" style="width: 100%" alt="Image"> </a>
+			<a href="search?checkin=${date }&checkout=${date }&lng=-9.139336599999979&lat=38.7222524&keyword=리스본&number_of_people=1"><img src="/resources/img/main/lisboa.jpg"
+				class="img-responsive img-rounded" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
 					<a href="#">리스본</a>
@@ -181,8 +163,8 @@ var lat, lng;
 			</div>
 		</div>
 		<div class="col-sm-3 image" style="top: 1em;">
-			<a href="#"><img src="/resources/img/main/tokyo.jpg"
-				class="img-responsive" style="width: 100%" alt="Image"> </a>
+			<a href="search?checkin=${date }&checkout=${date }&lng=139.73199249999993&lat=35.7090259&keyword=%EC%9D%BC%EB%B3%B8+%EB%8F%84%EC%BF%84&number_of_people=1"><img src="/resources/img/main/tokyo.jpg"
+				class="img-responsive img-rounded" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
 					<a href="#">도쿄</a>
@@ -194,8 +176,8 @@ var lat, lng;
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="image">
-				<a href="#"><img src="/resources/img/main/newyork.jpg"
-					class="img-responsive" style="width: 100%" alt="Image"> </a>
+				<a href="search?checkin=${date }&checkout=${date }&lng=-74.00594130000002&lat=40.7127837&keyword=미국뉴욕&number_of_people=1"><img src="/resources/img/main/newyork.jpg"
+					class="img-responsive img-rounded" style="width: 100%" alt="Image"> </a>
 				<div class="text">
 					<h4>
 						<a href="#">뉴욕</a>
@@ -203,8 +185,8 @@ var lat, lng;
 				</div>
 			</div>
 			<div class="image" style="top: 1em;">
-				<a href="#"><img src="/resources/img/main/amsterdam.jpg"
-					class="img-responsive" style="width: 100%" alt="Image"> </a>
+				<a href="search?checkin=${date }&checkout=${date }&lng=4.895167899999933&lat=52.3702157&keyword=네덜란드노르트홀란트암스테르담&number_of_people=1"><img src="/resources/img/main/amsterdam.jpg"
+					class="img-responsive img-rounded" style="width: 100%" alt="Image"> </a>
 				<div class="text">
 					<h4>
 						<a href="#">암스테르담</a>
@@ -214,8 +196,8 @@ var lat, lng;
 		</div>
 
 		<div class="col-sm-6 image">
-			<a href="#"><img src="/resources/img/main/liverpool.jpg"
-				class="img-responsive" style="width: 100%" alt="Image"> </a>
+			<a href="search?checkin=${date }&checkout=${date }&lng=-2.9915726000000404&lat=53.4083714&keyword=영국잉글랜드리버풀&number_of_people=1"><img src="/resources/img/main/liverpool.jpg"
+				class="img-responsive img-rounded" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
 					<a href="#">리버풀</a>
@@ -223,8 +205,8 @@ var lat, lng;
 			</div>
 		</div>
 		<div class="col-sm-3 image">
-			<a href="#"><img src="/resources/img/main/barcelona.jpg"
-				class="img-responsive" style="width: 100%" alt="Image"> </a>
+			<a href="search?checkin=${date }&checkout=${date }&lng=2.1734034999999494&lat=41.38506389999999&keyword=스페인카탈루나바르셀로나&number_of_people=1"><img src="/resources/img/main/barcelona.jpg"
+				class="img-responsive img-rounded" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
 					<a href="#">바르셀로나</a>
@@ -232,8 +214,8 @@ var lat, lng;
 			</div>
 		</div>
 		<div class="col-sm-3 image" style="top: 1em;">
-			<a href="#"><img src="/resources/img/main/berlin.jpg"
-				class="img-responsive" style="width: 100%" alt="Image"> </a>
+			<a href="search?checkin=${date }&checkout=${date }&lng=13.404953999999975&lat=52.52000659999999&keyword=독일베를린&number_of_people=1"><img src="/resources/img/main/berlin.jpg"
+				class="img-responsive img-rounded" style="width: 100%" alt="Image"> </a>
 			<div class="text">
 				<h4>
 					<a href="#">베를린</a>
@@ -245,9 +227,7 @@ var lat, lng;
 </div>
 <br>
 
-<footer class="container-fluid text-center">
-	<p>Footer Text</p>
-</footer>
+<%@include file="footer.jsp"%>
 
 <script>
 
@@ -259,6 +239,13 @@ function initAutocomplete() {
 	  
 	  
 	  document.getElementById('btn').onclick = function () {
+		
+//검색창 enter 강제 트리거		  
+/* 		google.maps.event.trigger(input, 'focus')
+	    google.maps.event.trigger(input, 'keydown', {
+	    	keyCode: 13
+	    });  */
+		  
 	  	var places = searchBox.getPlaces();
 	  	if(places!=null){
 			if (places.length == 0) {

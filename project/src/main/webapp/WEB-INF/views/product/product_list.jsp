@@ -74,7 +74,7 @@
 							<c:if test="${product.product_step == 9 }">
 								<input id="saveBtn" class="btn btn-success mybyn" 
 								onclick="location.href='product_simple_detail?product_seq=${product.product_seq}'" type="button" value="숙소 확인"/>
-								<button id="saveBtn" class="btn btn-success mybyn"  >예약 현황 <span class="badge"> 14</span></button>
+								<button id="saveBtn" class="btn btn-success mybyn"  onclick="location.href='reservation_list?product_seq=${product.product_seq}'">예약 현황 <span class="badge"> ${product.now_reserv_num}</span></button>
 							</c:if>
 							<c:if test="${product.product_step != 9 }">
 								<input id="saveBtn" class="btn btn-waring mybyn" type="button" value="계속 작성 하기"/>

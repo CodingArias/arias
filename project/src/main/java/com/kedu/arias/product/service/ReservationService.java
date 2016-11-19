@@ -3,6 +3,7 @@ package com.kedu.arias.product.service;
 import java.util.List;
 
 import com.kedu.arias.product.dto.NotsalesDto;
+import com.kedu.arias.product.dto.ProductDto;
 import com.kedu.arias.product.dto.ReservationDto;
 
 public interface ReservationService {
@@ -12,5 +13,7 @@ public interface ReservationService {
 	public List<NotsalesDto> selectInvalidReservationDate(Integer product_seq);
 
 	public List<ReservationDto> selectReservationList (Integer product_seq);
-	public Integer reservationHostCheck (Integer product_seq, String member_id);
+	public boolean reservationHostCheck (Integer product_seq, String member_id);
+	public ReservationDto selectReservationDetail(Integer product_seq, String member_id);
+	
 }
