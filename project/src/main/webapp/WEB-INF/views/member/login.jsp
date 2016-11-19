@@ -3,13 +3,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@	page session="false" %>
 
-<%@include file="../header.jsp"%>
-
+<meta name="google-site-verification" content="no6nyD8DBXj1Xc2FVeRw50_RJB0u1I2JoM0AcL75eXE" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%@include file="../header.jsp"%>
+
 <link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript">
+$(document).ready(function(){
+	$(".lostandfound").on('click', function() {
+		self.location = "/member/accountSearching";
+	});
+	
+	$(".pwdfound").on('click', function() {
+		self.location = "/member/passwordSearching";
+	});
+});
+
 function loginCheck() {
 	if(document.frm.member_email.value.length == 0 || document.frm.member_email.value == ""){
 		alert(" 등록된 이메일 주소를 입력해주세요.\n please insert your email address.");
@@ -24,6 +36,7 @@ function loginCheck() {
 	}
 	return true;
 }
+
 function login(){
 	if(loginCheck()){
 		$.ajax({
@@ -47,6 +60,7 @@ function login(){
 		});
 	}
 }
+
 </script>
 
 <style type="text/css">
@@ -112,7 +126,8 @@ function login(){
 			
 			<div class="form-group" style="margin-top: 30px;">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="button" class="btn btn-primary">ID/PW 분실했어요</button>
+					<button type="button" class="btn btn-primary lostandfound">ID 찾기</button>
+					<button type="button" class="btn btn-primary pwdfound">PW 찾기</button>
 					<input type="button" class="btn btn-info" id="loninbtn" onclick="login()" value="Login">
 					<button type="button" class="btn btn-default btn-reg" onclick="location.href='/member/member_reg'">회원가입</button>
 				</div>

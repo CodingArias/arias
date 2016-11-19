@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
@@ -27,4 +31,21 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10485760000"></property>
 	</bean>
+	
+	<!-- 이메일 보내기 --> 
+	<bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="sookyykim@gmail.com" />
+	    <property name="password" value="159132tnr" />
+	    <property name="javaMailProperties">
+		    <props>
+		        <prop key="mail.smtp.starttls.enable">true</prop>
+		        <prop key="mail.smtp.auth">true</prop>
+		    </props>
+    	</property>
+	</bean>
+	<bean id="emailDto" class="com.kedu.arias.email.EmailDto"></bean>
+	<bean id="emailsender" class="com.kedu.arias.email.EmailSender"></bean>
+	<bean id="memberDto" class="com.kedu.arias.member.dto.MemberDto"></bean>
 </beans>

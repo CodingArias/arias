@@ -43,9 +43,6 @@ public class MemberController {
 	@Inject
 	private MemberService service;
 	
-	
-	
-	
 	@Inject
 	private CountrycodeService coService;
 

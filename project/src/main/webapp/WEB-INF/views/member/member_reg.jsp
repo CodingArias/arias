@@ -245,9 +245,9 @@ function countryNum_select(country_num) {
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-countryNum"
 							    id="search" style="float:left;">Search</button>
 						<div style="float:right;">
-							<input type="text" name="country_num" id="country_num" class="form-control" readonly="readonly" style="width:94px; float:left;" placeholder="country#">
+							<input type="text" name="country_num" id="country_num" class="form-control" readonly="readonly" style="width:94px; float:left;" placeholder="country#" required="required">
 							<span style="float:left;">_</span> 
-							<input type="text" name="member_phone1" id="member_phone1" class="form-control" required="required" style="width:94px; float:left;"> 
+							<input type="text" name="member_phone1" id="member_phone1" class="form-control" required="required" style="width:94px; float:left;" required="required"> 
 							<span style="float:left;">_</span>
 							<input type="text" name="member_phone2" id="member_phone2" class="form-control" required="required" style="width:94px; float:left;">
 							<span style="float:left;">_</span>
