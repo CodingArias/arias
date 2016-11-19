@@ -95,7 +95,7 @@
   
     <div class="form-group">
       <label for="member_id">WRITER</label>
-      <input style="text-align: center; width: auto" value="201611030003" type="text" class="form-control" name="member_id" placeholder="회원아이디" readonly="readonly">
+      <input style="text-align: center; width: auto" value="ADMIN" type="text" class="form-control" name="member_id" placeholder="회원아이디" readonly="readonly">
     </div>
     
     <div class="form-group">

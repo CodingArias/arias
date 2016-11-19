@@ -213,8 +213,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert_reply">
-		INSERT INTO PRODUCT_REPLY (PRODUCT_SEQ, MEMBER_ID, PREPLY_CONTENT, MEMBER_SCORE)
-		VALUES (#{product_seq,jdbcType=NUMERIC}, #{member_id,jdbcType=VARCHAR}, #{preply_content,jdbcType=VARCHAR}, #{member_score,jdbcType=NUMERIC})
+		INSERT INTO PRODUCT_REPLY (PRODUCT_SEQ	
+								 , MEMBER_ID
+								 , PREPLY_CONTENT
+								 , MEMBER_SCORE)
+		VALUES (
+					  #{product_seq,jdbcType=NUMERIC}
+					, #{member_id,jdbcType=VARCHAR}
+					, #{preply_content,jdbcType=VARCHAR}
+					, #{member_score,jdbcType=NUMERIC}
+				)
 	</insert>
 	
 	<select id="list_reply" resultType="com.kedu.arias.product.dto.ReplyDto">

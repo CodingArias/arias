@@ -190,14 +190,15 @@ select {
 						<div id="blank2_div"></div>
 						<div id="explanation_div">
 							<div id="explanation">
-							<textarea style="border: none; background-color:white; height: 100%;"  class="form-control" rows="" cols="" readonly="readonly">집 전체
-	게스트에게 별채를 포함한 집 전체를 빌려줍니다.
+							<textarea style="aborder: none; background-color:white; height: 100%;"  class="form-control" rows="" cols="" readonly="readonly">
+- 집 전체게스트에게 별채를 포함한 집 전체를 빌려줍니다.
 	
-	개인실
-	호스트와 공유하는 공간이 있긴 하지만 게스트에게 잠을 잘 수 있는 개인실이 제공됩니다.
+- 개인실
+호스트와 공유하는 공간이 있긴 하지만 게스트에게 잠을 잘 수 있는 개인실이 제공됩니다.
 	
-	다인실
-	게스트가 단독으로 쓸 수 있는 방이 제공되지 않습니다.</textarea>
+- 다인실
+게스트가 단독으로 쓸 수 있는 방이 제공되지 않습니다.
+							</textarea>
 							</div>
 						</div>
 					</div>
@@ -238,11 +239,11 @@ select {
 						<div id="explanation_div">
 							<div id="explanation">
 							<textarea style="border: none; background-color:white; height: 100%;"  class="form-control" rows="" cols="" readonly="readonly">
-	침대 유형
-	침대유형을 선택해주세요. 
+- 침대 유형
+침대유형을 선택해주세요. 
 	
-	손님 유형		
-	어떤 손님이 숙소를 이용하는데 적합한지 선택합니다.
+- 손님 유형		
+어떤 손님이 숙소를 이용하는데 적합한지 선택합니다.
 							</textarea>
 							</div>
 						</div>
@@ -264,7 +265,7 @@ select {
 						<div id="explanation_div">
 							<div id="explanation">
 							<textarea style="border: none; background-color:white; height: 100%;"  class="form-control" rows="" cols="" readonly="readonly">
-	욕실에 어떤 도구이 있는지 선택해주세요
+- 욕실에 어떤 도구이 있는지 선택해주세요
 	
 							</textarea>
 							</div>
@@ -289,10 +290,11 @@ select {
 						<div id="explanation_div">
 							<div id="explanation">
 							<textarea style="border: none; background-color:white; height: 100%;"  class="form-control" rows="" cols="" readonly="readonly">
-필수품목을 제공하면 게스트가 내 집처럼 편안하게 머물 수 있습니다.
+- 필수품목을 제공하면 게스트가 내 집처럼 편안하게 머물 수 있습니다.
 일부 호스트는 조식 또는 커피와 차만 제공하기도 합니다. 
-필수 사항은 아니지만, 이런 서비스를 제공하면 게스트가 보다
- 환영받는다고 느낄 수 있습니다.
+
+- 필수 사항은 아니지만, 이런 서비스를 제공하면 게스트가 보다
+환영받는다고 느낄 수 있습니다.
 	
 							</textarea>
 							</div>
@@ -317,7 +319,7 @@ select {
 						<div id="explanation_div">
 							<div id="explanation">
 							<textarea style="border: none; background-color:white; height: 100%;"  class="form-control" rows="" cols="" readonly="readonly">
-	숙소를 이용하는 손님의 안전을 위해서 최소한의 안전도구를 비치해주세요.
+- 숙소를 이용하는 손님의 안전을 위해서 최소한의 안전도구를 비치해주세요.
 							</textarea>
 							</div>
 						</div>
@@ -341,12 +343,11 @@ select {
 						<div id="explanation_div">
 							<div id="explanation">
 							<textarea style="border: none; background-color:white; height: 100%;"  class="form-control" rows="" cols="" readonly="readonly">
-	숙소의 규칙을 지정합니다.
+- 숙소의 규칙을 지정합니다.
 	
-	손님이 숙소에서 하지말아야할 사항 또는
-	특이사항을 정합니다.
+- 손님이 숙소에서 하지말아야할 사항 또는 특이사항을 정합니다.
 	
-	체크박스에 보이는 규칙 이외에 대해서는 직접 기입해주세요.
+- 체크박스에 보이는 규칙 이외에 대해서는 직접 기입해주세요.
 	
 							</textarea>
 							</div>
@@ -371,9 +372,10 @@ select {
 						<div id="explanation_div">
 							<div id="explanation">
 							<textarea style="border: none; background-color:white; height: 100%;"  class="form-control" rows="" cols="" readonly="readonly">
-	호스팅하는 공간은 집 안에 있어야 합니다. 
-	집의 일부가 아닌 빨래방이나 주변 시설은 포함하지 마세요. 
-	
+- 숙소의 공유가능한 공간을 지정합니다.
+
+- 집의 일부가 아닌 주변시설[ex)빨래방,도서관,편의점 등..]은 포함되지 않아요.
+
 							</textarea>
 							</div>
 						</div>

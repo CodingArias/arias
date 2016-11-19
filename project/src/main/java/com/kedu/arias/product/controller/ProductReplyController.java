@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kedu.arias.common.dto.PageCriteria;
 import com.kedu.arias.common.dto.PageMakerDto;
+import com.kedu.arias.member.dto.MemberDto;
 import com.kedu.arias.product.dto.ReplyDto;
 import com.kedu.arias.product.service.ReplyService;
 
@@ -27,9 +29,12 @@ public class ProductReplyController {
 	private ReplyService service;
 	
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ResponseEntity<String> insert_reply(@RequestBody ReplyDto dto) {
+	public ResponseEntity<String> insert_reply(@RequestBody ReplyDto dto, HttpSession session) {
 		ResponseEntity<String> entity = null;
 		System.out.println(dto);
+	
+		dto.setMember_id(((MemberDto)session.getAttribute("member")).getMember_id());
+		
 		try {
 			service.insert_reply(dto);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);

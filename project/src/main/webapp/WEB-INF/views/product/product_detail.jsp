@@ -378,8 +378,7 @@
 				$("#replyAddBtn").on("click", function() {
 					var preply_content = $("#preply_content").val();
 					var product_seq = ${product_detail.product_seq};
-					var member_id = 201611030016;
-					var member_score = 5;
+						var member_score = 5;
 					$.ajax({
 						type : 'post',
 						url : '/replies',
@@ -390,7 +389,6 @@
 						dataType : 'text',
 						data : JSON.stringify({
 							product_seq : product_seq,
-							member_id :  member_id,
 							preply_content : preply_content,
 							member_score : member_score=5
 						}),
