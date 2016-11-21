@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -197,7 +197,14 @@ footer {
 						<div class="media">
 							<div class="media-body">
 								<br>
-								<h4 class="media-heading">${list.product_name}</h4>
+								<c:choose>
+           <c:when test="${fn:length(list.product_name) > 14}">
+           <h4 class="media-heading"> ${fn:substring(list.product_name,0,13)}....</h4>
+           </c:when>
+           <c:otherwise>
+				<h4 class="media-heading">${list.product_name }</h4>
+           </c:otherwise> 
+          </c:choose>
 								${list.accom_name} * 숙박가능인원 ${list.number_of_people }명 * 별점 * 후기 갯수
 							</div>
 							<div class="media-right">
