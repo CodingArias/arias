@@ -55,6 +55,7 @@ public class ProductDetailController {
 		model.addAttribute("product_regulation", service.product_regulation(product_seq));
 		model.addAttribute("product_detail",pDto);
 		model.addAttribute("product_member", service.product_member(product_seq));
+		model.addAttribute("product_pic", service.selectAllproductPicture(product_seq));
 		
 		return "product/product_detail";
 	}
