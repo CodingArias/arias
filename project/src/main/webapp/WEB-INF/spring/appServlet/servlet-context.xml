@@ -58,6 +58,7 @@
 			<mapping path="/product/my_reservation_list"></mapping>
 			<mapping path="/member/list"></mapping>
 			<mapping path="/notice/list"></mapping>
+		
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>
