@@ -13,24 +13,26 @@
 <script type="text/javascript" src="/resources/datepicker/moment.js"></script>
 <script type="text/javascript"
 	src="/resources/datepicker/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/star.css">
 
 <style>
 #map {
 	height: 700px;
 }
+
 .image {
 	margin-top: 1px;
 	margin-right: 10px;
 	width: 100px;
-	height: 100px; 
+	height: 100px;
 }
-.carousel-inner > .item > img { 
-	top : 0;
+
+.carousel-inner>.item>img {
+	top: 0;
 	left: 0;
 	min-width: 100%;
 	max-height: 600px;
 }
-
 </style>
 <link rel="stylesheet" type="text/css" href="/resources/css/home.css">
 
@@ -55,19 +57,23 @@
 		<c:forEach items="${product_pic}" var="product_pic" varStatus="status">
 			<c:if test="${status.index eq 0}">
 				<div class="item active">
-					<img src="resources/product/product_images/${product_pic.pimg_name }" alt="Image">
+					<img
+						src="resources/product/product_images/${product_pic.pimg_name }"
+						alt="Image">
 					<div class="carousel-caption"></div>
 				</div>
 			</c:if>
 			<c:if test="${status.index ne 0}">
 				<div class="item">
-					<img src="resources/product/product_images/${product_pic.pimg_name }" alt="Image">
-				<div class="carousel-caption"></div>
-		</div>
+					<img
+						src="resources/product/product_images/${product_pic.pimg_name }"
+						alt="Image">
+					<div class="carousel-caption"></div>
+				</div>
 			</c:if>
 		</c:forEach>
 
-		
+
 	</div>
 
 	<!-- Left and right controls -->
@@ -250,7 +256,29 @@
 							<textarea rows="3" class="form-control" id="preply_content"
 								name="preply_content"></textarea>
 						</div>
-						<div class="col-sm-10"></div>
+						<div class="col-sm-10">
+							<span class="star-input"> <span class="input focus"> <input
+									type="radio" name="star-input" id="p1" value="0.5"><label
+									for="p1">0.5</label> <input type="radio" name="star-input"
+									id="p2" value="1.0"><label for="p2">1.0</label> <input
+									type="radio" name="star-input" id="p3" value="1.5"><label
+									for="p3">1.5</label> <input type="radio" name="star-input"
+									id="p4" value="2.0"><label for="p4">2.0</label> <input
+									type="radio" name="star-input" id="p5" value="2.5"><label
+									for="p5">2.5</label> <input type="radio" name="star-input"
+									id="p6" value="3.0"><label for="p6">3.0</label> <input
+									type="radio" name="star-input" id="p7" value="3.5"><label
+									for="p7">3.5</label> <input type="radio" name="star-input"
+									id="p8" value="4.0"><label for="p8">4.0</label> <input
+									type="radio" name="star-input" id="p9" value="4.5"><label
+									for="p9">4.5</label> <input type="radio" name="star-input"
+									id="p10" value="5.0"><label for="p10">5.0</label>
+							</span> <output for="star-input" class="star-output">
+									<b>0</b>점
+								</output>
+								
+							</span>
+						</div>
 						<div class="col-sm-2">
 							<button id="replyAddBtn" class="btn-primary btn">후기 입력</button>
 						</div>
@@ -286,52 +314,47 @@
 				</div>
 				<script>
 					getPageList(1);
-					var product_seq = $
-					{
-						product_detail.product_seq
-					};
+					var product_seq = ${product_detail.product_seq};
 					var page = 1;
 
 					function getPageList(page) {
-						var product_seq = $
-						{
-							product_detail.product_seq
-						}
-						;
+						var product_seq = ${product_detail.product_seq};
 
-						$.getJSON(
-									"/replies/" + product_seq + "/" + page,
-									function(data) {
-										var str = "";
-										console.log(data.list.length);
-										$(data.list).each(
-												function() {
-													str += "<div data-product_seq='"+this.product_seq+"' class='col-sm-12 text-left'>"
-														+ "<div class='col-sm-1'></div>"
-														+ "<div class='media col-sm-10'>"
-														+ "<div class='media-left text-center'>"
-														+ "<a href='#'> <img class='media-object img-circle' src='/resources/img/search/original_12.jpg' alt='...'>"
-														+ "</a>"
-														+ this.member_id
-														+ "</div>"
-														+ "<div class='media-body text-left'>"
-														+ "<span>"
-														+ this.preply_content
-														+ "</span>"
-														+ "<br>"
-														+ "<span> 별점 : "
-														+ this.member_score
-														+ "</span>"
-														+ "<br>"
-														+ this.preply_regdt
-														+ "</div>"
-														+ "</div>"
-														+ "<div class='col-sm-1'></div>"
-														+ "<div class='col-sm-12 text-left'>"
-														+ "<hr>"
-														+ "</div>"
-														+ "</div>";
-														});
+						$
+								.getJSON(
+										"/replies/" + product_seq + "/" + page,
+										function(data) {
+											var str = "";
+											console.log(data.list.length);
+											$(data.list)
+													.each(
+															function() {
+																str += "<div data-product_seq='"+this.product_seq+"' class='col-sm-12 text-left'>"
+																		+ "<div class='col-sm-1'></div>"
+																		+ "<div class='media col-sm-10'>"
+																		+ "<div class='media-left text-center'>"
+																		+ "<a href='#'> <img class='media-object img-circle' src='/resources/img/search/original_12.jpg' alt='...'>"
+																		+ "</a>"
+																		+ this.member_id
+																		+ "</div>"
+																		+ "<div class='media-body text-left'>"
+																		+ "<span>"
+																		+ this.preply_content
+																		+ "</span>"
+																		+ "<br>"
+																		+ "<span> 별점 : "
+																		+ this.member_score
+																		+ "</span>"
+																		+ "<br>"
+																		+ this.preply_regdt
+																		+ "</div>"
+																		+ "</div>"
+																		+ "<div class='col-sm-1'></div>"
+																		+ "<div class='col-sm-12 text-left'>"
+																		+ "<hr>"
+																		+ "</div>"
+																		+ "</div>";
+															});
 											$("#replies").html(str);
 
 											printPaging(data.pageMaker);
@@ -373,12 +396,10 @@
 
 					$("#replyAddBtn").on("click", function() {
 						var preply_content = $("#preply_content").val();
-						var product_seq = $
-						{
-							product_detail.product_seq
-						}
-						;
-						var member_score = 5;
+						var product_seq = ${product_detail.product_seq};
+						var member_score = $(this).parent().prev().find("output>b").text();
+						
+						alert(member_score);
 						$.ajax({
 							type : 'post',
 							url : '/replies',
@@ -401,11 +422,7 @@
 
 					function printPaging(pageMaker) {
 						var str = "";
-						var product_seq = $
-						{
-							product_detail.product_seq
-						}
-						;
+						var product_seq = ${product_detail.product_seq};
 						if (pageMaker.prev) {
 							str += "<li><a href='" + (pageMaker.startPage - 1)
 									+ "'> << </a></li>";
@@ -590,4 +607,37 @@
 	});
 </script>
 <!--달력 스크립트  끝-->
-
+<script>
+//star rating
+var starRating = function(){
+  var $star = $(".star-input"),
+      $result = $star.find("output>b");
+  $(document)
+    .on("focusin", ".star-input>.input", function(){
+    $(this).addClass("focus");
+  })
+    .on("focusout", ".star-input>.input", function(){
+    var $this = $(this);
+    setTimeout(function(){
+      if($this.find(":focus").length === 0){
+        $this.removeClass("focus");
+      }
+    }, 100);
+  })
+    .on("change", ".star-input :radio", function(){
+    $result.text($(this).next().text());
+  })
+    .on("mouseover", ".star-input label", function(){
+    $result.text($(this).text());
+  })
+    .on("mouseleave", ".star-input>.input", function(){
+    var $checked = $star.find(":checked");
+    if($checked.length === 0){
+      $result.text("0");
+    } else {
+      $result.text($checked.next().text());
+    }
+  });
+};
+starRating();
+</script>
