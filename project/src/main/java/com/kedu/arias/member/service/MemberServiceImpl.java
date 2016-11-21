@@ -53,48 +53,48 @@ public class MemberServiceImpl implements MemberService {
 		return mdao.checkUserWithSessionKey(value);
 	}
 	
-	//현수
-	
+	//회원조회
 	@Override
 	public List<MemberDto> listSearchCriteria(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return mdao.listSearch(cri);
 	}
-
+    
+	//회원상세정보
 	@Override
 	public MemberDto read(String member_id) throws Exception {
 		// TODO Auto-generated method stub
 		return mdao.read(member_id);
 	}
-
+    
+	//회원정보수정
 	@Override
 	public void modify(MemberDto member) throws Exception {
 		mdao.update(member);
-		
 	}
-
+	
+	//회원정보삭제
 	@Override
 	public void remove(String member_id) throws Exception {
-		mdao.delete(member_id);
-		
+		mdao.delete(member_id);	
+	}
+
+	//페이징
+	@Override
+	public Integer selectAllMemberCount(PageDto pageDto) throws Exception {
+		return mdao.selectAllMemberCount(pageDto);
 	}
 
 	@Override
-	public Integer selectAllNoticeCount(PageDto pageDto) throws Exception {
-		return mdao.selectAllNoticeCount(pageDto);
+	public List<MemberDto> selectMemberList(PageDto pageDto, int recordPerPage) {
+		return mdao.selectMemberList(pageDto, recordPerPage);
 	}
 
-	@Override
-	public List<NoticeDto> selectNoticeList(PageDto pageDto, int recordPerPage) {
-		return mdao.selectNoticeList(pageDto, recordPerPage);
-	}
-
+	//관리자확인
 	@Override
 	public boolean adminCheck(String member_id) {
 		return mdao.adminCheck(member_id);
 	}
 
-
-	
 
 }

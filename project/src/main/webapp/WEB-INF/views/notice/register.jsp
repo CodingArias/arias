@@ -94,18 +94,18 @@
   <form id='register' role="form" method="post">
   
     <div class="form-group">
-      <label for="member_id">WRITER</label>
+      <label for="member_id">작성자</label>
       <input style="text-align: center; width: auto" value="ADMIN" type="text" class="form-control" name="member_id" placeholder="회원아이디" readonly="readonly">
     </div>
     
     <div class="form-group">
-      <label for="notice_title">TITLE</label>
-      <input style="text-align: center; width: 60%" type="text" class="form-control" id="notice_title" name="notice_title" placeholder="제목을 입력해주세요." required="required">
+      <label for="notice_title">제목</label>
+      <input style="text-align: center; width: 30%" type="text" class="form-control" id="notice_title" name="notice_title" placeholder="제목을 입력해주세요." required="required">
     </div>
     
      <div class="form-group">
-      <label for="notice_content">CONTENT</label>
-      <textarea id="smarteditor" class="form-control" name="notice_content" >
+      <label for="notice_content">내용</label>
+      <textarea  style="width:600px" id="smarteditor" class="form-control" name="notice_content" >
       </textarea>
     </div>
     

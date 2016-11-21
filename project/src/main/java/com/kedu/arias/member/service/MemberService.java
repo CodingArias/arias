@@ -19,7 +19,7 @@ public interface MemberService {
 	public void keepLogin(String member_id, String sessionid, Date next) throws Exception;
 	public MemberDto checkLoginBefore(String value);
 	
-	//현수
+	//회원조회,수정,삭제
 	public List<MemberDto> listSearchCriteria(SearchCriteria cri) 
 		      throws Exception;
 	
@@ -30,11 +30,11 @@ public interface MemberService {
 	public void remove(String member_id) throws Exception;
 	  
 	//페이징
+    public Integer selectAllMemberCount(PageDto pageDto)throws Exception;
 	
-    public Integer selectAllNoticeCount(PageDto pageDto)throws Exception;
-	
-	public List<NoticeDto> selectNoticeList(PageDto pageDto , int recordPerPage);
+	public List<MemberDto> selectMemberList(PageDto pageDto , int recordPerPage);
 
+	//관리자확인
 	public boolean adminCheck(String member_id);
 	
 }

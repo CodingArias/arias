@@ -189,8 +189,8 @@ public class MemberController {
 	    int recordPerPage = 5;
 	    
 	    //공지사항의 총 개수 
-	    int totalRecord   = service.selectAllNoticeCount(pageDto);
-	    List<NoticeDto> nDto = service.selectNoticeList(pageDto, recordPerPage);
+	    int totalRecord   = service.selectAllMemberCount(pageDto);
+	    List<MemberDto> nDto = service.selectMemberList(pageDto, recordPerPage);
 	    model.addAttribute("list", nDto);
 	    System.out.println("totalRecord : "+ totalRecord);
 	    System.out.println(nDto);
@@ -201,8 +201,6 @@ public class MemberController {
 	    pageHelper.getBlockGroup(pageDto.getCurPage(), recordPerPage, totalRecord,pageDto);
 	    System.out.println(pageDto);
 	}
-	
-	
 	
 	
 	
@@ -259,5 +257,5 @@ public class MemberController {
 		  session.removeAttribute("admin");
 		  return "redirect:/";
 	  }
-//현수
+
 }

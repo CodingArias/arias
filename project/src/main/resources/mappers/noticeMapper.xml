@@ -82,7 +82,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectNoticeList" resultType="com.kedu.arias.notice.dto.NoticeDto">
 	
-	
 		SELECT notice.*
 		FROM ( 
 				SELECT ROWNUM ro,n.* 

@@ -65,43 +65,42 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 	
-	//현수
-	
+	//회원조회
 	@Override
 	public List<MemberDto> listSearch(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace + ".listSearch", cri);
 	}
-
+    //회원상세정보
 	@Override
 	public MemberDto read(String member_id) throws Exception {
 		
 		return session.selectOne(namespace+".read",member_id);
 	}
-
+    //회원정보수정
 	@Override
 	public void update(MemberDto mdto) throws Exception {
 		session.update(namespace+".update",mdto);
-		
 	}
-
+	
+    //회원정보삭제 
 	@Override
 	public void delete(String member_id) throws Exception {
 		session.delete(namespace+".delete", member_id);
-
 	}
-
+    
+	//페이징
 	@Override
-	public Integer selectAllNoticeCount(PageDto pageDto) throws Exception {
+	public Integer selectAllMemberCount(PageDto pageDto) throws Exception {
 		HashMap<String,Object> map =new HashMap<>(); 
 
 		map.put("searchType", pageDto.getSearchType());
 		map.put("keyword", pageDto.getKeyword());
-		return session.selectOne(namespace+".selectAllNoticeCount",map);
+		return session.selectOne(namespace+".selectAllMemberCount",map);
 	}
-
+ 
 	@Override
-	public List<NoticeDto> selectNoticeList(PageDto pageDto, int recordPerPage) {
+	public List<MemberDto> selectMemberList(PageDto pageDto, int recordPerPage) {
 		HashMap<String,Object> map =new HashMap<>(); 
 		int curPage = pageDto.getCurPage();
 		if (curPage < 1)
@@ -118,9 +117,10 @@ public class MemberDaoImpl implements MemberDao {
 		map.put("searchType", pageDto.getSearchType());
 		map.put("keyword", pageDto.getKeyword());
 		
-		return session.selectList(namespace+".selectNoticeList", map);
+		return session.selectList(namespace+".selectMemberList", map);
 	}
-
+    
+	//관리자확인
 	@Override
 	public boolean adminCheck(String member_id) {
 		Integer count = session.selectOne(namespace+".adminCheck",member_id);

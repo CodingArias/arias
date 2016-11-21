@@ -96,35 +96,35 @@
   </form>
 
     <div style="float: left; width: 33%;" class="form-group">
-      <label for="notice_seq">BNO</label>
+      <label for="notice_seq">번호</label>
       <input style="text-align: center; width: auto" type="text" class="form-control" name="notice_seq" value="${noticeDto.notice_seq}" readonly="readonly">
     </div>
     
      <div class="form-group">
-      <label for="notice_regdate">REGDATE</label>
+      <label for="notice_regdate">등록일</label>
       <input  style="text-align: center; width: auto" type="text" class="form-control" name="notice_regdate" 
       value= "<fmt:formatDate pattern="yyyy-MM-dd" value="${noticeDto.notice_regdate}"/>" readonly = "readonly">
     </div>
     
     <div style="float: left; width: 33%;" class="form-group">
-      <label for="member_id">WRITER</label>
+      <label for="member_id">작성자</label>
       <input  style="text-align: center; width: auto" type="text" class="form-control" name="member_id" value="${noticeDto.member_id}" readonly="readonly">
     </div>
     
     <div class="form-group">
-      <label for="notice_count">COUNT</label>
+      <label for="notice_count">조회수</label>
       <input  style="text-align: center; width: auto" type="text" class="form-control" name="notice_count" 
       value="${noticeDto.notice_count}" readonly="readonly">
     </div>
     
     <div class="form-group">
-      <label for="notice_title">TITLE</label>
+      <label for="notice_title">제목</label>
       <input style="text-align: center; width: 50%;" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}" readonly="readonly">
     </div>
  
     <div class="form-group">
-      <label for="notice_content">CONTENT</label>
-	      <pre>
+      <label for="notice_content">내용</label>
+	      <pre style="width:auto">
 	      ${noticeDto.notice_content}
 	      </pre>     
      </div>

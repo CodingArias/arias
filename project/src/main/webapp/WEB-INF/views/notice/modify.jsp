@@ -70,25 +70,25 @@
   
   <form role="form" method="post" action="modify">
     
-    <div style="float: left; width: 33%;" class="form-group">
-      <label for="notice_seq">BNO</label>
+    <div class="form-group">
+      <label for="notice_seq">공지번호</label>
       <input style="text-align: center; width: auto" type="text" class="form-control" name="notice_seq" value="${noticeDto.notice_seq}" readonly="readonly">
     </div>
     
-    <div class="form-group">
+   <%--  <div class="form-group">
       <label for="member_id">WRITER</label>
       <input style="text-align: center; width: auto" type="text" class="form-control" name="member_id" value="${noticeDto.member_id}" readonly="readonly">
     </div>
- 
+  --%>
   
     <div class="form-group">
-      <label for="notice_title">TITLE</label>
-      <input style="text-align: center; width: 50%" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}">
+      <label for="notice_title">제목</label>
+      <input style="text-align: center; width: 30%" type="text" class="form-control" name="notice_title" value="${noticeDto.notice_title}">
     </div>
        
     <div class="form-group">
-      <label for="notice_content">CONTENT</label>
-      <textarea id="smarteditor" rows="10" cols="30" class="form-control" name="notice_content">
+      <label for="notice_content">내용</label>
+      <textarea style="width:600px" id="smarteditor" class="form-control" name="notice_content">
       ${noticeDto.notice_content}
       </textarea>     
     </div>
