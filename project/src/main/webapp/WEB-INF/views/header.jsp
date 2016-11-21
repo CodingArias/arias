@@ -42,7 +42,7 @@
 				<li id="mypage"><a href="#" class="dropdown"
 					data-toggle="dropdown">My page</a>
 					<ul class="dropdown-menu">
-						<li class="h5"><a href="#">내 정보</a></li>
+						<li class="h5"><a href="/member/read?member_id=${member.member_id}">내 정보</a></li>
 						<li class="h5"><a href="/product/my_reservation_list">나의 예약 정보</a></li>
 						<c:if test="${admin == true}">
 							<li class="h5"><a href="/member/list">Administer </a></li>

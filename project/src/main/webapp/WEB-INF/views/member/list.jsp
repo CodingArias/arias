@@ -56,6 +56,7 @@
 <div class="container">
  <h2>ADMINISTER</h2>
  <h1><strong>회원목록</strong></h1>	
+ 
 <select name="searchType">
 						<option value="n"
 							<c:out value="${page.searchType == null?'selected':''}"/>>
@@ -99,7 +100,7 @@
 
 							<tr align="center">
 								<td>${mdto.member_id}</td>
-								<td><a href='/member/read?member_id=${mdto.member_id}&curPage=${page.curPage}&keyword=${page.keyword}&searchType=${page.searchType}'>${mdto.member_last_name}</a>
+								<td><a href='/member/read?member_id=${mdto.member_id}&curPage=${page.curPage}&keyword=${page.keyword}&searchType=${page.searchType}'>${mdto.member_first_name}</a>
 								</td>
 								<td>${mdto.member_email}</td>
 								<td>${mdto.country_name_kor}</td>

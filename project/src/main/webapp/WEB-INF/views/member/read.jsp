@@ -60,8 +60,8 @@
     </div>
     
      <div class="form-group">
-      <label for="member_last_name">회원이름</label>
-      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_last_name" value="${memberDto.member_last_name}" readonly="readonly">
+      <label for="member_first_name">회원이름</label>
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_first_name" value="${memberDto.member_first_name}" readonly="readonly">
     </div>
     
     <div class="form-group">
@@ -86,11 +86,11 @@
       value="${memberDto.member_reg_date}" pattern="YYYY-MM-dd" readonly = "readonly">
     </div>
     
-
+  <c:if test="${admin == true}">					
     <button type="submit" class="btn modifyBtn"> Modify </button>
     <button type="submit" class="btn removeBtn"> Remove </button>
     <button type="submit" class="btn listallBtn">List all</button>
- 
+  </c:if>
   
 </div>
 
