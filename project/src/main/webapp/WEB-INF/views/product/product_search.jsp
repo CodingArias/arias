@@ -64,13 +64,14 @@ footer {
 }
 .image>a {
 	position: relative;
-	max-height: 250px;
+	max-height: 240px;
 	height: 100%;
 	padding:0px;
 }
 .image>a>img {
 	position: relative;
-	max-height: 250px;
+	max-height: 240px;
+	min-height: 240px;
 	width: 100%;
 	height: 100%;
 }
