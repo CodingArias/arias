@@ -43,7 +43,8 @@ public class NoticeController {
 	/*	  String attach_path = "resources/member/";*/
 	    logger.info("regist post ...........");
 	    logger.info(notice.toString());
-	    String member_id = "201611180004";
+	    /*String member_id = "201611180004";*/
+	    String member_id = "admin";
 
 	 /*  MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
 
@@ -73,7 +74,7 @@ public class NoticeController {
 		if(pageDto.getCurPage()<1)
 			pageDto.setCurPage(1);
 		
-	    int recordPerPage = 5;
+	    int recordPerPage = 10;
 	    
 	    //공지사항의 총 개수 
 	    int totalRecord   = service.selectAllNoticeCount(pageDto);

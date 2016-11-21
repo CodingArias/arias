@@ -169,7 +169,7 @@ public class MemberController {
 	}
 
 	
-//현수
+   
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
     /*public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
@@ -186,7 +186,7 @@ public class MemberController {
 		if(pageDto.getCurPage()<1)
 			pageDto.setCurPage(1);
 		
-	    int recordPerPage = 5;
+	    int recordPerPage = 10;
 	    
 	    //공지사항의 총 개수 
 	    int totalRecord   = service.selectAllMemberCount(pageDto);
