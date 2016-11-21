@@ -184,7 +184,7 @@ footer {
 				<div class="col-sm-6" style="margin-top: 10px;">
 					<div class="col-sm-12 image">
 						<a href='/detail?product_seq=${list.product_seq}&checkin=${checkin}&checkout=${checkout}&number_of_people=${number_of_people}' class="embed-responsive embed-responsive-4by3">
-						<img src="http://192.168.0.6:8080/resources/product/product_main_image/${list.p_main_img}"
+						<img src="/resources/product/product_main_image/${list.p_main_img}"
 							class="img-rounded img-responsive img" alt="Responsive image">
 						</a>
 						<div class="text">
@@ -198,8 +198,8 @@ footer {
 							<div class="media-body">
 								<br>
 								<c:choose>
-           <c:when test="${fn:length(list.product_name) > 14}">
-           <h4 class="media-heading"> ${fn:substring(list.product_name,0,13)}....</h4>
+           <c:when test="${fn:length(list.product_name) > 13}">
+           <h4 class="media-heading"> ${fn:substring(list.product_name,0,12)}....</h4>
            </c:when>
            <c:otherwise>
 				<h4 class="media-heading">${list.product_name }</h4>
