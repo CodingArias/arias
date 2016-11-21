@@ -55,6 +55,7 @@
 			<mapping path="/product/reservation_list"></mapping>
 			<mapping path="/product/reservation_detail"></mapping>
 			<mapping path="/product/product_list"></mapping>
+			<mapping path="/product/my_reservation_list"></mapping>
 			<mapping path="/member/list"></mapping>
 			<mapping path="/notice/list"></mapping>
 			<beans:ref bean="authInterceptor"/>

@@ -78,5 +78,11 @@ public class ReservationDaoImpl implements ReservationDao{
 		return session.selectOne(namespace+".selectReservationDetail",map);
 	}
 
+	@Override
+	public List<ReservationDto> selectMyReservationList(String member_id) {
+		
+		return session.selectList(namespace+".selectMyReservationList",member_id);
+	}
+
 
 }

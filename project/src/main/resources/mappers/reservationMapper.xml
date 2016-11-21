@@ -100,5 +100,25 @@ PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
 		and reservation_seq =#{reservation_seq}
 	</select>
 	
+	<select id="selectMyReservationList" resultType="com.kedu.arias.product.dto.ReservationDto">
+               SELECT  
+		        r.RESERVATION_SEQ
+		      , r.PRODUCT_SEQ
+		      , r.MEMBER_ID
+		      , r.RESERV_COUNT
+		      , to_char(r.CHECKIN_DT,'YYYY-MM-DD') CHECKIN_DT
+		      , to_char(r.CHECKOUT_DT,'YYYY-MM-DD') CHECKOUT_DT 
+		      , to_char(r.REG_DT,'YYYY-MM-DD') REG_DT
+		      , r.MEMBER_INTRO
+		      , r.RESERV_STATUS
+              , p.PRODUCT_NAME
+              , p.PRODUCT_ADDR
+              , p.PRODUCT_ADDR_DETAIL
+		FROM RESERVATION r , PRODUCT p 
+        where
+		r.member_id = #{member_id}
+        AND r.product_seq = p.product_seq
+		order by r.RESERV_STATUS ASC
+	</select>
 
 </mapper>

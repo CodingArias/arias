@@ -12,8 +12,29 @@ public class ReservationDto {
 	private String reg_dt;
 	private String member_intro;
 	private Integer reserv_status;
+	private String product_name;
+	private String product_addr;
+	private String product_addr_detail;
 	
 	
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public String getProduct_addr() {
+		return product_addr;
+	}
+	public void setProduct_addr(String product_addr) {
+		this.product_addr = product_addr;
+	}
+	public String getProduct_addr_detail() {
+		return product_addr_detail;
+	}
+	public void setProduct_addr_detail(String product_addr_detail) {
+		this.product_addr_detail = product_addr_detail;
+	}
 	public String getMember_img() {
 		return member_img;
 	}
