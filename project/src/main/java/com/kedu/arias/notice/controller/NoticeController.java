@@ -44,7 +44,7 @@ public class NoticeController {
 	    logger.info("regist post ...........");
 	    logger.info(notice.toString());
 	    /*String member_id = "201611180004";*/
-	    String member_id = "admin";
+	    String member_id = "201611180004";
 
 	 /*  MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request; 
 

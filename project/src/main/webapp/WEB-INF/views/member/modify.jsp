@@ -46,12 +46,12 @@
     
     <div class="form-group">
       <label for="member_first_name">이름/first_name</label>
-      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_last_name" value="${memberDto.member_first_name}">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_first_name" value="${memberDto.member_first_name}">
     </div>
     
      <div class="form-group">
       <label for="member_last_name">성/last_name</label>
-      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_first_name" value="${memberDto.member_last_name}">
+      <input style="text-align: center; width: auto" type="text" class="form-control" name="member_last_name" value="${memberDto.member_last_name}">
     </div>
     
      <div class="form-group">

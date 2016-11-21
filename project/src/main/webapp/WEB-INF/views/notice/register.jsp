@@ -3,15 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<jsp:include page="../header.jsp"></jsp:include>
   
   <script type="text/javascript" src="/resources/datepicker/moment.js"></script>
   <link rel="stylesheet" type="text/css" href="/resources/datepicker/daterangepicker.css">
@@ -83,9 +75,9 @@
 	}
 	</script>
 	
-</head>
 
-<body>
+
+<!-- <body> -->
 
 <div class="container">
  <h2>ADMINISTER</h2>
@@ -109,12 +101,12 @@
       </textarea>
     </div>
     
-    <div class="form-group">
+    <!-- <div class="form-group">
        <input type="file" name="notice_img">
-					<!-- <input type="file" name="member_img" id="member_img"  required="required"/> -->
-					<!-- <img class="img-rounded" id="image" alt="product_image" src="/resources/img/noimage.jpg"> -->
+					<input type="file" name="member_img" id="member_img"  required="required"/>
+					<img class="img-rounded" id="image" alt="product_image" src="/resources/img/noimage.jpg">
 	</div>
-    
+     -->
     
   <!--    <div class="form-group">
       <label for="member_reg_date">등록일</label>
@@ -129,5 +121,4 @@
   
 </div>
 
-</body>
-</html>
+<jsp:include page="../footer.jsp"></jsp:include>
