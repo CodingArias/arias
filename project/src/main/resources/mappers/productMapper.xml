@@ -5,105 +5,137 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.kedu.arias.productMapper">
 
-	<insert  id="product_insert_step1" parameterType="com.kedu.arias.product.dto.ProductDto" >
-				INSERT INTO PRODUCT (  product_seq
-                                       , p_main_img
-                                       , member_id
-                                       , product_name
-                                       , product_price
-                                       , country_id
-                                       , product_addr
-                                       , product_addr_detail
-                                       , product_info
-                                       , product_lat
-                                       , product_lng
-                                       , number_of_people
-                                       , product_step)
-                                       VALUES ( 
-                                        #{product_seq,jdbcType=NUMERIC}
-									  , #{p_main_img,jdbcType=VARCHAR}
-                                      , #{member_id,jdbcType=VARCHAR}
-                                      , #{product_name,jdbcType=VARCHAR}
-                                      , #{product_price,jdbcType=NUMERIC}
-                                      , #{country_id,jdbcType=VARCHAR}
-                                      , #{product_addr,jdbcType=VARCHAR}
-                                      , #{product_addr_detail,jdbcType=VARCHAR}
-                                      , #{product_info,jdbcType=VARCHAR}
-                                      , #{product_lat,jdbcType=NUMERIC}
-                                      , #{product_lng,jdbcType=NUMERIC}
-                                      , #{number_of_people,jdbcType=NUMERIC}
-                                      , 2)
+	<insert id="product_insert_step1" parameterType="com.kedu.arias.product.dto.ProductDto">
+		INSERT INTO
+		PRODUCT ( product_seq
+		, p_main_img
+		, member_id
+		, product_name
+		,
+		product_price
+		, country_id
+		, product_addr
+		, product_addr_detail
+		,
+		product_info
+		, product_lat
+		, product_lng
+		, number_of_people
+		,
+		product_step)
+		VALUES (
+		#{product_seq,jdbcType=NUMERIC}
+		,
+		#{p_main_img,jdbcType=VARCHAR}
+		, #{member_id,jdbcType=VARCHAR}
+		,
+		#{product_name,jdbcType=VARCHAR}
+		, #{product_price,jdbcType=NUMERIC}
+		,
+		#{country_id,jdbcType=VARCHAR}
+		, #{product_addr,jdbcType=VARCHAR}
+		,
+		#{product_addr_detail,jdbcType=VARCHAR}
+		,
+		#{product_info,jdbcType=VARCHAR}
+		, #{product_lat,jdbcType=NUMERIC}
+		,
+		#{product_lng,jdbcType=NUMERIC}
+		, #{number_of_people,jdbcType=NUMERIC}
+		, 2)
 	</insert>
 	<update id="product_insert_step2" parameterType="com.kedu.arias.product.dto.ProductDto">
-	UPDATE PRODUCT
+		UPDATE PRODUCT
 		SET product_mindt = #{product_mindt,jdbcType=NUMERIC}
-		,   product_maxdt = #{product_maxdt,jdbcType=NUMERIC}
-        ,   product_readydt = #{product_readydt,jdbcType=NUMERIC}
-        ,   product_prepdt = #{product_prepdt,jdbcType=NUMERIC}
-        ,   checkin_time = #{checkin_time,jdbcType=VARCHAR}
-        ,   checkout_time = #{checkout_time,jdbcType=VARCHAR}
-        ,   product_step = 3
-         
-	where product_seq = #{product_seq,jdbcType=NUMERIC}
+		,
+		product_maxdt =
+		#{product_maxdt,jdbcType=NUMERIC}
+		, product_readydt =
+		#{product_readydt,jdbcType=NUMERIC}
+		, product_prepdt =
+		#{product_prepdt,jdbcType=NUMERIC}
+		, checkin_time =
+		#{checkin_time,jdbcType=VARCHAR}
+		, checkout_time =
+		#{checkout_time,jdbcType=VARCHAR}
+		, product_step = 3
+
+		where product_seq =
+		#{product_seq,jdbcType=NUMERIC}
 	</update>
-	<select id="create_next_product_seq" parameterType="String" resultType="Integer">
+	<select id="create_next_product_seq" parameterType="String"
+		resultType="Integer">
 		select create_next_product_seq from dual
 	</select>
-	
+
 	<insert id="insert_notsales" parameterType="com.kedu.arias.product.dto.NotsalesDto">
-		INSERT INTO NOTSALES_DATE(NOTSALES_SEQ,PRODUCT_SEQ,NS_START_DT,NS_END_DT) 
+		INSERT INTO
+		NOTSALES_DATE(NOTSALES_SEQ,PRODUCT_SEQ,NS_START_DT,NS_END_DT)
 		VALUES(
-		  #{notsales_seq,jdbcType=NUMERIC}
+		#{notsales_seq,jdbcType=NUMERIC}
 		, #{product_seq,jdbcType=NUMERIC}
-		, #{ns_start_dt,jdbcType=DATE}
-		, #{ns_end_dt,jdbcType=DATE}
+		,
+		#{ns_start_dt,jdbcType=DATE}
+		,
+		#{ns_end_dt,jdbcType=DATE}
 		)
 	</insert>
-	
+
 	<update id="update_product_options">
 		update product
-		set building_id = #{building_id,jdbcType=VARCHAR},
-			accom_id = #{accom_id,jdbcType=VARCHAR},
-			bed_id = #{bed_id,jdbcType=VARCHAR},
-			sguest_id = #{sguest_id,jdbcType=VARCHAR},
-			product_step = 9
-		where product_seq = #{product_seq,jdbcType=NUMERIC}
+		set building_id =
+		#{building_id,jdbcType=VARCHAR},
+		accom_id =
+		#{accom_id,jdbcType=VARCHAR},
+		bed_id = #{bed_id,jdbcType=VARCHAR},
+		sguest_id = #{sguest_id,jdbcType=VARCHAR},
+		product_step = 9
+		where
+		product_seq = #{product_seq,jdbcType=NUMERIC}
 	</update>
 	<update id="update_product_last">
 		update product
 		set product_step = 9
-		where product_seq = #{product_seq,jdbcType=NUMERIC}
+		where product_seq =
+		#{product_seq,jdbcType=NUMERIC}
 	</update>
-	
+
 	<insert id="insert_convin_options">
-		insert into product_convin values(#{product_seq,jdbcType=VARCHAR},#{convin_id,jdbcType=VARCHAR})
+		insert into product_convin
+		values(#{product_seq,jdbcType=VARCHAR},#{convin_id,jdbcType=VARCHAR})
 	</insert>
-	
+
 	<insert id="insert_bath_options">
-		insert into product_bath values(#{product_seq,jdbcType=VARCHAR},#{bath_id,jdbcType=VARCHAR})
+		insert into product_bath
+		values(#{product_seq,jdbcType=VARCHAR},#{bath_id,jdbcType=VARCHAR})
 	</insert>
-	
+
 	<insert id="insert_space_options">
-		insert into product_space values(#{product_seq,jdbcType=VARCHAR},#{space_id,jdbcType=VARCHAR})
+		insert into product_space
+		values(#{product_seq,jdbcType=VARCHAR},#{space_id,jdbcType=VARCHAR})
 	</insert>
-	
+
 	<insert id="insert_safety_options">
-		insert into product_safety values(#{product_seq,jdbcType=VARCHAR},#{safety_id,jdbcType=VARCHAR})
+		insert into product_safety
+		values(#{product_seq,jdbcType=VARCHAR},#{safety_id,jdbcType=VARCHAR})
 	</insert>
-	
+
 	<insert id="insert_regulation_options">
-		insert into product_regul values(#{product_seq,jdbcType=VARCHAR},#{regulation_id,jdbcType=VARCHAR})
+		insert into product_regul
+		values(#{product_seq,jdbcType=VARCHAR},#{regulation_id,jdbcType=VARCHAR})
 	</insert>
-	
+
 	<insert id="insert_product_images">
-		insert into product_pic (pimg_seq,product_seq, pimg_name)
-							values(
-								  create_next_pimg_seq(#{product_seq,jdbcType=NUMERIC})
-								, #{product_seq,jdbcType=NUMERIC}
-								, #{pimg_name,jdbcType=VARCHAR}
-								)
+		insert into product_pic (pimg_seq,product_seq,
+		pimg_name)
+		values(
+		create_next_pimg_seq(#{product_seq,jdbcType=NUMERIC})
+		,
+		#{product_seq,jdbcType=NUMERIC}
+		, #{pimg_name,jdbcType=VARCHAR}
+		)
 	</insert>
-	
+
 
 	<select id="select_product_search" resultType="com.kedu.arias.product.dto.ProductDto">
 	<![CDATA[
@@ -143,127 +175,159 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	ORDER BY distance
 	]]>
 	</select>
-	
+
 	<select id="select_product_detail" resultType="com.kedu.arias.product.dto.ProductDto">
-	 	SELECT P. PRODUCT_SEQ
-			, P.P_MAIN_IMG
-			, P.MEMBER_ID
-			, P.PRODUCT_NAME
-			, P.PRODUCT_PRICE
-			, P.COUNTRY_ID
-			, P.PRODUCT_ADDR
-			, P.PRODUCT_ADDR_DETAIL
-			, P.ACCOM_ID
-			, P.BED_ID
-			, P.BUILDING_ID
-			, P.SGUEST_ID
-			, P.PRODUCT_INFO
-			, P.PRODUCT_SIMPLE_INFO
-			, P.PRODUCT_LAT
-			, P.PRODUCT_LNG
-			, P.PRODUCT_SCORE
-			, P.PRODUCT_MINDT
-			, P.PRODUCT_MAXDT
-			, P.PRODUCT_READYDT
-			, P.PRODUCT_PREPDT
-			, P.PRODUCT_STEP
-			, P.PRODUCT_REGDT
-			, P.NUMBER_OF_PEOPLE
-			, P.CHECKIN_TIME
-			, P.CHECKOUT_TIME
-            , A.ACCOM_NAME
-            , B.BED_NAME 
-            , C.BUILDING_NAME
-            , D.SGUEST_NAME
-	  FROM PRODUCT P, ACCOM_CODE A, BED_CODE B, BUILDING_CODE C, SUIT_GUEST_CODE D
-	 WHERE product_seq = #{product_seq}
-	   AND  P.ACCOM_ID  = A.ACCOM_ID (+)
-	   AND  P.BED_ID  = B.BED_ID (+)
-	   AND  P.BUILDING_ID  = C.BUILDING_ID (+)
-	   AND  P.SGUEST_ID  = D.SGUEST_ID (+)
+		SELECT P.
+		PRODUCT_SEQ
+		, P.P_MAIN_IMG
+		, P.MEMBER_ID
+		, P.PRODUCT_NAME
+		,
+		P.PRODUCT_PRICE
+		, P.COUNTRY_ID
+		, P.PRODUCT_ADDR
+		, P.PRODUCT_ADDR_DETAIL
+		,
+		P.ACCOM_ID
+		, P.BED_ID
+		, P.BUILDING_ID
+		, P.SGUEST_ID
+		, P.PRODUCT_INFO
+		,
+		P.PRODUCT_SIMPLE_INFO
+		, P.PRODUCT_LAT
+		, P.PRODUCT_LNG
+		, P.PRODUCT_SCORE
+		,
+		P.PRODUCT_MINDT
+		, P.PRODUCT_MAXDT
+		, P.PRODUCT_READYDT
+		, P.PRODUCT_PREPDT
+		, P.PRODUCT_STEP
+		, P.PRODUCT_REGDT
+		, P.NUMBER_OF_PEOPLE
+		, P.CHECKIN_TIME
+		, P.CHECKOUT_TIME
+		, A.ACCOM_NAME
+		, B.BED_NAME
+		, C.BUILDING_NAME
+		,
+		D.SGUEST_NAME
+		FROM PRODUCT P, ACCOM_CODE A, BED_CODE B, BUILDING_CODE
+		C, SUIT_GUEST_CODE
+		D
+		WHERE product_seq = #{product_seq}
+		AND P.ACCOM_ID =
+		A.ACCOM_ID (+)
+		AND P.BED_ID = B.BED_ID (+)
+		AND P.BUILDING_ID =
+		C.BUILDING_ID (+)
+		AND P.SGUEST_ID = D.SGUEST_ID (+)
 	</select>
-	
-	<select id="product_safety" resultType="com.kedu.arias.product.dto.Safety_code" >
+
+	<select id="product_safety" resultType="com.kedu.arias.product.dto.Safety_code">
 		SELECT A.SAFETY_NAME
-		  FROM PRODUCT P, PRODUCT_SAFETY S, SAFETY_CODE A
-		 WHERE P.PRODUCT_SEQ = S.PRODUCT_SEQ
-		   AND S.SAFETY_ID = A.SAFETY_ID
-		   AND S.PRODUCT_SEQ = #{product_seq}
+		FROM
+		PRODUCT P, PRODUCT_SAFETY S, SAFETY_CODE A
+		WHERE P.PRODUCT_SEQ =
+		S.PRODUCT_SEQ
+		AND S.SAFETY_ID = A.SAFETY_ID
+		AND S.PRODUCT_SEQ =
+		#{product_seq}
 	</select>
-	
+
 	<select id="product_convin" resultType="com.kedu.arias.product.dto.Convin_code">
 		SELECT A.CONVIN_NAME
-		  FROM PRODUCT P, PRODUCT_CONVIN C, CONVIN_CODE A
-		 WHERE P.PRODUCT_SEQ = C.PRODUCT_SEQ
-     	   AND C.CONVIN_ID = A.CONVIN_ID
-     	   AND C.PRODUCT_SEQ = #{product_seq}
+		FROM
+		PRODUCT P, PRODUCT_CONVIN C, CONVIN_CODE A
+		WHERE P.PRODUCT_SEQ =
+		C.PRODUCT_SEQ
+		AND C.CONVIN_ID = A.CONVIN_ID
+		AND C.PRODUCT_SEQ =
+		#{product_seq}
 	</select>
 	<select id="product_space" resultType="com.kedu.arias.product.dto.Space_code">
 		SELECT A.SPACE_NAME
-		  FROM PRODUCT P, PRODUCT_SPACE C, SPACE_CODE A
-		 WHERE P.PRODUCT_SEQ = C.PRODUCT_SEQ
-	       AND C.SPACE_ID = A.SPACE_ID
-    	   AND C.PRODUCT_SEQ = #{product_seq}
+		FROM
+		PRODUCT P, PRODUCT_SPACE C, SPACE_CODE A
+		WHERE P.PRODUCT_SEQ =
+		C.PRODUCT_SEQ
+		AND C.SPACE_ID = A.SPACE_ID
+		AND C.PRODUCT_SEQ =
+		#{product_seq}
 	</select>
-	
+
 	<select id="product_regulation" resultType="com.kedu.arias.product.dto.Regulation_code">
-	     SELECT A.REGULATION_NAME
- 		   FROM PRODUCT P, PRODUCT_REGUL C, REGULATION_CODE A
-		  WHERE P.PRODUCT_SEQ = C.PRODUCT_SEQ
-     	    AND C.REGULATION_ID = A.REGULATION_ID
-            AND C.PRODUCT_SEQ = #{product_seq}
+		SELECT
+		A.REGULATION_NAME
+		FROM PRODUCT P, PRODUCT_REGUL C, REGULATION_CODE A
+		WHERE P.PRODUCT_SEQ = C.PRODUCT_SEQ
+		AND C.REGULATION_ID =
+		A.REGULATION_ID
+		AND C.PRODUCT_SEQ = #{product_seq}
 	</select>
-	
+
 	<select id="product_member" resultType="com.kedu.arias.member.dto.MemberDto">
-		 SELECT M.MEMBER_FIRST_NAME,
-		        M.MEMBER_LAST_NAME,
-                M.MEMBER_IMG,
-                M.MEMBER_REG_DATE,
-                M.MEMBER_ID
- 		   FROM MEMBER M, PRODUCT P
- 		  WHERE P.MEMBER_ID = M.MEMBER_ID
-     		AND P.PRODUCT_SEQ = #{product_seq}
+		SELECT
+		M.MEMBER_FIRST_NAME,
+		M.MEMBER_LAST_NAME,
+		M.MEMBER_IMG,
+		M.MEMBER_REG_DATE,
+		M.MEMBER_ID
+		FROM MEMBER M, PRODUCT P
+		WHERE P.MEMBER_ID
+		= M.MEMBER_ID
+		AND P.PRODUCT_SEQ = #{product_seq}
 	</select>
-	
+
 	<insert id="insert_reply">
-		INSERT INTO PRODUCT_REPLY (PRODUCT_SEQ	
-								 , MEMBER_ID
-								 , PREPLY_CONTENT
-								 , MEMBER_SCORE)
+		INSERT INTO PRODUCT_REPLY (PRODUCT_SEQ
+		, MEMBER_ID
+		,
+		PREPLY_CONTENT
+		, MEMBER_SCORE)
 		VALUES (
-					  #{product_seq,jdbcType=NUMERIC}
-					, #{member_id,jdbcType=VARCHAR}
-					, #{preply_content,jdbcType=VARCHAR}
-					, #{member_score,jdbcType=NUMERIC}
-				)
+		#{product_seq,jdbcType=NUMERIC}
+		,
+		#{member_id,jdbcType=VARCHAR}
+		, #{preply_content,jdbcType=VARCHAR}
+		,
+		#{member_score,jdbcType=NUMERIC}
+		)
 	</insert>
-	
+
 	<select id="list_reply" resultType="com.kedu.arias.product.dto.ReplyDto">
 		SELECT PRODUCT_SEQ, MEMBER_ID
-			 , PREPLY_CONTENT
-			 , MEMBER_SCORE
-			 , TO_CHAR(PREPLY_REGDT, 'YYYY-MM-DD HH24:MI:SS') AS PREPLY_REGDT
-		  FROM PRODUCT_REPLY
-		 WHERE PRODUCT_SEQ = #{product_seq}
-		 ORDER BY PREPLY_REGDT
+		, PREPLY_CONTENT
+		, MEMBER_SCORE
+		, TO_CHAR(PREPLY_REGDT, 'YYYY-MM-DD
+		HH24:MI:SS') AS PREPLY_REGDT
+		FROM PRODUCT_REPLY
+		WHERE PRODUCT_SEQ =
+		#{product_seq}
+		ORDER BY PREPLY_REGDT
 	</select>
-	
+
 	<update id="update_reply">
 		UPDATE PRODUCT_REPLY
-		   SET PREPLY_CONTENT = #{preply_content}
-		 WHERE PRODUCT_SEQ = #{product_seq}
-		   AND MEMBER_ID = #{member_id}
+		SET PREPLY_CONTENT =
+		#{preply_content}
+		WHERE PRODUCT_SEQ = #{product_seq}
+		AND MEMBER_ID =
+		#{member_id}
 	</update>
-	
+
 	<delete id="delete_reply">
 		DELETE FROM PRODUCT_REPLY
-		 WHERE PRODUCT_SEQ = #{product_seq}
-		   AND MEMBER_ID = #{member_id}
+		WHERE PRODUCT_SEQ =
+		#{product_seq}
+		AND MEMBER_ID = #{member_id}
 	</delete>
 	<select id="selectAllproductPicture" resultType="com.kedu.arias.product.dto.ProductImgDto">
-		select * from product_pic where product_seq = #{product_seq}
+		select * from
+		product_pic where product_seq = #{product_seq}
 	</select>
-	
+
 	<select id="replyPage" resultType="com.kedu.arias.product.dto.ReplyDto">
 	
 	<![CDATA[
@@ -281,47 +345,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY  PREPLY_REGDT DESC
 	]]>
 	</select>
-	
+
 	<select id="replyCount" resultType="int">
-	SELECT COUNT(PRODUCT_SEQ) 
-	  FROM PRODUCT_REPLY
-	 WHERE PRODUCT_SEQ = #{PRODUCT_SEQ}
+		SELECT COUNT(PRODUCT_SEQ)
+		FROM PRODUCT_REPLY
+		WHERE PRODUCT_SEQ = #{PRODUCT_SEQ}
 	</select>
-	
+
 	<select id="select_product_list" resultType="com.kedu.arias.product.dto.ProductDto">
-	SELECT P. PRODUCT_SEQ
-			, P.P_MAIN_IMG
-			, P.MEMBER_ID
-			, P.PRODUCT_NAME
-			, P.PRODUCT_PRICE
-			, P.COUNTRY_ID
-			, P.PRODUCT_ADDR
-			, P.PRODUCT_ADDR_DETAIL
-			, P.ACCOM_ID
-			, P.BED_ID
-			, P.BUILDING_ID
-			, P.SGUEST_ID
-			, P.PRODUCT_INFO
-			, P.PRODUCT_SIMPLE_INFO
-			, P.PRODUCT_LAT
-			, P.PRODUCT_LNG
-			, P.PRODUCT_SCORE
-			, P.PRODUCT_MINDT
-			, P.PRODUCT_MAXDT
-			, P.PRODUCT_READYDT
-			, P.PRODUCT_PREPDT
-			, P.PRODUCT_STEP
-			, TO_CHAR(P.PRODUCT_REGDT, 'YYYY"년" MM"월" DD"일" HH24"시" mi"분"') AS PRODUCT_REGDT
-			, P.NUMBER_OF_PEOPLE
-			, P.CHECKIN_TIME
-			, P.CHECKOUT_TIME
-            , A.ACCOM_NAME
-            , (SELECT COUNT(*) FROM RESERVATION r WHERE r.product_seq=p.PRODUCT_SEQ) now_reserv_num
-	  FROM PRODUCT P,  ACCOM_CODE A
-	 WHERE MEMBER_ID = #{member_id,jdbcType=VARCHAR}
-	  AND a.ACCOM_ID (+) =p.ACCOM_ID
+		SELECT P.
+		PRODUCT_SEQ
+		, P.P_MAIN_IMG
+		, P.MEMBER_ID
+		, P.PRODUCT_NAME
+		,
+		P.PRODUCT_PRICE
+		, P.COUNTRY_ID
+		, P.PRODUCT_ADDR
+		, P.PRODUCT_ADDR_DETAIL
+		,
+		P.ACCOM_ID
+		, P.BED_ID
+		, P.BUILDING_ID
+		, P.SGUEST_ID
+		, P.PRODUCT_INFO
+		,
+		P.PRODUCT_SIMPLE_INFO
+		, P.PRODUCT_LAT
+		, P.PRODUCT_LNG
+		, P.PRODUCT_SCORE
+		,
+		P.PRODUCT_MINDT
+		, P.PRODUCT_MAXDT
+		, P.PRODUCT_READYDT
+		, P.PRODUCT_PREPDT
+		, P.PRODUCT_STEP
+		, TO_CHAR(P.PRODUCT_REGDT, 'YYYY"년" MM"월" DD"일"
+		HH24"시" mi"분"') AS
+		PRODUCT_REGDT
+		, P.NUMBER_OF_PEOPLE
+		, P.CHECKIN_TIME
+		,
+		P.CHECKOUT_TIME
+		, A.ACCOM_NAME
+		, (SELECT COUNT(*) FROM RESERVATION r
+		WHERE
+		r.product_seq=p.PRODUCT_SEQ) now_reserv_num
+		FROM PRODUCT P,
+		ACCOM_CODE A
+		WHERE MEMBER_ID = #{member_id,jdbcType=VARCHAR}
+		AND
+		a.ACCOM_ID (+) =p.ACCOM_ID
 	</select>
-	
+
 	<select id="select_product_new" resultType="com.kedu.arias.product.dto.ProductDto">
 	<![CDATA[
 	SELECT * FROM 
@@ -345,6 +421,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE ROWNUM < 7    
     ]]>
 	</select>
-	
+
 </mapper>
 

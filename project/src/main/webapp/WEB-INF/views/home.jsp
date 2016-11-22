@@ -17,18 +17,17 @@
 	float: left;
 }
 
-.ima>a {
+/* .ima>div>a {
 	position: relative;
-	max-height: 250px;
+	max-height: 270px;
 	height: 100%;
 	padding: 0px;
-}
+} */
 
-.ima>a>img {
+.ima>div>a>img {
 	position: relative;
-	max-height: 250px;
-	width: 100%;
-	height: 100%;
+	max-height : 270px;
+	height: auto;
 }
 
 .ima .text {
@@ -164,12 +163,14 @@
 	<div class="row">
 		<c:forEach var="product" items="${list}">
 			<div class="col-sm-4 ima" style="margin-top: 10px;">
+			<div class="embed-responsive-4by3 embed-responsive img-responsive img-rounded">
 				<a
 					href='/detail?product_seq=${product.product_seq}&checkin=${date}&checkout=${date}&number_of_people=1'
 					class=""> <img
 					src="/resources/product/product_main_image/${product.p_main_img}"
-					class="img-responsive img-rounded" alt="Image">
+					class="" alt="Image">
 				</a>
+			</div>
 				<div class="col-sm-12 text-left">
 						<div class="media">
 							<div class="media-body">
