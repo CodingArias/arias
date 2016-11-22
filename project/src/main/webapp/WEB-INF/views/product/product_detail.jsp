@@ -291,16 +291,6 @@
 				<div class="col-sm-12 text-left">
 					<div class="col-sm-1"></div>
 					<div class="media col-sm-10">
-						<div class="media-left text-center">
-							<!-- 임의 이미지  -->
-							<a href="#"> <img class="media-object img-circle"
-								src="/resources/img/search/original_12.jpg" alt="...">
-							</a> 아이디
-						</div>
-						<!-- 댓글 작성창 -->
-						<div class="media-body text-left">
-							<span>참 좋은 곳이군요 호호호</span> <br> 날짜 입력칸
-						</div>
 					</div>
 					<div class="col-sm-1"></div>
 					<div class="col-sm-12 text-left">
@@ -397,7 +387,7 @@
 					$("#replyAddBtn").on("click", function() {
 						var preply_content = $("#preply_content").val();
 						var product_seq = ${product_detail.product_seq};
-						var member_score = $(this).parent().prev().find("output>b").text();
+						var member_score = Number($(this).parent().prev().find("output>b").text());
 						
 						alert(member_score);
 						$.ajax({
@@ -411,10 +401,10 @@
 							data : JSON.stringify({
 								product_seq : product_seq,
 								preply_content : preply_content,
-								member_score : member_score = 5
+								member_score : member_score
 							}),
 							success : function() {
-								getAllList();
+								getPageList(1);
 							}
 						});
 

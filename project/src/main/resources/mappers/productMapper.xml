@@ -323,6 +323,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     , p.product_lat
                     , M.MEMBER_IMG
                     , M.MEMBER_ID
+                    , M.MEMBER_FIRST_NAME
+                    , M.MEMBER_LAST_NAME
                      FROM PRODUCT P, MEMBER M
  	 	 WHERE p.product_step = 9
  	 	  AND p.MEMBER_ID = m.MEMBER_id

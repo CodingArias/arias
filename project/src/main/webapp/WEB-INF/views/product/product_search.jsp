@@ -198,13 +198,13 @@ footer {
 							<div class="media-body">
 								<br>
 								<c:choose>
-           <c:when test="${fn:length(list.product_name) > 13}">
-           <h4 class="media-heading"> ${fn:substring(list.product_name,0,12)}....</h4>
-           </c:when>
-           <c:otherwise>
-				<h4 class="media-heading">${list.product_name }</h4>
-           </c:otherwise> 
-          </c:choose>
+          							 <c:when test="${fn:length(list.product_name) > 13}">
+      								     <h4 class="media-heading"> ${fn:substring(list.product_name,0,12)}....</h4>
+           							</c:when>
+           							<c:otherwise>
+										<h4 class="media-heading">${list.product_name }</h4>
+           							</c:otherwise> 
+          						</c:choose>
 								${list.accom_name} * 숙박가능인원 ${list.number_of_people }명 * 별점 * 후기 갯수
 							</div>
 							<div class="media-right">
@@ -248,7 +248,7 @@ footer {
 			product.product_lng = ${product.product_lng};
 			product.product_lat = ${product.product_lat};
 			product.product_name = '${product.product_name}';
-			
+			product.product_img = '${product.p_main_img}';
 			list.push(product);
 		</c:forEach>
 		
@@ -273,16 +273,41 @@ footer {
 				zoom : 13
 			});
 			
+
+		  var infowindow = new google.maps.InfoWindow({
+		  });
+			
+		  var marker, i;
+		  var product_name = new Array();
+		  var content = new Array();
+		  
 			for (var i = 0; i < list.length;i++) {
 				var myLatLng = {lat: list[i].product_lat, lng: list[i].product_lng };	
-				var product_name = list[i].product_name;
-				
-				var marker = new google.maps.Marker({
+				product_name = list[i].product_name;
+				content  = '<img src="/resources/product/product_main_image/'+ list[i].product_img + 'class="img-rounded img-responsive img" alt="Responsive image">';	
+			
+								
+				marker = new google.maps.Marker({
 				    position: myLatLng,
 				    map: map,
-				    title: product_name
+				    title: product_name,
+				    content: content
+				    
 				  });
+				
+				
+				google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			        return function() {
+			          infowindow.setContent(this.content);
+			          infowindow.open(map, marker);
+			        }
+			      })(marker, i));
+				
 			}
+			
+			
+			
+			
 			
 			 var input = document.getElementById('pac-input');
 			  //searchBox

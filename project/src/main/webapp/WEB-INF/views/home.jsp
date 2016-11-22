@@ -174,7 +174,7 @@
 						<div class="media">
 							<div class="media-body">
 								<h4>＄ ${product.product_price}</h4>
-								<h4>${product.member_id}의 집~</h4>
+								<h4>${product.member_first_name} ${product.member_last_name}의 집~</h4>
 							</div>
 							<div class="media-right">
 								<a href="#"> <img class="media-object img-circle"

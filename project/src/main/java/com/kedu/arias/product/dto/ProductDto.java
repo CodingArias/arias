@@ -73,8 +73,23 @@ public class ProductDto {
 	
 	private String member_img;
 	
+	private String member_last_name;
+	private String member_first_name;
 	
 	
+	
+	public String getMember_last_name() {
+		return member_last_name;
+	}
+	public void setMember_last_name(String member_last_name) {
+		this.member_last_name = member_last_name;
+	}
+	public String getMember_first_name() {
+		return member_first_name;
+	}
+	public void setMember_first_name(String member_first_name) {
+		this.member_first_name = member_first_name;
+	}
 	public String getMember_img() {
 		return member_img;
 	}
