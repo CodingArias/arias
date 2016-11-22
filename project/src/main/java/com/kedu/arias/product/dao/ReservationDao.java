@@ -16,5 +16,5 @@ public interface ReservationDao {
 	public boolean reservationHostCheck (Integer product_seq, String member_id);
 	public ReservationDto selectReservationDetail(Integer product_seq, String member_id,Integer reservation_seq);
 	public List<ReservationDto> selectMyReservationList(String member_id);
-	
+	public void cancelMyReservation(int reservation_seq);
 }

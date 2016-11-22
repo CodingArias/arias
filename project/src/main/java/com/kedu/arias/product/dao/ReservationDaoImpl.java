@@ -84,5 +84,10 @@ public class ReservationDaoImpl implements ReservationDao{
 		return session.selectList(namespace+".selectMyReservationList",member_id);
 	}
 
+	@Override
+	public void cancelMyReservation(int reservation_seq) {
+		session.delete(namespace+".cancelMyReservation",reservation_seq);
+		
+	}
 
 }

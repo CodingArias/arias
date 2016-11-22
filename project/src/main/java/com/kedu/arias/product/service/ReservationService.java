@@ -18,4 +18,6 @@ public interface ReservationService {
 	
 	public List<ReservationDto> selectMyReservationList(String member_id);
 	
+	public void cancelMyReservation(int reservation_seq);
+	
 }

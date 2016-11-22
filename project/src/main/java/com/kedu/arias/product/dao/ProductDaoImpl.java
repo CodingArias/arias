@@ -183,4 +183,5 @@ public class ProductDaoImpl implements ProductDao{
 	public List<ProductDto> select_product_new() throws Exception {
 		return session.selectList(namespace+".select_product_new");
 	}
+
 }
