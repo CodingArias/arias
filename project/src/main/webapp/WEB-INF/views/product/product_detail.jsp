@@ -105,9 +105,10 @@
 					<div class="media-body text-left">
 						<h3 class="media-heading">${product_detail.product_name }</h3>
 						<!-- 위치  별점 예시-->
-						<h4>${product_detail.product_addr}별점</h4>
-						<h4>${product_detail.accom_name },숙박인원
+						<h4>${product_detail.product_addr}</h4>
+						<h4>${product_detail.accom_name }, 숙박인원
 							${product_detail.number_of_people}명, 침대 한개</h4>
+						
 					</div>
 				</div>
 			</div>
@@ -310,12 +311,11 @@
 					function getPageList(page) {
 						var product_seq = ${product_detail.product_seq};
 
-						$
-								.getJSON(
+						$.getJSON(
 										"/replies/" + product_seq + "/" + page,
 										function(data) {
 											var str = "";
-											console.log(data.list.length);
+											console.log(data.list);
 											$(data.list)
 													.each(
 															function() {
@@ -323,9 +323,9 @@
 																		+ "<div class='col-sm-1'></div>"
 																		+ "<div class='media col-sm-10'>"
 																		+ "<div class='media-left text-center'>"
-																		+ "<a href='#'> <img class='media-object img-circle' src='/resources/img/search/original_12.jpg' alt='...'>"
+																		+ "<a href='#'> <img class='media-object img-circle' src='/resources/member/member_img/" + this.member_img +"' style='height:60px; width:60px;' alt='...'>"
 																		+ "</a>"
-																		+ this.member_id
+																		+ this.member_last_name + this.member_first_name
 																		+ "</div>"
 																		+ "<div class='media-body text-left'>"
 																		+ "<span>"
