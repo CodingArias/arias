@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -102,12 +104,14 @@ public class EmailController {
 	}
 	
 	@RequestMapping(value="/checkpwd", method=RequestMethod.POST)
-	public ModelAndView sendEmailAction(String member_email,
+	public void sendEmailAction(String member_email,
 										String member_first_name,
 										String member_last_name,
-										String member_pwd, RedirectAttributes rttr) throws Exception {
+										String member_pwd,
+										HttpServletRequest request,
+										HttpServletResponse response,
+										Model model) throws Exception {
 		
-		ModelAndView mav;
 		Map<String, Object>param = new HashMap<String, Object>();
 		param.put("member_email", member_email);
 		param.put("member_pwd", member_pwd);
@@ -119,12 +123,8 @@ public class EmailController {
 		emailDto.setReceiver(member_email);
 		emailDto.setSubject(member_first_name + "님의 ARIAS 비밀번호 확인 메일입니다.");
 		emailsender.SendEmail(emailDto);
-			
-		rttr.addAttribute("result", "회원님의 등록된 이메일 주소로 메일이 발송 되었습니다.");
-		rttr.addAttribute("resultEng", "The email sent to your registed address.");
-		
-		mav = new ModelAndView("redirect:/member/passwordResult");
-		return mav;
+
+		response.sendRedirect("/member/passwordResult");
 	}
 	
 	@RequestMapping(value="/passwordResult", method=RequestMethod.GET)

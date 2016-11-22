@@ -20,8 +20,21 @@
 	margin-bottom: 180px;
 }
 
+#content p {
+	font-size: 12px;
+}
+
 #insert-button{
 	margin-top: 80px;
+}
+
+#pwdResultMsg{
+	display: table-cell;
+	vertical-align: middle;
+	width : 700px;
+	height: 300px;
+	border: #eee solid 1px;
+	background-color: #FAFAFA;
 }
 </style>
 
@@ -31,8 +44,13 @@
 </div>
 
 <div id="content" align="center">
-	<p><strong>${result}</strong></p>
-	<p>${resultEng}</p>
+	<div id="pwdResultMsg">
+		<p><strong>회원님의 이메일 주소로 비밀번호 확인 메일이 발송 되었습니다.</strong></p>
+		<p>The email to check your password was sent to your registered email address</p>
+		<br>
+		<br>
+		<p style="color:red; font-size: 11px;">※ 회원님의 정보 보호를 위해 이메일 확인 후 회원 정보(비밀번호)를 변경하시길 권장합니다.</p>
+	</div>
 	
 	<div id="insert-button" align="center">
 		<button type="button" class='btn btn-info btn-goHome' onclick="location.href='/member/login'">로그인 / Login</button>

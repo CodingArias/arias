@@ -46,7 +46,7 @@ function login(){
 			},
 			type : "post",
 			url : "/member/login_check/"+$(".member_email").val()+"/"+$(".member_pwd").val(),
-			data : JSON.stringify({member_email : $("#member_email").val() , member_pwd : $("#member_pwd").val() }),
+			data : JSON.stringify({member_email : $(".member_email").val() , member_pwd : $(".member_pwd").val() }),
 			dataType: "text",
 			success : function(result){
 					
