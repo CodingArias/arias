@@ -19,5 +19,7 @@ public interface ReplyDao {
 	
 	public int reply_count(int product_seq) throws Exception;
 	
+	public double avg_member_score(int product_seq) throws Exception;
+	
 	
 }

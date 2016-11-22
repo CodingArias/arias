@@ -50,4 +50,9 @@ public class ReplyServiceImpl implements ReplyService {
 	public int reply_count(int product_seq) throws Exception {
 		return rDao.reply_count(product_seq);
 	}
+	
+	@Override
+	public double avg_member_score(int product_seq) throws Exception {
+		return rDao.avg_member_score(product_seq);;
+	}
 }

@@ -46,7 +46,7 @@ public class ProductSearchController {
 		model.addAttribute("keyword", keyword);
 		
 		
-		//System.out.println(service.select_product_search(a, b, number_of_people));
+		System.out.println(service.select_product_search(a, b, number_of_people));
 		
 		model.addAttribute("list", service.select_product_search(a, b, number_of_people));
 		
