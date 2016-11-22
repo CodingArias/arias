@@ -58,36 +58,12 @@ public class EmailSender {
 		msg.setSentDate(new java.util.Date());	
 		msg.setContent(content, "text/html; charset=euc-kr");
 		
-		
-		/*MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");
-		
-		helper.setSubject(email.getSubject());
-		helper.setText(email.getContent());
-		helper.setTo(email.getReceiver());*/
-		
 		Transport.send(msg);
 		
 		System.out.println("SendEmail msg : " + msg);
 	} catch(Exception e) {
 		e.printStackTrace();
 	} 
-		
-	/*try {
-		msg.setSubject(email.getSubject());
-		msg.setText(email.getContent());
-		msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email.getReceiver()));
-		
-	} catch(Exception e) {
-		System.out.println("MessageingException");
-		e.printStackTrace();
-	}
-	
-	System.out.println("SendEmail msg : " + msg);
-	try {
-		mailsender.send(msg);
-	} catch(Exception e) {
-		System.out.println("Mail Exception 발생");
-		e.printStackTrace();
-	}*/
+
 	}
 }
