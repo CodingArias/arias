@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and member_id like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
 			</if>
 			<if test="searchType == 'c'.toString()">
-				and member_first_name like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
+				and member_first_name || member_last_name like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
 			</if>
 			<if test="searchType == 'w'.toString()">
 				and member_email like CONCAT('%'||#{keyword,jdbcType=VARCHAR},'%')
