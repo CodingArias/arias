@@ -27,6 +27,9 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>	
+	
+	
+	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10485760000"></property>
 	</bean>
@@ -49,3 +52,5 @@
 	<bean id="emailsender" class="com.kedu.arias.email.EmailSender"></bean>
 	<bean id="memberDto" class="com.kedu.arias.member.dto.MemberDto"></bean>
 </beans>
+
+

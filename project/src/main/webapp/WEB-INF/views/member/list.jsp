@@ -29,18 +29,14 @@
 <script>
 	$(document).ready(
 			function() {
-
 				$('#searchBtn').on(
 						"click",
 						function(event) {
-
 							self.location = "list"
 									+ "?searchType="
 									+ $("select option:selected").val()
 									+ "&keyword=" + $('#keywordInput').val();
-
 						});
-
 				$('#newBtn').on("click", function(evt) {
 
 					self.location = "register";
@@ -115,7 +111,6 @@
  <nav aria-label="Page navigation" style=" text-align: center;">
   <ul class="pagination">
     <li>
-    
       <c:if test="${page.prevPage!=0}">
 	      <a href="/member/list?curPage=${page.prevPage}&keyword=${page.keyword}&searchType=${searchType}" aria-label="Previous">
 	        <span aria-hidden="true">&laquo;</span>

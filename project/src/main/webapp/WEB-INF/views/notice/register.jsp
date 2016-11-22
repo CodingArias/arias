@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="/resources/datepicker/daterangepicker.css">
   <script type="text/javascript" src="/resources/datepicker/daterangepicker.js"></script>
   
+ 
   <script>
   $(function(){
 	  $('#demo').daterangepicker({
@@ -28,8 +29,10 @@
   </script>
   
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-  
+  <script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/resource/smarteditor/sample/photo_uploader/photo_uploader.html"></script>
+  <script type="text/javascript" src="/resource/smarteditor/sample/photo_uploader/attach_photo.js"></script>
+ 
   <script>
   $(function(){
     //전역변수선언
@@ -74,8 +77,6 @@
 		}
 	}
 	</script>
-	
-
 
 <!-- <body> -->
 
