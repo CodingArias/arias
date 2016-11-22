@@ -45,11 +45,10 @@
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			</c:if>
 			<c:if test="${status.index ne 0}">
-				<li data-target="#myCarousel" data-slide-to="${status.index }"></li>
+				<li data-target="#myCarousel" data-slide-to="${status.index}"></li>
 			</c:if>
 		</c:forEach>
 
-		<li data-target="#myCarousel" data-slide-to="1"></li>
 	</ol>
 
 	<!-- Wrapper for slides -->
