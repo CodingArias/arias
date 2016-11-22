@@ -108,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="select_product_search" resultType="com.kedu.arias.product.dto.ProductDto">
 	<![CDATA[
 	
- 	SELECT *
+	 SELECT *
 	FROM
 	(
 		SELECT p.product_seq
@@ -121,12 +121,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     , p.product_lat
                     , M.MEMBER_IMG
                     , ( 6371 * acos( cos( radians(#{lat,jdbcType=NUMERIC}) ) * cos( radians(product_lat) ) * cos( radians( product_lng ) - radians(#{lng,jdbcType=NUMERIC}) ) + sin( radians(#{lat,jdbcType=NUMERIC})) * sin( radians( product_lat ) ) ) ) AS distance
-		FROM PRODUCT P, ACCOM_CODE a, MEMBER M
+                    , SUBSTR(AVG(NVL(B.MEMBER_SCORE, 0)),0, 3) AS avg_member_score
+        FROM PRODUCT P, ACCOM_CODE a, MEMBER M, PRODUCT_REPLY B
         WHERE P.ACCOM_ID=A.ACCOM_ID
           AND P.MEMBER_ID = M.MEMBER_ID
+          AND P.PRODUCT_SEQ = B.PRODUCT_SEQ(+)
           AND P.number_of_people >= #{number_of_people, jdbcType=NUMERIC}
           AND p.product_step = 9
- 	) x
+          GROUP BY p.product_seq
+          , p.product_name
+                    , p.product_price
+                    , a.ACCOM_NAME
+                    , p.NUMBER_OF_PEOPLE
+                    , p.P_MAIN_IMG
+                    , p.product_lng
+                    , p.product_lat
+                    , M.MEMBER_IMG
+
+        ) x
  	WHERE  distance <= 30
  	ORDER BY distance
 	]]>

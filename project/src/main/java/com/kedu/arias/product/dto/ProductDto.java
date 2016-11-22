@@ -75,9 +75,17 @@ public class ProductDto {
 	
 	private String member_last_name;
 	private String member_first_name;
+	private String avg_member_score;
 	
 	
 	
+	
+	public String getAvg_member_score() {
+		return avg_member_score;
+	}
+	public void setAvg_member_score(String avg_member_score) {
+		this.avg_member_score = avg_member_score;
+	}
 	public String getMember_last_name() {
 		return member_last_name;
 	}
@@ -296,7 +304,6 @@ public class ProductDto {
 	public void setNumber_of_people(int number_of_people) {
 		this.number_of_people = number_of_people;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProductDto [product_seq=" + product_seq + ", member_id=" + member_id + ", product_name=" + product_name
@@ -311,8 +318,11 @@ public class ProductDto {
 				+ accom_id + ", accom_name=" + accom_name + ", bath_id=" + bath_id + ", bath_name=" + bath_name
 				+ ", bed_id=" + bed_id + ", bed_name=" + bed_name + ", building_id=" + building_id + ", building_name="
 				+ building_name + ", sguest_id=" + sguest_id + ", sguest_name=" + sguest_name + ", member_img="
-				+ member_img + "]";
-	}	
+				+ member_img + ", member_last_name=" + member_last_name + ", member_first_name=" + member_first_name
+				+ ", avg_member_score=" + avg_member_score + "]";
+	}
+	
+	
 	
 	
 	

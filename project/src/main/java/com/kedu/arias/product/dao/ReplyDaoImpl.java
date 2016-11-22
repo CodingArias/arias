@@ -54,4 +54,9 @@ public class ReplyDaoImpl implements ReplyDao {
 	public int reply_count(int product_seq) throws Exception {
 		return session.selectOne(namespace + ".replyCount", product_seq);
 	}
+	
+	@Override
+	public double avg_member_score(int product_seq) throws Exception {
+		return session.selectOne(namespace + ".avg_member_score", product_seq);
+	}
 }

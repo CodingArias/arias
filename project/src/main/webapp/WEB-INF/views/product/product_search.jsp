@@ -205,11 +205,11 @@ footer {
 										<h4 class="media-heading">${list.product_name }</h4>
            							</c:otherwise> 
           						</c:choose>
-								${list.accom_name} * 숙박가능인원 ${list.number_of_people }명 * 별점 * 후기 갯수
+								${list.accom_name} * 숙박가능인원 ${list.number_of_people }명 * 평점 : ${list.avg_member_score} 
 							</div>
 							<div class="media-right">
 								<a href="#"> <img class="media-object img-circle"
-									src="http://192.168.0.6:8080/resources/member/member_img/${list.member_img }" alt="" style="width: 60px; height: 60px;">
+									src="http://192.168.0.6:8080/resources/member/member_img/${list.member_img}" alt="" style="width: 60px; height: 60px;">
 								</a>
 							</div>
 						</div>
@@ -279,13 +279,15 @@ footer {
 			
 		  var marker, i;
 		  var product_name = new Array();
-		  var content = new Array();
+		  var content;
 		  
 			for (var i = 0; i < list.length;i++) {
 				var myLatLng = {lat: list[i].product_lat, lng: list[i].product_lng };	
 				product_name = list[i].product_name;
-				content  = '<img src="/resources/product/product_main_image/'+ list[i].product_img + 'class="img-rounded img-responsive img" alt="Responsive image">';	
-			
+				content  = '<div class="media-cover text-center" '
+				+ 'style="height:200px; width:260px;"> <img src="/resources/product/product_main_image/'
+				+ list[i].product_img 
+				+ '" class="img-thumbnail img-responsive" alt="Responsive image" style="height:100%; width:100%;" > </div>';
 								
 				marker = new google.maps.Marker({
 				    position: myLatLng,

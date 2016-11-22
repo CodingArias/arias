@@ -7,6 +7,15 @@ public class ReplyDto {
 	private String preply_content;
 	private int member_score;
 	private String preply_regdt;
+	private double avg_member_score;
+	
+	
+	public double getAvg_member_score() {
+		return avg_member_score;
+	}
+	public void setAvg_member_score(double avg_member_score) {
+		this.avg_member_score = avg_member_score;
+	}
 	public int getProduct_seq() {
 		return product_seq;
 	}
