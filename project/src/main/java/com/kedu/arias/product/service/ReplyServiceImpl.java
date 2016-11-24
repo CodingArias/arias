@@ -53,6 +53,6 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	@Override
 	public double avg_member_score(int product_seq) throws Exception {
-		return rDao.avg_member_score(product_seq);;
+		return rDao.avg_member_score(product_seq);
 	}
 }
