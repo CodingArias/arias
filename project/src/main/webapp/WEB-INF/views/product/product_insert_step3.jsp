@@ -145,7 +145,7 @@ select {
             
             <ul id="tab_bar" class="nav nav-pills " role="tablist">
               <li role="presentation" class="active"><a data-target="#tab1_div" role="tab" id="tab1" data-toggle="tab" aria-controls="tab1_div" aria-expanded="true">숙소</a></li>
-              <li role="presentation" class=""><a data-target="#tab2_div" role="tab" id="tab2" data-toggle="tab" aria-controls="tab1_div" aria-expanded="false">침실 / 손님<span class="badge">42</span></a></li>
+              <li role="presentation" class=""><a data-target="#tab2_div" role="tab" id="tab2" data-toggle="tab" aria-controls="tab1_div" aria-expanded="false">침실 / 손님</a></li>
               <li role="presentation" class=""><a data-target="#tab3_div" role="tab" id="tab3" data-toggle="tab" aria-controls="tab3_div" aria-expanded="false">욕실</a></li>
               <li role="presentation" class=""><a data-target="#tab4_div" role="tab" id="tab4" data-toggle="tab" aria-controls="tab4_div" aria-expanded="false">제공 서비스</a></li>
               <li role="presentation" class=""><a data-target="#tab5_div" role="tab" id="tab5" data-toggle="tab" aria-controls="tab5_div" aria-expanded="false">안전 기능</a></li>
