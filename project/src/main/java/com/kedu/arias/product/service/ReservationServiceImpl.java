@@ -62,5 +62,11 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservDao.selectMyReservationList(member_id);
 	}
 
+	@Override
+	public void cancelMyReservation(int reservation_seq) {
+		reservDao.cancelMyReservation(reservation_seq);
+		
+	}
+
 
 }

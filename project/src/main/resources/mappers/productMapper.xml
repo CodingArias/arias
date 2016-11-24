@@ -335,9 +335,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM (
 				SELECT ROWNUM as rnum, n.*
                 FROM (
-   	    				SELECT *
-                        FROM PRODUCT_REPLY
-                        WHERE PRODUCT_SEQ = #{product_seq,jdbcType=NUMERIC} 
+   	    				SELECT M.MEMBER_LAST_NAME, M.MEMBER_FIRST_NAME, M.MEMBER_IMG, P.PRODUCT_SEQ, P.PREPLY_CONTENT, P.MEMBER_SCORE, P.PREPLY_REGDT, M.MEMBER_ID 
+                        FROM PRODUCT_REPLY P, MEMBER M
+                        WHERE P.PRODUCT_SEQ = #{product_seq,jdbcType=NUMERIC}
+                          AND P.MEMBER_ID = M.MEMBER_ID
                       ) n
                       WHERE ROWNUM <= #{cri.pageEnd,jdbcType=NUMERIC}
 			) PRODUCT_REPLY

@@ -40,9 +40,7 @@
 		<br>
 		<div class="col-sm-3 text-left">
 			<div>
-				<h4><a href="#">숙소 목록</a></h4>
-				<h4><a href="#">예약 관리</a></h4>
-				
+
 			</div>
 		</div>
 		<div class="col-sm-9 text-left">

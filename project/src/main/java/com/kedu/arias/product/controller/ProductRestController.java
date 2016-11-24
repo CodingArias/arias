@@ -29,7 +29,6 @@ public class ProductRestController {
 	@RequestMapping(value="/reserv_dupl_check/{product_seq}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> reserv_dupl_check (
 			@PathVariable("product_seq") int product_seq)
-	
 	{
 		String member_id = "201611170001";
 		System.out.println("product_seq : "+ product_seq);
@@ -52,5 +51,31 @@ public class ProductRestController {
 		}
 		return entity;
 	}
-
+	
+/*	@RequestMapping(value="/cancelMyReservation/{reservation_seq}",method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> cancelMyReservation(
+			@PathVariable("reservation_seq") int reservation_seq)
+	{
+		String member_id = "201611170001";
+		System.out.println("product_seq : "+ product_seq);
+		System.out.println("member_id : "+ member_id);
+		
+		ResponseEntity<Map<String, Object>> entity = null;
+		Map<String,Object> map = new HashMap<>();
+		
+		try {
+			boolean duplicate=false;
+			//map.put("product", productService.select_product_detail(product_seq));
+			//예약 중복 검사
+			if(reservService.duplicateReservationCheck(member_id, product_seq)<1)
+				duplicate=true;
+			map.put("duplicate",duplicate);
+			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+*/
 }

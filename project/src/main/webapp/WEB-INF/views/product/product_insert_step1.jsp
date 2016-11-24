@@ -34,9 +34,7 @@ $(function(){
 			marker.setMap(null);
 		marker = new google.maps.Marker({
 			position : latlng,
-			title : "Hello World!"
 		});
-
 		marker.setMap(map);
 	}
 	
@@ -62,7 +60,6 @@ $(function(){
 
 		//주소 데이터 추출 메소드
 		function getAddress(latlng) {
-
 			var geocoder = new google.maps.Geocoder();
 			geocoder.geocode({
 				latLng : latlng
@@ -72,11 +69,9 @@ $(function(){
 						var address = results[0].formatted_address;
 						console.log(address);
 						createMarker(latlng);
-						
 						$("#product_addr").val(address);
 						$("#product_lat").val(latlng.lat());
 						$("#product_lng").val(latlng.lng());
-						
 						new google.maps.InfoWindow({
 							content : address 
 						}).open(map, marker);
@@ -282,7 +277,7 @@ p {
 
 					<h6>숙소 가격 (1일 기준) ( <em>*</em> )</h6>
 					<input type="number" class="form-control input_type2" name="product_price" id="product_price" placeholder="화폐 단위 : $" required="required" />
-					<h6>숙소가 위치한 나라 ( <em>*</em> )</h6>
+<%-- 					<h6>숙소가 위치한 나라 ( <em>*</em> )</h6>
 					<select id="country_id" name="country_id" class="form-control input_type2">
 						<c:forEach var="country" items="${country_list}" varStatus="status">
 							<c:if test="${status.first}">
@@ -294,7 +289,7 @@ p {
 								${country.country_name_kor }
 							</option>
 						</c:forEach>
-					</select> 
+					</select>  --%>
 
 					<h6>주소 ( <em>*</em> )</h6>
 					<input type="text" class="form-control" name="product_addr" id="product_addr" readonly="readonly" placeholder="지도에서 집의 위치를 찾아주세요." required="required"/>
